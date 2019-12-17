@@ -4,7 +4,7 @@ test -f "$NIX_SH" && source "$NIX_SH"
 
 _get_attrs()
 {
-    nix-instantiate --strict --eval --expr "builtins.attrNames (import ./default.nix {})" | tr -d "[]\""
+    nix-instantiate --strict --eval --expr "builtins.attrNames (import $ENTRYPOINT {})" | tr -d "[]\""
 }
 
 _toolbox_completions()

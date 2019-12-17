@@ -99,7 +99,10 @@ check_args() {
 #
 
 register-completions() {
-    cat "$BASH_COMPL_SCRIPT"
+    cat <<EOF
+ENTRYPOINT="$ENTRYPOINT"
+EOF
+    cat $BASH_COMPL_SCRIPT
 }
 
 build() {
@@ -200,7 +203,7 @@ doctor() {
 
 list() {
     local args="$*"
-    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description -b | cat
+    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description -b
 }
 
 usage() {
