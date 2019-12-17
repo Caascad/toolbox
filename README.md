@@ -59,11 +59,21 @@ Run the following to uninstall `terraform`:
 
 `terraform` command is no longer available from your shell.
 
+### Update tools
+
+Run:
+
+    $ ./toolbox update
+
+This will update the git repository and update any already installed
+tool if a superior version is available.
+
 ## Advanced setup
 
 ### Bash completions
 
-You can get bash completions for `./toolbox`. Just setup the following
+You can get bash completions for `toolbox`. Just setup the following
 in your `.bashrc`:
 
-    source <(./toolbox completions)
+    alias toolbox=/path/to/toolbox
+    source <(/path/to/toolbox completions)
