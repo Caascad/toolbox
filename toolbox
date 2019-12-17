@@ -4,9 +4,16 @@
 set -e
 set -o pipefail
 
-BASH_COMPL_SCRIPT=./scripts/toolbox.complete.bash.sh
 NIX_INSTALL_URL="${NIX_INSTALL_URL:-https://nixos.org/nix/install}"
-
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+ENTRYPOINT=$DIR/default.nix
+BASH_COMPL_SCRIPT=$DIR/scripts/toolbox.complete.bash.sh
 
 log() {
     local args="$*"
@@ -28,12 +35,13 @@ log-run() {
 
 
 _list_attrs() {
-    nix-instantiate --strict --eval --expr "builtins.attrNames (import ./default.nix {})" | tr -d "[]\"" | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g'
+    nix-instantiate --strict --eval --expr 'with builtins; attrValues (mapAttrs (a: d: "${a} - ${d.name}") (import ./default.nix {}))' \
+      | tr -d "[]\"" | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g'
 }
 
 _get_name() {
     local pkg="$1"
-    nix-instantiate --strict --eval --expr "(import ./default.nix {}).$1.name" | tr -d '"'
+    nix-instantiate --strict --eval --expr "(import $ENTRYPOINT {}).$1.name" | tr -d '"'
 }
 
 
@@ -58,6 +66,10 @@ _sourceNix() {
     test -f "$NIX_SH" && source "$NIX_SH" || true
 }
 
+_isSubstituterConfigured() {
+    nix show-config | grep "toolbox.cachix.org" >/dev/null
+}
+
 _addCacheConfig() {
     if test -f ~/.config/nix/nix.conf
     then
@@ -65,9 +77,8 @@ _addCacheConfig() {
     else
         mkdir -p "$HOME"/.config/nix/
         cat << EOF > "$HOME"/.config/nix/nix.conf
-substituters = https://cache.nixos.org  https://cache.nix.corp.cloudwatt.com
-trusted-substituters = https://cache.nix.corp.cloudwatt.com
-trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.nix.cloudwatt.com:ApPt6XtZeOQ3hNRTSBQx+m6rd8p04G0DQwz0bZfVPL8=
+substituters = https://cache.nixos.org https://toolbox.cachix.org
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8=
 EOF
     fi
 }
@@ -93,7 +104,7 @@ register-completions() {
 
 build() {
     local pkg="$1"
-    log-run "nix build -f default.nix $pkg"
+    log-run "nix build -f $ENTRYPOINT $pkg"
 
     if [ $? -eq 0 ]; then
         echo ""
@@ -103,7 +114,7 @@ build() {
 
 install() {
     local pkg="$1"
-    log-run "nix-env -f default.nix -iA $pkg"
+    log-run "nix-env -f $ENTRYPOINT -iA $pkg"
 }
 
 uninstall() {
@@ -113,7 +124,24 @@ uninstall() {
 
 shell() {
     local pkg="$1"
-    log-run "nix-shell default.nix -A $pkg"
+    log-run "nix-shell $ENTRYPOINT -A $pkg"
+}
+
+update() {
+    log "Updating toolbox ..."
+    pushd $DIR 2>&1 >/dev/null
+    if [[ ! $(git branch --show-current) == "master" ]]; then
+      log-error "I am not on the master branch. Aborting"
+      exit 1
+    fi
+    log-run "git fetch origin"
+    if [[ $(git rev-parse origin/master) == $(git rev-parse HEAD) ]]; then
+      log "Already up-to-date!"
+      exit 0;
+    fi
+    log-run "git pull origin master"
+    log-run "nix-env -f $ENTRYPOINT -u -b"
+    popd
 }
 
 init() {
@@ -126,6 +154,13 @@ init() {
         log "Running 'curl https://nixos.org/nix/install | sh'"
         curl "$NIX_INSTALL_URL" | sh
         _sourceNix
+    fi
+
+    if _isSubstituterConfigured; then
+        log "cache is already configured"
+    else
+        log "adding toolbox binary cache"
+        _addCacheConfig
     fi
 
 }
@@ -145,11 +180,12 @@ doctor() {
         FAIL="."
     fi
 
-    if _hasKvmSupport
+    if _isSubstituterConfigured
     then
-        echo -e "- kvm support: $OK"
+        echo -e "- toolbox binary cache: $OK"
     else
-        echo -e "- kvm support: '/dev/kvm' either not found or you don't have r/w permissions. You probably won't be able to start VMs"
+        echo -e "- toolbox binary cache: $X"
+        FAIL="."
     fi
 
     if [[ $FAIL = "" ]]; then
@@ -164,12 +200,7 @@ doctor() {
 
 list() {
     local args="$*"
-
-    if [ -z "$args" ]; then
-        _list_attrs | tr " " "\n"
-    else
-        _list_attrs | tr " " "\n" | grep "$args"
-    fi
+    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description -b | cat
 }
 
 usage() {
@@ -178,11 +209,11 @@ Usage: toolbox <command> [args]
 
  init                 -- configure initial setup
  doctor               -- perform sanity checks
- list                 -- list artifacts and tests
- install [artifact]   -- install an artifact
- uninstall [artifact] -- uninstall a previously installed artifact
- build [artifact]     -- build an artifact
- shell [artifact]     -- enter a dev shell for an artifact
+ list                 -- list available tools
+ update               -- update all installed tools
+ install [tool]       -- install a tool
+ uninstall [tool]     -- uninstall a previously installed tool
+ build [tool]         -- build a tool
  completions          -- output completion script
 
 In order to enable context-sensitive completions (bash only!) run:
@@ -231,6 +262,9 @@ case "$subcommand" in
         ;;
     list)
         list "$@"
+        ;;
+    update)
+        update "$@"
         ;;
     doctor)
         doctor

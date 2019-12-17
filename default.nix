@@ -10,7 +10,9 @@ let
 
 in {
 
-  inherit (pkgs) ansible;
+  inherit (pkgs) ansible kubectl stern;
+
+  helm = pkgs.kubernetes-helm;
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [ p.local p.openstack terraform-provider-keycloak ]);
 

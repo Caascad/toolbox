@@ -16,7 +16,7 @@ Goals are:
 
 To setup the toolbox and start using tools run the following command:
 
-    ./toolbox init
+    $ ./toolbox init
 
 This will install and configure `nix` on your system.
 
@@ -24,7 +24,16 @@ This will install and configure `nix` on your system.
 
 To view the list of available tools run:
 
-    ./toolbox list
+    $ ./toolbox list
+    ansible    = 2.8.4  Radically simple IT automation
+    helm       - ?      A package manager for kubernetes
+    kubectl    - ?      Kubernetes CLI
+    stern      - ?      Multi pod and container log tailing for Kubernetes
+    terraform  - ?
+
+We can see that `ansible` v2.8.4 is installed and it is the latest version available (`=`).
+
+Other tools are not installed (`?`).
 
 ### Installing a tool
 
@@ -51,10 +60,6 @@ Run the following to uninstall `terraform`:
 `terraform` command is no longer available from your shell.
 
 ## Advanced setup
-
-### Make `toolbox` available globally
-
-Just link `./toolbox` to some dir that is in your `$PATH`.
 
 ### Bash completions
 
