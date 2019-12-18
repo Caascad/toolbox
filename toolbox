@@ -203,7 +203,7 @@ doctor() {
 
 list() {
     local args="$*"
-    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description -b
+    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description
 }
 
 usage() {
