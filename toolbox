@@ -238,7 +238,6 @@ if [ -z "$1" ]; then
 fi
 
 _sourceNix
-_isNixInstalled
 
 subcommand="$1"
 shift
