@@ -10,12 +10,15 @@ let
 
 in {
 
-  inherit (pkgs) ansible kubectl stern;
+  inherit (pkgs) ansible kubectl stern vault;
 
   helm = pkgs.kubernetes-helm;
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     p.local p.openstack p.vault terraform-provider-keycloak
   ]);
+
+  safe = pkgs.callPackage ./pkgs/safe.nix
+    { source = sources.safe; };
 
 }
