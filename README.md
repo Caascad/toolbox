@@ -30,9 +30,11 @@ To setup the toolbox and start using tools run the following command:
 
     to your shell profile (e.g. ~/.profile).
 
+    [toolbox]: adding toolbox binary cache
+
 This will install and configure `nix` on your system.
 
-Don't forget to source the `nix.sh` profile in your `.profile` or `.bash_rc`.
+Don't forget to source the `nix.sh` profile in your `.profile` or `.bashrc`.
 
 ### Listing tools
 
