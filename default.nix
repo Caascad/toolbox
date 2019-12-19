@@ -14,6 +14,8 @@ in {
 
   helm = pkgs.kubernetes-helm;
 
-  terraform = pkgs.terraform_0_12.withPlugins (p: [ p.local p.openstack terraform-provider-keycloak ]);
+  terraform = pkgs.terraform_0_12.withPlugins (p: [
+    p.local p.openstack p.vault terraform-provider-keycloak
+  ]);
 
 }
