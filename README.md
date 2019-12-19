@@ -17,8 +17,22 @@ Goals are:
 To setup the toolbox and start using tools run the following command:
 
     $ ./toolbox init
+    [toolbox]: Initializing setup ...
+    [toolbox]: Looks like nix is not installed yet
+    [toolbox]: Running 'curl https://nixos.org/nix/install | sh'
+
+    ...
+
+    Installation finished!  To ensure that the necessary environment
+    variables are set, please add the line
+
+      . /home/user/.nix-profile/etc/profile.d/nix.sh
+
+    to your shell profile (e.g. ~/.profile).
 
 This will install and configure `nix` on your system.
+
+Don't forget to source the `nix.sh` profile in your `.profile` or `.bash_rc`.
 
 ### Listing tools
 
