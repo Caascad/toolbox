@@ -10,7 +10,7 @@ let
 
 in {
 
-  inherit (pkgs) ansible kubectl stern vault;
+  inherit (pkgs) ansible kubectl stern vault docker-compose;
 
   helm = pkgs.kubernetes-helm;
 
