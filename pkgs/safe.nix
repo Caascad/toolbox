@@ -14,6 +14,6 @@ buildGoPackage rec {
     description = "A Vault CLI";
     homepage = "https://github.com/starkandwayne/safe";
     license = licenses.mit;
-    maintainers = with maintainers; [ eonpatapon ];
+    maintainers = with maintainers; [ ];
   };
 }
