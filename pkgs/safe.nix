@@ -3,9 +3,11 @@
 , buildGoPackage
 }:
 
+with builtins;
+
 buildGoPackage rec {
   name = "safe-${version}";
-  version = source.rev;
+  version = concatStringsSep "." (tail (splitVersion source.rev));
   src = source.outPath;
 
   goPackagePath = "github.com/starkandwayne/safe";
