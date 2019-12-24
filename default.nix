@@ -15,7 +15,8 @@ in {
   helm = pkgs.kubernetes-helm;
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [
-    p.local p.openstack p.vault terraform-provider-keycloak
+    p.aws p.openstack p.vault terraform-provider-keycloak
+    p.local p.null p.random p.tls p.template
   ]);
 
   safe = pkgs.callPackage ./pkgs/safe.nix
