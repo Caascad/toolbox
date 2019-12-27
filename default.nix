@@ -10,7 +10,7 @@ let
 
 in {
 
-  inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl;
+  inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl yq;
 
   helm = pkgs.kubernetes-helm;
 
