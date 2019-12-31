@@ -34,16 +34,10 @@ log-run() {
 }
 
 
-_list_attrs() {
-    nix-instantiate --strict --eval --expr 'with builtins; attrValues (mapAttrs (a: d: "${a} - ${d.name}") (import ./default.nix {}))' \
-      | tr -d "[]\"" | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g'
-}
-
 _get_name() {
     local pkg="$1"
     nix-instantiate --strict --eval --expr "(import $ENTRYPOINT {}).$1.name" | tr -d '"'
 }
-
 
 #
 # sanity check functions
@@ -202,8 +196,7 @@ doctor() {
 }
 
 list() {
-    local args="$*"
-    nix-env -f $ENTRYPOINT -q -a --no-name -c -P --description
+    paste -d' ' <(echo -e $(nix-instantiate $DIR/lib.nix -A list --eval --strict | tr -d "\"") | column -t -R 2) <(nix-env -f $ENTRYPOINT -q -a -c --no-name --description) | grep --color -E '^|>'
 }
 
 usage() {
