@@ -16,21 +16,23 @@ Goals are:
 
 To setup the toolbox and start using tools run the following command:
 
-    $ ./toolbox init
-    [toolbox]: Initializing setup ...
-    [toolbox]: Looks like nix is not installed yet
-    [toolbox]: Running 'curl https://nixos.org/nix/install | sh'
+```bash
+$ ./toolbox init
+[toolbox]: Initializing setup ...
+[toolbox]: Looks like nix is not installed yet
+[toolbox]: Running 'curl https://nixos.org/nix/install | sh'
 
-    ...
+...
 
-    Installation finished!  To ensure that the necessary environment
-    variables are set, please add the line
+Installation finished!  To ensure that the necessary environment
+variables are set, please add the line
 
-      . /home/user/.nix-profile/etc/profile.d/nix.sh
+  . /home/user/.nix-profile/etc/profile.d/nix.sh
 
-    to your shell profile (e.g. ~/.profile).
+to your shell profile (e.g. ~/.profile).
 
-    [toolbox]: adding toolbox binary cache
+[toolbox]: adding toolbox binary cache
+```
 
 This will install and configure `nix` on your system.
 
@@ -40,27 +42,32 @@ Don't forget to source the `nix.sh` profile in your `.profile` or `.bashrc`.
 
 To view the list of available tools run:
 
-    $ ./toolbox list
-    ansible    = 2.8.4  Radically simple IT automation
-    helm       - ?      A package manager for kubernetes
-    kubectl    - ?      Kubernetes CLI
-    stern      - ?      Multi pod and container log tailing for Kubernetes
-    terraform  - ?
+```bash
+$ ./toolbox list
+ansible          2.8.4 - ?       Radically simple IT automation
+cfssl            1.3.2 = 1.3.2   Cloudflare's PKI and TLS toolkit
+helm             3.0.1 > 2.14.3  A package manager for kubernetes
+...
+```
 
-We can see that `ansible` v2.8.4 is installed and it is the latest version available (`=`).
+We can see that:
 
-Other tools are not installed (`?`).
+ * ansible `2.8.4` is available but not installed (`?`)
+ * cfssl is installed at the latest version (`1.3.2`)
+ * helm `3.0.1` in available but `2.14.3` is installed (`>`)
 
 ### Installing a tool
 
 Run the following to install `terraform`:
 
-    $ ./toolbox install terraform
-    [toolbox]: Running "nix-env -f default.nix -iA terraform"
+```bash
+$ ./toolbox install terraform
+[toolbox]: Running "nix-env -f default.nix -iA terraform"
 
-    installing 'terraform-with-plugins-0.12.8'
+installing 'terraform-with-plugins-0.12.8'
 
-    $ terra<TAB>
+$ terra<TAB>
+```
 
 `terraform` command should be available in your shell.
 
@@ -68,10 +75,12 @@ Run the following to install `terraform`:
 
 Run the following to uninstall `terraform`:
 
-    $ ./toolbox uninstall terraform
-    [toolbox]: Running "nix-env -e terraform-with-plugins-0.12.8"
+```bash
+$ ./toolbox uninstall terraform
+[toolbox]: Running "nix-env -e terraform-with-plugins-0.12.8"
 
-    uninstalling 'terraform-with-plugins-0.12.8'
+uninstalling 'terraform-with-plugins-0.12.8'
+```
 
 `terraform` command is no longer available from your shell.
 
@@ -79,7 +88,9 @@ Run the following to uninstall `terraform`:
 
 Run:
 
-    $ ./toolbox update
+```
+$ ./toolbox update
+```
 
 This will update the git repository and update any already installed
 tool if a superior version is available.
@@ -91,5 +102,7 @@ tool if a superior version is available.
 You can get bash completions for `toolbox`. Just setup the following
 in your `.bashrc`:
 
-    alias toolbox=/path/to/toolbox
-    source <(/path/to/toolbox completions)
+```bash
+alias toolbox=/path/to/toolbox
+source <(/path/to/toolbox completions)
+```
