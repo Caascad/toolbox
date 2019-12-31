@@ -1,9 +1,12 @@
 { sources ? import ./nix/sources.nix
 , nixpkgs ? sources.nixpkgs
-, pkgs ? import nixpkgs {}
+, nixpkgs-unstable ? sources.nixpkgs-unstable
 }:
 
 let
+
+  pkgs = import nixpkgs {};
+  pkgs-unstable = import nixpkgs-unstable {};
 
   terraform-provider-keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
     { source = sources.terraform-provider-keycloak; };
@@ -12,7 +15,7 @@ in {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl yq jq;
 
-  helm = pkgs.kubernetes-helm;
+  helm = pkgs-unstable.kubernetes-helm;
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     p.aws p.openstack p.vault terraform-provider-keycloak
