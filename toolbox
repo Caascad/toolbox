@@ -134,11 +134,11 @@ update() {
     log-run "git fetch origin"
     if [[ $(git rev-parse origin/master) == $(git rev-parse HEAD) ]]; then
       log "Already up-to-date!"
-      exit 0;
+    else
+      log-run "git pull origin master"
     fi
-    log-run "git pull origin master"
     log-run "nix-env -f $ENTRYPOINT -u -b"
-    popd
+    popd 2>&1 >/dev/null
 }
 
 init() {
