@@ -30,7 +30,7 @@ in {
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-provider-helm terraform-provider-keycloak
-    p.aws p.openstack p.vault
+    p.aws p.openstack p.vault p.kubernetes
     p.local p.null p.random p.tls p.template
   ]);
 
