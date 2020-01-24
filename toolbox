@@ -196,7 +196,7 @@ doctor() {
 }
 
 list() {
-    paste -d' ' <(echo -e $(nix-instantiate $DIR/lib.nix -A list --eval --strict | tr -d "\"") | column -t -R 2) <(nix-env -f $ENTRYPOINT -q -a -c --no-name --description) | grep --color -E '^|>|<'
+    paste -d' ' <(echo -e $(nix-instantiate $DIR/lib.nix -A list --eval --strict | tr -d "\"") | column -t) <(nix-env -f $ENTRYPOINT -q -a -c --no-name --description) | grep --color -E '^|>|<'
 }
 
 usage() {
