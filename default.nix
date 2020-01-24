@@ -32,6 +32,7 @@ in {
     terraform-provider-helm terraform-provider-keycloak
     p.aws p.openstack p.vault p.kubernetes
     p.local p.null p.random p.tls p.template
+    p.flexibleengine
   ]);
 
   safe = pkgs.callPackage ./pkgs/safe.nix
