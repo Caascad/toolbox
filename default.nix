@@ -24,7 +24,7 @@ let
 
 in {
 
-  inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl yq jq gopass kubectx;
+  inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl yq jq gopass kubectx aws;
 
   helm = pkgs-unstable.kubernetes-helm;
 
