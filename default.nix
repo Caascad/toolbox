@@ -26,6 +26,8 @@ in {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose fly cfssl yq jq gopass kubectx aws;
 
+  inherit (pkgs-unstable) cue;
+
   helm = pkgs-unstable.kubernetes-helm;
 
   terraform = pkgs-unstable.terraform_0_12.withPlugins (p: [
