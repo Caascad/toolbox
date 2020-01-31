@@ -129,6 +129,9 @@ case "$COMMAND" in
     update)
         update "$@"
         ;;
+    shell)
+        shell "$@"
+        ;;
     doctor)
         doctor
         ;;
