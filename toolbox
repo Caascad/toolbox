@@ -38,7 +38,7 @@ init() {
         log "adding toolbox binary cache"
         _addCacheConfig
     fi
-
+    $DIR/scripts/commands.sh $DIR doctor
 }
 
 if ! _isRegularUser; then
