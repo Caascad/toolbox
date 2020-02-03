@@ -13,7 +13,7 @@ _toolbox_completions()
     local prev="${COMP_WORDS[COMP_CWORD-1]}"
 
     if [ "${#COMP_WORDS[@]}" = "2" ]; then
-        COMPREPLY=($(compgen -W "completions list update uninstall install shell init doctor" "${COMP_WORDS[1]}"))
+        COMPREPLY=($(compgen -W "completions list update uninstall install make-shell init doctor" "${COMP_WORDS[1]}"))
         return
     fi
 
@@ -24,7 +24,7 @@ _toolbox_completions()
     fi
 
     case "$prev" in
-        uninstall|install|build|shell)
+        uninstall|install|build|make-shell)
             COMPREPLY=($(compgen -W "$(_get_attrs)" "$cur"))
             ;;
     esac

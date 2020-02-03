@@ -31,12 +31,21 @@ variables are set, please add the line
 
 to your shell profile (e.g. ~/.profile).
 
-[toolbox]: adding toolbox binary cache
+[toolbox]: Adding toolbox binary cache
+[toolbox]: Downloading toolbox dependencies
+[1 built, 44 copied (99.2 MiB), 39.5 MiB DL]
+[toolbox]: Installation finished !
+[toolbox]: Don't forget to configure your .bashrc with:
+
+. /home/user/.nix-profile/etc/profile.d/nix.sh
+alias toolbox=/home/user/toolbox/toolbox
+source <(toolbox completions)
+
 ```
 
 This will install and configure `nix` on your system.
 
-Don't forget to source the `nix.sh` profile in your `.profile` or `.bashrc`.
+Don't forget to configure your `.bashrc`.
 
 ### Listing tools
 
@@ -85,7 +94,7 @@ Make sure that you have `direnv` installed and properly [configured](https://dir
 You can install `direnv` from the toolbox:
 
 ```sh
-./toolbox install direnv
+toolbox install direnv
 ```
 
 Setup your `.bashrc` so that you can call the toolbox script from anywhere and
@@ -102,7 +111,7 @@ Given a project X which needs the tools `terraform` and `ansible` go to the
 root directory of the project and run:
 
 ```sh
-toolbox shell terraform ansible
+toolbox make-shell terraform ansible
 ```
 
 This will create a `shell.nix` file that list the tools of the project.
@@ -121,8 +130,8 @@ After some time you decide to use a newer version of `terraform` or
 
 Run again in you project:
 
-```
-toolbox shell terraform ansible
+```sh
+toolbox make-shell terraform ansible
 ```
 
 This will update `shell.nix` with the most recent commit of the toolbox.
@@ -138,7 +147,7 @@ development shell described in the previous section.**
 Run the following to install `terraform`:
 
 ```bash
-$ ./toolbox install terraform
+$ toolbox install terraform
 [toolbox]: Running "nix-env -f default.nix -iA terraform"
 
 installing 'terraform-with-plugins-0.12.8'
@@ -153,7 +162,7 @@ $ terra<TAB>
 Run the following to uninstall `terraform`:
 
 ```bash
-$ ./toolbox uninstall terraform
+$ toolbox uninstall terraform
 [toolbox]: Running "nix-env -e terraform-with-plugins-0.12.8"
 
 uninstalling 'terraform-with-plugins-0.12.8'
@@ -165,8 +174,8 @@ uninstalling 'terraform-with-plugins-0.12.8'
 
 Run:
 
-```
-$ ./toolbox update
+```sh
+$ toolbox update
 ```
 
 This will update the git repository and update any already globally
