@@ -33,16 +33,21 @@ init() {
     fi
 
     if _isSubstituterConfigured; then
-        log "cache is already configured"
+        log "Cache is already configured"
     else
-        log "adding toolbox binary cache"
+        log "Adding toolbox binary cache"
         _addCacheConfig
     fi
-    $DIR/scripts/commands.sh $DIR doctor
+
+    log "Downloading toolbox dependencies"
+    nix build -f $DIR/scripts/deps.nix --no-link
+
+    log "Installation finished !"
+    log "Don't forget to source /home/$USER/.nix-profile/etc/profile.d/nix.sh in your .bashrc"
 }
 
 if ! _isRegularUser; then
-    log-error "root user detected. Run ./toolbox as non-root user!"
+    log-error "Root user detected. Run ./toolbox as non-root user!"
     exit 1
 fi
 
@@ -65,6 +70,6 @@ case "$COMMAND" in
           log-error "Nix is not installed. Please run toolbox init first."
           exit 1
         fi
-        $DIR/scripts/commands.sh $DIR $COMMAND "$@"
+        nix-shell -I nixpkgs=$DIR/nix $DIR/scripts/deps.nix --run "$DIR/scripts/commands.sh $DIR $COMMAND \"$@\""
         ;;
 esac

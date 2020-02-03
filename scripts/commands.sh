@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell deps.nix -i bash
+#!/usr/bin/env bash
 
 set -eu
 set -o pipefail
@@ -30,7 +29,7 @@ uninstall() {
 update() {
     log "Updating toolbox ..."
     pushd $DIR 2>&1 >/dev/null
-    if [[ ! $(git branch --show-current) == "master" ]]; then
+    if [[ ! $(git rev-parse --abbrev-ref HEAD) == "master" ]]; then
       log-error "I am not on the master branch. Aborting"
       exit 1
     fi
