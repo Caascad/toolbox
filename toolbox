@@ -63,6 +63,7 @@ case "$COMMAND" in
     *)
         if ! _isNixInstalled; then
           log-error "Nix is not installed. Please run toolbox init first."
+          exit 1
         fi
         $DIR/scripts/commands.sh $DIR $COMMAND "$@"
         ;;
