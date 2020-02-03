@@ -43,7 +43,14 @@ init() {
     nix build -f $DIR/scripts/deps.nix --no-link
 
     log "Installation finished !"
-    log "Don't forget to source /home/$USER/.nix-profile/etc/profile.d/nix.sh in your .bashrc"
+    log "Don't forget to configure your .bashrc with:\n"
+
+    cat <<EOF
+. /home/$USER/.nix-profile/etc/profile.d/nix.sh
+alias toolbox=$DIR/toolbox
+source <(toolbox completions)
+EOF
+
 }
 
 if ! _isRegularUser; then
