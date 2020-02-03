@@ -4,14 +4,14 @@ usage() {
 cat <<EOM
 Usage: toolbox <command> [args]
 
- init                 -- configure initial setup
- doctor               -- perform sanity checks
- list                 -- list available tools
- update               -- update all installed tools
- install [tool]       -- install a tool
- uninstall [tool]     -- uninstall a previously installed tool
- shell [tool] [tool]  -- create a project dev shell with a list of tools
- completions          -- output completion script
+ init                       -- configure initial setup
+ doctor                     -- perform sanity checks
+ list                       -- list available tools
+ update                     -- update all installed tools
+ install [tool]             -- install a tool
+ uninstall [tool]           -- uninstall a previously installed tool
+ make-shell [tool] [tool]   -- create a project dev shell with a list of tools
+ completions                -- output completion script
 
 In order to enable context-sensitive completions (bash only!) run:
 
