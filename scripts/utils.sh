@@ -59,7 +59,7 @@ check_args_greater() {
     local actual="$1"
     local expected="$2"
     local cmd="$3"
-    if [ "$actual" -ge "$expected" ]; then
+    if [ $actual -lt $expected ]; then
         log-error "'$cmd' requires at least $expected arguments but $actual were given"
         exit 1
     fi

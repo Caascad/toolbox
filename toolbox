@@ -77,6 +77,6 @@ case "$COMMAND" in
           log-error "Nix is not installed. Please run toolbox init first."
           exit 1
         fi
-        nix-shell -I nixpkgs=$DIR/nix $DIR/scripts/deps.nix --run "$DIR/scripts/commands.sh $DIR $COMMAND \"$@\""
+        nix-shell -I nixpkgs=$DIR/nix $DIR/scripts/deps.nix --run "$DIR/scripts/commands.sh $DIR $COMMAND $(echo $@)"
         ;;
 esac
