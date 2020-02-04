@@ -60,9 +60,9 @@ doctor() {
 
     if _isSubstituterConfigured
     then
-        echo -e "- toolbox binary cache: $OK"
+        echo -e "- toolbox binary cache : $OK"
     else
-        echo -e "- toolbox binary cache: $X"
+        echo -e "- toolbox binary cache : $X"
         FAIL="."
     fi
 

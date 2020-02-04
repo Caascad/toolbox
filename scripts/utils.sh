@@ -89,7 +89,10 @@ _isSubstituterConfigured() {
 _addCacheConfig() {
     if test -f ~/.config/nix/nix.conf
     then
-        log "$HOME/.config/nix/nix.conf exists. Please follow the instructions from the README"
+        log-warning "$HOME/.config/nix/nix.conf exists."
+        log "Please add the following binary cache:"
+        log " substituters = https://toolbox.cachix.org"
+        log " trusted-public-keys = toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8="
     else
         mkdir -p "$HOME"/.config/nix/
         cat << EOF > "$HOME"/.config/nix/nix.conf
