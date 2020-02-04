@@ -17,13 +17,13 @@ list() {
 }
 
 install() {
-    local pkg="$1"
-    log-run "nix-env -f $ENTRYPOINT -iA $pkg"
+    local pkgs="$@"
+    log-run "nix-env -f $ENTRYPOINT -iA $pkgs"
 }
 
 uninstall() {
-    local pkg="$1"
-    log-run "nix-env -e $pkg"
+    local pkgs="$@"
+    log-run "nix-env -e $pkgs"
 }
 
 update() {
@@ -117,12 +117,12 @@ case "$COMMAND" in
         list "$@"
         ;;
     install)
-        check_args_equal $# 1 "install"
+        check_args_greater $# 1 "install"
         install "$@"
         ;;
     uninstall)
-        check_args_equal $# 1 "uninstall"
-        uninstall $(_get_name "$@")
+        check_args_greater $# 1 "uninstall"
+        uninstall "$@"
         ;;
     update)
         update "$@"

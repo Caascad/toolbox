@@ -8,9 +8,9 @@ Usage: toolbox <command> [args]
  doctor                     -- perform sanity checks
  list                       -- list available tools
  update                     -- update all installed tools
- install [tool]             -- install a tool
- uninstall [tool]           -- uninstall a previously installed tool
- make-shell [tool] [tool]   -- create a project dev shell with a list of tools
+ install tool [tool...]     -- install tools globally
+ uninstall tool [tool...]   -- uninstall a previously installed tool
+ make-shell tool [tool...]  -- create a project dev shell with a list of tools
  completions                -- output completion script
 
 EOM
@@ -39,11 +39,6 @@ log-run() {
     local cmd="$1"
     log "Running \"$cmd\"\n"
     eval $cmd
-}
-
-_get_name() {
-    local pkg="$1"
-    nix-instantiate --strict --eval --expr "(import $ENTRYPOINT {}).$1.name" | tr -d '"'
 }
 
 check_args_equal() {
