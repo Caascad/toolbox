@@ -13,11 +13,6 @@ Usage: toolbox <command> [args]
  make-shell [tool] [tool]   -- create a project dev shell with a list of tools
  completions                -- output completion script
 
-In order to enable context-sensitive completions (bash only!) run:
-
-  $ source <(./toolbox completions)
-
-You should add this to your init scripts.
 EOM
 }
 
