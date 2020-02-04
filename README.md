@@ -52,7 +52,7 @@ Don't forget to configure your `.bashrc`.
 To view the list of available tools run:
 
 ```bash
-$ ./toolbox list
+$ toolbox list
 ansible          2.8.4 - ?       Radically simple IT automation
 cfssl            1.3.2 = 1.3.2   Cloudflare's PKI and TLS toolkit
 helm             3.0.1 > 2.14.3  A package manager for kubernetes
@@ -82,28 +82,7 @@ You are sure that everyone working in the project has the same exact tools.
 As a maintainer of the project you control when to update the versions of
 the tools for your project.
 
-Everytime you `cd` into the project directory you will get the specified tools
-at a specified commit of the toolbox in your shell thanks to `direnv`.
-
 This means you don't need to install the tools globally.
-
-#### Requirements
-
-Make sure that you have `direnv` installed and properly [configured](https://direnv.net/).
-
-You can install `direnv` from the toolbox:
-
-```sh
-toolbox install direnv
-```
-
-Setup your `.bashrc` so that you can call the toolbox script from anywhere and
-also install the `direnv` hook.
-
-```sh
-eval "$(direnv hook bash)"
-alias toolbox=/path/to/toolbox
-```
 
 #### Shell setup
 
@@ -119,9 +98,18 @@ In this example `terraform` and `ansible`. Theses tools are pinned to a
 specific commit of the toolbox (eg: `origin/master` commit at the time you run
 the command).
 
-It also creates an `.envrc` file for `direnv`.
+You need to commit `shell.nix` in the project.
 
-You need to commit theses files in the project.
+#### Activating the shell
+
+You can do it with two methods:
+
+1. `direnv`: in `.envrc` add `use_nix`
+
+   When you cd in the project `direnv` will automagically make the tools
+   available in your shell.
+
+1. run `nix-shell` to enter a new shell with the project tools
 
 #### Shell update
 

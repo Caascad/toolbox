@@ -19,14 +19,20 @@ EOM
 
 log() {
     local args="$*"
-    local PLEASE="\e[32m[toolbox]:\e[0m"
-    echo -e "$PLEASE $args"
+    local prefix="\e[32m[toolbox]:\e[0m"
+    echo -e "$prefix $args"
+}
+
+log-warning() {
+    local args="$*"
+    local prefix="\e[33m[toolbox]:\e[0m"
+    echo -e "$prefix $args"
 }
 
 log-error() {
     local args="$*"
-    local PLEASE="\e[31m[toolbox]\e[0m"
-    echo -e "$PLEASE $args"
+    local prefix="\e[31m[toolbox]:\e[0m"
+    echo -e "$prefix $args"
 }
 
 log-run() {
