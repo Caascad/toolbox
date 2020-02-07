@@ -13,6 +13,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 ENTRYPOINT=$DIR/default.nix
+BASH_COMPL_SCRIPT=$DIR/scripts/toolbox.complete.bash.sh
 
 source $DIR/scripts/utils.sh
 
@@ -53,6 +54,14 @@ EOF
 
 }
 
+register-completions() {
+    cat <<EOF
+ENTRYPOINT="$ENTRYPOINT"
+EOF
+    cat $BASH_COMPL_SCRIPT
+}
+
+
 if ! _isRegularUser; then
     log-error "Root user detected. Run ./toolbox as non-root user!"
     exit 1
@@ -71,6 +80,9 @@ shift
 case "$COMMAND" in
     init)
         init "$@"
+        ;;
+    completions)
+        register-completions
         ;;
     *)
         if ! _isNixInstalled; then

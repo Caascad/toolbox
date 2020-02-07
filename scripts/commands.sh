@@ -9,7 +9,6 @@ COMMAND=$1
 shift
 
 ENTRYPOINT=$DIR/default.nix
-BASH_COMPL_SCRIPT=$DIR/scripts/toolbox.complete.bash.sh
 source $DIR/scripts/utils.sh
 
 list() {
@@ -105,13 +104,6 @@ EOF
     log " - or run 'nix-shell' to spawn a new shell with the tools"
 }
 
-register-completions() {
-    cat <<EOF
-ENTRYPOINT="$ENTRYPOINT"
-EOF
-    cat $BASH_COMPL_SCRIPT
-}
-
 case "$COMMAND" in
     list)
         list "$@"
@@ -133,9 +125,6 @@ case "$COMMAND" in
         ;;
     doctor)
         doctor
-        ;;
-    completions)
-        register-completions
         ;;
     *)
         echo "Error: unknown command: $COMMAND"
