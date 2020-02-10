@@ -169,7 +169,7 @@ $ toolbox update
 This will update the git repository and update any already globally
 installed tools if a superior version is available.
 
-## Advanced setup
+## Advanced
 
 ### Bash completions
 
@@ -180,3 +180,14 @@ in your `.bashrc`:
 alias toolbox=/path/to/toolbox
 source <(/path/to/toolbox completions)
 ```
+
+### Add tools required by your project in the toolbox
+
+Suppose a tool you need in your project is not available yet in the
+toolbox.
+
+In order to iterate locally, you can generate a `shell.nix` file and
+manually replace the `src` attribute by `src = /your/toolbox/location`
+in order to point to your local toolbox repository. You can then add
+tools in the toolbox and test this nix-shell before creating a pull
+request in the toolbox repository.
