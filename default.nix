@@ -26,4 +26,7 @@ in {
   safe = pkgs.callPackage ./pkgs/safe.nix
     { source = sources.safe; };
 
+  fly = pkgs.callPackage ./pkgs/fly.nix
+    { source = sources.concourse; };
+
 }
