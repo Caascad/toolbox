@@ -6,8 +6,8 @@
 with builtins;
 
 buildGoPackage rec {
-  name = "safe-${version}";
-  version = concatStringsSep "." (tail (splitVersion source.rev));
+  pname = "safe";
+  version = source.version;
   src = source.outPath;
 
   goPackagePath = "github.com/starkandwayne/safe";
@@ -16,6 +16,6 @@ buildGoPackage rec {
     description = "A Vault CLI";
     homepage = "https://github.com/starkandwayne/safe";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ eonpatapon ];
   };
 }

@@ -29,11 +29,11 @@
         "homepage": null,
         "owner": "starkandwayne",
         "repo": "safe",
-        "rev": "v1.5.1",
+        "version": "1.5.1",
         "sha256": "12gzxrnyl890h79z9yx23m1wwgy8ahm74q4qwi8n2nh7ydq6mn2d",
         "type": "tarball",
         "url": "https://github.com/starkandwayne/safe/archive/v1.5.1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz"
     },
     "terraform-provider-keycloak": {
         "branch": "master",
