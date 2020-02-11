@@ -191,3 +191,24 @@ manually replace the `src` attribute by `src = /your/toolbox/location`
 in order to point to your local toolbox repository. You can then add
 tools in the toolbox and test this nix-shell before creating a pull
 request in the toolbox repository.
+
+## Maintainers
+
+### Managing sources
+
+Sources of `nixpkgs` or custom packages are managed with [niv](https://github.com/nmattia/niv).
+
+To add sources of a github repo:
+
+```sh
+niv add concourse/concourse -v 5.8.0
+```
+
+Once added you can use `sources.concourse` as an input of your package.
+See `./pkgs/safe.nix` for example.
+
+To update sources to a particular version:
+
+```sh
+niv update concourse -v 5.8.1
+```
