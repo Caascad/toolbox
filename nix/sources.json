@@ -41,10 +41,10 @@
         "homepage": "https://mrparkers.github.io/terraform-provider-keycloak/",
         "owner": "mrparkers",
         "repo": "terraform-provider-keycloak",
-        "rev": "1.15.0",
+        "version": "1.15.0",
         "sha256": "0d9hcd4y7b2jz42x53g4qhw75mwsrm3c3lf4cbf2fvyjcnqfsbm7",
         "type": "tarball",
         "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/1.15.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz"
     }
 }
