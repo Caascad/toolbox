@@ -5,11 +5,11 @@
         "homepage": "https://concourse-ci.org",
         "owner": "concourse",
         "repo": "concourse",
-        "version": "5.8.0",
         "sha256": "0ji3jya4b2b4l6dlvydh3k2jfh6kkhii23d6rmi49ypydhn1qmgj",
         "type": "tarball",
         "url": "https://github.com/concourse/concourse/archive/v5.8.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz"
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "5.8.0"
     },
     "niv": {
         "branch": "master",
@@ -41,11 +41,24 @@
         "homepage": null,
         "owner": "starkandwayne",
         "repo": "safe",
-        "version": "1.5.1",
         "sha256": "12gzxrnyl890h79z9yx23m1wwgy8ahm74q4qwi8n2nh7ydq6mn2d",
         "type": "tarball",
         "url": "https://github.com/starkandwayne/safe/archive/v1.5.1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz"
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.5.1"
+    },
+    "terraform-provider-concourse": {
+        "branch": "master",
+        "description": "A terraform provider for Concourse",
+        "homepage": null,
+        "owner": "alphagov",
+        "repo": "terraform-provider-concourse",
+        "rev": "962f3f3cb15f0db3f400249fb0dddaee690d9c65",
+        "sha256": "0wgrbdj10nwbnck1ph9nf4ph4awm5drnq1kzm7qxfq48dnrdmrib",
+        "type": "tarball",
+        "url": "https://github.com/alphagov/terraform-provider-concourse/archive/962f3f3cb15f0db3f400249fb0dddaee690d9c65.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "5.8.0"
     },
     "terraform-provider-keycloak": {
         "branch": "master",
@@ -53,10 +66,10 @@
         "homepage": "https://mrparkers.github.io/terraform-provider-keycloak/",
         "owner": "mrparkers",
         "repo": "terraform-provider-keycloak",
-        "version": "1.15.0",
         "sha256": "0d9hcd4y7b2jz42x53g4qhw75mwsrm3c3lf4cbf2fvyjcnqfsbm7",
         "type": "tarball",
         "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/1.15.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz"
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "version": "1.15.0"
     }
 }
