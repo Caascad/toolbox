@@ -9,6 +9,9 @@ let
   terraform-provider-keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
     { source = sources.terraform-provider-keycloak; };
 
+  terraform-provider-concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
+    { source = sources.terraform-provider-concourse; };
+
 in {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose cfssl
@@ -18,6 +21,7 @@ in {
 
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-provider-keycloak
+    terraform-provider-concourse
     p.aws p.openstack p.vault p.kubernetes
     p.local p.null p.random p.tls p.template
     p.flexibleengine
