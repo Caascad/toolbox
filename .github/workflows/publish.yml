@@ -1,0 +1,23 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - default.nix
+      - nix/sources.nix
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Nix
+      uses: cachix/install-nix-action@v6
+    - name: Build/Push
+      uses: cachix/cachix-action@v3
+      with:
+        name: toolbox
+        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+        file: cache.nix
