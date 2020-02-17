@@ -78,7 +78,7 @@ doctor() {
 make-shell() {
     sha=$(git -C $DIR rev-parse origin/master)
     log "Using commit $sha for this development shell"
-    url="https://git.corp.cloudwatt.com/api/v4/projects/jpbraun%2Ftoolbox/repository/archive?sha=$sha"
+    url="https://github.com/Caascad/toolbox/archive/${sha}.tar.gz"
     log "Calculating sha256 for $url"
     sha256=$(nix-prefetch-url --unpack $url 2>/dev/null)
     log "Writing shell.nix file"
