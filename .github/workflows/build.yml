@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  pull_request:
+    paths:
+      - default.nix
+      - nix/sources.nix
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Nix
+      uses: cachix/install-nix-action@v6
+    - name: Setup binary cache
+      uses: cachix/cachix-action@v3
+      with:
+        name: toolbox
+        skipNixBuild: true
+    - name: Build
+      run: nix-build
