@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - default.nix
-      - nix/sources.nix
+      - 'nix/*'
 
 jobs:
   build:
