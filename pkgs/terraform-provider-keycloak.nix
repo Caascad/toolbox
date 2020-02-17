@@ -7,7 +7,7 @@ buildGoModule rec {
   name = "terraform-provider-keycloak-${version}";
   version = source.version;
   src = source.outPath;
-  modSha256 = "18kq7kb7fh6njvpra4ahkhdgsg4hy7vv9q51wg9x64rzxjxa4vq0";
+  modSha256 = "1cinmkpqpcf5whdrl39zbshlxjapgqn46zn6gx41yg3y1bf3kxl8";
   postInstall = "mv $out/bin/terraform-provider-keycloak{,_v${version}}";
 
   meta = with stdenv.lib; {
