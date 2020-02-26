@@ -9,7 +9,7 @@ on:
       - 'nix/*'
 
 jobs:
-  build:
+  publish:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

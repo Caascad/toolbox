@@ -1,0 +1,27 @@
+name: Test
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: init
+      run: ./toolbox init
+    - name: doctor
+      run: ./toolbox doctor
+    - name: list
+      run: ./toolbox list
+    - name: install
+      run: ./toolbox install jq
+    - name: uninstall
+      run: ./toolbox uninstall jq
+    - name: make-shell
+      run: |
+        git fetch origin master
+        mkdir test
+        cd test
+        ../toolbox make-shell jq
+        . /home/runner/.nix-profile/etc/profile.d/nix.sh
+        nix-shell --command 'jq --help'
