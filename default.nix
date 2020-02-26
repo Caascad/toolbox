@@ -12,6 +12,13 @@ let
   terraform-provider-concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
     { source = sources.terraform-provider-concourse; };
 
+  terraform-provider-vault = pkgs.terraform-providers.vault.overrideAttrs (old: with sources.terraform-provider-vault; {
+    inherit version;
+    name = "${repo}-${version}";
+    src = outPath;
+    postBuild = "mv go/bin/${repo}{,_v${version}}";
+  });
+
 in {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose cfssl
@@ -22,7 +29,8 @@ in {
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-provider-keycloak
     terraform-provider-concourse
-    p.aws p.openstack p.vault p.kubernetes
+    terraform-provider-vault
+    p.aws p.openstack p.kubernetes
     p.local p.null p.random p.tls p.template
     p.flexibleengine
   ]);

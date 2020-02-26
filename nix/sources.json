@@ -72,5 +72,18 @@
         "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/1.15.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
         "version": "1.15.0"
+    },
+    "terraform-provider-vault": {
+        "branch": "master",
+        "description": "Terraform Vault provider",
+        "homepage": "https://www.terraform.io/docs/providers/vault/",
+        "owner": "terraform-providers",
+        "repo": "terraform-provider-vault",
+        "rev": "5da0170b5530aa775a1ddd81a5ccca198e0d5996",
+        "sha256": "08kniq60pqqdgd7pwfs44axny0mycvm923xxi0pazpc9k0a2ggpk",
+        "type": "tarball",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.8.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "2.8.0"
     }
 }
