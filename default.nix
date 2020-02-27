@@ -41,4 +41,7 @@ in {
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
 
+  kubernix = pkgs.callPackage ./pkgs/kubernix.nix
+    { source = sources.kubernix; };
+
 }

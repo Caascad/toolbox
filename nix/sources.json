@@ -11,6 +11,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "5.8.0"
     },
+    "kubernix": {
+        "branch": "master",
+        "description": "Single dependency Kubernetes clusters for local testing, experimenting and development",
+        "homepage": "",
+        "owner": "saschagrunert",
+        "repo": "kubernix",
+        "rev": "c73e963147f7a386df4ee40ef264ecb514f05405",
+        "sha256": "1qwlrsvsc4i7vh5246iqrv68dmfr0f8vzzbbpjqv2h40i2kdpvk1",
+        "type": "tarball",
+        "url": "https://github.com/saschagrunert/kubernix/archive/c73e963147f7a386df4ee40ef264ecb514f05405.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.2.0"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
