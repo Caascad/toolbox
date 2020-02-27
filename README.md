@@ -201,7 +201,7 @@ Sources of `nixpkgs` or custom packages are managed with [niv](https://github.co
 To add sources of a github repo:
 
 ```sh
-niv add concourse/concourse -v 5.8.0
+niv add concourse/concourse -v 5.8.0 -t 'https://github.com/<owner>/<repo>/archive/<version>.tar.gz'
 ```
 
 Once added you can use `sources.concourse` as an input of your package.
