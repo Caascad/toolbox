@@ -192,6 +192,24 @@ in order to point to your local toolbox repository. You can then add
 tools in the toolbox and test this nix-shell before creating a pull
 request in the toolbox repository.
 
+## Submitting changes
+
+Follow `nixpkgs` format of git commits:
+
+```
+(pkg-name): (from -> to | init at version | refactor | etc)
+
+(Motivation for change. Additional information.)
+```
+
+For consistency, there should not be a period at the end of the commit
+message's summary line (the first line of the commit message).
+
+Examples:
+
+* `terraform: init at 0.12.0`
+* `cue: 0.0.14 -> 0.0.15`
+
 ## Maintainers
 
 ### Managing sources
