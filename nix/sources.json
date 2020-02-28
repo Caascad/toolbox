@@ -85,5 +85,18 @@
         "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "2.8.0"
+    },
+    "tf": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "Caascad",
+        "repo": "tf",
+        "rev": "aceafa85ebf173fac31211ec4ff6b8050a9cf786",
+        "sha256": "13knpspqzqkb4nxbvglv6rp9ajg46fgg4gz0dlxqw2394w37v5p0",
+        "type": "tarball",
+        "url": "https://github.com/Caascad/tf/archive/1.0.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "version": "1.0.0"
     }
 }
