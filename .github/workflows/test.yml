@@ -23,5 +23,11 @@ jobs:
         mkdir test
         cd test
         ../toolbox make-shell jq
-        . /home/runner/.nix-profile/etc/profile.d/nix.sh
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        nix-shell --command 'jq --help'
+    - name: update-shell
+      run: |
+        cd test
+        ../toolbox update-shell 56af2a040a6188e42abe7c5f51bf2e63495435c6
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         nix-shell --command 'jq --help'

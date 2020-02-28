@@ -1,5 +1,9 @@
 #!/bin/sh
 
+REPO_OWNER="Caascad"
+REPO_NAME="toolbox"
+REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME"
+
 usage() {
 cat <<EOM
 Usage: toolbox <command> [args]
@@ -7,10 +11,11 @@ Usage: toolbox <command> [args]
  init                       -- configure initial setup
  doctor                     -- perform sanity checks
  list                       -- list available tools
- update                     -- update all installed tools
+ update                     -- update all globally installed tools
  install tool [tool...]     -- install tools globally
  uninstall tool [tool...]   -- uninstall a previously installed tool
  make-shell tool [tool...]  -- create a project dev shell with a list of tools
+ update-shell               -- update toolbox revision for an existing shell
  completions                -- output completion script
  help                       -- this help
 
@@ -27,13 +32,14 @@ log() {
 log-warning() {
     local args="$*"
     local prefix="\e[33m[toolbox]:\e[0m"
-    echo -e "$prefix $args"
+    echo -e "$prefix $args" >&2
 }
 
 log-error() {
     local args="$*"
     local prefix="\e[31m[toolbox]:\e[0m"
-    echo -e "$prefix $args"
+    echo -e "$prefix $args" >&2
+    exit 1
 }
 
 log-run() {
@@ -42,7 +48,7 @@ log-run() {
     eval $cmd
 }
 
-check_args_equal() {
+check_args_eq() {
     local actual="$1"
     local expected="$2"
     local cmd="$3"
@@ -52,12 +58,22 @@ check_args_equal() {
     fi
 }
 
-check_args_greater() {
+check_args_gt() {
     local actual="$1"
     local expected="$2"
     local cmd="$3"
     if [ $actual -lt $expected ]; then
         log-error "'$cmd' requires at least $expected arguments but $actual were given"
+        exit 1
+    fi
+}
+
+check_args_le() {
+    local actual="$1"
+    local expected="$2"
+    local cmd="$3"
+    if [ $actual -gt $expected ]; then
+        log-error "'$cmd' wants at most $expected arguments but $actual were given"
         exit 1
     fi
 }
@@ -103,3 +119,44 @@ EOF
     fi
 }
 
+_currentCommit() {
+    [ -f toolbox.json ] && jq -e -r .commit toolbox.json
+}
+
+_lastCommit() {
+    curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/branches/master | jq -r '.commit.sha'
+}
+
+_commitArchiveURL() {
+    local sha=$1
+    echo "${REPO_URL}/archive/${sha}.tar.gz"
+}
+
+_generateToolboxJSON() {
+    commit=$1
+    if [ "$(_currentCommit)" == "${commit}" ]; then
+        log "Shell is already up-to-date!"
+        return
+    fi
+    url=$(_commitArchiveURL $commit)
+    log "Using commit $commit for this development shell"
+    log "Calculating sha256 for $url"
+    sha256=$(nix-prefetch-url --unpack $url 2>/dev/null) || log-error "Download failed. Wrong commit?"
+
+    if [ ! -f toolbox.json ]; then
+        log "Writing toolbox.json file"
+        cat <<EOF > toolbox.json
+{
+    "epoch": 1,
+    "commit": "$commit",
+    "sha256": "$sha256"
+}
+EOF
+    else
+        tmp=$(mktemp)
+        log "Updating toolbox.json file ..."
+        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\"" toolbox.json > $tmp
+        [ $? -eq 0 ] && mv $tmp toolbox.json || log-error "Failed to update toolbox.json"
+        log "Done."
+    fi
+}
