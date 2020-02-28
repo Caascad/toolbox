@@ -40,5 +40,7 @@ in {
 
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
-
+  
+  tf  = pkgs.callPackage ./pkgs/tf.nix
+    { source = sources.tf; };
 }
