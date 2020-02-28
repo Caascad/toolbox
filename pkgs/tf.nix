@@ -1,4 +1,4 @@
-{stdenv, source, fetchurl}:  
+{stdenv, source}:  
 stdenv.mkDerivation rec { 
   name="tf";
   version=source.version;
