@@ -13,8 +13,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    ls
-    pwd
     cp tf $out/bin/
     chmod +x $out/bin/tf
    '';
