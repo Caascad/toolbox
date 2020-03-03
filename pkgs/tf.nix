@@ -20,6 +20,6 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     cp tf $out/bin/
     chmod +x $out/bin/tf
-    wrapProgram $out/bin/tf $wrapperfile --prefix PATH ":" ${terraform}/bin
+    wrapProgram $out/bin/tf --prefix PATH ":" ${terraform}/bin
    '';
   }
