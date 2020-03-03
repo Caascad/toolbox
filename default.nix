@@ -42,5 +42,5 @@ in {
     { source = sources.concourse; };
   
   tf  = pkgs.callPackage ./pkgs/tf.nix
-    { source = sources.tf; };
+    { source = sources.tf; inherit terraform; };
 }
