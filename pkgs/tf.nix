@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
     description = "wrapper around terraform";
     homepage = "https://github.com/Caascad/tf";
     license = licenses.mit;
-    maintainers = with maintainers; [ "bgeneze" ];
+    maintainers = with maintainers; [ "Benjile" ];
   };
   buildInputs = [ makeWrapper ];
   installPhase = ''
