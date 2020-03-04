@@ -19,7 +19,7 @@ let
     postBuild = "mv go/bin/${repo}{,_v${version}}";
   });
 
-in {
+in rec {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose cfssl
                  yq jq gopass kubectx aws direnv cue go gnupg curl;
@@ -40,5 +40,7 @@ in {
 
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
-
+  
+  tf  = pkgs.callPackage ./pkgs/tf.nix
+    { source = sources.tf; inherit terraform; };
 }
