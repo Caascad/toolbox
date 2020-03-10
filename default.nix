@@ -40,7 +40,10 @@ in rec {
 
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
-  
-  tf  = pkgs.callPackage ./pkgs/tf.nix
+
+  tf = pkgs.callPackage ./pkgs/tf.nix
     { source = sources.tf; inherit terraform; };
+
+  kswitch = pkgs.callPackage ./pkgs/kswitch {};
+
 }
