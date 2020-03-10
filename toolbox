@@ -74,6 +74,28 @@ fi
 
 _sourceNix
 
+PARAMS=""
+
+while (( "$#" )); do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -*|--*=) # unsupported flags
+            log-error "Error: unsupported flag $1"
+            exit 1
+            ;;
+        *) # preserve positional arguments
+          PARAMS="$PARAMS $1"
+          shift
+          ;;
+    esac
+done
+
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
+
 COMMAND="$1"
 shift
 
