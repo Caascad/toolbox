@@ -73,9 +73,9 @@ kube=$(cat ${configDir}/${zone})
 # Add unused argument foo to run the command
 # it's not used but cli parsing requires it
 # This will kill the active ssh tunnel if any
-ssh -S /tmp/kswitch -O exit foo 2>/dev/null || true
+ssh -S /dev/shm/kswitch -O exit foo 2>/dev/null || true
 
 log "Forwarding through ${dest}..."
-ssh -M -S /tmp/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+ssh -M -S /dev/shm/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
 
 kubectl config use-context $zone
