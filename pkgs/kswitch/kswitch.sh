@@ -24,23 +24,43 @@ _continue() {
 
 usage() {
   cat <<EOF
-Usage: kswitch <zone_name>
+Usage: kswitch ZONE_NAME
+
+kswitch automatically setup an SSH tunnel to the specified zone K8S cluster.
+
+To do this it will configure the local kubectl configuration (usually ~/.kube/config)
+by adding the zone as a context and the user credentials by downloading them
+from the .kube/config file of the bastion of the zone.
 EOF
 }
 
 localPort=30000
 configDir=$HOME/.config/kswitch
-zone=${1:-""}
+zone=""
+
+for arg in $@; do
+    case "$arg" in
+        -h|--help)
+        usage
+        exit 0
+        ;;
+        *)
+        [ "$zone" != "" ] && (echo -e "Error: too much arguments\n" && usage && exit 1)
+        zone=$arg
+        shift
+        ;;
+    esac
+done
 
 # Makes sure to use ~/.kube/config
 unset KUBECONFIG
 
-[ "$zone" == "" ] && (echo "Missing zone" && usage && exit 1)
+[ "$zone" == "" ] && (echo -e "Error: missing zone name\n" && usage && exit 1)
 
 dest=cloud@bst.${zone}.caascad.com
 
 if [ ! -d $configDir ]; then
-  log "Looks like you are run_cning kswitch for the first-time!"
+  log "Looks like you are running kswitch for the first-time!"
   log "I'm going to create $configDir for storing kswitch configurations."
   _continue
   mkdir -p $configDir
