@@ -12,6 +12,7 @@ Usage: toolbox <command> [args]
  uninstall tool [tool...]   -- uninstall a previously installed tool
  make-shell tool [tool...]  -- create a project dev shell with a list of tools
  completions                -- output completion script
+ help                       -- this help
 
 EOM
 }

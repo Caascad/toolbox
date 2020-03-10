@@ -84,6 +84,9 @@ case "$COMMAND" in
     completions)
         register-completions
         ;;
+    help)
+        usage
+        ;;
     *)
         if ! _isNixInstalled; then
           log-error "Nix is not installed. Please run toolbox init first."
