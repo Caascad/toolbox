@@ -22,6 +22,20 @@ _continue() {
   [[ $REPLY =~ ^[Yy]$ ]] || exit 1
 }
 
+bash-completions() {
+  cat <<EOF
+_kswitch_completions() {
+  local curr_arg;
+  curr_arg=\${COMP_WORDS[COMP_CWORD]}
+  if [ \${#COMP_WORDS[@]} -ge 3 ]; then
+    return
+  fi
+  COMPREPLY=( \$(compgen -W "- \$(kubectl config get-contexts --output='name')" -- \$curr_arg ) );
+}
+complete -F _kswitch_completions kswitch
+EOF
+}
+
 usage() {
   cat <<EOF
 Usage: kswitch ZONE_NAME
@@ -31,6 +45,10 @@ kswitch automatically setup an SSH tunnel to the specified zone K8S cluster.
 To do this it will configure the local kubectl configuration (usually ~/.kube/config)
 by adding the zone as a context and the user credentials by downloading them
 from the .kube/config file of the bastion of the zone.
+
+You can get bash completions for kswitch, add this to your ~/.bashrc:
+
+  source <(kswitch bash-completions)
 EOF
 }
 
@@ -40,6 +58,10 @@ zone=""
 
 for arg in $@; do
     case "$arg" in
+        bash-completions)
+        bash-completions
+        exit 0
+        ;;
         -h|--help)
         usage
         exit 0
