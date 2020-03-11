@@ -118,6 +118,6 @@ kube=$(cat ${configDir}/${zone})
 ssh -S /dev/shm/kswitch -O exit foo 2>/dev/null || true
 
 log "Forwarding through ${dest}..."
-ssh -M -S /dev/shm/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+ssh -4 -M -S /dev/shm/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
 
 kubectl config use-context $zone
