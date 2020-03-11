@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2086
+
 set -eu
 set -o pipefail
 
@@ -7,13 +10,13 @@ log() {
 
 run() {
   echo -e "\e[33m+++ $1\e[0m" >&2
-  eval $1
+  eval "$1"
 }
 
 run_c() {
   echo -e "\e[33m+++ $1\e[0m" >&2
   _continue
-  eval $1
+  eval "$1"
 }
 
 _continue() {
@@ -56,7 +59,7 @@ localPort=30000
 configDir=$HOME/.config/kswitch
 zone=""
 
-for arg in $@; do
+for arg in "$@"; do
     case "$arg" in
         bash-completions)
         bash-completions
