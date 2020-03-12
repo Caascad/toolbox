@@ -13,7 +13,7 @@ _toolbox_completions()
     local prev="${COMP_WORDS[COMP_CWORD-1]}"
 
     if [ "${#COMP_WORDS[@]}" = "2" ]; then
-        COMPREPLY=($(compgen -W "completions list update uninstall install make-shell init doctor" "${COMP_WORDS[1]}"))
+        COMPREPLY=($(compgen -W "completions list update uninstall install make-shell update-shell init doctor" "${COMP_WORDS[1]}"))
         return
     fi
 

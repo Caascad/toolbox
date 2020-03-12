@@ -96,9 +96,9 @@ toolbox make-shell terraform ansible
 This will create a `shell.nix` file that list the tools of the project.
 In this example `terraform` and `ansible`. Theses tools are pinned to a
 specific commit of the toolbox (eg: `origin/master` commit at the time you run
-the command).
+the command). A `toolbox.json` that references the commit used is also created.
 
-You need to commit `shell.nix` in the project.
+You need to commit `shell.nix` and `toolbox.json` in the project.
 
 #### Activating the shell
 
@@ -114,18 +114,24 @@ You can do it with two methods:
 #### Shell update
 
 After some time you decide to use a newer version of `terraform` or
-`ansible` which is available in the toolbox.
+`ansible` which are available in the toolbox.
 
-Run again in you project:
+To update the shell to the latest toolbox version, run:
 
 ```sh
-toolbox make-shell terraform ansible
+toolbox update-shell
 ```
 
-This will update `shell.nix` with the most recent commit of the toolbox.
+This will update `toolbox.json` with the last commit of the master branch.
+
+You can also update the shell using a specific commit:
+
+```sh
+toolbox update-shell <commit-sha>
+```
 
 Test that the new versions of the tools play well with your project. If yes,
-you can commit `shell.nix`.
+you can commit `toolbox.json`.
 
 ### Globally installing a tool
 

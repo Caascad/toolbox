@@ -13,5 +13,6 @@ runCommand "toolbox-deps" {
     bashInteractive.doc
     coreutils
     utillinux
+    jq
   ];
 } "touch $out"
