@@ -50,9 +50,9 @@ doctor() {
 
     if _isNixInstalled
     then
-        echo -e "- Nix installed :  $OK"
+        echo -e "- Nix installed : $OK"
     else
-        echo -e "- Nix installed :  $X"
+        echo -e "- Nix installed : $X"
         FAIL="."
     fi
 
@@ -61,6 +61,14 @@ doctor() {
         echo -e "- toolbox binary cache : $OK"
     else
         echo -e "- toolbox binary cache : $X"
+        FAIL="."
+    fi
+
+    if _isChannelInstalled
+    then
+        echo -e "- toolbox channel : $OK"
+    else
+        echo -e "- toolbox channel : $X"
         FAIL="."
     fi
 

@@ -100,7 +100,11 @@ _sourceNix() {
 }
 
 _isSubstituterConfigured() {
-    nix show-config | grep "toolbox.cachix.org" >/dev/null
+    nix show-config | grep -q "toolbox.cachix.org"
+}
+
+_isChannelInstalled() {
+    nix-channel --list | grep -q toolbox
 }
 
 _addCacheConfig() {

@@ -40,6 +40,13 @@ init() {
         _addCacheConfig
     fi
 
+    if _isChannelInstalled; then
+      log "Channel is already configured"
+    else
+      log "Adding toolbox channel"
+      log-run "nix-channel --add https://github.com/Caascad/toolbox/archive/master.tar.gz toolbox"
+    fi
+
     log "Downloading toolbox dependencies"
     nix build -f $DIR/scripts/deps.nix --no-link
 
