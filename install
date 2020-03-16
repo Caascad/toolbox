@@ -86,6 +86,7 @@ log "Updating channel"
 log-run "nix-channel --update toolbox"
 
 log "Installing toolbox"
+log-run "nix build -f '<toolbox>' toolbox"
 log-run "nix-env -f '<toolbox>' -iA toolbox"
 
 log "Installation finished !"

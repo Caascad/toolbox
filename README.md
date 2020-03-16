@@ -12,12 +12,12 @@ Goals are:
 
 ## Getting started
 
-### Setup
+### Installation
 
-To setup the toolbox and start using tools run the following command:
+To install the toolbox run:
 
-```bash
-$ ./toolbox init
+```
+$ curl https://raw.githubusercontent.com/Caascad/toolbox/master/install
 [toolbox]: Initializing setup ...
 [toolbox]: Looks like nix is not installed yet
 [toolbox]: Running 'curl https://nixos.org/nix/install | sh'
@@ -32,13 +32,24 @@ variables are set, please add the line
 to your shell profile (e.g. ~/.profile).
 
 [toolbox]: Adding toolbox binary cache
-[toolbox]: Downloading toolbox dependencies
-[1 built, 44 copied (99.2 MiB), 39.5 MiB DL]
+[toolbox]: Adding toolbox channel
+[toolbox]: Updating channel
+[toolbox]: Running "nix-channel --update toolbox"
+
+these derivations will be built:
+  /nix/store/y0d8kiy4c0y712q26fr9yq4ijrghq617-toolbox.drv
+building '/nix/store/y0d8kiy4c0y712q26fr9yq4ijrghq617-toolbox.drv'...
+unpacking channels...
+created 2 symlinks in user environment
+[toolbox]: Installing toolbox
+[toolbox]: Running "nix-env -f '<toolbox>' -iA toolbox"
+...
+
 [toolbox]: Installation finished !
+
 [toolbox]: Don't forget to configure your .bashrc with:
 
 . /home/user/.nix-profile/etc/profile.d/nix.sh
-alias toolbox=/home/user/toolbox/toolbox
 source <(toolbox completions)
 
 ```
