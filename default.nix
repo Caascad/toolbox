@@ -50,4 +50,6 @@ in rec {
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
+  toolbox = pkgs.callPackage ./pkgs/toolbox {};
+
 }

@@ -26,7 +26,7 @@ log-run() {
 
 _sourceNix() {
     NIX_SH="$HOME/.nix-profile/etc/profile.d/nix.sh"
-    test -f "$NIX_SH" && (source "$NIX_SH" || true)
+    test -f "$NIX_SH" && source "$NIX_SH" || true
 }
 
 _isNixInstalled() {
@@ -84,6 +84,9 @@ fi
 
 log "Updating channel"
 log-run "nix-channel --update toolbox"
+
+log "Installing toolbox"
+log-run "nix-env -f '<toolbox>' -iA toolbox"
 
 log "Installation finished !"
 log "Don't forget to configure your .bashrc with:\n"
