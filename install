@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1117
+
+set -e
+set -o pipefail
+
+NIX_INSTALL_URL="${NIX_INSTALL_URL:-https://nixos.org/nix/install}"
+
+log() {
+    local args="$*"
+    local prefix="\e[32m[toolbox]:\e[0m"
+    echo -e "$prefix $args"
+}
+
+log-warning() {
+    local args="$*"
+    local prefix="\e[33m[toolbox]:\e[0m"
+    echo -e "$prefix $args" >&2
+}
+
+log-run() {
+    local cmd="$1"
+    log "Running \"$cmd\"\n"
+    eval $cmd
+}
+
+_sourceNix() {
+    NIX_SH="$HOME/.nix-profile/etc/profile.d/nix.sh"
+    test -f "$NIX_SH" && (source "$NIX_SH" || true)
+}
+
+_isNixInstalled() {
+    nix --version >/dev/null 2>&1
+}
+
+_isSubstituterConfigured() {
+    nix show-config | grep -q "toolbox.cachix.org"
+}
+
+_isChannelInstalled() {
+    nix-channel --list | grep -q toolbox
+}
+
+_addCacheConfig() {
+    if test -f ~/.config/nix/nix.conf
+    then
+        log-warning "$HOME/.config/nix/nix.conf exists."
+        log "Please add the following binary cache:"
+        log " substituters = https://toolbox.cachix.org"
+        log " trusted-public-keys = toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8="
+    else
+        mkdir -p "$HOME"/.config/nix/
+        cat << EOF > "$HOME"/.config/nix/nix.conf
+substituters = https://cache.nixos.org https://toolbox.cachix.org
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8=
+EOF
+    fi
+}
+
+log "Initializing setup ..."
+
+if _isNixInstalled ; then
+    log "Looks like nix is already installed"
+else
+    log "Looks like nix is not installed yet"
+    log "Running 'curl https://nixos.org/nix/install | sh'"
+    curl "$NIX_INSTALL_URL" | sh
+    _sourceNix
+fi
+
+if _isSubstituterConfigured; then
+    log "Cache is already configured"
+else
+    log "Adding toolbox binary cache"
+    _addCacheConfig
+fi
+
+if _isChannelInstalled; then
+  log "Channel is already configured"
+else
+  log "Adding toolbox channel"
+  log-run "nix-channel --add https://github.com/Caascad/toolbox/archive/inception.tar.gz toolbox"
+fi
+
+log "Updating channel"
+log-run "nix-channel --update toolbox"
+
+log "Installation finished !"
+log "Don't forget to configure your .bashrc with:\n"
+
+cat <<EOF
+. /home/$USER/.nix-profile/etc/profile.d/nix.sh
+source <(toolbox completions)
+EOF
