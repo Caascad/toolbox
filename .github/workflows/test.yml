@@ -39,3 +39,12 @@ jobs:
         cd test
         toolbox update-shell 56af2a040a6188e42abe7c5f51bf2e63495435c6
         nix-shell --command 'jq --help'
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Shellcheck
+      uses: azohra/shell-linter@v0.2.0
+      with:
+        path: "install"
