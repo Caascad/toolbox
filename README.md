@@ -17,44 +17,10 @@ Goals are:
 To install the toolbox run:
 
 ```
-$ curl https://raw.githubusercontent.com/Caascad/toolbox/master/install
-[toolbox]: Initializing setup ...
-[toolbox]: Looks like nix is not installed yet
-[toolbox]: Running 'curl https://nixos.org/nix/install | sh'
-
-...
-
-Installation finished!  To ensure that the necessary environment
-variables are set, please add the line
-
-  . /home/user/.nix-profile/etc/profile.d/nix.sh
-
-to your shell profile (e.g. ~/.profile).
-
-[toolbox]: Adding toolbox binary cache
-[toolbox]: Adding toolbox channel
-[toolbox]: Updating channel
-[toolbox]: Running "nix-channel --update toolbox"
-
-these derivations will be built:
-  /nix/store/y0d8kiy4c0y712q26fr9yq4ijrghq617-toolbox.drv
-building '/nix/store/y0d8kiy4c0y712q26fr9yq4ijrghq617-toolbox.drv'...
-unpacking channels...
-created 2 symlinks in user environment
-[toolbox]: Installing toolbox
-[toolbox]: Running "nix-env -f '<toolbox>' -iA toolbox"
-...
-
-[toolbox]: Installation finished !
-
-[toolbox]: Don't forget to configure your .bashrc with:
-
-. /home/user/.nix-profile/etc/profile.d/nix.sh
-source <(toolbox completions)
-
+curl https://raw.githubusercontent.com/Caascad/toolbox/inception/install | sh
 ```
 
-This will install and configure `nix` on your system.
+This will install and configure `nix` and the `toolbox` on your system.
 
 Don't forget to configure your `.bashrc`.
 
