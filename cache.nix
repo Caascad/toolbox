@@ -2,5 +2,5 @@
 let
   toolbox = import ./default.nix {};
 in with toolbox; {
-  inherit terraform safe fly tf kswitch;
+  inherit terraform safe fly tf kswitch toolbox;
 }
