@@ -17,7 +17,7 @@ Goals are:
 To install the toolbox run:
 
 ```
-curl https://raw.githubusercontent.com/Caascad/toolbox/inception/install | sh
+curl https://raw.githubusercontent.com/Caascad/toolbox/master/install | sh
 ```
 
 This will install and configure `nix` and the `toolbox` on your system.

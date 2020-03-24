@@ -77,7 +77,7 @@ if _isChannelInstalled; then
   log "Channel is already configured"
 else
   log "Adding toolbox channel"
-  log_run "nix-channel --add https://github.com/Caascad/toolbox/archive/inception.tar.gz toolbox"
+  log_run "nix-channel --add https://github.com/Caascad/toolbox/archive/master.tar.gz toolbox"
 fi
 
 log "Updating channel"
