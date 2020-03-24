@@ -50,4 +50,6 @@ in rec {
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
+  internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
+    { source = sources.internal-ca; inherit gopass cfssl; };
 }
