@@ -1,0 +1,97 @@
+#!/bin/sh
+
+set -eu
+
+NIX_INSTALL_URL="${NIX_INSTALL_URL:-https://nixos.org/nix/install}"
+
+log() {
+    args="$*"
+    printf "\033[32m[toolbox]:\033[0m %s\n" "$args"
+}
+
+log_warning() {
+    args="$*"
+    printf "\033[33m[toolbox]:\033[0m %s\n" "$args"
+}
+
+log_run() {
+    cmd="$1"
+    log "Running: $cmd"
+    eval "$cmd"
+}
+
+_sourceNix() {
+    NIX_SH="$HOME/.nix-profile/etc/profile.d/nix.sh"
+    if [ -f "$NIX_SH" ]; then
+        # shellcheck source=/dev/null
+        . "$NIX_SH"
+    fi
+}
+
+_isNixInstalled() {
+    nix --version >/dev/null 2>&1
+}
+
+_isSubstituterConfigured() {
+    nix show-config | grep -q "toolbox.cachix.org"
+}
+
+_isChannelInstalled() {
+    nix-channel --list | grep -q toolbox
+}
+
+_addCacheConfig() {
+    if test -f ~/.config/nix/nix.conf
+    then
+        log_warning "$HOME/.config/nix/nix.conf exists."
+        log "Please add the following binary cache:"
+        log " substituters = https://toolbox.cachix.org"
+        log " trusted-public-keys = toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8="
+    else
+        mkdir -p "$HOME"/.config/nix/
+        cat << EOF > "$HOME"/.config/nix/nix.conf
+substituters = https://cache.nixos.org https://toolbox.cachix.org
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= toolbox.cachix.org-1:ZFzO+86jD4G5ukgmLOnQRxjVmMcqu+60JTusH6pv8/8=
+EOF
+    fi
+}
+
+log "Initializing setup ..."
+
+if _isNixInstalled ; then
+    log "Nix is already installed"
+else
+    log "Looks like nix is not installed yet"
+    log_run "curl \"$NIX_INSTALL_URL\" | sh"
+    _sourceNix
+fi
+
+if _isSubstituterConfigured; then
+    log "Cache is already configured"
+else
+    log "Adding toolbox binary cache"
+    _addCacheConfig
+fi
+
+if _isChannelInstalled; then
+  log "Channel is already configured"
+else
+  log "Adding toolbox channel"
+  log_run "nix-channel --add https://github.com/Caascad/toolbox/archive/master.tar.gz toolbox"
+fi
+
+log "Updating channel"
+log_run "nix-channel --update toolbox"
+
+log "Installing toolbox"
+log_run "nix build -f '<toolbox>' toolbox"
+log_run "nix-env -f '<toolbox>' -iA toolbox"
+
+log "Installation finished !"
+log "Don't forget to configure your .bashrc with:"
+
+echo ""
+cat <<EOF
+. /home/$USER/.nix-profile/etc/profile.d/nix.sh
+source <(toolbox completions)
+EOF

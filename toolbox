@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1117
 
-set -e
-set -o pipefail
-
-NIX_INSTALL_URL="${NIX_INSTALL_URL:-https://nixos.org/nix/install}"
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
@@ -12,108 +7,43 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-ENTRYPOINT=$DIR/default.nix
-BASH_COMPL_SCRIPT=$DIR/scripts/toolbox.complete.bash.sh
 
-source $DIR/scripts/utils.sh
-
-#
-# subcommands
-#
-
-init() {
-    log "Initializing setup ..."
-
-    if _isNixInstalled ; then
-        log "Looks like nix is already installed"
-    else
-        log "Looks like nix is not installed yet"
-        log "Running 'curl https://nixos.org/nix/install | sh'"
-        curl "$NIX_INSTALL_URL" | sh
-        _sourceNix
-    fi
-
-    if _isSubstituterConfigured; then
-        log "Cache is already configured"
-    else
-        log "Adding toolbox binary cache"
-        _addCacheConfig
-    fi
-
-    log "Downloading toolbox dependencies"
-    nix build -f $DIR/scripts/deps.nix --no-link
-
-    log "Installation finished !"
-    log "Don't forget to configure your .bashrc with:\n"
-
-    cat <<EOF
-. /home/$USER/.nix-profile/etc/profile.d/nix.sh
-alias toolbox=$DIR/toolbox
-source <(toolbox completions)
-EOF
-
+_continue() {
+  read -p "Continue [y/n]: " -n 1 -r
+  echo
+  [[ $REPLY =~ ^[Yy]$ ]] || exit 1
 }
 
-register-completions() {
-    cat <<EOF
-ENTRYPOINT="$ENTRYPOINT"
-EOF
-    cat $BASH_COMPL_SCRIPT
+log() {
+    local args="$*"
+    local prefix="\e[32m[toolbox]:\e[0m"
+    echo -e "$prefix $args"
 }
 
+log-warning() {
+    local args="$*"
+    local prefix="\e[33m[toolbox]:\e[0m"
+    echo -e "$prefix $args" >&2
+}
 
-if ! _isRegularUser; then
-    log-error "Root user detected. Run ./toolbox as non-root user!"
-    exit 1
+if ! nix-env -q toolbox >/dev/null 2>&1; then
+
+echo
+log-warning "Toolbox needs to be migrated !"
+log "The installation process of the toolbox has changed since you have installed it."
+log "The install script needs to be run again."
+echo
+_continue
+echo
+
+"$DIR"/install
+
+echo
+log-warning "Migration complete !"
+log "The toolbox script is now installed in your environment as any other tool."
+
 fi
 
-if [ -z "${1:-}" ]; then
-    usage
-    exit 1
-fi
+[ ${BASH_ALIASES[toolbox]+abc} ] || log-warning "You can remove the toolbox bash alias from your .bashrc"
 
-_sourceNix
-
-PARAMS=""
-
-while (( "$#" )); do
-    case "$1" in
-        -h|--help)
-            usage
-            exit 0
-            ;;
-        -*|--*=) # unsupported flags
-            log-error "Error: unsupported flag $1"
-            exit 1
-            ;;
-        *) # preserve positional arguments
-          PARAMS="$PARAMS $1"
-          shift
-          ;;
-    esac
-done
-
-# set positional arguments in their proper place
-eval set -- "$PARAMS"
-
-COMMAND="$1"
-shift
-
-case "$COMMAND" in
-    init)
-        init "$@"
-        ;;
-    completions)
-        register-completions
-        ;;
-    help)
-        usage
-        ;;
-    *)
-        if ! _isNixInstalled; then
-          log-error "Nix is not installed. Please run toolbox init first."
-          exit 1
-        fi
-        nix-shell -I nixpkgs=$DIR/nix $DIR/scripts/deps.nix --run "$DIR/scripts/commands.sh $DIR $COMMAND $(echo $@)"
-        ;;
-esac
+nix run toolbox.toolbox -c toolbox "$@"

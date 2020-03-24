@@ -7,27 +7,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: init
-      run: ./toolbox init
-    - name: doctor
-      run: ./toolbox doctor
-    - name: list
-      run: ./toolbox list
     - name: install
-      run: ./toolbox install jq
+      run: ./install
+    - name: doctor
+      run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        toolbox doctor
+    - name: list
+      run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        toolbox list
+    - name: install
+      run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        toolbox install jq
     - name: uninstall
-      run: ./toolbox uninstall jq
+      run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        toolbox uninstall jq
     - name: make-shell
       run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         git fetch origin master
         mkdir test
         cd test
-        ../toolbox make-shell jq
-        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        toolbox make-shell jq
         nix-shell --command 'jq --help'
     - name: update-shell
       run: |
-        cd test
-        ../toolbox update-shell 56af2a040a6188e42abe7c5f51bf2e63495435c6
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        cd test
+        toolbox update-shell 56af2a040a6188e42abe7c5f51bf2e63495435c6
         nix-shell --command 'jq --help'
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Shellcheck
+      uses: azohra/shell-linter@v0.2.0
+      with:
+        path: "install"
