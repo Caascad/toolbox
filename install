@@ -88,8 +88,9 @@ log_run "nix build -f '<toolbox>' toolbox"
 log_run "nix-env -f '<toolbox>' -iA toolbox"
 
 log "Installation finished !"
-log "Don't forget to configure your .bashrc with:\n"
+log "Don't forget to configure your .bashrc with:"
 
+echo ""
 cat <<EOF
 . /home/$USER/.nix-profile/etc/profile.d/nix.sh
 source <(toolbox completions)
