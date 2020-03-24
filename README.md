@@ -160,8 +160,7 @@ You can get bash completions for `toolbox`. Just setup the following
 in your `.bashrc`:
 
 ```bash
-alias toolbox=/path/to/toolbox
-source <(/path/to/toolbox completions)
+source <(toolbox completions)
 ```
 
 ### Add tools required by your project in the toolbox
