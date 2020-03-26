@@ -8,6 +8,10 @@ log() {
   echo -e "\e[32m--- $*\e[0m" >&2
 }
 
+log-error() {
+  echo -e "\e[31m--- $*\e[0m" >&2
+}
+
 run() {
   echo -e "\e[33m+++ $1\e[0m" >&2
   eval "$1"
@@ -41,7 +45,7 @@ EOF
 
 usage() {
   cat <<EOF
-Usage: kswitch ZONE_NAME
+Usage: kswitch [ZONE_NAME]
 
 kswitch automatically setup an SSH tunnel to the specified zone K8S cluster.
 
@@ -80,7 +84,19 @@ done
 # Makes sure to use ~/.kube/config
 unset KUBECONFIG
 
-[ "$zone" == "" ] && (echo -e "Error: missing zone name\n" && usage && exit 1)
+if [ "$zone" == "" ]; then
+    context=$(kubectl config current-context)
+    log "Current context is $context"
+    if [ ! -S /dev/shm/kswitch ]; then
+        log-error "Tunnel is down: run kswitch $context"
+        exit 1
+    fi
+    tunnelPID=$(ssh -S /dev/shm/kswitch -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
+    cmd=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -c 2- | rev)
+    log "Tunnel is active (pid=$tunnelPID)"
+    log "Tunneling through ${cmd##*:}"
+    exit 0
+fi
 
 dest=cloud@bst.${zone}.caascad.com
 
