@@ -212,3 +212,23 @@ To update sources to a particular version:
 ```sh
 niv update concourse -v 5.8.1
 ```
+
+### Testing a new package locally
+
+After adding a new package in the toolbox you can build it with:
+
+```sh
+nix-build -A <name>
+```
+
+If you want to install it in your profile run:
+
+```sh
+nix-env -f default.nix -iA <name>
+```
+
+To test `toolbox` with local packages run:
+
+```sh
+NIX_PATH=toolbox=/path/to/toolbox/repo toolbox list
+```
