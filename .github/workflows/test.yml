@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install
-      run: ./install
+      run: ./install https://github.com/${GITHUB_REPOSITORY}/archive/${GITHUB_SHA}.tar.gz
     - name: doctor
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
