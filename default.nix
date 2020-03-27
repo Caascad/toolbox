@@ -36,7 +36,7 @@ in rec {
     terraform-provider-rancher2
     p.aws p.openstack p.kubernetes
     p.local p.null p.random p.tls p.template
-    p.flexibleengine
+    p.flexibleengine p.external
   ]);
 
   safe = pkgs.callPackage ./pkgs/safe.nix
