@@ -232,7 +232,7 @@ doctor() {
 }
 
 list() {
-  tools=$(nix-instantiate --eval -E 'with builtins; concatStringsSep "\n" (attrValues (mapAttrs (a: d: "${a} ${(parseDrvName d.name).version}⁣") (import <toolbox> {})))' | tr -d '"')
+  tools=$(nix-instantiate --eval -E 'with builtins; concatStringsSep "\n" (attrValues (mapAttrs (a: d: "${a} ${(parseDrvName d.name).version}") (import <toolbox> {})))' | tr -d '"')
   paste -d' ' <(echo -e "$tools" | column -t -R 2) <(nix-env -f '<toolbox>' -q -a -c --no-name --description) | grep --color -E '^|>|<'
 }
 
