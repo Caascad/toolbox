@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '*.nix'
+      - '**.nix'
       - 'nix/*'
 
 jobs:
