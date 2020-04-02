@@ -24,6 +24,12 @@ This will install and configure `nix` and the `toolbox` on your system.
 
 Don't forget to configure your `.bashrc`.
 
+#### Install on MacOS Catalina
+
+`/` is no more writable therefore `/nix/store` cannot be created by the
+`nix` install script. You can follow one of the solutions described
+[here](https://github.com/NixOS/nix/issues/2925#issuecomment-604501661).
+
 ### Listing tools
 
 To view the list of available tools run:
