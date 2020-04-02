@@ -8,14 +8,16 @@
 
 stdenv.mkDerivation {
   pname = "kswitch";
-  version = "1.2";
+  version = "1.3";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
   buildCommand = ''
-    mkdir -p $out/bin
+    mkdir -p $out/bin $out/share/bash-completion/completions
     cp ${./kswitch.sh} $out/bin/kswitch
     chmod +x $out/bin/kswitch
+    bash $out/bin/kswitch bash-completions >  $out/share/bash-completion/completions/kswitch
+
     wrapProgram $out/bin/kswitch --prefix PATH ":" ${kubectl}/bin:${jq}/bin:${coreutils}/bin
   '';
 
