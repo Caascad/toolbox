@@ -232,8 +232,10 @@ doctor() {
 }
 
 list() {
-  tools=$(nix-instantiate --eval -E 'with builtins; concatStringsSep "\n" (attrValues (mapAttrs (a: d: "${a} ${(parseDrvName d.name).version}") (import <toolbox> {})))' | tr -d '"')
-  paste -d' ' <(echo -e "$tools" | column -t -R 2) <(nix-env -f '<toolbox>' -q -a -c --no-name --description) | grep --color -E '^|>|<'
+    cat <(echo -e "Package#Available#Installed#Description") \
+        <(nix-env -f '<toolbox>' -q -a -P -c --description \
+          | sed 's/^\([[:alnum:]-]\+\)[[:space:]]\+[a-z-]\+\([0-9.]\+\)[[:space:]]\+\(. [0-9.?]\+\)[[:space:]]\+/\1#\2#\3#/') \
+    | column -s '#' -t | grep --color -E '^|>|<'
 }
 
 install() {
