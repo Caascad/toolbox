@@ -196,7 +196,10 @@ Examples:
 
 ### Managing sources
 
-Sources of `nixpkgs` or custom packages are managed with [niv](https://github.com/nmattia/niv).
+Sources of `nixpkgs` or custom packages are managed with [niv](https://github.com/nmattia/niv). You can install it this way:
+```sh
+nix-env -iA nixpkgs.niv
+```
 
 To add sources of a github repo:
 
