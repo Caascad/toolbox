@@ -11,6 +11,18 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "5.8.0"
     },
+    "internal-ca": {
+        "branch": "master",
+        "description": "Tools to provision a CA in cert-manager.",
+        "homepage": null,
+        "owner": "Caascad",
+        "repo": "internal-ca",
+        "rev": "217ab4e4958755d42d6ccd3c80b3faa13f9ac531",
+        "sha256": "1q4kyiilkzwsq0xwqy3x6bxvx2l6k25hilg24mqsgkxjrwsp5a2v",
+        "type": "tarball",
+        "url": "https://github.com/Caascad/internal-ca/archive/217ab4e4958755d42d6ccd3c80b3faa13f9ac531.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

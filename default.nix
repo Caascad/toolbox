@@ -52,4 +52,7 @@ in rec {
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 
+  internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
+    { source = sources.internal-ca; };
+
 }
