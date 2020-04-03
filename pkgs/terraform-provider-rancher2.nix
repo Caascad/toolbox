@@ -13,7 +13,7 @@ buildGo112Module rec {
   version = source.version;
   src = source.outPath;
 
-  modSha256 = "10s3dv3n95b134zc7ijyzy9rlhxzkc41gy67wnj1qwhfdn3sii9z";
+  modSha256 = "05kk6b1l6bhxr6nla46m7n3whix2i1g15l3p7xpngcfyf56f7l6m";
 
   postInstall = "mv $out/bin/terraform-provider-rancher2{,_v${version}}";
 
