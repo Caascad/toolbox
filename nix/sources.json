@@ -105,11 +105,11 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "tf",
-        "rev": "80d6c923d724bd90c090d3ee3c63178b84ca1b25",
-        "sha256": "1p7a7w8hkyljxkh37kfnbs8askck9rzffn79761ns58xqvd3zp8s",
+        "rev": "394643904b9aac5246a7cc349827026464dad862",
+        "sha256": "0pxw5vffraanzdpl85a773g9ybygcaily9d2p4cwhmny0inyx3i9",
         "type": "tarball",
-        "url": "https://github.com/Caascad/tf/archive/1.3.0.tar.gz",
+        "url": "https://github.com/Caascad/tf/archive/1.3.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.3.0"
+        "version": "1.3.1"
     }
 }
