@@ -2,5 +2,5 @@
 let
   tb = import ./default.nix {};
 in with tb; {
-  inherit terraform safe fly tf kswitch toolbox;
+  inherit terraform safe fly tf kswitch toolbox openstackclient;
 }
