@@ -22,7 +22,11 @@ let
     postBuild = "mv go/bin/${repo}{,_v${version}}";
   });
 
-in rec {
+in
+
+with pkgs.lib;
+
+rec {
 
   inherit (pkgs) ansible kubectl stern vault docker-compose cfssl
                  yq jq gopass kubectx aws direnv cue go gnupg curl;
@@ -54,5 +58,10 @@ in rec {
 
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
     { source = sources.internal-ca; };
+
+
+} // optionalAttrs (! pkgs.stdenv.isDarwin) {
+
+  openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
 
 }
