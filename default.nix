@@ -15,12 +15,14 @@ let
   terraform-provider-rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
     { source = sources.terraform-provider-rancher2; };
 
-  terraform-provider-vault = pkgs.terraform-providers.vault.overrideAttrs (old: with sources.terraform-provider-vault; {
-    inherit version;
-    name = "${repo}-${version}";
-    src = outPath;
-    postBuild = "mv go/bin/${repo}{,_v${version}}";
-  });
+  terraform-provider-vault = pkgs.terraform-providers.vault.overrideAttrs (old:
+    with sources.terraform-provider-vault; {
+      inherit version;
+      name = "${repo}-${version}";
+      src = outPath;
+      postBuild = "mv go/bin/${repo}{,_v${version}}";
+    }
+  );
 
 in
 
@@ -61,6 +63,7 @@ rec {
 
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
+  # doesn't build on MacOS
 
   openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
 
