@@ -56,6 +56,7 @@ rec {
     terraform-providers.vault
     p.aws
     p.external
+    p.huaweicloud
     p.kubernetes
     p.local
     p.null
