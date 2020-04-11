@@ -82,6 +82,9 @@ rec {
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
     { source = sources.internal-ca; };
 
+  vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix
+    { source = sources.vault-token-helper; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
   # doesn't build on MacOS
 
