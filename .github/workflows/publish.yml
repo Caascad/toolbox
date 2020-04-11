@@ -23,4 +23,3 @@ jobs:
       with:
         name: toolbox
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        file: cache.nix
