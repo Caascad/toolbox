@@ -34,7 +34,7 @@ log-error() {
 log-run() {
     local cmd="$1"
     log "Running \"$cmd\"\n"
-    eval $cmd
+    eval "$cmd"
 }
 
 check_args_eq() {
@@ -51,7 +51,7 @@ check_args_gt() {
     local actual="$1"
     local expected="$2"
     local cmd="$3"
-    if [ $actual -lt $expected ]; then
+    if [ "$actual" -lt "$expected" ]; then
         log-error "'$cmd' requires at least $expected arguments but $actual were given"
         exit 1
     fi
@@ -61,7 +61,7 @@ check_args_le() {
     local actual="$1"
     local expected="$2"
     local cmd="$3"
-    if [ $actual -gt $expected ]; then
+    if [ "$actual" -gt "$expected" ]; then
         log-error "'$cmd' wants at most $expected arguments but $actual were given"
         exit 1
     fi
@@ -86,10 +86,10 @@ _generateToolboxJSON() {
         log "Shell is already up-to-date!"
         return
     fi
-    url=$(_commitArchiveURL $commit)
+    url=$(_commitArchiveURL "$commit")
     log "Using commit $commit for this development shell"
     log "Calculating sha256 for $url"
-    sha256=$(nix-prefetch-url --unpack $url 2>/dev/null) || log-error "Download failed. Wrong commit?"
+    sha256=$(nix-prefetch-url --unpack "$url" 2>/dev/null) || log-error "Download failed. Wrong commit?"
 
     if [ ! -f toolbox.json ]; then
         log "Writing toolbox.json file"
@@ -103,8 +103,9 @@ EOF
     else
         tmp=$(mktemp)
         log "Updating toolbox.json file ..."
-        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\"" toolbox.json > $tmp
-        [ $? -eq 0 ] && mv $tmp toolbox.json || log-error "Failed to update toolbox.json"
+        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\"" toolbox.json > "$tmp"
+        # shellcheck disable=SC2015,SC2181
+        [ $? -eq 0 ] && mv "$tmp" toolbox.json || log-error "Failed to update toolbox.json"
         log "Done."
     fi
 }
@@ -114,11 +115,12 @@ EOF
 #
 
 _isRegularUser() {
-    test $(id -u) -ne 0
+    test "$(id -u)" -ne 0
 }
 
 _sourceNix() {
     NIX_SH="$HOME/.nix-profile/etc/profile.d/nix.sh"
+    # shellcheck disable=SC1090,SC2015
     test -f "$NIX_SH" && source "$NIX_SH" || true
 }
 
@@ -151,6 +153,7 @@ Usage: toolbox <command> [args]
  update-shell               -- update toolbox revision for an existing shell
  completions                -- output completion script
  help                       -- this help
+ version                    -- show toolbox version
 
 EOF
 }
@@ -170,7 +173,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "completions list update uninstall install make-shell update-shell doctor" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list install uninstall update make-shell update-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -189,6 +192,10 @@ _toolbox_completions() {
 
 complete -F _toolbox_completions toolbox
 EOF
+}
+
+version() {
+    nix-env -f '<toolbox>' -q toolbox --json | jq -r '.[].version'
 }
 
 doctor() {
@@ -256,7 +263,7 @@ update() {
 
 make-shell() {
     log "Creating shell ..."
-    _generateToolboxJSON $(_lastToolboxCommit)
+    _generateToolboxJSON "$(_lastToolboxCommit)"
 
     log "Writing shell.nix file"
     cat <<EOF > shell.nix
@@ -281,6 +288,7 @@ EOF
     result=$(nix-instantiate shell.nix 2>&1 | grep error || true)
     # If not, parse error message to show the culprit
     if [ -n "$result" ]; then
+        # shellcheck disable=SC2001
         log-error "Error: '$(echo "$result" | sed "s/^error: undefined variable '\([^']*\)'.*$/\1/")' is not available in the toolbox"
     fi
 
@@ -302,7 +310,7 @@ update-shell() {
     fi
     log "Updating shell ..."
     commit=${1:-$(_lastToolboxCommit)}
-    _generateToolboxJSON $commit
+    _generateToolboxJSON "$commit"
 }
 
 #
@@ -329,7 +337,7 @@ while (( "$#" )); do
       usage
       exit 0
       ;;
-    -*|--*=) # unsupported flags
+    -*) # unsupported flags
       log-error "Error: unsupported flag $1"
       exit 1
       ;;
@@ -377,6 +385,9 @@ case "$COMMAND" in
         ;;
     help)
         usage
+        ;;
+    version)
+        version
         ;;
     *)
         log-warning "Error: unknown command: $COMMAND"
