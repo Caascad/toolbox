@@ -2,18 +2,15 @@
 , stdenv
 , fetchurl
 , appimageTools
+, source
 }:
 
 let
 
   pname = "jitsi-meet";
-  version = "2.0.0b2";
   name = "${pname}-${version}";
-
-  src = fetchurl {
-    url = "https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.0.0-beta2/jitsi-meet-x86_64.AppImage";
-    sha256 = "00qqa3a2jl2sr3yy04iwaaqy0swf5ai27w6jlrv60ysc7wx7z079";
-  };
+  version = source.version;
+  src = source.outPath;
 
   appimageContents = appimageTools.extractType2 {
     inherit name src;
