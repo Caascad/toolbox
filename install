@@ -95,5 +95,4 @@ log "Don't forget to configure your .bashrc with:"
 echo ""
 cat <<EOF
 . /home/$USER/.nix-profile/etc/profile.d/nix.sh
-source <(toolbox completions)
 EOF
