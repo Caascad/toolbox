@@ -153,6 +153,7 @@ Usage: toolbox <command> [args]
  update-shell               -- update toolbox revision for an existing shell
  completions                -- output completion script
  help                       -- this help
+ version                    -- show toolbox version
 
 EOF
 }
@@ -172,7 +173,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "completions list update uninstall install make-shell update-shell doctor" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list install uninstall update make-shell update-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -191,6 +192,10 @@ _toolbox_completions() {
 
 complete -F _toolbox_completions toolbox
 EOF
+}
+
+version() {
+    nix-env -f '<toolbox>' -q toolbox --json | jq -r '.[].version'
 }
 
 doctor() {
@@ -380,6 +385,9 @@ case "$COMMAND" in
         ;;
     help)
         usage
+        ;;
+    version)
+        version
         ;;
     *)
         log-warning "Error: unknown command: $COMMAND"
