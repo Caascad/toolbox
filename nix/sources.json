@@ -23,6 +23,19 @@
         "url": "https://github.com/Caascad/internal-ca/archive/217ab4e4958755d42d6ccd3c80b3faa13f9ac531.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "jitsi-meet-electron": {
+        "branch": "master",
+        "description": "Jitsi Meet desktop application powered by :electron:",
+        "homepage": "",
+        "owner": "jitsi",
+        "repo": "jitsi-meet-electron",
+        "rev": "1c229b9de50d128a51f0495c3b6f9dc79a852d4e",
+        "sha256": "04y3qn2clvsfiyp9s6ib09mfxspv3kpr9248sda8s09n1cm0jpps",
+        "type": "file",
+        "url": "https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.0.2/jitsi-meet-x86_64.AppImage",
+        "url_template": "https://github.com/jitsi/jitsi-meet-electron/releases/download/v<version>/jitsi-meet-x86_64.AppImage",
+        "version": "2.0.2"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
