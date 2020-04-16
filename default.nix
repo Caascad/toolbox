@@ -11,6 +11,9 @@ let
     keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
       { source = sources.terraform-provider-keycloak; };
 
+    k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
+      { source = sources.terraform-provider-kubernetes-yaml; };
+
     concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
       { source = sources.terraform-provider-concourse; };
 
@@ -51,6 +54,7 @@ rec {
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-providers.concourse
     terraform-providers.flexibleengine
+    terraform-providers.k8sraw
     terraform-providers.keycloak
     terraform-providers.rancher2
     terraform-providers.vault
