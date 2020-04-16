@@ -8,7 +8,7 @@
 
 stdenv.mkDerivation {
   pname = "toolbox";
-  version = "1.7";
+  version = "1.7.1";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
