@@ -3,8 +3,6 @@
 , buildGoPackage
 }:
 
-with builtins;
-
 buildGoPackage rec {
   pname = "safe";
   version = source.version;

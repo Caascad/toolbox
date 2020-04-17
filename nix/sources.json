@@ -36,6 +36,19 @@
         "url_template": "https://github.com/jitsi/jitsi-meet-electron/releases/download/v<version>/jitsi-meet-x86_64.AppImage",
         "version": "2.0.2"
     },
+    "kwt": {
+        "branch": "master",
+        "description": "Kubernetes Workstation Tools CLI",
+        "homepage": "",
+        "owner": "k14s",
+        "repo": "kwt",
+        "rev": "70f7ebd4c7a6886c14557e0ffe29c9bea3d49771",
+        "sha256": "040j5aqxsiw1xhml9j87bcl7mnbbxmnls37nsrslp2g3kh8f3zlm",
+        "type": "tarball",
+        "url": "https://github.com/k14s/kwt/archive/v0.0.6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "0.0.6"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

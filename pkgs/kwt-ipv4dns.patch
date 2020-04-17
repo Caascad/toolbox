@@ -1,0 +1,13 @@
+diff --git a/pkg/kwt/dns/resolv_conf.go b/pkg/kwt/dns/resolv_conf.go
+index 2ef771d..22827c8 100644
+--- a/pkg/kwt/dns/resolv_conf.go
++++ b/pkg/kwt/dns/resolv_conf.go
+@@ -30,7 +30,7 @@ func (r ResolvConf) Nameservers() ([]net.IP, error) {
+ 		submatch := nameserverRegex.FindAllStringSubmatch(line, 1)
+ 		if len(submatch) > 0 {
+ 			ip := net.ParseIP(submatch[0][1])
+-			if ip != nil {
++			if ip != nil && ip.To4() != nil {
+ 				ips = append(ips, ip)
+ 			}
+ 		}

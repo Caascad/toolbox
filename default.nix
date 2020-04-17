@@ -81,6 +81,9 @@ rec {
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
+  kwt = pkgs.callPackage ./pkgs/kwt.nix
+    { source = sources.kwt; };
+
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix

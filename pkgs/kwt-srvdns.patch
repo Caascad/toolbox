@@ -1,0 +1,14 @@
+diff --git a/pkg/kwt/dns/custom_handler.go b/pkg/kwt/dns/custom_handler.go
+index 31a09b5..0ce1414 100644
+--- a/pkg/kwt/dns/custom_handler.go
++++ b/pkg/kwt/dns/custom_handler.go
+@@ -68,6 +68,9 @@ func (d CustomHandler) ServeDNS(responseWriter dns.ResponseWriter, requestMsg *d
+ 		case dns.TypeMX:
+ 			msg.SetRcode(requestMsg, dns.RcodeSuccess)
+ 
++		case dns.TypeSRV:
++			msg.SetRcode(requestMsg, dns.RcodeNameError)
++
+ 		default:
+ 			msg.SetRcode(requestMsg, dns.RcodeServerFailure)
+ 		}
