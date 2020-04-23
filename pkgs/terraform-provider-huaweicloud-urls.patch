@@ -1,0 +1,39 @@
+diff --git a/huaweicloud/resource_huaweicloud_iam_agency_v3.go b/huaweicloud/resource_huaweicloud_iam_agency_v3.go
+index 8a111255..e6239078 100644
+--- a/huaweicloud/resource_huaweicloud_iam_agency_v3.go
++++ b/huaweicloud/resource_huaweicloud_iam_agency_v3.go
+@@ -117,14 +117,14 @@ func agencyClient(d *schema.ResourceData, config *Config) (*golangsdk.ServiceCli
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	c.Endpoint = "https://iam.myhwclouds.com:443/v3.0/"
++	c.Endpoint = "https://iam.eu-west-0.prod-cloud-ocb.orange-business.com/v3.0/"
+ 	return c, nil
+ }
+ 
+ func listProjectsOfDomain(domainID string, client *golangsdk.ServiceClient) (map[string]string, error) {
+ 	old := client.Endpoint
+ 	defer func() { client.Endpoint = old }()
+-	client.Endpoint = "https://iam.myhwclouds.com:443/v3/"
++	client.Endpoint = "https://iam.eu-west-0.prod-cloud-ocb.orange-business.com/v3/"
+ 
+ 	opts := sdkprojects.ListOpts{
+ 		DomainID: domainID,
+@@ -150,7 +150,7 @@ func listProjectsOfDomain(domainID string, client *golangsdk.ServiceClient) (map
+ func listRolesOfDomain(domainID string, client *golangsdk.ServiceClient) (map[string]string, error) {
+ 	old := client.Endpoint
+ 	defer func() { client.Endpoint = old }()
+-	client.Endpoint = "https://iam.myhwclouds.com:443/v3/"
++	client.Endpoint = "https://iam.eu-west-0.prod-cloud-ocb.orange-business.com/v3/"
+ 
+ 	opts := sdkroles.ListOpts{
+ 		DomainID: domainID,
+@@ -218,7 +218,7 @@ func getDomainID(config *Config, client *golangsdk.ServiceClient) (string, error
+ 
+ 	old := client.Endpoint
+ 	defer func() { client.Endpoint = old }()
+-	client.Endpoint = "https://iam.myhwclouds.com:443/v3/auth/"
++	client.Endpoint = "https://iam.eu-west-0.prod-cloud-ocb.orange-business.com/v3/auth/"
+ 
+ 	opts := domains.ListOpts{
+ 		Name: name,
