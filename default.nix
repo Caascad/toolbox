@@ -94,7 +94,4 @@ rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
 
-  jitsi-meet = pkgs.callPackage ./pkgs/jitsi-meet.nix
-    { source = sources.jitsi-meet-electron; };
-
 }
