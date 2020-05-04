@@ -160,7 +160,7 @@ unset KUBECONFIG
 
 setup
 
-zoneCluster=$(kubectl config view -o json | jq -r ".contexts[] | select(.name == \"$zone\") | .context.cluster")
+zoneCluster=$(kubectl config view -o json | jq -r "select(.contexts != null) |.contexts[] | select(.name == \"$zone\") | .context.cluster")
 
 kill-tunnel
 
