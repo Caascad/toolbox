@@ -38,6 +38,10 @@ let
       }
     );
 
+    huaweicloud = pkgs.terraform-providers.huaweicloud.overrideAttrs (old: {
+      patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
+    });
+
   };
 
 in
@@ -54,13 +58,13 @@ rec {
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-providers.concourse
     terraform-providers.flexibleengine
+    terraform-providers.huaweicloud
     terraform-providers.k8sraw
     terraform-providers.keycloak
     terraform-providers.rancher2
     terraform-providers.vault
     p.aws
     p.external
-    p.huaweicloud
     p.kubernetes
     p.local
     p.null
