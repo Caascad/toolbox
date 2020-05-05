@@ -130,12 +130,12 @@
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-vault",
-        "rev": "5da0170b5530aa775a1ddd81a5ccca198e0d5996",
-        "sha256": "08kniq60pqqdgd7pwfs44axny0mycvm923xxi0pazpc9k0a2ggpk",
+        "rev": "4a089b73916b4c36a8d89543eaded08ed967ed1b",
+        "sha256": "1yg8ck9z5ycw8akfhnv4pnxyfzav9dzbhizv4dp78xi2gnddrawi",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.8.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.10.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.8.0"
+        "version": "2.10.0"
     },
     "tf": {
         "branch": "master",
