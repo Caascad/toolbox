@@ -78,7 +78,7 @@ toolbox make-shell terraform ansible
 
 This will create a `shell.nix` file that list the tools of the project.
 In this example `terraform` and `ansible`. Theses tools are pinned to a
-specific commit of the toolbox (eg: `origin/master` commit at the time you run
+specific commit of the toolbox (eg: `origin/master` commit `sha` at the time you run
 the command). A `toolbox.json` that references the commit used is also created.
 
 You need to commit `shell.nix` and `toolbox.json` in the project.
@@ -90,9 +90,10 @@ You can do it with two methods:
 1. `direnv`: in `.envrc` add `use_nix`
 
    When you cd in the project `direnv` will automagically make the tools
-   available in your shell.
+   available in your shell by overriding `$PATH`
 
-1. run `nix-shell` to enter a new shell with the project tools
+1. run `nix-shell` to start a new `bash` with the project tools defined in
+   `$PATH`. You can exit the shell by typing `exit`.
 
 #### Shell update
 
