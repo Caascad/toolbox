@@ -1,14 +1,19 @@
 { stdenv
+, lib
 , runCommand
 , makeWrapper
 , kubectl
 , jq
 , coreutils
+, vault
+, awscli
+, curl
+, findutils
 }:
 
 stdenv.mkDerivation {
   pname = "kswitch";
-  version = "1.3.2";
+  version = "1.4.0";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
@@ -18,7 +23,7 @@ stdenv.mkDerivation {
     chmod +x $out/bin/kswitch
     bash $out/bin/kswitch bash-completions >  $out/share/bash-completion/completions/kswitch
 
-    wrapProgram $out/bin/kswitch --prefix PATH ":" ${kubectl}/bin:${jq}/bin:${coreutils}/bin
+    wrapProgram $out/bin/kswitch --prefix PATH ":" ${lib.makeBinPath [ kubectl jq coreutils vault awscli curl findutils ]}
   '';
 
   meta = with stdenv.lib; {

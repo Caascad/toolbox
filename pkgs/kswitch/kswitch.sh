@@ -4,8 +4,22 @@
 set -eu
 set -o pipefail
 
+CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.cloudwatt.com/caascad/caascad-zones/raw/master/zones.json}
+CONFIG_DIR="$HOME/.config/kswitch"
+CAASCAD_ZONES_FILE="$CONFIG_DIR/zones.json"
+KSWITCH_DEBUG=${KSWITCH_DEBUG:-0}
+
+VAULT_FORMAT=json
+export VAULT_FORMAT
+
 log() {
   echo -e "\x1B[32m--- $*\x1B[0m" >&2
+}
+
+log_debug() {
+  if [ $KSWITCH_DEBUG -eq 1 ]; then
+    echo -e "\x1B[34m--- $*\x1B[0m" >&2
+  fi
 }
 
 log-error() {
@@ -29,7 +43,7 @@ _continue() {
   [[ $REPLY =~ ^[Yy]$ ]] || exit 1
 }
 
-bash-completions() {
+bash_completions() {
   cat <<EOF
 _kswitch_completions() {
   local curr_arg;
@@ -82,11 +96,11 @@ EOF
 }
 
 setup() {
-  if [ ! -d $configDir ]; then
+  if [ ! -d $CONFIG_DIR ]; then
     log "Looks like you are running kswitch for the first-time!"
-    log "I'm going to create $configDir for storing kswitch configurations."
+    log "I'm going to create $CONFIG_DIR for storing kswitch configurations."
     _continue
-    mkdir -p $configDir
+    mkdir -p $CONFIG_DIR
   fi
 
   if ! kubectl config get-clusters | grep -q tunnel; then
@@ -95,37 +109,104 @@ setup() {
   fi
 }
 
-kill-tunnel() {
+kill_tunnel() {
   # Add unused argument foo to run the command
   # it's not used but cli parsing requires it
   # This will kill the active ssh tunnel if any
   ssh -S $socketPath -O exit foo 2>/dev/null || true
 }
 
-tunnel() {
-  dest=cloud@bst.${zone}.caascad.com
+vault_login() {
+    vault token lookup >/dev/null 2>&1 || vault login -method oidc
+}
 
-  if [ ! -f ${configDir}/${zone} ]; then
-    log "No configuration has been found for zone ${zone}"
-    log "Fetching kubeconfig on ${zone} bastion..."
-    kubeconfig=$(mktemp)
-    run "ssh -o ConnectTimeout=3 $dest cat .kube/config > $kubeconfig"
-    jq -r .clusters[].cluster.server $kubeconfig | cut -d'/' -f3 > $configDir/$zone
-    jq -r '.users[].user["client-certificate-data"]' $kubeconfig | base64 -d > ${configDir}/${zone}-cert
-    jq -r '.users[].user["client-key-data"]' $kubeconfig | base64 -d > ${configDir}/${zone}-key
-    chmod 600 ${configDir}/${zone}-key
-    log "Configuring kube credentials for zone ${zone}..."
-    run "kubectl config set-credentials $zone-admin --client-certificate=${configDir}/${zone}-cert --client-key=${configDir}/${zone}-key"
-    log "Configuring kube context for zone ${zone}..."
-    run "kubectl config set-context $zone --user=${zone}-admin --cluster=tunnel"
-    rm -f $kubeconfig
-    log "Configuration for ${zone} is completed!"
-  fi
+configure_kubeconfig() {
+    if ! kubectl config get-contexts "${zone}" >/dev/null 2>&1; then
+        log "No configuration has been found for zone ${zone}"
+        log "Configuring kube credentials for zone ${zone}..."
+        if [[ "$zone" =~ ^infra-* ]]; then
+            vault_login
+            kubeconfig=$(mktemp)
+            vault read "secret/zones/fe/${zone}/kubeconfig" > $kubeconfig
+            jq -r '.data.clusters[].cluster.server' $kubeconfig | cut -d'/' -f3 > "${CONFIG_DIR}/${zone}"
+            jq -r '.data.users[].user["client-certificate-data"]' $kubeconfig | base64 -d > "${CONFIG_DIR}/${zone}-cert"
+            jq -r '.data.users[].user["client-key-data"]' $kubeconfig | base64 -d > "${CONFIG_DIR}/${zone}-key"
+            run "kubectl config set-credentials $zone-admin --client-certificate=${CONFIG_DIR}/${zone}-cert --client-key=${CONFIG_DIR}/${zone}-key"
+            rm -f ${kubeconfig}
+        elif [ "$zoneType" == "fe" ]; then
+            run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1beta1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
+        elif [ "$zoneType" == "aws" ]; then
+            run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1alpha1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
+        else
+            log-error "Zone provider $zoneType not supported."
+            exit 1
+        fi
+        log "Configuring kube context for zone ${zone}..."
+        run "kubectl config set-context $zone --user=${zone}-admin --cluster=tunnel"
+    fi
+}
 
-  kube=$(cat ${configDir}/${zone})
+start_tunnel() {
+    dest=cloud@bst.${zone}.caascad.com
 
-  log "Forwarding through ${dest}..."
-  ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+    if [[ "$zone" =~ ^infra-* ]]; then
+        kubeServer=$(cat "${CONFIG_DIR}/${zone}")
+    elif [ "$zoneType" == "fe" ]; then
+        vault_login
+        kubeServer=$(vault read "secret/zones/fe/${zone}/kubeconfig" | jq -r .data.clusters[].cluster.server | cut -d'/' -f3)
+    elif [ "$zoneType" == "aws" ]; then
+        vault_login
+        kubeServer="$(vault read "secret/zones/aws/${zone}/eks" | jq -r .data.endpoint | cut -d'/' -f3):443"
+    fi
+
+    log "Forwarding through ${dest}..."
+    ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kubeServer} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+}
+
+get_aws_credentials() {
+    # if creds are newer that 23h no need to ask for new credentials
+    if find "$CONFIG_DIR" -mmin -$((60*23)) -name "${awsCredsFile}" | grep -q .; then
+        return
+    fi
+    log_debug "Get AWS credentials..."
+    vault write aws/sts/readonly -ttl=24h | \
+        jq -r '.data | "export AWS_ACCESS_KEY_ID=\(.access_key); export AWS_SECRET_ACCESS_KEY=\(.secret_key); export AWS_SESSION_TOKEN=\(.security_token)"' > "${awsCredsFilePath}"
+}
+
+get_credentials() {
+    vault_login
+    if [ "$zoneType" == "fe" ]; then
+        log_debug "Get FE k8s certificates..."
+        vault read "secret/zones/fe/${zone}/kubeconfig" | \
+            jq '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.users[].user["client-certificate-data"] | @base64d, "clientKeyData": .data.users[].user["client-key-data"] | @base64d }}'
+    elif [ "$zoneType" == "aws" ]; then
+        get_aws_credentials
+        # shellcheck disable=SC1090,SC2015
+        source "${awsCredsFilePath}"
+        log_debug "Get AWS K8S token..."
+        eval "$(vault read "secret/zones/aws/${zone}/eks" | \
+            jq -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')"
+    else
+        log-error "Zone provider $zoneType not supported."
+        exit 1
+    fi
+    exit 0
+}
+
+refresh_zones() {
+    log_debug "Refreshing caascad-zones..."
+    curl -s -o "${CAASCAD_ZONES_FILE}" "${CAASCAD_ZONES_URL}"
+}
+
+zone_exists() {
+    zone=$1
+    jq -e ".[\"${zone}\"]?" < "${CAASCAD_ZONES_FILE}" >/dev/null
+}
+
+zone_attr() {
+    zone=$1
+    attr=$2
+    jq -r ".[\"$zone\"].$attr" < "${CAASCAD_ZONES_FILE}"
 }
 
 status() {
@@ -170,15 +251,15 @@ EOF
 
 jsonOutput=0
 localPort=30000
-configDir=$HOME/.config/kswitch
 socketPath="/dev/shm/kswitch"
 [ ! -d /dev/shm ] && socketPath="/tmp/kswitch"
 zone=""
+execCredentialMode=0
 
-for arg in "$@"; do
-    case "$arg" in
+while (( "$#" )); do
+    case "$1" in
         bash-completions)
-        bash-completions
+        bash_completions
         exit 0
         ;;
         -h|--help)
@@ -186,15 +267,20 @@ for arg in "$@"; do
         exit 0
         ;;
         -k|--kill)
-        kill-tunnel
+        kill_tunnel
         exit 0
         ;;
         --json)
         jsonOutput=1
+        shift
+        ;;
+        -c)
+        execCredentialMode=1
+        shift
         ;;
         *)
         [ "$zone" != "" ] && (echo -e "Error: too much arguments\n" && usage && exit 1)
-        zone=$arg
+        zone=$1
         shift
         ;;
     esac
@@ -206,13 +292,28 @@ unset KUBECONFIG
 [ "$zone" == "" ] && status
 
 setup
+refresh_zones
 
-zoneCluster=$(kubectl config view -o json | jq -r "select(.contexts != null) |.contexts[] | select(.name == \"$zone\") | .context.cluster")
+if zone_exists "${zone}"; then
+    log_debug "Found caascad zone ${zone}"
+    infraZone=$(zone_attr $zone "infra_zone_name")
+    domainName=$(zone_attr $infraZone "domain_name")
+    zoneType=$(zone_attr $zone "provider.type")
+    log_debug "Zone is on provider ${zoneType}"
 
-kill-tunnel
+    awsCredsFile="${infraZone}_aws_credentials"
+    awsCredsFilePath="${CONFIG_DIR}/${awsCredsFile}"
 
-if [ "$zoneCluster" = "tunnel" ] || [ "$zoneCluster" = "" ]; then
-  tunnel
+    VAULT_ADDR="https://vault.${infraZone}.${domainName}"
+    export VAULT_ADDR
+
+    [ $execCredentialMode -eq 1 ] && get_credentials
+
+    kill_tunnel
+    configure_kubeconfig
+    start_tunnel
+else
+    log "No caascad zone ${zone} found. Trying to switch context anyway..."
 fi
 
 kubectl config use-context $zone
