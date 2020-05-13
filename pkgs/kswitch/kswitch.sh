@@ -84,7 +84,7 @@ kill-tunnel() {
   # Add unused argument foo to run the command
   # it's not used but cli parsing requires it
   # This will kill the active ssh tunnel if any
-  ssh -S /dev/shm/kswitch -O exit foo 2>/dev/null || true
+  ssh -S $socketPath -O exit foo 2>/dev/null || true
 }
 
 tunnel() {
@@ -110,17 +110,17 @@ tunnel() {
   kube=$(cat ${configDir}/${zone})
 
   log "Forwarding through ${dest}..."
-  ssh -4 -M -S /dev/shm/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+  ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
 }
 
 status() {
   context=$(kubectl config current-context)
   log "Current context is $context"
-  if [ ! -S /dev/shm/kswitch ]; then
+  if [ ! -S $socketPath ]; then
     log-error "Tunnel is down: run kswitch $context"
     exit 1
   fi
-  tunnelPID=$(ssh -S /dev/shm/kswitch -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
+  tunnelPID=$(ssh -S $socketPath -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
   cmd=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -c 2- | rev)
   log "Tunnel is active (pid=$tunnelPID)"
   log "Tunneling through ${cmd##*:}"
@@ -129,6 +129,8 @@ status() {
 
 localPort=30000
 configDir=$HOME/.config/kswitch
+socketPath="/dev/shm/kswitch"
+[ ! -d /dev/shm ] && socketPath="/tmp/kswitch"
 zone=""
 
 for arg in "$@"; do
