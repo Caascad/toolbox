@@ -46,7 +46,7 @@ EOF
 usage() {
   cat <<EOF
 Usage:
-  kswitch               Show kswitch status
+  kswitch [--json]      Show kswitch status
   kswitch ZONE_NAME     Start tunnel to ZONE_NAME and change kubectl context
   kswitch -k, --kill    Stop any active tunnel
   kswitch -h, --help    This help
@@ -63,6 +63,21 @@ changed.
 You can get bash completions for kswitch, add this to your ~/.bashrc:
 
   source <(kswitch bash-completions)
+
+Starship (https://starship.rs) example configuration:
+
+    [kubernetes]
+    disabled = false
+
+    [custom.kswitch]
+    command = "echo "
+    when = """ kswitch --json | jq -e -r '. | select(.tunnel.status == "up") | select(.context == .tunnel.zone) | .context' """
+    prefix = ""
+    style = "bold white"
+
+This will display the icon '' when a tunnel is up and the current kubectl
+context matches the tunnel bastion.
+
 EOF
 }
 
@@ -84,7 +99,7 @@ kill-tunnel() {
   # Add unused argument foo to run the command
   # it's not used but cli parsing requires it
   # This will kill the active ssh tunnel if any
-  ssh -S /dev/shm/kswitch -O exit foo 2>/dev/null || true
+  ssh -S $socketPath -O exit foo 2>/dev/null || true
 }
 
 tunnel() {
@@ -110,25 +125,54 @@ tunnel() {
   kube=$(cat ${configDir}/${zone})
 
   log "Forwarding through ${dest}..."
-  ssh -4 -M -S /dev/shm/kswitch -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+  ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kube} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
 }
 
 status() {
   context=$(kubectl config current-context)
-  log "Current context is $context"
-  if [ ! -S /dev/shm/kswitch ]; then
-    log-error "Tunnel is down: run kswitch $context"
-    exit 1
+  tunnelStatus="down"
+  tunnelPID=-1
+  tunnelBastion=""
+  tunnelZone=""
+
+  if [ -S $socketPath ]; then
+    tunnelPID=$(ssh -S $socketPath -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
+    tunnelBastion=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -d: -f2 | rev)
+    tunnelZone=$(echo $tunnelBastion | cut -d. -f2)
+    tunnelStatus="up"
   fi
-  tunnelPID=$(ssh -S /dev/shm/kswitch -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
-  cmd=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -c 2- | rev)
-  log "Tunnel is active (pid=$tunnelPID)"
-  log "Tunneling through ${cmd##*:}"
+
+  if [ $jsonOutput -eq 1 ]; then
+    cat <<EOF
+{
+    "context": "${context}",
+    "tunnel": {
+        "status": "${tunnelStatus}",
+        "pid": ${tunnelPID},
+        "bastion": "${tunnelBastion}",
+        "zone": "${tunnelZone}"
+    }
+}
+EOF
+    [ "$tunnelStatus" = "down" ] && exit 1
+  else
+    log "Current context is $context"
+    if [ "$tunnelStatus" = "down" ]; then
+      log-error "Tunnel is down: run kswitch $context"
+      exit 1
+    fi
+    log "Tunnel is active (pid=$tunnelPID)"
+    log "Tunneling through ${tunnelBastion}"
+  fi
+
   exit 0
 }
 
+jsonOutput=0
 localPort=30000
 configDir=$HOME/.config/kswitch
+socketPath="/dev/shm/kswitch"
+[ ! -d /dev/shm ] && socketPath="/tmp/kswitch"
 zone=""
 
 for arg in "$@"; do
@@ -144,6 +188,9 @@ for arg in "$@"; do
         -k|--kill)
         kill-tunnel
         exit 0
+        ;;
+        --json)
+        jsonOutput=1
         ;;
         *)
         [ "$zone" != "" ] && (echo -e "Error: too much arguments\n" && usage && exit 1)
