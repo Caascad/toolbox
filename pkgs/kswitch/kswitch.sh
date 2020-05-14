@@ -63,6 +63,21 @@ changed.
 You can get bash completions for kswitch, add this to your ~/.bashrc:
 
   source <(kswitch bash-completions)
+
+Starship (https://starship.rs) example configuration:
+
+    [kubernetes]
+    disabled = false
+
+    [custom.kswitch]
+    command = "echo "
+    when = """ kswitch --json | jq -e -r '. | select(.tunnel.status == "up") | select(.context == .tunnel.zone) | .context' """
+    prefix = ""
+    style = "bold white"
+
+This will display the icon '' when a tunnel is up and the current kubectl
+context matches the tunnel bastion.
+
 EOF
 }
 
