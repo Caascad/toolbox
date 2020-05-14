@@ -46,7 +46,7 @@ EOF
 usage() {
   cat <<EOF
 Usage:
-  kswitch               Show kswitch status
+  kswitch [--json]      Show kswitch status
   kswitch ZONE_NAME     Start tunnel to ZONE_NAME and change kubectl context
   kswitch -k, --kill    Stop any active tunnel
   kswitch -h, --help    This help
@@ -115,18 +115,45 @@ tunnel() {
 
 status() {
   context=$(kubectl config current-context)
-  log "Current context is $context"
-  if [ ! -S $socketPath ]; then
-    log-error "Tunnel is down: run kswitch $context"
-    exit 1
+  tunnelStatus="down"
+  tunnelPID=-1
+  tunnelBastion=""
+  tunnelZone=""
+
+  if [ -S $socketPath ]; then
+    tunnelPID=$(ssh -S $socketPath -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
+    tunnelBastion=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -d: -f2 | rev)
+    tunnelZone=$(echo $tunnelBastion | cut -d. -f2)
+    tunnelStatus="up"
   fi
-  tunnelPID=$(ssh -S $socketPath -O check foo 2>&1 | sed 's/.*pid=\([0-9]*\).*/\1/')
-  cmd=$(tr '\000' ':' </proc/${tunnelPID}/cmdline | rev | cut -c 2- | rev)
-  log "Tunnel is active (pid=$tunnelPID)"
-  log "Tunneling through ${cmd##*:}"
+
+  if [ $jsonOutput -eq 1 ]; then
+    cat <<EOF
+{
+    "context": "${context}",
+    "tunnel": {
+        "status": "${tunnelStatus}",
+        "pid": ${tunnelPID},
+        "bastion": "${tunnelBastion}",
+        "zone": "${tunnelZone}"
+    }
+}
+EOF
+    [ "$tunnelStatus" = "down" ] && exit 1
+  else
+    log "Current context is $context"
+    if [ "$tunnelStatus" = "down" ]; then
+      log-error "Tunnel is down: run kswitch $context"
+      exit 1
+    fi
+    log "Tunnel is active (pid=$tunnelPID)"
+    log "Tunneling through ${tunnelBastion}"
+  fi
+
   exit 0
 }
 
+jsonOutput=0
 localPort=30000
 configDir=$HOME/.config/kswitch
 socketPath="/dev/shm/kswitch"
@@ -146,6 +173,9 @@ for arg in "$@"; do
         -k|--kill)
         kill-tunnel
         exit 0
+        ;;
+        --json)
+        jsonOutput=1
         ;;
         *)
         [ "$zone" != "" ] && (echo -e "Error: too much arguments\n" && usage && exit 1)
