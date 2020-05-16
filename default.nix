@@ -55,6 +55,8 @@ rec {
 
   helm = pkgs.kubernetes-helm;
 
+  inherit terraform-providers;
+
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-providers.concourse
     terraform-providers.flexibleengine

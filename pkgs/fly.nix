@@ -5,7 +5,7 @@ buildGoModule rec {
   version = source.version;
   src = source.outPath;
 
-  modSha256 = "14wwspp8x6i4ry23bz8b08mfyzrwc9m7clrylxzr8j67yhg5kw6v";
+  vendorSha256 = "14wwspp8x6i4ry23bz8b08mfyzrwc9m7clrylxzr8j67yhg5kw6v";
 
   subPackages = [ "fly" ];
 

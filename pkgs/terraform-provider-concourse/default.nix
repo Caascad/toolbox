@@ -24,7 +24,7 @@ buildGoPackage rec {
   '';
 
   postInstall = ''
-    mv $bin/bin/terraform-provider-concourse{,_v${version}}
+    mv $out/bin/terraform-provider-concourse{,_v${version}}
   '';
 
   meta = with stdenv.lib; {
