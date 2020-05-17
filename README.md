@@ -215,7 +215,7 @@ niv add concourse/concourse -v 5.8.0 -t 'https://github.com/<owner>/<repo>/archi
 ```
 
 Once added you can use `sources.concourse` as an input of your package.
-See `./pkgs/safe.nix` for example.
+See `./pkgs/vault-token-helper.nix` for example.
 
 To update sources to a particular version:
 
