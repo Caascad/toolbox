@@ -55,6 +55,8 @@ rec {
 
   helm = pkgs.kubernetes-helm;
 
+  inherit terraform-providers;
+
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-providers.concourse
     terraform-providers.flexibleengine
@@ -73,9 +75,6 @@ rec {
     p.template
     p.tls
   ]);
-
-  safe = pkgs.callPackage ./pkgs/safe.nix
-    { source = sources.safe; };
 
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };

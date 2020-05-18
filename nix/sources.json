@@ -41,10 +41,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "8686922e68dfce2786722acad9593ad392297188",
-        "sha256": "1pc92s1nbr9hlsmzlf8w2pc90rlma649y3fvyfww0sbcwn0lb65n",
+        "rev": "32b8ed738096bafb4cdb7f70347a0f63f9f40151",
+        "sha256": "04x5lqw689mfkxzrb53393ssdx2bma8wv0i3hrfsp3d291b2qapx",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/8686922e68dfce2786722acad9593ad392297188.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/32b8ed738096bafb4cdb7f70347a0f63f9f40151.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "safe": {
@@ -117,12 +117,12 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-rancher2",
-        "rev": "85f3671923007ef16e8db64fd71b769930410ad6",
-        "sha256": "15pvz1sd1x932yxdp7d679vax3dw56bfhp3422vxqsgmdgscwg1s",
+        "rev": "78f672dbfa18b2c7f4b9e948e5afe50971969efc",
+        "sha256": "1k2d9j17b7sssliraww6as196ihdcra1ylhg1qbynklpr0asiwna",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-rancher2/archive/v1.8.1.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-rancher2/archive/v1.8.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.8.1"
+        "version": "1.8.3"
     },
     "terraform-provider-vault": {
         "branch": "master",

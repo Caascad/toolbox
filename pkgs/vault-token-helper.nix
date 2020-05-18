@@ -5,7 +5,7 @@ buildGoModule rec {
   version = source.version;
   src = source.outPath;
 
-  modSha256 = "174wr2xvwjiix5c29w2wlgi36hv02fcwhdmhqdn8q6pxs4ahy65m";
+  vendorSha256 = "0rpz8syingvj9s1wwhsdmhl2pcbwvj0zirgvgnp6653arwwlpqc8";
 
   meta = with lib; {
     description = "Vault Token Helper with support for native credential storage";
