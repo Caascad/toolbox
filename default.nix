@@ -76,6 +76,9 @@ rec {
     p.tls
   ]);
 
+  pre-commit-terraform = pkgs.callPackage ./pkgs/pre-commit-terraform.nix
+    { pythonPackages = pkgs.python38Packages; inherit terraform; };
+
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
 
