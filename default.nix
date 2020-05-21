@@ -50,7 +50,7 @@ with pkgs.lib;
 
 rec {
 
-  inherit (pkgs) ansible kubectl stern vault docker-compose cfssl
+  inherit (pkgs) ansible kubectl stern vault docker-compose cfssl ripgrep
                  yq jq gopass kubectx awscli direnv cue go gnupg curl kompose;
 
   helm = pkgs.kubernetes-helm;
