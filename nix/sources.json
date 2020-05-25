@@ -143,12 +143,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "tf",
-        "rev": "5a2e92ecd9a2e338dc062f9f3f0430e240db1118",
-        "sha256": "17af56yn096g3bjbazaj7b48qs4y5ag63xwwk7qdp3a78pgdwwg5",
+        "rev": "e96b98261697687e7815fcca98adb6ca98f1c2ce",
+        "sha256": "09psk5xxps7lvfl460150izxib1plg6shgqysgxwfphqz2pm5y46",
         "type": "tarball",
-        "url": "https://github.com/Caascad/tf/archive/1.4.0.tar.gz",
+        "url": "https://github.com/Caascad/tf/archive/1.5.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.4.0"
+        "version": "1.5.0"
     },
     "vault-token-helper": {
         "branch": "master",
