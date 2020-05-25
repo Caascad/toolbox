@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with stdenv.lib; {
-    description = "wrapper around terraform";
+    description = "Wrapper around terraform";
     homepage = "https://github.com/Caascad/tf";
     license = licenses.mit;
     maintainers = with maintainers; [ "Benjile" ];
