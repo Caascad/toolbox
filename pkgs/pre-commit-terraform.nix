@@ -17,6 +17,7 @@ let
       sed -i 's/cmd =.*/cmd = (sys.executable, "-mvenv", envdir)/'\
         $out/${pythonPackages.python.sitePackages}/pre_commit/languages/python.py
     '';
+    patches = [];
   });
 
 in stdenv.mkDerivation {
