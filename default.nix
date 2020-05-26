@@ -51,7 +51,7 @@ with pkgs.lib;
 rec {
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
-                 yq jq gopass kubectx awscli direnv cue go gnupg curl;
+                 yq jq gopass kubectx awscli direnv cue go gnupg curl kustomize;
 
   ansible = pkgs.ansible_2_9;
 
