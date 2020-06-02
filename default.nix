@@ -84,8 +84,7 @@ rec {
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
 
-  tf = pkgs.callPackage ./pkgs/tf.nix
-    { source = sources.tf; inherit terraform; };
+  tf = import sources.tf.outPath {};
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
