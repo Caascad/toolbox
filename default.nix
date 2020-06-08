@@ -59,6 +59,8 @@ rec {
 
   inherit terraform-providers;
 
+  terraform-minimal = pkgs.terraform_0_12;
+
   terraform = pkgs.terraform_0_12.withPlugins (p: [
     terraform-providers.concourse
     terraform-providers.flexibleengine
