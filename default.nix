@@ -97,8 +97,10 @@ rec {
     { source = sources.vault-token-helper; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
-  # doesn't build on MacOS
 
+  # doesn't build on MacOS
   openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
+
+  os = import sources.os.outPath { toolbox = ./.; };
 
 }
