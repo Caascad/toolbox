@@ -55,6 +55,8 @@ rec {
 
   ansible = pkgs.ansible_2_9;
 
+  amtool = pkgs.callPackage ./pkgs/amtool.nix {};
+
   helm = pkgs.kubernetes-helm;
 
   inherit terraform-providers;
