@@ -1,5 +1,6 @@
 { stdenv
 , source
+, fetchzip
 , runCommand
 , makeWrapper
 , gopass
@@ -10,7 +11,9 @@
 stdenv.mkDerivation rec {
   pname = "internal-ca";
   version = "0.1";
-  src = source.outPath;
+  src = fetchzip {
+    inherit (source) url sha256;
+  };
 
   buildInputs = [ makeWrapper ];
 

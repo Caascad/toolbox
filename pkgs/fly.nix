@@ -1,9 +1,15 @@
-{ buildGoModule, source, lib }:
+{ buildGoModule
+, source
+, fetchzip
+, lib
+}:
 
 buildGoModule rec {
   pname = "fly";
   version = source.version;
-  src = source.outPath;
+  src = fetchzip {
+    inherit (source) url sha256;
+  };
 
   vendorSha256 = "1zzb7n54hnl99lsgln9pib2anmzk5zmixga5x68jyrng91axjifb";
 

@@ -1,12 +1,15 @@
 { stdenv
 , source
 , buildGoModule
+, fetchzip
 }:
 
 buildGoModule rec {
   name = "terraform-provider-keycloak-${version}";
   version = source.version;
-  src = source.outPath;
+  src = fetchzip {
+    inherit (source) url sha256;
+  };
   vendorSha256 = "12iary7p5qsbl4xdhfd1wh92mvf2fiylnb3m1d3m7cdcn32rfimq";
   postInstall = "mv $out/bin/terraform-provider-keycloak{,_v${version}}";
 

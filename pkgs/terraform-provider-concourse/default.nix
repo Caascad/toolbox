@@ -1,4 +1,5 @@
 { stdenv
+, fetchzip
 , source
 , buildGoPackage
 }:
@@ -6,7 +7,9 @@
 buildGoPackage rec {
   name = "terraform-provider-concourse-${version}";
   version = source.version;
-  src = source.outPath;
+  src = fetchzip {
+    inherit (source) url sha256;
+  };
 
   goPackagePath = "github.com/alphagov/terraform-provider-concourse";
   # To fix go mod download error:
