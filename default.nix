@@ -17,23 +17,13 @@ let
     concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
       { source = sources.terraform-provider-concourse; };
 
-    rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
-      { source = sources.terraform-provider-rancher2; };
-
-    vault = pkgs.terraform-providers.vault.overrideAttrs (old:
-      with sources.terraform-provider-vault; {
-        inherit version;
-        name = "${repo}-${version}";
-        src = outPath;
-        postBuild = "mv go/bin/${repo}{,_v${version}}";
-      }
-    );
-
     flexibleengine = pkgs.terraform-providers.flexibleengine.overrideAttrs (old:
       with sources.terraform-provider-flexibleengine; {
         inherit version;
         name = "${repo}-${version}";
-        src = outPath;
+        src = pkgs.fetchzip {
+          inherit url sha256;
+        };
         postBuild = "mv go/bin/${repo}{,_v${version}}";
       }
     );
@@ -69,17 +59,17 @@ rec {
     terraform-providers.huaweicloud
     terraform-providers.k8sraw
     terraform-providers.keycloak
-    terraform-providers.rancher2
-    terraform-providers.vault
     p.aws
     p.external
     p.kubernetes
     p.local
     p.null
     p.openstack
+    p.rancher2
     p.random
     p.template
     p.tls
+    p.vault
   ]);
 
   pre-commit-terraform = pkgs.callPackage ./pkgs/pre-commit-terraform.nix

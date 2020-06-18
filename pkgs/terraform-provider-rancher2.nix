@@ -1,4 +1,5 @@
 { stdenv
+, fetchzip
 , source
 , buildGoPackage
 }:
@@ -6,7 +7,9 @@
 buildGoPackage rec {
   name = "terraform-provider-rancher2-${version}";
   version = source.version;
-  src = source.outPath;
+  src = fetchzip {
+    inherit (source) url sha256;
+  };
 
   goPackagePath = "github.com/terraform-providers/terraform-provider-rancher2";
 
