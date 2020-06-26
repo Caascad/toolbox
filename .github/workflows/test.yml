@@ -39,7 +39,13 @@ jobs:
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         cd test
         toolbox update-shell ${GITHUB_SHA}
-        nix-shell --command 'jq --help'
+        nix-shell --run 'jq --help'
+    - name: make-terraform-shell
+      run: |
+        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+        cd test
+        SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform-shell vault flexibleengine http
+        nix-shell --run "terraform version"
   shellcheck:
     runs-on: ubuntu-latest
     steps:

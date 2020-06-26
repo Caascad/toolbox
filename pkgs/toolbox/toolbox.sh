@@ -144,16 +144,17 @@ usage() {
   cat <<EOF
 Usage: toolbox <command> [args]
 
- doctor                     -- perform sanity checks
- list                       -- list available tools
- update                     -- update all globally installed tools
- install tool [tool...]     -- install tools globally
- uninstall tool [tool...]   -- uninstall a previously installed tool
- make-shell tool [tool...]  -- create a project dev shell with a list of tools
- update-shell               -- update toolbox revision for an existing shell
- completions                -- output completion script
- help                       -- this help
- version                    -- show toolbox version
+ doctor                                      -- perform sanity checks
+ list                                        -- list available tools
+ update                                      -- update all globally installed tools
+ install tool [tool...]                      -- install tools globally
+ uninstall tool [tool...]                    -- uninstall a previously installed tool
+ make-shell tool [tool...]                   -- create a project dev shell with a list of tools
+ make-terraform-shell provider [provider...] -- create a terraform shell with the specified providers
+ update-shell                                -- update toolbox revision for an existing shell
+ completions                                 -- output completion script
+ help                                        -- this help
+ version                                     -- show toolbox version
 
 EOF
 }
@@ -168,12 +169,16 @@ _get_toolbox_attrs() {
   nix-instantiate --strict --eval --expr "builtins.attrNames (import <toolbox> {})" | tr -d "[]\""
 }
 
+_get_terraform_providers_attrs() {
+  nix-instantiate --strict --eval --expr "builtins.attrNames (import <toolbox> {}).pkgs.terraform-providers" | tr -d "[]\""
+}
+
 _toolbox_completions() {
   local cur="\${COMP_WORDS[COMP_CWORD]}"
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list install uninstall update make-shell update-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list install uninstall update make-shell update-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -186,6 +191,9 @@ _toolbox_completions() {
   case "\$prev" in
       uninstall|install|make-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_toolbox_attrs)" "\$cur"))
+          ;;
+      make-terraform-shell)
+          COMPREPLY=(\$(compgen -W "\$(_get_terraform_providers_attrs)" "\$cur"))
           ;;
   esac
 }
@@ -379,6 +387,11 @@ case "$COMMAND" in
     update-shell)
         check_args_le $# 1 "update-shell"
         update-shell "$@"
+        ;;
+    make-terraform-shell)
+        check_args_gt $# 1 "make-terraform-shell"
+        log "Creating terraform shell with providers: $*"
+        make-shell "(terraform-minimal.withPlugins (p: with p; [$*]))"
         ;;
     help)
         usage
