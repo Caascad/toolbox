@@ -7,20 +7,7 @@
 , shellcheck
 }:
 
-let
-
-  pre-commit = pythonPackages.pre-commit.overrideAttrs(old: {
-    # Patch pre_commit to use builtin virtualenv module of python (venv) instead
-    # of thirdparty virtulenv module because of some incompability with nix:
-    # https://github.com/NixOS/nixpkgs/issues/66366
-    postInstall = ''
-      sed -i 's/cmd =.*/cmd = (sys.executable, "-mvenv", envdir)/'\
-        $out/${pythonPackages.python.sitePackages}/pre_commit/languages/python.py
-    '';
-    patches = [];
-  });
-
-in stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "pre-commit-terraform";
   version = pythonPackages.pre-commit.version;
 
@@ -30,7 +17,7 @@ in stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    ln -s ${pre-commit}/bin/pre-commit $out/bin
+    ln -s ${pythonPackages.pre-commit}/bin/pre-commit $out/bin
     wrapProgram $out/bin/pre-commit --prefix PATH ":" "${terraform}/bin:${terraform-docs}/bin:${tflint}/bin:${shellcheck}/bin"
   '';
 
