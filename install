@@ -64,7 +64,7 @@ if _isNixInstalled ; then
     log "Nix is already installed"
 else
     log "Looks like nix is not installed yet"
-    log_run "curl \"$NIX_INSTALL_URL\" | sh"
+    log_run "curl -L \"$NIX_INSTALL_URL\" | sh"
     _sourceNix
 fi
 
