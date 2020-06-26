@@ -38,7 +38,7 @@ jobs:
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         cd test
-        toolbox update-shell 56af2a040a6188e42abe7c5f51bf2e63495435c6
+        toolbox update-shell ${GITHUB_SHA}
         nix-shell --command 'jq --help'
   shellcheck:
     runs-on: ubuntu-latest
