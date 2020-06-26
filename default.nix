@@ -4,41 +4,49 @@
 
 let
 
-  pkgs = import nixpkgs {};
+  pkgs = import nixpkgs {
+    overlays = [(self: super: {
 
-  terraform-providers = {
+      terraform-providers = super.terraform-providers // {
 
-    keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
-      { source = sources.terraform-provider-keycloak; };
+        keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
+          { source = sources.terraform-provider-keycloak; };
 
-    k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
-      { source = sources.terraform-provider-kubernetes-yaml; };
+        k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
+          { source = sources.terraform-provider-kubernetes-yaml; };
 
-    concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
-      { source = sources.terraform-provider-concourse; };
+        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
+          { source = sources.terraform-provider-concourse; };
 
-    flexibleengine = pkgs.terraform-providers.flexibleengine.overrideAttrs (old:
-      with sources.terraform-provider-flexibleengine; {
-        inherit version;
-        name = "${repo}-${version}";
-        src = pkgs.fetchzip {
-          inherit url sha256;
-        };
-        postBuild = "mv go/bin/${repo}{,_v${version}}";
-      }
-    );
+        flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
+          with sources.terraform-provider-flexibleengine; {
+            inherit version;
+            name = "${repo}-${version}";
+            src = pkgs.fetchzip {
+              inherit url sha256;
+            };
+            postBuild = "mv go/bin/${repo}{,_v${version}}";
+          }
+        );
 
-    huaweicloud = pkgs.terraform-providers.huaweicloud.overrideAttrs (old: {
-      patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
-    });
+        huaweicloud = super.terraform-providers.huaweicloud.overrideAttrs (old: {
+          patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
+        });
 
+      };
+
+    })];
   };
+
 
 in
 
 with pkgs.lib;
 
 rec {
+
+  # Expose all nixpkgs packages in `pkgs` attribute
+  inherit pkgs;
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx awscli direnv cue go gnupg curl kustomize;
@@ -49,27 +57,26 @@ rec {
 
   helm = pkgs.kubernetes-helm;
 
-  inherit terraform-providers;
-
   terraform-minimal = pkgs.terraform_0_12;
 
-  terraform = pkgs.terraform_0_12.withPlugins (p: [
-    terraform-providers.concourse
-    terraform-providers.flexibleengine
-    terraform-providers.huaweicloud
-    terraform-providers.k8sraw
-    terraform-providers.keycloak
-    p.aws
-    p.external
-    p.kubernetes
-    p.local
-    p.null
-    p.openstack
-    p.rancher2
-    p.random
-    p.template
-    p.tls
-    p.vault
+  terraform = pkgs.terraform_0_12.withPlugins (p: with p; [
+    aws
+    concourse
+    external
+    flexibleengine
+    http
+    huaweicloud
+    k8sraw
+    keycloak
+    kubernetes
+    local
+    null
+    openstack
+    rancher2
+    random
+    template
+    tls
+    vault
   ]);
 
   pre-commit-terraform = pkgs.callPackage ./pkgs/pre-commit-terraform.nix
