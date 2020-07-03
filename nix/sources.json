@@ -86,17 +86,17 @@
         "version": "5.8.0"
     },
     "terraform-provider-flexibleengine": {
-        "branch": "master",
+        "branch": "caascad",
         "description": "Terraform flexibleengine provider",
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
-        "owner": "terraform-providers",
+        "owner": "Caascad",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "8f2f9418557eacf4762beaa2d34a201dbf8a9c18",
-        "sha256": "0klxi40dd3a4dp7gjsjjwh6zv2m94hh6mk5m9g0dyhvn0r28w5j2",
+        "rev": "ddbde30b5a288abbd2769e67aa1487f6389ea346",
+        "sha256": "1d8aqb5ski1n8d3wm00zypfgraq8asa4jzxd9yq6vpbwpq8bbish",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-flexibleengine/archive/v1.12.1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.12.1"
+        "url": "https://github.com/Caascad/terraform-provider-flexibleengine/archive/c1.0.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "version": "c1.0.0"
     },
     "terraform-provider-keycloak": {
         "branch": "master",
