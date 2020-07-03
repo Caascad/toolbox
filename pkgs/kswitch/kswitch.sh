@@ -5,20 +5,20 @@ set -eu
 set -o pipefail
 
 log() {
-  echo -e "\e[32m--- $*\e[0m" >&2
+  echo -e "\x1B[32m--- $*\x1B[0m" >&2
 }
 
 log-error() {
-  echo -e "\e[31m--- $*\e[0m" >&2
+  echo -e "\x1B[31m--- $*\x1B[0m" >&2
 }
 
 run() {
-  echo -e "\e[33m+++ $1\e[0m" >&2
+  echo -e "\x1B[33m+++ $1\x1B[0m" >&2
   eval "$1"
 }
 
 run_c() {
-  echo -e "\e[33m+++ $1\e[0m" >&2
+  echo -e "\x1B[33m+++ $1\x1B[0m" >&2
   _continue
   eval "$1"
 }
