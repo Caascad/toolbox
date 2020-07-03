@@ -14,19 +14,19 @@ REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME"
 
 log() {
     local args="$*"
-    local prefix="\e[32m[toolbox]:\e[0m"
+    local prefix="\x1B[32m[toolbox]:\x1B[0m"
     echo -e "$prefix $args"
 }
 
 log-warning() {
     local args="$*"
-    local prefix="\e[33m[toolbox]:\e[0m"
+    local prefix="\x1B[33m[toolbox]:\x1B[0m"
     echo -e "$prefix $args" >&2
 }
 
 log-error() {
     local args="$*"
-    local prefix="\e[31m[toolbox]:\e[0m"
+    local prefix="\x1B[31m[toolbox]:\x1B[0m"
     echo -e "$prefix $args" >&2
     exit 1
 }
@@ -207,8 +207,8 @@ version() {
 }
 
 doctor() {
-    OK="\e[32mOK\e[0m"
-    X="\e[31mX\e[0m"
+    OK="\x1B[32mOK\x1B[0m"
+    X="\x1B[31mX\x1B[0m"
     FAIL=""
 
     log "Running sanity checks:\n"

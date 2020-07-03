@@ -16,13 +16,13 @@ _continue() {
 
 log() {
     local args="$*"
-    local prefix="\e[32m[toolbox]:\e[0m"
+    local prefix="\x1B[32m[toolbox]:\x1B[0m"
     echo -e "$prefix $args"
 }
 
 log-warning() {
     local args="$*"
-    local prefix="\e[33m[toolbox]:\e[0m"
+    local prefix="\x1B[33m[toolbox]:\x1B[0m"
     echo -e "$prefix $args" >&2
 }
 
