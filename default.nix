@@ -76,7 +76,7 @@ rec {
     random
     template
     tls
-    vault
+    p.vault
   ]);
 
   pre-commit-terraform = pkgs.callPackage ./pkgs/pre-commit-terraform.nix
