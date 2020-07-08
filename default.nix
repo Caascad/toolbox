@@ -88,6 +88,8 @@ rec {
   tf = import sources.tf.outPath {};
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
+  
+  krew = pkgs.callPackage ./pkgs/krew {};
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 
