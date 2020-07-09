@@ -161,10 +161,6 @@ EOF
 
 completions() {
   cat <<EOF
-NIX_SH="\$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-test -f "\$NIX_SH" && source "\$NIX_SH"
-
 _get_toolbox_attrs() {
   nix-instantiate --strict --eval --expr "builtins.attrNames (import <toolbox> {})" | tr -d "[]\""
 }
