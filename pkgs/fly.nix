@@ -20,6 +20,11 @@ buildGoModule rec {
       -X github.com/concourse/concourse.Version=${source.version}
   '';
 
+  postInstall = ''
+    mkdir -p $out/share/bash-completion/completions
+    $out/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
+  '';
+
   meta = with lib; {
     description = "A command line interface to Concourse CI";
     homepage = https://concourse-ci.org;
