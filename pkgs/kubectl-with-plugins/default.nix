@@ -60,7 +60,7 @@ rec {
       };
     };
 
-  packages=(builtins.map(x: (builtins.getAttr x plugins)) (builtins.attrNames plugins));
+  packages = builtins.attrValues plugins;
   kubectl-all = kubectl.overrideAttrs (old: {
     buildInputs = [ makeWrapper ];
     installPhase = old.installPhase + ''
