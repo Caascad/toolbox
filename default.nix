@@ -85,6 +85,9 @@ rec {
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
 
+  kubectl-with-plugins = pkgs.callPackage ./pkgs/kubectl-with-plugins
+    { sources = sources; pkgs = pkgs;};
+
   tf = import sources.tf.outPath {};
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
