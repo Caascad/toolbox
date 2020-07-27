@@ -86,7 +86,7 @@ rec {
     { source = sources.concourse; };
 
   kubectl-with-plugins = pkgs.callPackage ./pkgs/kubectl-with-plugins
-    { sources = sources; pkgs = pkgs;};
+    { sources = sources; };
 
   tf = import sources.tf.outPath {};
 
