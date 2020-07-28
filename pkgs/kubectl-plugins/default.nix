@@ -1,8 +1,7 @@
 { sources
+, pkgs
 }:
-let 
-  pkgs = import sources.nixpkgs{};
-in
+
 with pkgs;
 rec {
   kubectl-node-shell = callPackage ./scripts.nix {source = sources.kubectl-node-shell; cmdName = "kubectl-node_shell";};
