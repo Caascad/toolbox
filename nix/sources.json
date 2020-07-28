@@ -214,5 +214,18 @@
         "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "0.3.0"
+    },
+    "velero": {
+        "branch": "main",
+        "description": "Backup and migrate Kubernetes applications and their persistent volumes",
+        "homepage": "https://velero.io",
+        "owner": "vmware-tanzu",
+        "repo": "velero",
+        "rev": "7005879f3fa734e3ed777d5d5bc50fd5642501bc",
+        "sha256": "0g5h1nz38h53ncxln3vrxisfrfbjpi0vr67sbv2alhh1yqqmv9rh",
+        "type": "tarball",
+        "url": "https://github.com/vmware-tanzu/velero/archive/v1.4.2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.4.2"
     }
 }

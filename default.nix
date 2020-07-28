@@ -102,6 +102,9 @@ rec {
   vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix
     { source = sources.vault-token-helper; };
 
+  velero = pkgs.callPackage ./pkgs/velero.nix
+    { source = sources.velero; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
 
   # doesn't build on MacOS
