@@ -18,8 +18,7 @@ rec {
     version = sources.kail.version;
     postInstall = ''
       ln -s $out/bin/kail $out/bin/kubectl-tail
-    ''
-    ;
+    '';
     src = fetchFromGitHub {
       owner = sources.kail.owner;
       repo = sources.kail.repo;
