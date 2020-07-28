@@ -85,7 +85,7 @@ rec {
   fly = pkgs.callPackage ./pkgs/fly.nix
     { source = sources.concourse; };
 
-  kubectl-plugins = import ./pkgs/kubectl-plugins { sources = sources; };
+  kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
 
   kubectl-with-plugins = pkgs.callPackage ./pkgs/kubectl-with-plugins.nix
     { plugins = kubectl-plugins; };
