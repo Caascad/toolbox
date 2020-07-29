@@ -49,7 +49,7 @@ rec {
   inherit pkgs;
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
-                 yq jq gopass kubectx awscli direnv cue go gnupg curl 
+                 yq jq gopass kubectx awscli direnv cue go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint;
 
   ansible = pkgs.ansible_2_9;
@@ -80,8 +80,7 @@ rec {
     p.vault
   ]);
 
-  fly = pkgs.callPackage ./pkgs/fly.nix
-    { source = sources.concourse; };
+  fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
 
@@ -91,7 +90,7 @@ rec {
   tf = import sources.tf.outPath {};
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
-  
+
   krew = pkgs.callPackage ./pkgs/krew {};
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};

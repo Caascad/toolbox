@@ -1,5 +1,5 @@
 {
-    "concourse": {
+    "concourse_5_8": {
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
         "homepage": "https://concourse-ci.org",
@@ -10,6 +10,32 @@
         "url": "https://github.com/concourse/concourse/archive/v5.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "5.8.0"
+    },
+    "concourse_6_4": {
+        "branch": "master",
+        "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
+        "homepage": "https://concourse-ci.org",
+        "owner": "concourse",
+        "repo": "concourse",
+        "rev": "a822574e7d1e3e30a54d8cac416bc829c0103d02",
+        "sha256": "08lw345kzkic5b2dqj3d0d9x1mas9rpi4rdmbhww9r60swj169i7",
+        "type": "tarball",
+        "url": "https://github.com/concourse/concourse/archive/v6.4.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "6.4.0"
+    },
+    "fly-wrapper": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "Caascad",
+        "repo": "fly-wrapper",
+        "rev": "c5bdd52a9227d3d126dc9d08eb20bdd1db48dc4d",
+        "sha256": "16s8nk72k5571gq9hyq5nhhgl23gb233wzd0c2a9lsc85yrwix24",
+        "type": "tarball",
+        "url": "https://github.com/Caascad/fly-wrapper/archive/c5bdd52a9227d3d126dc9d08eb20bdd1db48dc4d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.0.2"
     },
     "internal-ca": {
         "branch": "master",
