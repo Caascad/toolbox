@@ -13,6 +13,8 @@ buildGoModule rec {
 
   vendorSha256 = "0rpz8syingvj9s1wwhsdmhl2pcbwvj0zirgvgnp6653arwwlpqc8";
 
+  doCheck = false;
+
   meta = with lib; {
     description = "Vault Token Helper with support for native credential storage";
     homepage = "https://github.com/joemiller/vault-token-helper";
