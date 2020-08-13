@@ -9,9 +9,6 @@ let
 
       terraform-providers = super.terraform-providers // {
 
-        keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
-          { source = sources.terraform-provider-keycloak; };
-
         k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
