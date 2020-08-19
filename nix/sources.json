@@ -182,12 +182,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "fb4400a88b77b93c16062035638ba262e6b663d8",
-        "sha256": "14qsqz76l23gzwjsid3snssqgpdlcf6f80gjxlhzfwvdxb9m4nf9",
+        "rev": "37b99f68c0db0542b1099a324489e55f69e9868d",
+        "sha256": "0mpwxy03fmx178fdylhv44715h515xshlgh7kl1h8gcmwjivcnhy",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-flexibleengine/archive/v1.13.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-flexibleengine/archive/v1.14.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.13.0"
+        "version": "1.14.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
