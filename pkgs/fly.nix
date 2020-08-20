@@ -12,14 +12,14 @@ let
 
   fly-wrapper = import sources.fly-wrapper.outPath { inherit pkgs; };
 
-  fly_5_8 = fly_go {
-    source = sources.concourse_5_8;
+  fly_5_8_0 = fly_go {
+    source = sources.concourse_5_8_0;
     goVendorSha256 = "1zzb7n54hnl99lsgln9pib2anmzk5zmixga5x68jyrng91axjifb";
   };
 
-  fly_6_4 = fly_go {
-    source = sources.concourse_6_4;
-    goVendorSha256 = "0a78cjfj909ic8wci8id2h5f6r34h90myk6z7m918n08vxv60jvw";
+  fly_6_4_1 = fly_go {
+    source = sources.concourse_6_4_1;
+    goVendorSha256 = "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm";
   };
 
   fly_go = {source, goVendorSha256}: buildGoModule rec {
@@ -92,8 +92,8 @@ let
     fi
 
     case "$VERSION" in
-      6.4.0) FLY_BIN="${fly_6_4}/bin" ;;
-          *) FLY_BIN="${fly_5_8}/bin" ;;
+      6.4.1) FLY_BIN="${fly_6_4_1}/bin" ;;
+          *) FLY_BIN="${fly_5_8_0}/bin" ;;
     esac
 
     export PATH="$FLY_BIN:$PATH"
@@ -114,7 +114,7 @@ in stdenv.mkDerivation {
       cat "$entrypointPath" > $out/bin/fly
       chmod 755 $out/bin/fly
       mkdir -p $out/share/bash-completion/completions
-      ${fly_6_4}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
+      ${fly_6_4_1}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
   '';
 
   meta = with stdenv.lib; {
