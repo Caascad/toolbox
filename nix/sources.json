@@ -30,12 +30,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "fly-wrapper",
-        "rev": "c5bdd52a9227d3d126dc9d08eb20bdd1db48dc4d",
-        "sha256": "16s8nk72k5571gq9hyq5nhhgl23gb233wzd0c2a9lsc85yrwix24",
+        "rev": "dd797e9fdfc6f0b4e77eb1a3e95dc822e1384ab1",
+        "sha256": "03mn3jmzgm483s52hlm6f9m56xfdqgkj1vljcfm5m256lgp7m3xi",
         "type": "tarball",
-        "url": "https://github.com/Caascad/fly-wrapper/archive/c5bdd52a9227d3d126dc9d08eb20bdd1db48dc4d.tar.gz",
+        "url": "https://github.com/Caascad/fly-wrapper/archive/dd797e9fdfc6f0b4e77eb1a3e95dc822e1384ab1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.0.2"
+        "version": "0.0.3"
     },
     "internal-ca": {
         "branch": "master",
