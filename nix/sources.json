@@ -169,12 +169,12 @@
         "homepage": null,
         "owner": "alphagov",
         "repo": "terraform-provider-concourse",
-        "rev": "962f3f3cb15f0db3f400249fb0dddaee690d9c65",
-        "sha256": "0wgrbdj10nwbnck1ph9nf4ph4awm5drnq1kzm7qxfq48dnrdmrib",
+        "rev": "5ff605de4afef50551bf97ed56ba0c9f4c2730aa",
+        "sha256": "038hk2cixnpv6caya02iy1fkp7bxadna0ks1rfc8mywlml58b5pb",
         "type": "tarball",
-        "url": "https://github.com/alphagov/terraform-provider-concourse/archive/962f3f3cb15f0db3f400249fb0dddaee690d9c65.tar.gz",
+        "url": "https://github.com/alphagov/terraform-provider-concourse/archive/v6.2.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "5.8.0"
+        "version": "6.2.0"
     },
     "terraform-provider-flexibleengine": {
         "branch": "master",
