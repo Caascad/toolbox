@@ -63,7 +63,9 @@ let
 
     function get_api_url() {
       local target="$1"
-      ${yq}/bin/yq -M -r --arg target "$target" '.targets[$target].api' ~/.flyrc
+      if [[ -f "$HOME/.flyrc" ]]; then
+        ${yq}/bin/yq -M -r --arg target "$target" '.targets[$target].api' ~/.flyrc
+      fi
     }
 
     ARGS=( "$@" )
