@@ -60,10 +60,11 @@ EOF
 usage() {
   cat <<EOF
 Usage:
-  kswitch [--json]      Show kswitch status
   kswitch ZONE_NAME     Start tunnel to ZONE_NAME and change kubectl context
+  kswitch [--json]      Show kswitch status
   kswitch -k, --kill    Stop any active tunnel
   kswitch -h, --help    This help
+  kswitch -v, --version Current kswitch version
 
 kswitch automatically setup an SSH tunnel to the specified zone K8S cluster.
 
@@ -262,6 +263,10 @@ while (( "$#" )); do
         bash_completions
         exit 0
         ;;
+        -v|--version)
+        echo 'KSWITCH_VERSION'
+        exit 0
+        ;;
         -h|--help)
         usage
         exit 0
@@ -278,8 +283,13 @@ while (( "$#" )); do
         execCredentialMode=1
         shift
         ;;
+        -*) # unsupported flags
+        log-error "unsupported flag $1"
+        usage
+        exit 1
+        ;;
         *)
-        [ "$zone" != "" ] && (echo -e "Error: too much arguments\n" && usage && exit 1)
+        [ "$zone" != "" ] && (log-error "too much arguments" && usage && exit 1)
         zone=$1
         shift
         ;;

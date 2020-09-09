@@ -11,9 +11,9 @@
 , findutils
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "kswitch";
-  version = "1.4.1";
+  version = "1.4.2";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
@@ -23,6 +23,7 @@ stdenv.mkDerivation {
     chmod +x $out/bin/kswitch
     bash $out/bin/kswitch bash-completions >  $out/share/bash-completion/completions/kswitch
 
+    substituteInPlace $out/bin/kswitch --replace KSWITCH_VERSION ${version}
     wrapProgram $out/bin/kswitch --prefix PATH ":" ${lib.makeBinPath [ kubectl jq coreutils vault awscli curl findutils ]}
   '';
 
