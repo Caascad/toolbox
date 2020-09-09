@@ -164,12 +164,12 @@ start_tunnel() {
 }
 
 get_aws_credentials() {
-    # if creds are newer that 23h no need to ask for new credentials
-    if find "$CONFIG_DIR" -mmin -$((60*23)) -name "${awsCredsFile}" | grep -q .; then
+    # if creds are newer that 9h no need to ask for new credentials
+    if find "$CONFIG_DIR" -mmin -$((60*9)) -name "${awsCredsFile}" | grep -q .; then
         return
     fi
     log_debug "Get AWS credentials..."
-    vault write aws/sts/readonly -ttl=24h | \
+    vault write aws/sts/readonly ttl=10h | \
         jq -r '.data | "export AWS_ACCESS_KEY_ID=\(.access_key); export AWS_SECRET_ACCESS_KEY=\(.secret_key); export AWS_SESSION_TOKEN=\(.security_token)"' > "${awsCredsFilePath}"
 }
 
