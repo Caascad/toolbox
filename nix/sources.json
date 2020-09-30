@@ -163,6 +163,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.5.1"
     },
+    "terraform-provider-aws": {
+        "branch": "master",
+        "description": "Terraform AWS provider",
+        "homepage": "https://www.terraform.io/docs/providers/aws/",
+        "owner": "terraform-providers",
+        "repo": "terraform-provider-aws",
+        "rev": "d7cf40ff5f6dde39bd6b29e6337a91cfe67bcc61",
+        "sha256": "1dh2zrh246y8kkjd3yms5yj3niziky0lk55fyyswksl19byn3d1l",
+        "type": "tarball",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.8.0.tar.gz",
+        "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
+        "version": "3.8.0"
+    },
     "terraform-provider-concourse": {
         "branch": "master",
         "description": "A terraform provider for Concourse",

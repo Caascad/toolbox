@@ -9,6 +9,17 @@ let
 
       terraform-providers = super.terraform-providers // {
 
+        aws = super.terraform-providers.aws.overrideAttrs (old:
+          with sources.terraform-provider-aws; {
+            inherit version;
+            name = "${repo}-${version}";
+            src = pkgs.fetchzip {
+              inherit url sha256;
+            };
+            postBuild = "mv go/bin/${repo}{,_v${version}}";
+          }
+        );
+
         k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
