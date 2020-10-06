@@ -114,6 +114,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "0.3.3"
     },
+    "loki": {
+        "branch": "master",
+        "description": "Like Prometheus, but for logs.",
+        "homepage": "https://grafana.com/loki",
+        "owner": "grafana",
+        "repo": "loki",
+        "rev": "6500f821951b737c980df832d9d78a34220430d6",
+        "sha256": "0bakskzizazc5cd6km3n6facc5val5567zinnxg3yjy29xdi64ww",
+        "type": "tarball",
+        "url": "https://github.com/grafana/loki/archive/v1.6.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.6.1"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -221,12 +234,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "tf",
-        "rev": "6a15a04bffe9d07cb9d1d875eea150b42187a825",
-        "sha256": "19yhvr1b5zxwidhcbarh57aid9fs0vggrzb95yl9z3a6vm4832q0",
+        "rev": "131b76f7777e9076ae950b69d0a9179d8b6872f1",
+        "sha256": "1js17bc03d1bysnji3gy8qpr4n6239k9vx3rvcp6bqs3papgaq9p",
         "type": "tarball",
-        "url": "https://github.com/Caascad/tf/archive/1.6.4.tar.gz",
+        "url": "https://github.com/Caascad/tf/archive/1.6.5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.6.4"
+        "version": "1.6.5"
     },
     "vault-token-helper": {
         "branch": "master",

@@ -105,6 +105,9 @@ rec {
 
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
     { source = sources.internal-ca; };
+ 
+  logcli = pkgs.callPackage ./pkgs/loki.nix
+    { source = sources.loki; };
 
   vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix
     { source = sources.vault-token-helper; };
