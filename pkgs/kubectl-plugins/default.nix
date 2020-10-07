@@ -41,6 +41,9 @@ rec {
   sniff = buildGoModule rec {
     pname = "kubectl-sniff";
     version = sources.ksniff.version;
+    postInstall = ''
+      ln -s $out/bin/cmd $out/bin/kubectl-sniff
+    '';
     src = fetchFromGitHub {
       owner = sources.ksniff.owner;
       repo = sources.ksniff.repo;
