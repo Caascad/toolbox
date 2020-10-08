@@ -6,7 +6,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "kubectl" + outCmdName;
+  pname = outCmdName;
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
