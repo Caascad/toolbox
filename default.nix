@@ -100,6 +100,9 @@ rec {
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
   krew = pkgs.callPackage ./pkgs/krew {};
+  
+  logcli = pkgs.callPackage ./pkgs/logcli.nix
+    { source = sources.loki; };
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 

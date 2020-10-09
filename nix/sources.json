@@ -114,6 +114,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "0.3.3"
     },
+    "loki": {
+        "branch": "master",
+        "description": "Like Prometheus, but for logs.",
+        "homepage": "https://grafana.com/loki",
+        "owner": "grafana",
+        "repo": "loki",
+        "rev": "69f2eb2314eb7afd089b4cc27f7685e1a8e644c5",
+        "sha256": "0bakskzizazc5cd6km3n6facc5val5567zinnxg3yjy29xdi64ww",
+        "type": "tarball",
+        "url": "https://github.com/grafana/loki/archive/v1.6.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.6.1"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
