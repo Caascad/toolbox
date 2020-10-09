@@ -17,8 +17,8 @@ rec {
 
   ctx = kubectx.overrideAttrs (old: {
     installPhase = old.installPhase + ''
-      ln -s $out/bin/kubectx $out/bin/kubectl-ctx
-      ln -s $out/bin/kubens  $out/bin/kubectl-ns
+      mv $out/bin/kubectx $out/bin/kubectl-ctx
+      mv $out/bin/kubens  $out/bin/kubectl-ns
     '';
   });
 
@@ -26,7 +26,7 @@ rec {
     pname = "kubectl-tail";
     version = sources.kail.version;
     postInstall = ''
-      ln -s $out/bin/kail $out/bin/kubectl-tail
+      mv $out/bin/kail $out/bin/kubectl-tail
     '';
     src = fetchFromGitHub {
       owner = sources.kail.owner;
@@ -41,6 +41,9 @@ rec {
   sniff = buildGoModule rec {
     pname = "kubectl-sniff";
     version = sources.ksniff.version;
+    postInstall = ''
+      mv $out/bin/cmd $out/bin/kubectl-sniff
+    '';
     src = fetchFromGitHub {
       owner = sources.ksniff.owner;
       repo = sources.ksniff.repo;
