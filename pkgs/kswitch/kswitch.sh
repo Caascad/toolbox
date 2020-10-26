@@ -8,6 +8,9 @@ CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.cloudwatt.com/caascad/ca
 CONFIG_DIR="$HOME/.config/kswitch"
 CAASCAD_ZONES_FILE="$CONFIG_DIR/zones.json"
 KSWITCH_DEBUG=${KSWITCH_DEBUG:-0}
+KSWITCH_TRACE=${KSWITCH_TRACE:-0}
+
+if [ $KSWITCH_TRACE -eq 1 ]; then set -x; fi
 
 VAULT_FORMAT=json
 export VAULT_FORMAT
