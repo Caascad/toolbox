@@ -37,6 +37,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "0.0.4"
     },
+    "helm-diff": {
+        "branch": "master",
+        "description": "A helm plugin that shows a diff explaining what a helm upgrade would change",
+        "homepage": "",
+        "owner": "databus23",
+        "repo": "helm-diff",
+        "rev": "0882d8c63d782cd5ac325fe3b4e00342ae30f6a1",
+        "sha256": "1bjdrl0m4w9vwkq3gkm828sn0d4q1lyn5h30ncmmgbld68x88vl7",
+        "type": "tarball",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.1.3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "3.1.3"
+    },
     "internal-ca": {
         "branch": "master",
         "description": "Tools to provision a CA in cert-manager.",
