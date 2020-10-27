@@ -95,6 +95,11 @@ rec {
   kubectl-with-plugins = pkgs.callPackage ./pkgs/kubectl-with-plugins.nix
     { plugins = kubectl-plugins; };
 
+  helm-plugins = pkgs.callPackages ./pkgs/helm-plugins { inherit sources; };
+
+  helm-with-plugins = pkgs.callPackage ./pkgs/helm-with-plugins.nix
+    { plugins = helm-plugins; };
+
   tf = import sources.tf.outPath {};
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
@@ -105,7 +110,7 @@ rec {
 
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
     { source = sources.internal-ca; };
- 
+
   logcli = pkgs.callPackage ./pkgs/loki.nix
     { source = sources.loki; };
 
