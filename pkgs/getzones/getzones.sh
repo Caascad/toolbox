@@ -88,9 +88,9 @@ zone_exists() {
 zone_contains() {
     anItem="$1"
     shift
-    aList="$@"
+    aList=( "$@" )
 
-    for item in ${aList[@]}; do
+    for item in "${aList[@]}"; do
       [ ${item} == "${anItem}" ] && return 0
     done
 
@@ -104,7 +104,7 @@ zone_parent_zone_name() {
 
 zone_infra_zone_name() {
     zone=$1
-    jq -r ".[] | select(.infra_zone_name == env.$zone) | select(.type == "client") | .name" < "${CAASCAD_ZONES_FILE}"
+    jq -r ".[] | select(.infra_zone_name == env.$zone) | select(.type == \"client\") | .name" < "${CAASCAD_ZONES_FILE}"
 }
 
 infra_zone_name=""
@@ -138,14 +138,14 @@ done
 
 refresh_zones
 
-if zone_contains "$infra_zone_name" "$INFRA_ZONES_NAMES"; then
+if zone_contains "$infra_zone_name" "${INFRA_ZONES_NAMES[@]}"; then
   log-debbug "Found caascad infra zone name ${infra_zone_name}"
   ocbZonesList=$(zone_parent_zone_name "$infra_zone_name")
   echo "${ocbZonesList[@]}"
-  log_debug "OCB Zones is for infra zone name ${infra_sone_name} are: [ ${ocbZonesList[@]} ]."
+  log_debug "OCB Zones is for infra zone name ${infra_zone_name} are: [" "${ocbZonesList[@]}" "]."
   clientsZonesList=$(zone_infra_zone_name "$infra_zone_name")
   echo "${clientsZonesList[@]}"
-  log_debug "Clients Zones is for infra zone name ${infra_sone_name} are: [ ${clientsZonesList[@]} ]."
+  log_debug "Clients Zones is for infra zone name ${infra_zone_name} are: [" "${clientsZonesList[@]}" "]."
 else
   log "${infra_zone_name} is not a valid infrazone name."
   exit 1
