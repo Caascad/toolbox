@@ -5,20 +5,16 @@ set -eu
 set -o pipefail
 
 CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.cloudwatt.com/caascad/caascad-zones/raw/master/zones.json}
-CONFIG_DIR="$HOME/.config/kswitch"
+CONFIG_DIR="$HOME/.config/caascad-zones-cli"
 CAASCAD_ZONES_FILE="$CONFIG_DIR/zones.json"
-KSWITCH_DEBUG=${KSWITCH_DEBUG:-0}
-INFRA_ZONES_NAMES=(
-  infra-stg
-  infra-prd
-)
+GETZONES_DEBUG=${GETZONES_DEBUG:-0}
 
 log() {
   echo -e "\x1B[32m--- $*\x1B[0m" >&2
 }
 
 log_debug() {
-  if [ $KSWITCH_DEBUG -eq 1 ]; then
+  if [ $GETZONES_DEBUG -eq 1 ]; then
     echo -e "\x1B[34m--- $*\x1B[0m" >&2
   fi
 }
@@ -46,31 +42,31 @@ _continue() {
 
 bash_completions() {
   cat <<EOF
-_getzones_completions() {
+_caascad-zones-cli_completions() {
   local curr_arg;
   curr_arg=\${COMP_WORDS[COMP_CWORD]}
   if [ \${#COMP_WORDS[@]} -ge 3 ]; then
     return
   fi
 }
-complete -F _getzones_completions getzones
+complete -F _caascad-zones-cli_completions caascad-zones-cli
 EOF
 }
 
 usage() {
   cat <<EOF
 Usage:
-  getzones PARENT_ZONE_NAME     Get a zones list of OCB zones and client zones attached to an INFRA_ZONE_NAME
-  getzones -h, --help           This help
-  getzones -v, --version        Current getzones version
+  caascad-zones-cli PARENT_ZONE_NAME     Get a zones list of OCB zones and client zones attached to an INFRA_ZONE_NAME
+  caascad-zones-cli -h, --help           This help
+  caascad-zones-cli -v, --version        Current caascad-zones-cli version
 
-getzones automatically give a list of OCB and Client zones attached to an INFRA_ZONE_NAME.
+caascad-zones-cli automatically give a list of OCB and Client zones attached to an INFRA_ZONE_NAME.
 
 To do this it will request the zones.json in of caascad zones
 
-You can get bash completions for getzones, add this to your ~/.bashrc:
+You can get bash completions for caascad-zones-cli, add this to your ~/.bashrc:
 
-  source <(getzones bash-completions)
+  source <(caascad-zones-cli bash-completions)
 
 EOF
 }
@@ -107,6 +103,12 @@ zone_infra_zone_name() {
     jq -r ".[] | select(.infra_zone_name == env.$zone) | select(.type == \"client\") | .name" < "${CAASCAD_ZONES_FILE}"
 }
 
+get_infra_zone_names() {
+    jq -r ".[].infra_zone_name" < "${CAASCAD_ZONES_FILE}" | sort -u
+}
+
+infra_zone_names=( $(get_infra_zone_names) )
+
 infra_zone_name=""
 
 while (( "$#" )); do
@@ -139,7 +141,7 @@ done
 refresh_zones
 
 if zone_contains "$infra_zone_name" "${INFRA_ZONES_NAMES[@]}"; then
-  log-debbug "Found caascad infra zone name ${infra_zone_name}"
+  log-debug "Found caascad infra zone name ${infra_zone_name}"
   ocbZonesList=$(zone_parent_zone_name "$infra_zone_name")
   echo "${ocbZonesList[@]}"
   log_debug "OCB Zones is for infra zone name ${infra_zone_name} are: [" "${ocbZonesList[@]}" "]."
