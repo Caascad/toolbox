@@ -106,6 +106,8 @@ rec {
     p.vault
   ]);
 
+  cue-0_3_0 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
+
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };

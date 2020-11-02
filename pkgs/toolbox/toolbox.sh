@@ -249,7 +249,7 @@ doctor() {
 list() {
     cat <(echo -e "Package#Available#Installed#Description") \
         <(nix-env -f '<toolbox>' -q -a -P -c --description \
-          | sed 's/^\([[:alnum:]-]\+\)[[:space:]]\+[a-z-]\+\([0-9b.]\+\)[[:space:]]\+\(. [0-9b.?]\+\)[[:space:]]\+/\1#\2#\3#/') \
+        | sed 's/^\([^ ]*\)[[:space:]]\+[a-z-]\+\([^ ]\+\)[[:space:]]\+\(. [^ ]\+\)[[:space:]]\+\(.*\)/\1#\2#\3#\4/') \
     | column -s '#' -t | grep --color -E '^|>|<'
 }
 
