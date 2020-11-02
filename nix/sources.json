@@ -24,6 +24,18 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "6.4.1"
     },
+    "cue": {
+        "branch": "master",
+        "description": "Validate and define text-based and dynamic configuration",
+        "homepage": "https://cuelang.org",
+        "owner": "cuelang",
+        "repo": "cue",
+        "rev": "54b13dbe2731206e8660da426fade407f70fde8b",
+        "sha256": "1zfn9al7w89a2p4q0958c1s5dym7dkcylmhfjsngqlsl0vjp1ids",
+        "type": "tarball",
+        "url": "https://github.com/cuelang/cue/archive/54b13dbe2731206e8660da426fade407f70fde8b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "fly-wrapper": {
         "branch": "master",
         "description": null,
