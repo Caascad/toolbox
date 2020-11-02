@@ -21,9 +21,10 @@ let
   };
 
 in stdenv.mkDerivation {
-  name = "helm-with-plugins";
-  phases = [ "installPhase" ];
+  pname = "helm-with-plugins";
+  version = kubernetes-helm.version;
 
+  phases = [ "installPhase" ];
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir -p $out/bin
