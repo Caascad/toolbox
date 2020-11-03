@@ -106,7 +106,7 @@ rec {
     p.vault
   ]);
 
-  cue-0_3_0 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
+  cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
