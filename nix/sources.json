@@ -240,6 +240,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.16.1"
     },
+    "terraform-provider-keycloak": {
+        "branch": "master",
+        "description": "Terraform provider for Keycloak ",
+        "homepage": "https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs",
+        "owner": "mrparkers",
+        "repo": "terraform-provider-keycloak",
+        "rev": "898094df6b3e01c3404981ce7ca268142d6ff0e5",
+        "sha256": "1fgajqighkqhr5mfknq5hgp7jzgw0h2v593l7pc8gxh842ayz7im",
+        "type": "tarball",
+        "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/v2.0.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "2.0.0"
+    },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
         "description": "A basic terraform provider which allows generic YAML config for Kubernetes",
