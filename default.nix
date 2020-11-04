@@ -59,6 +59,8 @@ let
 
         );
 
+        keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
+          { source = sources.terraform-provider-keycloak; };
       };
 
     })];
