@@ -10,7 +10,7 @@
 
 stdenv.mkDerivation rec {
   pname = "internal-ca";
-  version = "0.1";
+  version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
   };
