@@ -68,11 +68,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "internal-ca",
-        "rev": "217ab4e4958755d42d6ccd3c80b3faa13f9ac531",
-        "sha256": "1q4kyiilkzwsq0xwqy3x6bxvx2l6k25hilg24mqsgkxjrwsp5a2v",
+        "rev": "df81cd50b60f4778190981c6b370d9ed028e6db0",
+        "sha256": "0faw5jghx26q0r6agrwm6d5grcw4657pwzdz5cy8dxirhbgvkxk5",
         "type": "tarball",
-        "url": "https://github.com/Caascad/internal-ca/archive/217ab4e4958755d42d6ccd3c80b3faa13f9ac531.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url": "https://github.com/Caascad/internal-ca/archive/0.2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "version": "0.2"
     },
     "kail": {
         "branch": "master",
