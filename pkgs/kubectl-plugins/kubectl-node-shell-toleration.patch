@@ -1,0 +1,14 @@
+diff --git a/kubectl-node_shell b/kubectl-node_shell
+index c8596cf..3ada2bd 100755
+--- a/kubectl-node_shell
++++ b/kubectl-node_shell
+@@ -97,6 +97,9 @@ overrides="$(
+     "nodeName": "$node",
+     "hostPID": true,
+     "hostNetwork": true,
++    "tolerations": [
++      { "operator": "Exists" }
++    ],
+     "containers": [
+       {
+         "securityContext": {

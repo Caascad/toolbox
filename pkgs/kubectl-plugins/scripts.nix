@@ -3,6 +3,7 @@
 , source
 , cmdName
 , outCmdName ? cmdName
+, scriptPatches ? []
 }:
 
 stdenv.mkDerivation rec {
@@ -11,7 +12,7 @@ stdenv.mkDerivation rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-
+  patches = scriptPatches;
   installPhase = ''
     install -m755 -D ./${cmdName} $out/bin/${outCmdName}
   '';
