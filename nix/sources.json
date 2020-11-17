@@ -107,12 +107,12 @@
         "homepage": "https://github.com/kvaps/kubectl-node-shell",
         "owner": "kvaps",
         "repo": "kubectl-node-shell",
-        "rev": "b9a7e74d470a144b7149c6c85fe135e66aa9bd0e",
-        "sha256": "0vg3lpwp5vj76mzrfjrvj1ppn1s3jmmrg1x1hmjbvhg5669rabps",
+        "rev": "156053f8bd3ac7a70d59564ac486d522f252e9c7",
+        "sha256": "0vdmjrhg82zkasm669f8j3w5wnn17a3zhzws8avf7wbsifyhig2p",
         "type": "tarball",
-        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.1.4.tar.gz",
+        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.2.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.1.4"
+        "version": "1.2.3"
     },
     "kubectl-topology": {
         "branch": "master",
