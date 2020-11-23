@@ -49,12 +49,6 @@ let
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
-            patches = [
-              (super.fetchpatch {
-                url = "https://patch-diff.githubusercontent.com/raw/terraform-providers/terraform-provider-vault/pull/803.patch";
-                sha256 = "1kp0xbbygy6600qavn206wfqy0njsi813a3nwqfgxn4z51sg7x75";
-              })
-            ];
           }
 
         );
