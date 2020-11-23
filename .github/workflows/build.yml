@@ -15,11 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Nix
-      uses: cachix/install-nix-action@v6
+      uses: cachix/install-nix-action@v12
     - name: Setup binary cache
-      uses: cachix/cachix-action@v3
+      uses: cachix/cachix-action@v8
       with:
         name: toolbox
-        skipNixBuild: true
+        skipPush: true
     - name: Build
       run: nix-build
