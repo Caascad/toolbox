@@ -173,7 +173,7 @@ get_aws_credentials() {
         return
     fi
     log_debug "Get AWS credentials..."
-    vault write aws/sts/readonly ttl=10h | \
+    vault write aws/sts/${awsSTSRoleName} ttl=10h | \
         jq -r '.data | "export AWS_ACCESS_KEY_ID=\(.access_key); export AWS_SECRET_ACCESS_KEY=\(.secret_key); export AWS_SESSION_TOKEN=\(.security_token)"' > "${awsCredsFilePath}"
 }
 
@@ -314,8 +314,12 @@ if zone_exists "${zone}"; then
     zoneType=$(zone_attr $zone "provider.type")
     log_debug "Zone is on provider ${zoneType}"
 
-    awsCredsFile="${infraZone}_aws_credentials"
-    awsCredsFilePath="${CONFIG_DIR}/${awsCredsFile}"
+    if [ "$zoneType" == "aws" ]; then
+        awsAccountID=$(zone_attr $zone "provider.account_id")
+        awsSTSRoleName="operator_${awsAccountID}"
+        awsCredsFile="${awsAccountID}_aws_credentials"
+        awsCredsFilePath="${CONFIG_DIR}/${awsCredsFile}"
+    fi
 
     VAULT_ADDR="https://vault.${infraZone}.${domainName}"
     export VAULT_ADDR
