@@ -5,7 +5,7 @@
 }:
 
 buildGoModule rec {
-  name = "terraform-provider-concourse-${version}";
+  pname = "terraform-provider-concourse";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;

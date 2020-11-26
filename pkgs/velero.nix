@@ -2,8 +2,9 @@
 , fetchFromGitHub
 , source
 }:
+
 buildGoModule rec {
-  pname= "velero";
+  pname = "velero";
   version = source.version;
   src = fetchFromGitHub {
     owner = source.owner;

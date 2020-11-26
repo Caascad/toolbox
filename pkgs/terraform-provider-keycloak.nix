@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "terraform-provider-keycloak-${version}";
+  pname = "terraform-provider-keycloak";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;

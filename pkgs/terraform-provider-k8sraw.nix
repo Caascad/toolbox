@@ -5,7 +5,7 @@
 }:
 
 buildGoModule rec {
-  name = "terraform-provider-k8sraw-${version}";
+  pname = "terraform-provider-k8sraw";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
