@@ -1,5 +1,6 @@
 { sources ? import ./nix/sources.nix
 , nixpkgs ? sources.nixpkgs
+, nixpkgs-old ? sources.nixpkgs-old
 }:
 
 let
@@ -12,7 +13,7 @@ let
         aws = super.terraform-providers.aws.overrideAttrs (old:
           with sources.terraform-provider-aws; {
             inherit version;
-            name = "${repo}-${version}";
+            pname = repo;
             src = pkgs.fetchzip {
               inherit url sha256;
             };
@@ -29,7 +30,7 @@ let
         flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
           with sources.terraform-provider-flexibleengine; {
             inherit version;
-            name = "${repo}-${version}";
+            pname = repo;
             src = pkgs.fetchzip {
               inherit url sha256;
             };
@@ -44,17 +45,17 @@ let
         vault = super.terraform-providers.vault.overrideAttrs (old:
           with sources.terraform-provider-vault; {
             inherit version;
-            name = "${repo}-${version}";
+            pname = repo;
             src = pkgs.fetchzip {
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
           }
-
         );
 
         keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
           { source = sources.terraform-provider-keycloak; };
+
       };
 
     })];
@@ -93,7 +94,7 @@ rec {
     keycloak
     kubernetes
     local
-    null
+    p.null
     openstack
     rancher2
     random
@@ -139,7 +140,11 @@ rec {
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
 
   # doesn't build on MacOS
-  openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
+  # FIXME: rebuild with latest nixpkgs
+  openstackclient = let
+    pkgs = import nixpkgs-old {};
+  in
+    pkgs.callPackage ./pkgs/openstackclient {};
 
   os = import sources.os.outPath { toolbox = ./.; };
 

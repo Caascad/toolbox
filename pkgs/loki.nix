@@ -2,8 +2,9 @@
 , fetchFromGitHub
 , source
 }:
+
 buildGoModule rec {
-  pname= "logcli";
+  pname = "logcli";
   version = source.version;
   subPackages = [ "cmd/logcli" ];
   src = fetchFromGitHub {
