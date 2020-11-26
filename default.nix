@@ -95,6 +95,8 @@ rec {
     p.vault
   ]);
 
+  terraform_0_13 = pkgs.terraform_0_13;
+
   cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
