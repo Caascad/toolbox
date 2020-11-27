@@ -144,18 +144,22 @@ usage() {
   cat <<EOF
 Usage: toolbox <command> [args]
 
- doctor                                      -- perform sanity checks
- list                                        -- list available tools
- update                                      -- update all globally installed tools
- install tool [tool...]                      -- install tools globally
- uninstall tool [tool...]                    -- uninstall a previously installed tool
- make-shell tool [tool...]                   -- create a project dev shell with a list of tools
- make-terraform-shell provider [provider...] -- create a terraform shell with the specified providers
- list-terraform-providers                    -- list available terraform providers
- update-shell                                -- update toolbox revision for an existing shell
- completions                                 -- output completion script
- help                                        -- this help
- version                                     -- show toolbox version
+ doctor                        -- perform sanity checks
+ list                          -- list available tools
+ update                        -- update all globally installed tools
+ install tool [tool...]        -- install tools globally
+ uninstall tool [tool...]      -- uninstall a previously installed tool
+ make-shell tool [tool...]     -- create a project dev shell with a list of tools
+ update-shell                  -- update toolbox revision for an existing shell
+ completions                   -- output completion script
+ help                          -- this help
+ version                       -- show toolbox version
+
+Terraform related commands:
+
+ list-terraform-providers                       -- list available terraform providers
+ make-terraform-shell provider [provider...]    -- create a terraform shell with the specified providers
+ make-terraform13-shell provider [provider...]  -- create a terraform 0.13 shell with the specified providers
 
 EOF
 }
@@ -193,7 +197,7 @@ _toolbox_completions() {
       uninstall|install|make-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_toolbox_attrs)" "\$cur"))
           ;;
-      make-terraform-shell)
+      make-terraform-shell|make-terraform13-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_terraform_providers_attrs)" "\$cur"))
           ;;
   esac
@@ -400,6 +404,11 @@ case "$COMMAND" in
         check_args_gt $# 1 "make-terraform-shell"
         log "Creating terraform shell with providers: $*"
         make-shell "(terraform-minimal.withPlugins (p: with p; [$*]))"
+        ;;
+    make-terraform13-shell)
+        check_args_gt $# 1 "make-terraform13-shell"
+        log "Creating terraform 0.13 shell with providers: $*"
+        make-shell "(terraform_0_13.withPlugins (p: with p; [$*]))"
         ;;
     help)
         usage
