@@ -151,6 +151,7 @@ Usage: toolbox <command> [args]
  uninstall tool [tool...]                    -- uninstall a previously installed tool
  make-shell tool [tool...]                   -- create a project dev shell with a list of tools
  make-terraform-shell provider [provider...] -- create a terraform shell with the specified providers
+ list-terraform-providers                    -- list available terraform providers
  update-shell                                -- update toolbox revision for an existing shell
  completions                                 -- output completion script
  help                                        -- this help
@@ -178,7 +179,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list install uninstall update make-shell update-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform-shell make-terraform13-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -251,6 +252,10 @@ list() {
         <(nix-env -f '<toolbox>' -q -a -P -c --description \
         | sed 's/^\([^ ]*\)[[:space:]]\+[a-z-]\+\([^ ]\+\)[[:space:]]\+\(. [^ ]\+\)[[:space:]]\+\(.*\)/\1#\2#\3#\4/') \
     | column -s '#' -t | grep --color -E '^|>|<'
+}
+
+list-terraform-providers() {
+    nix-instantiate --eval -E 'with import <toolbox> {}; builtins.attrNames (pkgs.lib.filterAttrs (_: d: pkgs.lib.isDerivation d) pkgs.terraform-providers)' --json | jq .[] -r
 }
 
 install() {
@@ -368,6 +373,9 @@ case "$COMMAND" in
         ;;
     list)
         list
+        ;;
+    list-terraform-providers)
+        list-terraform-providers
         ;;
     install)
         check_args_gt $# 1 "install"
