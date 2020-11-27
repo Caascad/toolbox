@@ -30,4 +30,6 @@ buildGoModule rec {
     license = licenses.mpl20;
     maintainers = with maintainers; [ eonpatapon ];
   };
+
+  passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak";
 }

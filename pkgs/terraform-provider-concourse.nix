@@ -29,4 +29,5 @@ buildGoModule rec {
     maintainers = with maintainers; [ eonpatapon ];
   };
 
+  passthru.provider-source-address = "registry.terraform.io/toolbox/concourse";
 }

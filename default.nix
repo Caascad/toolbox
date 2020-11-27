@@ -16,7 +16,7 @@ let
         k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
-        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
+        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
 
         flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
@@ -27,11 +27,13 @@ let
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/flexibleengine";
           }
         );
 
         huaweicloud = super.terraform-providers.huaweicloud.overrideAttrs (old: {
           patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
+          passthru.provider-source-address = "registry.terraform.io/toolbox/huaweicloud";
         });
 
         vault = super.terraform-providers.vault.overrideAttrs (old:
@@ -42,6 +44,7 @@ let
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/vault";
           }
         );
 
