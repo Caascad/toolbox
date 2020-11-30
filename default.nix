@@ -1,5 +1,6 @@
 { sources ? import ./nix/sources.nix
 , nixpkgs ? sources.nixpkgs
+, nixpkgs-old ? sources.nixpkgs-old
 }:
 
 let
@@ -9,52 +10,47 @@ let
 
       terraform-providers = super.terraform-providers // {
 
-        aws = super.terraform-providers.aws.overrideAttrs (old:
-          with sources.terraform-provider-aws; {
-            inherit version;
-            name = "${repo}-${version}";
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
-          }
-        );
+        aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
+          { source = sources.terraform-provider-aws; };
 
         k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
-        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse
+        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
 
         flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
           with sources.terraform-provider-flexibleengine; {
             inherit version;
-            name = "${repo}-${version}";
+            pname = repo;
             src = pkgs.fetchzip {
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/flexibleengine";
           }
         );
 
         huaweicloud = super.terraform-providers.huaweicloud.overrideAttrs (old: {
           patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
+          passthru.provider-source-address = "registry.terraform.io/toolbox/huaweicloud";
         });
 
         vault = super.terraform-providers.vault.overrideAttrs (old:
           with sources.terraform-provider-vault; {
             inherit version;
-            name = "${repo}-${version}";
+            pname = repo;
             src = pkgs.fetchzip {
               inherit url sha256;
             };
             postBuild = "mv go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/vault";
           }
-
         );
 
         keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
           { source = sources.terraform-provider-keycloak; };
+
       };
 
     })];
@@ -93,7 +89,7 @@ rec {
     keycloak
     kubernetes
     local
-    null
+    p.null
     openstack
     rancher2
     random
@@ -101,6 +97,8 @@ rec {
     tls
     p.vault
   ]);
+
+  terraform_0_13 = pkgs.terraform_0_13;
 
   cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
@@ -139,7 +137,11 @@ rec {
 } // optionalAttrs (! pkgs.stdenv.isDarwin) {
 
   # doesn't build on MacOS
-  openstackclient = pkgs.callPackage ./pkgs/openstackclient {};
+  # FIXME: rebuild with latest nixpkgs
+  openstackclient = let
+    pkgs = import nixpkgs-old {};
+  in
+    pkgs.callPackage ./pkgs/openstackclient {};
 
   os = import sources.os.outPath { toolbox = ./.; };
 

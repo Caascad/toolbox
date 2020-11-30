@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "terraform-provider-keycloak-${version}";
+  pname = "terraform-provider-keycloak";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
@@ -30,4 +30,6 @@ buildGoModule rec {
     license = licenses.mpl20;
     maintainers = with maintainers; [ eonpatapon ];
   };
+
+  passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak";
 }

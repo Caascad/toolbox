@@ -5,7 +5,7 @@
 }:
 
 buildGoModule rec {
-  name = "terraform-provider-concourse-${version}";
+  pname = "terraform-provider-concourse";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
@@ -29,4 +29,5 @@ buildGoModule rec {
     maintainers = with maintainers; [ eonpatapon ];
   };
 
+  passthru.provider-source-address = "registry.terraform.io/toolbox/concourse";
 }

@@ -5,7 +5,7 @@
 }:
 
 buildGoPackage rec {
-  name = "terraform-provider-rancher2-${version}";
+  pname = "terraform-provider-rancher2";
   version = source.version;
   src = fetchzip {
     inherit (source) url sha256;
