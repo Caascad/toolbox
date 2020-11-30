@@ -118,8 +118,6 @@ rec {
 
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
-  krew = pkgs.callPackage ./pkgs/krew {};
-
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 
   internal-ca = pkgs.callPackage ./pkgs/internal-ca.nix
