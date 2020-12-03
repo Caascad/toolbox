@@ -315,8 +315,8 @@ if zone_exists "${zone}"; then
     log_debug "Zone is on provider ${zoneType}"
 
     if [ "$zoneType" == "aws" ]; then
+        awsSTSRoleName="operator_${zone}"
         awsAccountID=$(zone_attr $zone "provider.account_id")
-        awsSTSRoleName="operator_${awsAccountID}"
         awsCredsFile="${awsAccountID}_aws_credentials"
         awsCredsFilePath="${CONFIG_DIR}/${awsCredsFile}"
     fi
