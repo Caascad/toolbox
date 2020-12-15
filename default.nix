@@ -68,7 +68,7 @@ rec {
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx awscli direnv cue go gnupg curl
-                 kustomize pre-commit shellcheck terraform-docs tflint;
+                 kustomize pre-commit shellcheck terraform-docs tflint saml2aws;
 
   ansible = pkgs.ansible_2_9;
 
