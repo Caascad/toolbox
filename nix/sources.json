@@ -220,12 +220,12 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "d7cf40ff5f6dde39bd6b29e6337a91cfe67bcc61",
-        "sha256": "1dh2zrh246y8kkjd3yms5yj3niziky0lk55fyyswksl19byn3d1l",
+        "rev": "bebe732d7185320b303d0d14d3c19551213c1ba2",
+        "sha256": "1s14mml5dyhqgs93a2ah4db60vlpzf1qihc5a5k3i55xpngfmw8y",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.8.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.22.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "version": "3.8.0"
+        "version": "3.22.0"
     },
     "terraform-provider-concourse": {
         "branch": "master",
