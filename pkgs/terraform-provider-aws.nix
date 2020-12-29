@@ -11,7 +11,9 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-  vendorSha256 = null;
+  vendorSha256 = "082g2warcgkxn37g0shbfqml9j5mgw7zi5wnqm9im7jigm7dc76r";
+
+  subPackages = [ "." ];
 
   doCheck = false;
 
