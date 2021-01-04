@@ -13,7 +13,7 @@
 
 stdenv.mkDerivation rec {
   pname = "kswitch";
-  version = "1.5.1";
+  version = "1.5.2";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
