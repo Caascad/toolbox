@@ -11,11 +11,11 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-  vendorSha256 = "17z8g0h6nb3r7nm68wfb5fn0vyk2vwpanww88gs3mlly4qk6mg3b";
+  vendorSha256 = "0kh6lljvqd577s19gx0fmfsmx9wm3ikla3jz16lbwwb8ahbqcw1f";
   postInstall = "mv $out/bin/terraform-provider-keycloak{,_v${version}}";
 
   # Skip the go tests ; they require a running keycloak instance
-  doCheck=false;
+  doCheck = false;
 
   patches = [
     (fetchpatch {
