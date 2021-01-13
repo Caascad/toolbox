@@ -51,6 +51,18 @@ let
         keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
           { source = sources.terraform-provider-keycloak; };
 
+        cloudinit = super.terraform-providers.cloudinit.overrideAttrs (old:
+          with sources.terraform-provider-cloudinit; {
+            inherit version;
+            pname = repo;
+            src = pkgs.fetchzip {
+              inherit url sha256;
+            };
+            postBuild = "mv go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/cloudinit";
+          }
+        );
+
       };
 
     })];
