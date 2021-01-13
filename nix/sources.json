@@ -228,6 +228,19 @@
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
         "version": "3.22.0"
     },
+    "terraform-provider-cloudinit": {
+        "branch": "master",
+        "description": "Exposes the cloudinit_config data source which renders a multipart MIME configuration for use with cloud-init (previously available as the template_cloudinit_config resource in the template provider)",
+        "homepage": "https://registry.terraform.io/providers/hashicorp/cloudinit/latest",
+        "owner": "hashicorp",
+        "repo": "terraform-provider-cloudinit",
+        "rev": "bd1e4e0d4420b4417d13b027528f14496196b216",
+        "sha256": "0h0h9haqymsdikk51n9s0knx8qqw5cbcwl8wf7lwa2v2qcn4difh",
+        "type": "tarball",
+        "url": "https://github.com/hashicorp/terraform-provider-cloudinit/archive/v2.1.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "2.1.0"
+    },
     "terraform-provider-concourse": {
         "branch": "master",
         "description": "A terraform provider for Concourse",
