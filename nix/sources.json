@@ -338,11 +338,11 @@
         "homepage": "https://velero.io",
         "owner": "vmware-tanzu",
         "repo": "velero",
-        "rev": "7005879f3fa734e3ed777d5d5bc50fd5642501bc",
-        "sha256": "0g5h1nz38h53ncxln3vrxisfrfbjpi0vr67sbv2alhh1yqqmv9rh",
+        "rev": "db403c6c54b0048fada2b5db628c44be4ac0fd79",
+        "sha256": "1hfi1iipbval0c0c0nnf6fz5n76za0vwczm5lq86sddqnznbvsrz",
         "type": "tarball",
-        "url": "https://github.com/vmware-tanzu/velero/archive/v1.4.2.tar.gz",
+        "url": "https://github.com/vmware-tanzu/velero/archive/v1.5.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.4.2"
+        "version": "1.5.2"
     }
 }
