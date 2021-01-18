@@ -88,10 +88,11 @@ Starship (https://starship.rs) example configuration:
     disabled = false
 
     [custom.kswitch]
-    command = "echo "
-    when = """ kswitch --json | jq -e -r '. | select(.tunnel.status == "up") | select(.context == .tunnel.zone) | .context' """
-    prefix = ""
-    style = "bold white"
+    command = """ kswitch --json | jq -e -r '. | select(.tunnel.status == "up") | select(.context == .tunnel.zone) | .context' """
+    when    = "pgrep -f kswitch"
+    symbol  = "  "
+    style   = "bold white"
+    format  = "[\$symbol\$output](\$style) "
 
 This will display the icon '' when a tunnel is up and the current kubectl
 context matches the tunnel bastion.
