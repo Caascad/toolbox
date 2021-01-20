@@ -84,13 +84,10 @@ You can get bash completions for kswitch, add this to your ~/.bashrc:
 
 Starship (https://starship.rs) example configuration:
 
-    [kubernetes]
-    disabled = false
-
     [custom.kswitch]
     command = """ kswitch --json | jq -e -r '. | select(.tunnel.status == "up") | select(.context == .tunnel.zone) | .context' """
     when    = "pgrep -f kswitch"
-    symbol  = "  "
+    symbol  = " "
     style   = "bold white"
     format  = "[\$symbol\$output](\$style) "
 
@@ -101,14 +98,15 @@ EOF
 }
 
 setup() {
-  if [ ! -d $CONFIG_DIR ]; then
+  if [ ! -d "$CONFIG_DIR" ]; then
     log "Looks like you are running kswitch for the first-time!"
     log "I'm going to create $CONFIG_DIR for storing kswitch configurations."
     _continue
-    mkdir -p $CONFIG_DIR
+    mkdir -p "$CONFIG_DIR"
   fi
 
-  if ! kubectl config get-clusters | grep -q tunnel; then
+  hasTunnel=$(kubectl config view -o=json | jq '.clusters | map(select(.name == "tunnel")) | length')
+  if [ ! "$hasTunnel" == "1" ]; then
     log "I'm going to add a cluster named tunnel to the local kube configuration:"
     run_c "kubectl config set-cluster tunnel --server https://localhost:${localPort} --insecure-skip-tls-verify=true"
   fi
