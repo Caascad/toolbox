@@ -200,7 +200,7 @@ get_credentials() {
 
 refresh_zones() {
     log_debug "Refreshing caascad-zones..."
-    curl -s -o "${CAASCAD_ZONES_FILE}" "${CAASCAD_ZONES_URL}"
+    curl --connect-timeout 2 -s -o "${CAASCAD_ZONES_FILE}" "${CAASCAD_ZONES_URL}"
 }
 
 zone_exists() {
