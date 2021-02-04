@@ -155,5 +155,6 @@ rec {
     pkgs.callPackage ./pkgs/openstackclient {};
 
   os = import sources.os.outPath { toolbox = ./.; };
+  sd = import sources.sd.outPath { toolbox = ./.; };
 
 }
