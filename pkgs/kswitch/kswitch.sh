@@ -105,7 +105,7 @@ setup() {
     mkdir -p "$CONFIG_DIR"
   fi
 
-  hasTunnel=$(kubectl config view -o=json | jq '.clusters | map(select(.name == "tunnel")) | length')
+  hasTunnel=$(kubectl config view -o=json | jq 'if .clusters then .clusters else {} end | map(select(.name == "tunnel")) | length')
   if [ ! "$hasTunnel" == "1" ]; then
     log "I'm going to add a cluster named tunnel to the local kube configuration:"
     run_c "kubectl config set-cluster tunnel --server https://localhost:${localPort} --insecure-skip-tls-verify=true"
