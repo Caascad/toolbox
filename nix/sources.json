@@ -30,12 +30,12 @@
         "homepage": "https://cuelang.org",
         "owner": "cuelang",
         "repo": "cue",
-        "rev": "760aa115cf9b62ed51c2d2ee4153d8654c0f231e",
-        "sha256": "0r0r4qb6dh53qnp8cr7bg9g33i6lbqb6vq6rrnk4898fyls39jlh",
+        "rev": "bcd752ada5ab3e5814f7b95e5f82af61b5f4cf3e",
+        "sha256": "0i2bwqyxwqg86kyj51dgqwlzlfv63s0phvwmx9qwcmp8rqqc4wqz",
         "type": "tarball",
-        "url": "https://github.com/cuelang/cue/archive/v0.3.0-beta.4.tar.gz",
+        "url": "https://github.com/cuelang/cue/archive/v0.3.0-beta.5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.3.0-beta.4"
+        "version": "0.3.0-beta.5"
     },
     "fly-wrapper": {
         "branch": "master",
