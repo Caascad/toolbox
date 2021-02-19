@@ -241,6 +241,19 @@
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
         "version": "3.22.0"
     },
+    "terraform-provider-azuread": {
+        "branch": "main",
+        "description": "Terraform provider for Azure Active Directory",
+        "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
+        "owner": "hashicorp",
+        "repo": "terraform-provider-azuread",
+        "rev": "bc127a3e5abd022e3dffa144319667a0ddff9629",
+        "sha256": "13y0h8af37gfsjhccbfsnj6kqcn61lr1znmsxipjr5h9ka5lc209",
+        "type": "tarball",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v1.4.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.4.0"
+    },
     "terraform-provider-cloudinit": {
         "branch": "master",
         "description": "Exposes the cloudinit_config data source which renders a multipart MIME configuration for use with cloud-init (previously available as the template_cloudinit_config resource in the template provider)",

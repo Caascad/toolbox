@@ -36,6 +36,9 @@ let
           passthru.provider-source-address = "registry.terraform.io/toolbox/huaweicloud";
         });
 
+        azuread = pkgs.callPackage ./pkgs/terraform-provider-azuread.nix
+          { source = sources.terraform-provider-azuread; };
+
         vault = super.terraform-providers.vault.overrideAttrs (old:
           with sources.terraform-provider-vault; {
             inherit version;
