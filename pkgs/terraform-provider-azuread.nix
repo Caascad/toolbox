@@ -20,7 +20,7 @@ buildGoModule rec {
   patches = [
     (fetchpatch {
       url = "https://patch-diff.githubusercontent.com/raw/hashicorp/terraform-provider-azuread/pull/401.patch";
-      sha256 = "1a20mpq6k37bdjf3szgwd1h01dr20i9isy4dq591102014cqdhzh";
+      sha256 = "05s9dbzdfv97vgpqqq8mcraphdfnxc3rx5j8gg81ri48spyk32a4";
     })
   ];
 
