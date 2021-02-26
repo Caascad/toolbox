@@ -158,8 +158,9 @@ Usage: toolbox <command> [args]
 Terraform related commands:
 
  list-terraform-providers                       -- list available terraform providers
- make-terraform-shell provider [provider...]    -- create a terraform shell with the specified providers
+ make-terraform12-shell provider [provider...]  -- create a terraform 0.12 shell with the specified providers
  make-terraform13-shell provider [provider...]  -- create a terraform 0.13 shell with the specified providers
+ make-terraform14-shell provider [provider...]  -- create a terraform 0.14 shell with the specified providers
 
 EOF
 }
@@ -183,7 +184,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform-shell make-terraform13-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -197,7 +198,7 @@ _toolbox_completions() {
       uninstall|install|make-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_toolbox_attrs)" "\$cur"))
           ;;
-      make-terraform-shell|make-terraform13-shell)
+      make-terraform12-shell|make-terraform13-shell|make-terraform14-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_terraform_providers_attrs)" "\$cur"))
           ;;
   esac
@@ -327,6 +328,47 @@ update-shell() {
     _generateToolboxJSON "$commit"
 }
 
+generate-terraform-tf() {
+    log "Generating terraform.tf..."
+    cat <<EOF > terraform.tf
+terraform {
+  required_providers {
+EOF
+    providers=$*
+    for p in $providers
+    do
+        source_addr=$(nix-instantiate --eval -E "with import <toolbox> {}; pkgs.terraform-providers.${p}.passthru.provider-source-address" | jq -r | cut -d'/' -f2-3)
+        cat <<EOF >> terraform.tf
+    ${p} = {
+      source = "${source_addr}"
+    }
+EOF
+    done
+    cat <<EOF >> terraform.tf
+  }
+}
+EOF
+}
+
+make-terraform-shell() {
+    version=$1
+    shift
+    providers=("$@")
+    nix_providers=""
+    for p in "${providers[@]}"
+    do
+        nix_providers="${nix_providers} p.${p}"
+    done
+    log "Creating terraform ${version} shell with providers: ${providers[*]}"
+    make-shell "(terraform_${version/./_}.withPlugins (p: [${nix_providers}]))"
+
+    case "$version" in
+        0.13|0.14)
+            generate-terraform-tf "${providers[@]}"
+            ;;
+    esac
+}
+
 #
 # main
 #
@@ -401,14 +443,22 @@ case "$COMMAND" in
         update-shell "$@"
         ;;
     make-terraform-shell)
-        check_args_gt $# 1 "make-terraform-shell"
-        log "Creating terraform shell with providers: $*"
-        make-shell "(terraform-minimal.withPlugins (p: with p; [$*]))"
+        log-error "make-terraform-shell has been removed, use make-terraform12-shell, make-terraform13-shell or make-terraform14-shell"
+        exit 1
+        ;;
+    make-terraform12-shell)
+        check_args_gt $# 1 "make-terraform12-shell"
+        log-warning "Consider using a newer version of terraform (0.14)"
+        make-terraform-shell 0.12 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"
-        log "Creating terraform 0.13 shell with providers: $*"
-        make-shell "(terraform_0_13.withPlugins (p: with p; [$*]))"
+        log-warning "Consider using a newer version of terraform (0.14)"
+        make-terraform-shell 0.13 "$@"
+        ;;
+    make-terraform14-shell)
+        check_args_gt $# 1 "make-terraform14-shell"
+        make-terraform-shell 0.14 "$@"
         ;;
     help)
         usage
