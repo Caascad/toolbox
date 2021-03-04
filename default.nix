@@ -130,8 +130,6 @@ rec {
   helm-with-plugins = pkgs.callPackage ./pkgs/helm-with-plugins.nix
     { plugins = helm-plugins; };
 
-  tf = import sources.tf.outPath {};
-
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
