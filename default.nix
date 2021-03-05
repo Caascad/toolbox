@@ -84,7 +84,8 @@ rec {
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv cue go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
-                 saml2aws envsubst awscli restic azure-cli;
+                 saml2aws envsubst awscli restic azure-cli
+                 terraform_0_12 terraform_0_13 terraform_0_14;
 
   ansible = pkgs.ansible_2_9;
 
@@ -92,9 +93,7 @@ rec {
 
   helm = pkgs.kubernetes-helm;
 
-  terraform-minimal = pkgs.terraform_0_12;
-
-  terraform = pkgs.terraform_0_12.withPlugins (p: with p; [
+  terraform = trace "Warning: terraform attribute is deprecated, use terraform_(0_12|0_13|0_14) or toolbox make-terraform(12|13|14)-shell" pkgs.terraform_0_12.withPlugins (p: with p; [
     aws
     concourse
     external
@@ -114,7 +113,7 @@ rec {
     p.vault
   ]);
 
-  terraform_0_13 = pkgs.terraform_0_13;
+  terraform-minimal = trace "Warning: terraform-minimal is deprecated use terraform_0_12" pkgs.terraform_0_12;
 
   cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
