@@ -148,7 +148,7 @@ rec {
   velero = pkgs.callPackage ./pkgs/velero.nix
     { source = sources.velero; };
 
-} // optionalAttrs (! pkgs.stdenv.isDarwin) {
+} // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   # doesn't build on MacOS
   # FIXME: rebuild with latest nixpkgs
@@ -157,7 +157,8 @@ rec {
   in
     pkgs.callPackage ./pkgs/openstackclient {};
 
-  os = import sources.os.outPath { toolbox = ./.; };
+  os = pkgs.callPackage ./pkgs/os {inherit openstackclient;};
+
   sd = import sources.sd.outPath { toolbox = ./.; };
 
 }
