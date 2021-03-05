@@ -332,19 +332,6 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "2.16.0"
     },
-    "tf": {
-        "branch": "master",
-        "description": null,
-        "homepage": null,
-        "owner": "Caascad",
-        "repo": "tf",
-        "rev": "131b76f7777e9076ae950b69d0a9179d8b6872f1",
-        "sha256": "1js17bc03d1bysnji3gy8qpr4n6239k9vx3rvcp6bqs3papgaq9p",
-        "type": "tarball",
-        "url": "https://github.com/Caascad/tf/archive/1.6.5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.6.5"
-    },
     "vault-token-helper": {
         "branch": "master",
         "description": "@Hashicorp Vault Token Helper for macOS, Linux and Windows with support for native credential storage 🔐",
