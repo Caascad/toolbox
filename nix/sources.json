@@ -177,19 +177,6 @@
         "url": "https://github.com/NixOS/nixpkgs-channels/archive/32b46dd897ab2143a609988a04d87452f0bbef59.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "os": {
-        "branch": "master",
-        "description": "Openstack wrapper using vault to retrieve identity",
-        "homepage": "",
-        "owner": "Caascad",
-        "repo": "os",
-        "rev": "e97f1cc7321a1052f39650ee10663a06148ce47b",
-        "sha256": "0la7aw3vr2i1wby8pziik0s6w4bq3kqdy08m7lwzxbn0wn0h2dza",
-        "type": "tarball",
-        "url": "https://github.com/Caascad/os/archive/1.2.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.2.0"
-    },
     "safe": {
         "branch": "master",
         "description": "A Vault CLI",
