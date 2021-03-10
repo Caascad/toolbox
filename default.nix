@@ -8,6 +8,8 @@ let
   pkgs = import nixpkgs {
     overlays = [(self: super: {
 
+      kswitch = pkgs.callPackage ./pkgs/kswitch {};
+
       terraform-providers = super.terraform-providers // {
 
         aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
@@ -35,6 +37,7 @@ let
           patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
           passthru.provider-source-address = "registry.terraform.io/toolbox/huaweicloud";
         });
+
 
         azuread = pkgs.callPackage ./pkgs/terraform-provider-azuread.nix
           { source = sources.terraform-provider-azuread; };
@@ -115,9 +118,13 @@ rec {
 
   terraform-minimal = trace "Warning: terraform-minimal is deprecated use terraform_0_12" pkgs.terraform_0_12;
 
+  sd = import sources.sd.outPath { toolbox = ./.; };
+
   cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
+
+  kswitch = pkgs.kswitch;
 
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
 
@@ -129,7 +136,6 @@ rec {
   helm-with-plugins = pkgs.callPackage ./pkgs/helm-with-plugins.nix
     { plugins = helm-plugins; };
 
-  kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
 
@@ -151,8 +157,5 @@ rec {
   in
     pkgs.callPackage ./pkgs/openstackclient {};
 
-  os = pkgs.callPackage ./pkgs/os {inherit openstackclient;};
-
-  sd = import sources.sd.outPath { toolbox = ./.; };
-
+  caascad-tools = pkgs.callPackage ./pkgs/caascad-tools {inherit openstackclient;kswitch=pkgs.kswitch; };
 }

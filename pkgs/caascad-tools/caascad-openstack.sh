@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+CAASCAD_OPENSTACK_TRACE="${CAASCAD_OPENSTACK_TRACE:-0}"
+
+if [ "${CAASCAD_OPENSTACK_TRACE}" -eq 1 ]; then set -x; fi
 
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
@@ -15,8 +18,8 @@ NAME
       Thin wrapper around openstack command
 
 SYNOPSIS
-      os [os-command] [environment]
-      os <openstack subcommand>
+      caascad-openstack [os-command] [environment]
+      caascad-openstack <openstack subcommand>
 
 DESCRIPTION
       <empty>
@@ -121,7 +124,7 @@ _print() {
 _get_secrets() {
     ZONE_NAME=$(cat "${CURRENT_FILE}")
     export ZONE_NAME
-    [ -z "${ZONE_NAME}" ] && echo "No environment selected. Use 'os switch <env> first.'" && exit 1
+    [ -z "${ZONE_NAME}" ] && echo "No environment selected. Use 'caascad-openstack switch <env> first.'" && exit 1
     if [[ $ZONE_NAME =~ ^OCB000.* ]]; then
         INFRA_ZONE_NAME="$(jq -r '.[] | select(.providers.fe.domain_name == env.ZONE_NAME) | .name' < "${CAASCAD_ZONES_FILE}" )"
         DOMAIN_NAME="$(jq -r '.[] | select(.providers.fe.domain_name == env.ZONE_NAME) | .domain_name' < "${CAASCAD_ZONES_FILE}" )"
