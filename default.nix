@@ -96,6 +96,13 @@ rec {
 
   helm = pkgs.kubernetes-helm;
 
+  # Expose providers that don't come from nixpkgs (so that we can push them in the cache)
+  terraform-providers = filterAttrs (_: drv:
+    if drv ? "passthru" && drv.passthru ? "provider-source-address" then
+      let components = splitString "/" drv.passthru.provider-source-address;
+      in (builtins.elemAt components 1) == "toolbox"
+    else false) pkgs.terraform-providers;
+
   terraform = trace "Warning: terraform attribute is deprecated, use terraform_(0_12|0_13|0_14) or toolbox make-terraform(12|13|14)-shell" pkgs.terraform_0_12.withPlugins (p: with p; [
     aws
     concourse
