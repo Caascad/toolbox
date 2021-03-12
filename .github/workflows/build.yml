@@ -23,3 +23,5 @@ jobs:
         skipPush: true
     - name: Build
       run: nix-build
+    - name: Build terraform providers
+      run: nix-build -A terraform-providers
