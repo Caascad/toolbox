@@ -293,6 +293,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "0.2.0"
     },
+    "terraform-provider-rancher2": {
+        "branch": "master",
+        "description": "Terraform Rancher2 provider",
+        "homepage": "https://www.terraform.io/docs/providers/rancher2/",
+        "owner": "rancher",
+        "repo": "terraform-provider-rancher2",
+        "rev": "ea1aee49278ec1c7a2ba9a0e392ecdea2e117833",
+        "sha256": "0bjpghxpnlza798p2cildg4jb24lf450hw335ivgp4s409rf0xhj",
+        "type": "tarball",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.12.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.12.0"
+    },
     "terraform-provider-vault": {
         "branch": "master",
         "description": "Terraform Vault provider",
