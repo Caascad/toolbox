@@ -16,6 +16,9 @@ let
         k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
+        rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
+          { source = sources.terraform-provider-rancher2; };
+
         concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
 
