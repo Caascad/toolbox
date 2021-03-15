@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , source
 , buildGoModule
 , fetchzip
@@ -17,7 +17,7 @@ buildGoModule rec {
   # Skip the go tests ; they require a running keycloak instance
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Terraform provider for keycloak";
     homepage = "https://github.com/mrparkers/terraform-provider-keycloak";
     license = licenses.mpl20;

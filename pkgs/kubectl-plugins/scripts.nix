@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchzip
 , source
 , cmdName
@@ -17,7 +18,7 @@ stdenv.mkDerivation rec {
     install -m755 -D ./${cmdName} $out/bin/${outCmdName}
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = source.description;
     homepage = source.homepage;
   };

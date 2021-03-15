@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , fetchzip
 , source
 , buildGoModule
@@ -16,7 +16,7 @@ buildGoModule rec {
 
   passthru.provider-source-address = "registry.terraform.io/toolbox/k8sraw";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Terraform provider for kubernetes";
     homepage = "https://github.com/nabancard/terraform-provider-kubernetes-yaml";
     license = licenses.mpl20;

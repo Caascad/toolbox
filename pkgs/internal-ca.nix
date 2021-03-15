@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , source
 , fetchzip
 , runCommand
@@ -24,7 +25,7 @@ stdenv.mkDerivation rec {
     wrapProgram $out/bin/internal-ca --prefix PATH ":" ${gopass}/bin:${cfssl}/bin:${kubectl}/bin
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Tools to provision CAs in cert-manager.";
     homepage = "https://github.com/Caascad/internal-ca";
     license = licenses.mit;

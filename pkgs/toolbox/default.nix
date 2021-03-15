@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , makeWrapper
 , coreutils
 , jq
@@ -21,7 +22,7 @@ stdenv.mkDerivation {
     wrapProgram $out/bin/toolbox --prefix PATH ":" ${coreutils}/bin:${jq}/bin:${utillinux}/bin:${gnused}/bin
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Caascad toolbox";
     homepage = "https://github.com/Caascad/toolbox";
     license = licenses.mit;
