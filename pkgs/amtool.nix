@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , prometheus-alertmanager
 }:
 
@@ -11,7 +12,7 @@ stdenv.mkDerivation {
     install -m755 -D ${prometheus-alertmanager}/bin/amtool $out/bin/amtool
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Alertmanager CLI";
     homepage = "https://github.com/prometheus/alertmanager";
     license = licenses.asl20;

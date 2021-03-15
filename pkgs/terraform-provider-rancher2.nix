@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , fetchzip
 , source
 , buildGoModule
@@ -16,7 +16,7 @@ buildGoModule rec {
 
   passthru.provider-source-address = "registry.terraform.io/toolbox/rancher2";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Terraform provider for rancher2";
     homepage = "https://github.com/terraform-providers/terraform-provider-rancher2";
     license = licenses.mpl20;

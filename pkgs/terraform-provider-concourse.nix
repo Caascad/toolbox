@@ -2,6 +2,7 @@
 , fetchzip
 , source
 , buildGoModule
+, lib
 }:
 
 buildGoModule rec {
@@ -22,7 +23,7 @@ buildGoModule rec {
     mv $out/bin/terraform-provider-concourse{,_v${version}}
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Terraform provider for Concourse";
     homepage = "https://github.com/alphagov/terraform-provider-concourse";
     license = licenses.mit;

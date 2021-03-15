@@ -1,6 +1,6 @@
 { pkgs
-, stdenv
 , lib
+, stdenv
 , buildGoModule
 , fetchzip
 , sources
@@ -119,7 +119,7 @@ in stdenv.mkDerivation {
       ${fly_6_4_1}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Fly wrapper with automatic concourse version selection";
     homepage = "https://github.com/Caascad/fly-wrapper";
     license = licenses.mpl20;

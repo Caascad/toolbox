@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
     wrapProgram $out/bin/kswitch --prefix PATH ":" ${lib.makeBinPath [ kubectl jq coreutils vault awscli curl findutils ]}
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Caascad K8S cluster tunneling through bastions";
     homepage = "https://github.com/Caascad/toolbox";
     license = licenses.mit;
