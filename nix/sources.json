@@ -280,6 +280,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "2.3.0"
     },
+    "terraform-provider-kubectl": {
+        "branch": "master",
+        "description": "Terraform provider to handle raw kubernetes manifest yaml files",
+        "homepage": "https://registry.terraform.io/providers/gavinbunney/kubectl",
+        "owner": "gavinbunney",
+        "repo": "terraform-provider-kubectl",
+        "rev": "94f1fc9a74f10d46090030fe7a8b638ef4369fe0",
+        "sha256": "1w8g47dh77i7bhvxwysn7ldrcxl999sivxc7ws71ly5mnsljhhz0",
+        "type": "tarball",
+        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.10.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.10.0"
+    },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
         "description": "A basic terraform provider which allows generic YAML config for Kubernetes",

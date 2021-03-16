@@ -19,6 +19,9 @@ let
         rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
           { source = sources.terraform-provider-rancher2; };
 
+        kubectl = pkgs.callPackage ./pkgs/terraform-provider-kubectl.nix
+          { source = sources.terraform-provider-kubectl; };
+
         concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
 
