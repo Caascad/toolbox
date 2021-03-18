@@ -228,6 +228,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.4.0"
     },
+    "terraform-provider-azurerm": {
+        "branch": "master",
+        "description": "Terraform provider for Azure Resource Manager",
+        "homepage": "https://www.terraform.io/docs/providers/azurerm/",
+        "owner": "terraform-providers",
+        "repo": "terraform-provider-azurerm",
+        "rev": "f36784ae8d8929c194840d77947fa11351d97109",
+        "sha256": "14l6y1nf7ma2mblq3d8sv185zhilkn0nl1a2qfzwb4qlfg0k00vx",
+        "type": "tarball",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.51.0.tar.gz",
+        "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
+        "version": "2.51.0"
+    },
     "terraform-provider-cloudinit": {
         "branch": "master",
         "description": "Exposes the cloudinit_config data source which renders a multipart MIME configuration for use with cloud-init (previously available as the template_cloudinit_config resource in the template provider)",

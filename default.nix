@@ -45,6 +45,9 @@ let
         azuread = pkgs.callPackage ./pkgs/terraform-provider-azuread.nix
           { source = sources.terraform-provider-azuread; };
 
+        azurerm = pkgs.callPackage ./pkgs/terraform-provider-azurerm.nix
+          { source = sources.terraform-provider-azurerm; };
+
         vault = super.terraform-providers.vault.overrideAttrs (old:
           with sources.terraform-provider-vault; {
             inherit version;
