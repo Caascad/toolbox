@@ -52,6 +52,7 @@ let
           with sources.terraform-provider-vault; {
             inherit version;
             pname = repo;
+            goPackagePath = "github.com/hashicorp/${repo}";
             src = pkgs.fetchzip {
               inherit url sha256;
             };
