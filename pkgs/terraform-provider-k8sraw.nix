@@ -20,6 +20,6 @@ buildGoModule rec {
     description = "Terraform provider for kubernetes";
     homepage = "https://github.com/nabancard/terraform-provider-kubernetes-yaml";
     license = licenses.mpl20;
-    maintainers = with maintainers; [ lightcode ];
+    maintainers = with maintainers; [ "lightcode" ];
   };
 }
