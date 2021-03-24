@@ -17,6 +17,13 @@ buildGoModule rec {
   # Skip the go tests ; they require a running keycloak instance
   doCheck = false;
 
+  patches = [
+      (fetchpatch {
+        url = "https://patch-diff.githubusercontent.com/raw/mrparkers/terraform-provider-keycloak/pull/501.patch";
+        sha256 = "02977789mil6m2km06dpnaqgf5l714idnyizqy337qy051904x6b";
+      })
+    ];
+
   meta = with lib; {
     description = "Terraform provider for keycloak";
     homepage = "https://github.com/mrparkers/terraform-provider-keycloak";
