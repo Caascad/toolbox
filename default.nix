@@ -161,14 +161,9 @@ rec {
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
-  # doesn't build on MacOS
-  # FIXME: rebuild with latest nixpkgs
-  openstackclient = let
-    pkgs = import nixpkgs-old {};
-  in
-    pkgs.callPackage ./pkgs/openstackclient {};
+  openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
 
-  os = pkgs.callPackage ./pkgs/os {inherit openstackclient;};
+  os = pkgs.callPackage ./pkgs/os { inherit openstackclient; };
 
   sd = import sources.sd.outPath { toolbox = ./.; };
 
