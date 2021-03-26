@@ -17,6 +17,12 @@ let
           propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
       });
 
+      python-octaviaclient = super.python-octaviaclient.overridePythonAttrs (old: { 
+        preConfigure = '' 
+          sed -i 's/load-balancer/network/' ./octaviaclient/osc/plugin.py 
+        ''; 
+      });
+
       requestsexceptions = super.requestsexceptions.overridePythonAttrs (old: {
           propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
       });
