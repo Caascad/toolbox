@@ -268,6 +268,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.18.0"
     },
+    "terraform-provider-huaweicloud": {
+        "branch": "master",
+        "description": "Terraform HuaweiCloud provider",
+        "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
+        "owner": "huaweicloud",
+        "repo": "terraform-provider-huaweicloud",
+        "rev": "3d02b69e2838a44e6676adf8f56bfee7215e1b8c",
+        "sha256": "01dd0kxsis0knr046pf42fm1ph74bnihcvx9qi3sch14ly86413w",
+        "type": "tarball",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.22.2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.22.2"
+    },
     "terraform-provider-keycloak": {
         "branch": "master",
         "description": "Terraform provider for Keycloak ",

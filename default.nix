@@ -37,10 +37,8 @@ let
           }
         );
 
-        huaweicloud = super.terraform-providers.huaweicloud.overrideAttrs (old: {
-          patches = [ ./pkgs/terraform-provider-huaweicloud-urls.patch ];
-          passthru.provider-source-address = "registry.terraform.io/toolbox/huaweicloud";
-        });
+        huaweicloud = pkgs.callPackage ./pkgs/terraform-provider-huaweicloud.nix
+          { source = sources.terraform-provider-huaweicloud; };
 
         azuread = pkgs.callPackage ./pkgs/terraform-provider-azuread.nix
           { source = sources.terraform-provider-azuread; };
