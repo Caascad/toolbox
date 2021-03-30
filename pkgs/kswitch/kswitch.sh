@@ -136,7 +136,7 @@ configure_kubeconfig() {
             jq -r '.data.users[].user["client-key-data"]' $kubeconfig | base64 -d > "${CONFIG_DIR}/${zone}-key"
             run "kubectl config set-credentials $zone-admin --client-certificate=${CONFIG_DIR}/${zone}-cert --client-key=${CONFIG_DIR}/${zone}-key"
             rm -f ${kubeconfig}
-        elif [ "$zoneType" == "fe" ]; then
+        elif [[ "$zoneType" =~ fe|azure ]]; then
             run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1beta1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
         elif [ "$zoneType" == "aws" ]; then
             run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1alpha1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
@@ -160,6 +160,9 @@ start_tunnel() {
     elif [ "$zoneType" == "aws" ]; then
         vault_login
         kubeServer="$(vault read "secret/zones/aws/${zone}/eks" | jq -r .data.endpoint | cut -d'/' -f3):443"
+    elif [ "$zoneType" == "azure" ]; then
+        vault_login
+        kubeServer="$(vault read "secret/zones/azure/${zone}/kubeconfig" | jq -r .data.host | cut -d'/' -f3)"
     fi
 
     log "Forwarding through ${dest}..."
@@ -189,6 +192,10 @@ get_credentials() {
         log_debug "Get AWS K8S token..."
         eval "$(vault read "secret/zones/aws/${zone}/eks" | \
             jq -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')"
+    elif [ "$zoneType" == "azure" ]; then
+        log_debug "Get Azure k8s certificates..."
+        vault read "secret/zones/azure/${zone}/kubeconfig" | \
+            jq '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.client_certificate | @base64d, "clientKeyData": .data.client_key | @base64d }}'
     else
         log-error "Zone provider $zoneType not supported."
         exit 1
