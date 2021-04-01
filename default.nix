@@ -60,6 +60,10 @@ let
             passthru.provider-source-address = "registry.terraform.io/toolbox/vault";
           }
         );
+        
+        restapi = pkgs.callPackage ./pkgs/terraform-provider-restapi.nix
+          { source = sources.terraform-provider-restapi; };
+
 
         keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
           { source = sources.terraform-provider-keycloak; };
@@ -125,6 +129,7 @@ rec {
     openstack
     rancher2
     random
+    restapi
     template
     tls
     p.vault

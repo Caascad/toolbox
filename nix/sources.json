@@ -320,6 +320,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.12.0"
     },
+    "terraform-provider-restapi": {
+        "branch": "master",
+        "description": "A terraform provider to manage objects in a RESTful API",
+        "homepage": null,
+        "owner": "Mastercard",
+        "repo": "terraform-provider-restapi",
+        "rev": "8338cae7cb8f86cdb21823717f59c9ed0c0d56ba",
+        "sha256": "0hah0mlqf1kzjmdh57klksx83ds7pnyf9m27k35h4ibmyg6db4cq",
+        "type": "tarball",
+        "url": "https://github.com/Mastercard/terraform-provider-restapi/archive/v1.15.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.15.0"
+    },
     "terraform-provider-vault": {
         "branch": "master",
         "description": "Terraform Vault provider",
