@@ -157,6 +157,8 @@ rec {
   velero = pkgs.callPackage ./pkgs/velero.nix
     { source = sources.velero; };
 
+  promtool = pkgs.callPackage ./pkgs/promtool.nix {};
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
