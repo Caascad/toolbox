@@ -1,0 +1,254 @@
+diff --git a/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go b/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go
+new file mode 100644
+index 00000000..5a184159
+--- /dev/null
++++ b/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go
+@@ -0,0 +1,198 @@
++package flexibleengine
++
++import (
++	"fmt"
++
++	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
++	"github.com/huaweicloud/golangsdk/openstack/vpcep/v1/endpoints"
++)
++
++func dataSourceVPCEPEndpoints() *schema.Resource {
++	return &schema.Resource{
++		Read: dataSourceVpcepEndpointsRead,
++
++		Schema: map[string]*schema.Schema{
++			"vpc_id": {
++				Type:     schema.TypeString,
++				Optional: true,
++			},
++			"endpoint_service_name": {
++				Type:     schema.TypeString,
++				Optional: true,
++			},
++			"endpoint_id": {
++				Type:     schema.TypeString,
++				Optional: true,
++			},
++			"endpoints": {
++				Type:     schema.TypeList,
++				Computed: true,
++				Elem: &schema.Resource{
++					Schema: map[string]*schema.Schema{
++						"id": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"service_type": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"status": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"active_status": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"endpoint_service_name": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"marker_id": {
++							Type:     schema.TypeInt,
++							Computed: true,
++						},
++						"endpoint_service_id": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"enable_dns": {
++							Type:     schema.TypeBool,
++							Computed: true,
++						},
++						"dns_names": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"ip": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"vpc_id": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"subnet_id": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"created_at": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"updated_at": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"project_id": {
++							Type:     schema.TypeString,
++							Computed: true,
++						},
++						"tags": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem: &schema.Resource{
++								Schema: map[string]*schema.Schema{
++									"key": {
++										Type:     schema.TypeString,
++										Computed: true,
++									},
++									"value": {
++										Type:     schema.TypeString,
++										Computed: true,
++									},
++								},
++							},
++						},
++						"error": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"whitelist": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"enable_whitelist": {
++							Type:     schema.TypeBool,
++							Computed: true,
++						},
++						"routetables": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++					},
++				},
++			},
++		},
++	}
++}
++
++func dataSourceVpcepEndpointsRead(d *schema.ResourceData, meta interface{}) error {
++	config := meta.(*Config)
++	region := GetRegion(d, config)
++	vpcepClient, err := config.vpcepV1Client(region)
++	if err != nil {
++		return fmt.Errorf("Error creating FlexibleEngine VPC endpoint client: %s", err)
++	}
++
++	listOpts := endpoints.ListOpts{
++		ServiceName: d.Get("endpoint_service_name").(string),
++		VPCID:       d.Get("vpc_id").(string),
++		ID:          d.Get("endpoint_id").(string),
++	}
++
++	allEndpoints, err := endpoints.List(vpcepClient, listOpts)
++	if err != nil {
++		return fmt.Errorf("Unable to retrieve vpc endpoints: %s", err)
++	}
++
++	if len(allEndpoints) < 1 {
++		return fmt.Errorf("Your query returned no results. " +
++			"Please change your search criteria and try again.")
++	}
++
++	d.SetId(allEndpoints[0].ID)
++	endpoints := make([]map[string]interface{}, len(allEndpoints))
++	for i, v := range allEndpoints {
++		var tag []map[string]interface{}
++		for _, tagContent := range v.Tags {
++			mapping := map[string]interface{}{
++				"key":   tagContent.Key,
++				"value": tagContent.Value,
++			}
++			tag = append(tag, mapping)
++		}
++		endpoints[i] = map[string]interface{}{
++			"id":                    v.ID,
++			"status":                v.Status,
++			"active_status":         v.ActiveStatus,
++			"service_type":          v.ServiceType,
++			"endpoint_service_name": v.ServiceName,
++			"endpoint_service_id":   v.ServiceID,
++			"vpc_id":                v.VpcID,
++			"subnet_id":             v.SubnetID,
++			"ip":                    v.IPAddr,
++			"marker_id":             v.MarkerID,
++			"enable_dns":            v.EnableDNS,
++			"dns_names":             v.DNSNames,
++			"enable_whitelist":      v.EnableWhitelist,
++			"whitelist":             v.Whitelist,
++			"routetables":           v.RouteTables,
++			"tags":                  tag,
++			"project_id":            v.ProjectID,
++			"created_at":            v.Created,
++			"updated_at":            v.Updated,
++		}
++	}
++	if err := d.Set("endpoints", endpoints); err != nil {
++		return err
++	}
++
++	return nil
++}
+diff --git a/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go b/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go
+new file mode 100644
+index 00000000..7ce01e8a
+--- /dev/null
++++ b/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go
+@@ -0,0 +1,32 @@
++package flexibleengine
++
++import (
++	"testing"
++
++	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
++)
++
++func TestAccVPCEPEndpointsDataSourceBasic(t *testing.T) {
++	resourceName := "data.flexibleengine_vpcep_endpoints.endpoints"
++
++	resource.ParallelTest(t, resource.TestCase{
++		PreCheck:  func() { testAccPreCheck(t) },
++		Providers: testAccProviders,
++		Steps: []resource.TestStep{
++			{
++				Config: testAccVPCEPEndpointsDataSourceBasic,
++				Check: resource.ComposeTestCheckFunc(
++					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.vpc_id"),
++					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.endpoint_service_name"),
++					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.endpoint_service_id"),
++				),
++			},
++		},
++	})
++}
++
++var testAccVPCEPEndpointsDataSourceBasic = `
++data "flexibleengine_vpcep_endpoints" "endpoints" {
++  service_name = "dns"
++}
++`
+diff --git a/flexibleengine/provider.go b/flexibleengine/provider.go
+index 9e5f7bc5..a8734e23 100644
+--- a/flexibleengine/provider.go
++++ b/flexibleengine/provider.go
+@@ -205,6 +205,7 @@ func Provider() terraform.ResourceProvider {
+ 			"flexibleengine_identity_role_v3":                   dataSourceIdentityRoleV3(),
+ 			"flexibleengine_identity_custom_role_v3":            dataSourceIdentityCustomRoleV3(),
+ 			"flexibleengine_vpcep_public_services":              dataSourceVPCEPPublicServices(),
++			"flexibleengine_vpcep_endpoints":                    dataSourceVPCEPEndpoints(),
+ 		},
+ 
+ 		ResourcesMap: map[string]*schema.Resource{

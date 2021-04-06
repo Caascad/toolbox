@@ -29,6 +29,9 @@ let
           with sources.terraform-provider-flexibleengine; {
             inherit version;
             pname = repo;
+            patches = [
+              ./pkgs/terraform-provider-flexibleengine-data-vpcep-endpoints.patch
+            ];
             src = pkgs.fetchzip {
               inherit url sha256;
             };
