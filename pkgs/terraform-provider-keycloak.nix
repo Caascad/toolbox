@@ -20,7 +20,7 @@ buildGoModule rec {
   patches = [
       (fetchpatch {
         url = "https://patch-diff.githubusercontent.com/raw/mrparkers/terraform-provider-keycloak/pull/501.patch";
-        sha256 = "02977789mil6m2km06dpnaqgf5l714idnyizqy337qy051904x6b";
+        sha256 = "1lcp2c5xf8p689a6m87wdxdxy0xwygkxixxz3sp2667lzbd6r5l4";
       })
     ];
 
