@@ -90,7 +90,7 @@ rec {
   inherit pkgs;
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
-                 yq jq gopass kubectx  direnv cue go gnupg curl
+                 yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
                  saml2aws envsubst awscli restic azure-cli
                  terraform_0_12 terraform_0_13 terraform_0_14;
@@ -130,7 +130,9 @@ rec {
 
   terraform-minimal = trace "Warning: terraform-minimal is deprecated use terraform_0_12" pkgs.terraform_0_12;
 
-  cue_0_3 = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
+  cue = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
+
+  cue_0_3 = trace "Warning: cue_0_3 is deprecated use cue" cue;
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
