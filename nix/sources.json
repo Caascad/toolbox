@@ -181,14 +181,14 @@
         "branch": "master",
         "description": "Service discovery helper",
         "homepage": null,
-        "owner": "caascad",
+        "owner": "Caascad",
         "repo": "sd",
-        "rev": "cacbd62ccdb845d90d2e72f3c5b0b3d1122cc85f",
-        "sha256": "1pp7xvgaahm2kmshx81qma31q1zi8ijcxzhx3anikk8rxz4qxrsx",
+        "rev": "1be189747f9134af7a2fca04c2203252b7427e2a",
+        "sha256": "051p13lwvqy25ggs3isr0zj88p72g2pjl66hb2327qcf8zzgv8is",
         "type": "tarball",
-        "url": "https://github.com/caascad/sd/archive/1.0.0.tar.gz",
+        "url": "https://github.com/Caascad/sd/archive/1.0.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.0.0"
+        "version": "1.0.1"
     },
     "terraform-provider-aws": {
         "branch": "master",
