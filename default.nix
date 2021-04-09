@@ -29,6 +29,9 @@ let
           with sources.terraform-provider-flexibleengine; {
             inherit version;
             pname = repo;
+            patcher = [
+              pkgs/terraform-provider-flexibleengine-vpecp-approval-fix.patch
+            ];
             src = pkgs.fetchzip {
               inherit url sha256;
             };
