@@ -85,8 +85,11 @@ let
           }
         );
 
-        keycloak = pkgs.callPackage ./pkgs/terraform-provider-keycloak.nix
-          { source = sources.terraform-provider-keycloak; };
+        keycloak = super.terraform-providers.keycloak.overrideAttrs (old:
+           {
+            passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak";
+          }
+        );
 
         cloudinit = super.terraform-providers.cloudinit.overrideAttrs (old:
           with sources.terraform-provider-cloudinit; {
