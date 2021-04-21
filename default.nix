@@ -146,6 +146,11 @@ rec {
   helm-with-plugins = pkgs.callPackage ./pkgs/helm-with-plugins.nix
     { plugins = helm-plugins; };
 
+  ansible-plugins = pkgs.callPackages ./pkgs/ansible-plugins {};
+
+  ansible-with-plugins = pkgs.callPackage ./pkgs/ansible-with-plugins.nix
+    { plugins = ansible-plugins; inherit ansible; };
+
   kswitch = pkgs.callPackage ./pkgs/kswitch {};
 
   toolbox = pkgs.callPackage ./pkgs/toolbox {};
