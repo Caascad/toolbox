@@ -307,6 +307,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.10.0"
     },
+    "terraform-provider-kubernetes": {
+        "branch": "main",
+        "description": "Terraform Kubernetes provider",
+        "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
+        "owner": "hashicorp",
+        "repo": "terraform-provider-kubernetes",
+        "rev": "c48b7d3b6f1ec3b41a5dbf399da11690b67e493c",
+        "sha256": "02ygydgi3fa8z6qd04hgcilbbwns8f21agaqxly2pf9j23fzi37g",
+        "type": "tarball",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.1.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
+        "version": "2.1.0"
+    },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
         "description": "A basic terraform provider which allows generic YAML config for Kubernetes",
