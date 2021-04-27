@@ -1,9 +1,70 @@
+diff --git a/docs/data-sources/vpcep_endpoints.md b/docs/data-sources/vpcep_endpoints.md
+new file mode 100644
+index 00000000..216e8ee6
+--- /dev/null
++++ b/docs/data-sources/vpcep_endpoints.md
+@@ -0,0 +1,55 @@
++---
++subcategory: "VPC Endpoint (VPCEP)"
++---
++
++# flexibleengine\_vpcep\_endpoints
++
++Use this data source to get VPC endpoints.
++
++## Example Usage
++
++```hcl
++data "flexibleengine_vpcep_endpoints" "all_endpoints" {
++}
++
++data "flexibleengine_vpcep_endpoints" "dns_endpoints" {
++  endpoint_service_name = "dns"
++}
++```
++
++## Argument Reference
++
++* `service_name` - (Optional, String) Specifies the name of the VPC endpoint service.
++    The value is not case-sensitive and supports fuzzy match.
++
++* `endpoint_id` - (Optional, String) Specifies the unique ID of the VPC endpoint.
++
++* `vpc_id` - (Optional, String) Specifies the unique ID of the vpc holding the VPC endpoint service.
++
++## Attributes Reference
++
++In addition to all arguments above, the following attributes are exported:
++
++* `id` - Specifies a data source ID in UUID format.
++
++* `endpoints` - Indicates the public VPC endpoints information. Structure is documented below.
++
++The `endpoints` block contains:
++
++* `id` - The unique ID of the public VPC endpoint service.
++* `status` - The connection status of the VPC endpoint.
++* `service_id` - The ID of the VPC endpoint service.
++* `service_name` - The name of the VPC endpoint service.
++* `service_type` - The type of the VPC endpoint.
++* `vpc_id` - The ID of the VPC holding the VPC endpoint service.
++* `network_id` - The ID of the subnet holding the VPC endpoint.
++* `ip_address` - The IP of the VPC endpoint.
++* `packet_id` - The marker id of the VPC endpoint.
++* `enable_dns` - Flag indicating dns has been enabled for the VPC endpoint.
++* `enable_whitelist` - Flag indicating access control have been enabled on this VPC endpoint.
++* `whitelist` - List of IP or CIDR block which can access the VPC endpoint.
++* `private_domain_name` - DNS name pointing to the VPC endpoint ip.
++* `tags` - The key/value pairs to associate with the VPC endpoint.
++* `project_id` - The ID of the project holding the VPC endpoint.
++* `created_at` - Creation date of the VPC endpoint.
++* `updated_at` - Last update date of the VPC endpoint.
 diff --git a/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go b/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go
 new file mode 100644
-index 00000000..5a184159
+index 00000000..f76d2ccc
 --- /dev/null
 +++ b/flexibleengine/data_source_flexibleengine_vpcep_endpoints.go
-@@ -0,0 +1,198 @@
+@@ -0,0 +1,184 @@
 +package flexibleengine
 +
 +import (
@@ -22,7 +83,7 @@ index 00000000..5a184159
 +				Type:     schema.TypeString,
 +				Optional: true,
 +			},
-+			"endpoint_service_name": {
++			"service_name": {
 +				Type:     schema.TypeString,
 +				Optional: true,
 +			},
@@ -39,41 +100,19 @@ index 00000000..5a184159
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"service_type": {
-+							Type:     schema.TypeString,
-+							Computed: true,
-+						},
 +						"status": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"active_status": {
-+							Type:     schema.TypeList,
-+							Computed: true,
-+							Elem:     &schema.Schema{Type: schema.TypeString},
-+						},
-+						"endpoint_service_name": {
++						"service_id": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"marker_id": {
-+							Type:     schema.TypeInt,
-+							Computed: true,
-+						},
-+						"endpoint_service_id": {
++						"service_name": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"enable_dns": {
-+							Type:     schema.TypeBool,
-+							Computed: true,
-+						},
-+						"dns_names": {
-+							Type:     schema.TypeList,
-+							Computed: true,
-+							Elem:     &schema.Schema{Type: schema.TypeString},
-+						},
-+						"ip": {
++						"service_type": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
@@ -81,19 +120,32 @@ index 00000000..5a184159
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"subnet_id": {
++						"network_id": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"created_at": {
++						"ip_address": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"updated_at": {
-+							Type:     schema.TypeString,
++						"enable_dns": {
++							Type:     schema.TypeBool,
 +							Computed: true,
 +						},
-+						"project_id": {
++						"enable_whitelist": {
++							Type:     schema.TypeBool,
++							Computed: true,
++						},
++						"whitelist": {
++							Type:     schema.TypeList,
++							Computed: true,
++							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"packet_id": {
++							Type:     schema.TypeInt,
++							Computed: true,
++						},
++						"private_domain_name": {
 +							Type:     schema.TypeString,
 +							Computed: true,
 +						},
@@ -113,24 +165,17 @@ index 00000000..5a184159
 +								},
 +							},
 +						},
-+						"error": {
-+							Type:     schema.TypeList,
-+							Computed: true,
-+							Elem:     &schema.Schema{Type: schema.TypeString},
-+						},
-+						"whitelist": {
-+							Type:     schema.TypeList,
-+							Computed: true,
-+							Elem:     &schema.Schema{Type: schema.TypeString},
-+						},
-+						"enable_whitelist": {
-+							Type:     schema.TypeBool,
++						"project_id": {
++							Type:     schema.TypeString,
 +							Computed: true,
 +						},
-+						"routetables": {
-+							Type:     schema.TypeList,
++						"created_at": {
++							Type:     schema.TypeString,
 +							Computed: true,
-+							Elem:     &schema.Schema{Type: schema.TypeString},
++						},
++						"updated_at": {
++							Type:     schema.TypeString,
++							Computed: true,
 +						},
 +					},
 +				},
@@ -148,7 +193,7 @@ index 00000000..5a184159
 +	}
 +
 +	listOpts := endpoints.ListOpts{
-+		ServiceName: d.Get("endpoint_service_name").(string),
++		ServiceName: d.Get("service_name").(string),
 +		VPCID:       d.Get("vpc_id").(string),
 +		ID:          d.Get("endpoint_id").(string),
 +	}
@@ -174,26 +219,28 @@ index 00000000..5a184159
 +			}
 +			tag = append(tag, mapping)
 +		}
++		privateDomainName := ""
++		if len(v.DNSNames) > 0 {
++			privateDomainName = v.DNSNames[0]
++		}
 +		endpoints[i] = map[string]interface{}{
-+			"id":                    v.ID,
-+			"status":                v.Status,
-+			"active_status":         v.ActiveStatus,
-+			"service_type":          v.ServiceType,
-+			"endpoint_service_name": v.ServiceName,
-+			"endpoint_service_id":   v.ServiceID,
-+			"vpc_id":                v.VpcID,
-+			"subnet_id":             v.SubnetID,
-+			"ip":                    v.IPAddr,
-+			"marker_id":             v.MarkerID,
-+			"enable_dns":            v.EnableDNS,
-+			"dns_names":             v.DNSNames,
-+			"enable_whitelist":      v.EnableWhitelist,
-+			"whitelist":             v.Whitelist,
-+			"routetables":           v.RouteTables,
-+			"tags":                  tag,
-+			"project_id":            v.ProjectID,
-+			"created_at":            v.Created,
-+			"updated_at":            v.Updated,
++			"id":                  v.ID,
++			"status":              v.Status,
++			"service_id":          v.ServiceID,
++			"service_name":        v.ServiceName,
++			"service_type":        v.ServiceType,
++			"vpc_id":              v.VpcID,
++			"network_id":          v.SubnetID,
++			"ip_address":          v.IPAddr,
++			"enable_dns":          v.EnableDNS,
++			"enable_whitelist":    v.EnableWhitelist,
++			"whitelist":           v.Whitelist,
++			"packet_id":           v.MarkerID,
++			"private_domain_name": privateDomainName,
++			"tags":                tag,
++			"project_id":          v.ProjectID,
++			"created_at":          v.Created,
++			"updated_at":          v.Updated,
 +		}
 +	}
 +	if err := d.Set("endpoints", endpoints); err != nil {
@@ -204,42 +251,139 @@ index 00000000..5a184159
 +}
 diff --git a/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go b/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go
 new file mode 100644
-index 00000000..7ce01e8a
+index 00000000..0444bb89
 --- /dev/null
 +++ b/flexibleengine/data_source_flexibleengine_vpcep_endpoints_test.go
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,129 @@
 +package flexibleengine
 +
 +import (
++	"fmt"
 +	"testing"
 +
++	"github.com/hashicorp/terraform-plugin-sdk/helper/acctest"
 +	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 +)
 +
 +func TestAccVPCEPEndpointsDataSourceBasic(t *testing.T) {
-+	resourceName := "data.flexibleengine_vpcep_endpoints.endpoints"
++
++	rName := fmt.Sprintf("acc-test-%s", acctest.RandString(4))
++	endpointByNameResourceName := "data.flexibleengine_vpcep_endpoints.by_name"
++	endpointByEndpointIdResourceName := "data.flexibleengine_vpcep_endpoints.by_endpoint_id"
++	endpointByVpcIdResourceName := "data.flexibleengine_vpcep_endpoints.by_vpc_id"
++
++	fmt.Sprintf(testAccVPCEPEndpointsDataSourceBasic(rName))
 +
 +	resource.ParallelTest(t, resource.TestCase{
 +		PreCheck:  func() { testAccPreCheck(t) },
 +		Providers: testAccProviders,
 +		Steps: []resource.TestStep{
 +			{
-+				Config: testAccVPCEPEndpointsDataSourceBasic,
++				Config: testAccVPCEPEndpointsDataSourceBasic(rName),
 +				Check: resource.ComposeTestCheckFunc(
-+					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.vpc_id"),
-+					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.endpoint_service_name"),
-+					resource.TestCheckResourceAttrSet(resourceName, "endpoints.0.endpoint_service_id"),
++					resource.TestCheckResourceAttrSet(endpointByNameResourceName, "endpoints.0.vpc_id"),
++					resource.TestCheckResourceAttrSet(endpointByNameResourceName, "endpoints.0.service_name"),
++					resource.TestCheckResourceAttrSet(endpointByNameResourceName, "endpoints.0.service_id"),
++					resource.TestCheckResourceAttrSet(endpointByEndpointIdResourceName, "endpoints.0.vpc_id"),
++					resource.TestCheckResourceAttrSet(endpointByEndpointIdResourceName, "endpoints.0.service_name"),
++					resource.TestCheckResourceAttrSet(endpointByEndpointIdResourceName, "endpoints.0.service_id"),
++					resource.TestCheckResourceAttrSet(endpointByVpcIdResourceName, "endpoints.0.vpc_id"),
++					resource.TestCheckResourceAttrSet(endpointByVpcIdResourceName, "endpoints.0.service_name"),
++					resource.TestCheckResourceAttrSet(endpointByVpcIdResourceName, "endpoints.0.service_id"),
 +				),
 +			},
 +		},
 +	})
 +}
 +
-+var testAccVPCEPEndpointsDataSourceBasic = `
-+data "flexibleengine_vpcep_endpoints" "endpoints" {
-+  service_name = "dns"
++func testAccVPCEndpointDataSourcePrecondition(rName string) string {
++	return fmt.Sprintf(`
++resource flexibleengine_networking_network_v2 test {
++  name           = "%[1]s"
++  admin_state_up = "true"
 +}
-+`
++
++resource flexibleengine_networking_subnet_v2 test {
++  name            = "%[1]s"
++  cidr            = "192.168.0.0/24"
++  gateway_ip      = "192.168.0.1"
++  network_id      = flexibleengine_networking_network_v2.test.id
++}
++
++resource flexibleengine_vpc_v1 test {
++  name = "%[1]s"
++  cidr = "192.168.0.0/24"
++  tags = {
++    owner = "terraform-test"
++  }
++}
++
++resource flexibleengine_networking_router_interface_v2 test { 
++  router_id = flexibleengine_vpc_v1.test.id 
++  subnet_id = flexibleengine_networking_subnet_v2.test.id 
++} 
++
++resource flexibleengine_compute_instance_v2 test {
++  name = "%[1]s"
++  security_groups = ["default"]
++  availability_zone = "%[2]s"
++
++  network {
++    uuid = flexibleengine_networking_network_v2.test.id
++  }
++
++  tags = {
++    owner   = "terraform-test"
++  }
++  depends_on = [ flexibleengine_networking_router_interface_v2.test ]
++}
++
++resource "flexibleengine_vpcep_service" "test" {
++  name        = "%[1]s"
++  server_type = "VM"
++  vpc_id      = flexibleengine_vpc_v1.test.id
++  port_id     = flexibleengine_compute_instance_v2.test.network[0].port
++  approval    = false
++
++  port_mapping {
++    service_port  = 22
++    terminal_port = 22
++  }
++  tags = {
++    owner = "terraform-test"
++  }
++}
++
++resource flexibleengine_vpcep_endpoint test {
++  service_id = flexibleengine_vpcep_service.test.id
++  vpc_id = flexibleengine_vpc_v1.test.id
++  network_id = flexibleengine_networking_network_v2.test.id
++  tags = {
++    owner = "terraform-test"
++  }
++}
++
++`, rName, OS_AVAILABILITY_ZONE)
++}
++
++func testAccVPCEPEndpointsDataSourceBasic(rName string) string {
++	return fmt.Sprintf(`
++%s
++
++data flexibleengine_vpcep_endpoints by_name {
++   service_name = flexibleengine_vpcep_endpoint.test.service_name
++}
++
++data flexibleengine_vpcep_endpoints by_endpoint_id {
++   endpoint_id = flexibleengine_vpcep_endpoint.test.id
++}
++
++data flexibleengine_vpcep_endpoints by_vpc_id {
++   vpc_id = flexibleengine_vpcep_endpoint.test.vpc_id
++}
++
++`, testAccVPCEndpointDataSourcePrecondition(rName))
++}
 diff --git a/flexibleengine/provider.go b/flexibleengine/provider.go
 index 9e5f7bc5..a8734e23 100644
 --- a/flexibleengine/provider.go
