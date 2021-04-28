@@ -39,8 +39,9 @@ let
     '';
 
     postInstall = ''
-      mkdir -p $out/share/bash-completion/completions
+      mkdir -p $out/share/{bash-completion/completions,zsh/site-functions}
       $out/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
+      $out/bin/fly completion --shell zsh > $out/share/zsh/site-functions/_fly
     '';
 
     meta = with lib; {
