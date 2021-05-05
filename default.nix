@@ -46,6 +46,19 @@ let
         azurerm = pkgs.callPackage ./pkgs/terraform-provider-azurerm.nix
           { source = sources.terraform-provider-azurerm; };
 
+        helm = super.terraform-providers.helm.overrideAttrs (old:
+          with sources.terraform-provider-helm; {
+            inherit version;
+            pname = repo;
+            goPackagePath = "github.com/hashicorp/${repo}";
+            src = pkgs.fetchzip {
+              inherit url sha256;
+            };
+            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
+            passthru.provider-source-address = "registry.terraform.io/toolbox/helm";
+          }
+        );
+
         kubernetes = super.terraform-providers.kubernetes.overrideAttrs (old:
           with sources.terraform-provider-kubernetes; {
             inherit version;

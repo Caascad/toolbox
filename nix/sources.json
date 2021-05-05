@@ -268,6 +268,19 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.20.0"
     },
+    "terraform-provider-helm": {
+        "branch": "main",
+        "description": "Terraform Helm provider",
+        "homepage": "https://www.terraform.io/docs/providers/helm/",
+        "owner": "hashicorp",
+        "repo": "terraform-provider-helm",
+        "rev": "a24e405a9b28b4f5289ab3f8e33c2ff7ef720e0f",
+        "sha256": "1385r9wk6mpb9fj53bkq586v8lw2310dim3kgj3pkrc1fssvwj0z",
+        "type": "tarball",
+        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.1.2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
+        "version": "2.1.2"
+    },
     "terraform-provider-huaweicloud": {
         "branch": "master",
         "description": "Terraform HuaweiCloud provider",
