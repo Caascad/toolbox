@@ -41,6 +41,7 @@ run_c() {
 }
 
 _continue() {
+  [ $disableInput -eq 1 ] && return
   read -p "Continue [y/n]: " -n 1 -r
   echo
   [[ $REPLY =~ ^[Yy]$ ]] || exit 1
@@ -67,6 +68,7 @@ Usage:
   kswitch [--json]      Show kswitch status
   kswitch -k, --kill    Stop any active tunnel
   kswitch -h, --help    This help
+  kswitch --no-input    Don't ask for user inputs
   kswitch -v, --version Current kswitch version
 
 kswitch automatically setup an SSH tunnel to the specified zone K8S cluster.
@@ -265,6 +267,7 @@ socketPath="/dev/shm/kswitch"
 [ ! -d /dev/shm ] && socketPath="/tmp/kswitch"
 zone=""
 execCredentialMode=0
+disableInput=0
 
 while (( "$#" )); do
     case "$1" in
@@ -290,6 +293,10 @@ while (( "$#" )); do
         ;;
         -c)
         execCredentialMode=1
+        shift
+        ;;
+        --no-input)
+        disableInput=1
         shift
         ;;
         -*) # unsupported flags
