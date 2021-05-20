@@ -300,12 +300,12 @@
         "homepage": "https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs",
         "owner": "mrparkers",
         "repo": "terraform-provider-keycloak",
-        "rev": "8107493195d5364f010e320faff2cc708a5dcb9d",
-        "sha256": "1msxxbrcwh83czsrydq4bk4p38zrx9s1hrjryh3xf1l55lb6plr1",
+        "rev": "c851df424c5407726b2f448fce6c70905d9dc002",
+        "sha256": "14lz3akg0d7acqzidz2x49cmgl9vqwbl6xnfw6vl1mc73qgdjq1s",
         "type": "tarball",
-        "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/v2.3.0.tar.gz",
+        "url": "https://github.com/mrparkers/terraform-provider-keycloak/archive/v3.0.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.3.0"
+        "version": "3.0.1"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
