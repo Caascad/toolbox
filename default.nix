@@ -67,7 +67,7 @@ let
             src = pkgs.fetchzip {
               inherit url sha256;
             };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
+            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
             passthru.provider-source-address = "registry.terraform.io/toolbox/kubernetes";
           }
         );

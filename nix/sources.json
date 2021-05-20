@@ -326,12 +326,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "c48b7d3b6f1ec3b41a5dbf399da11690b67e493c",
-        "sha256": "02ygydgi3fa8z6qd04hgcilbbwns8f21agaqxly2pf9j23fzi37g",
+        "rev": "971aa574db91faf30d19a11173eb503b1ecaa777",
+        "sha256": "0x6v5j9iwdhb6skx9zgirvznkhppdsxbq0mqynr6wc5pcf98h0ar",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.1.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.2.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.1.0"
+        "version": "2.2.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
