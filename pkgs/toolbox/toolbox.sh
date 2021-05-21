@@ -161,6 +161,7 @@ Terraform related commands:
  make-terraform12-shell provider [provider...]  -- create a terraform 0.12 shell with the specified providers
  make-terraform13-shell provider [provider...]  -- create a terraform 0.13 shell with the specified providers
  make-terraform14-shell provider [provider...]  -- create a terraform 0.14 shell with the specified providers
+ make-terraform15-shell provider [provider...]  -- create a terraform 0.15 shell with the specified providers
 
 EOF
 }
@@ -184,7 +185,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -198,7 +199,7 @@ _toolbox_completions() {
       uninstall|install|make-shell)
           COMPREPLY=(\$(compgen -W "\$(_get_toolbox_attrs)" "\$cur"))
           ;;
-      make-terraform12-shell|make-terraform13-shell|make-terraform14-shell)
+      make-terraform*)
           COMPREPLY=(\$(compgen -W "\$(_get_terraform_providers_attrs)" "\$cur"))
           ;;
   esac
@@ -443,22 +444,27 @@ case "$COMMAND" in
         update-shell "$@"
         ;;
     make-terraform-shell)
-        log-error "make-terraform-shell has been removed, use make-terraform12-shell, make-terraform13-shell or make-terraform14-shell"
+        log-error "make-terraform-shell has been removed, use make-terraform<VERSION>-shell"
         exit 1
         ;;
     make-terraform12-shell)
         check_args_gt $# 1 "make-terraform12-shell"
-        log-warning "Consider using a newer version of terraform (0.14)"
+        log-warning "Consider using a newer version of terraform (0.15)"
         make-terraform-shell 0.12 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"
-        log-warning "Consider using a newer version of terraform (0.14)"
+        log-warning "Consider using a newer version of terraform (0.15)"
         make-terraform-shell 0.13 "$@"
         ;;
     make-terraform14-shell)
         check_args_gt $# 1 "make-terraform14-shell"
+        log-warning "Consider using a newer version of terraform (0.15)"
         make-terraform-shell 0.14 "$@"
+        ;;
+    make-terraform15-shell)
+        check_args_gt $# 1 "make-terraform15-shell"
+        make-terraform-shell 0.15 "$@"
         ;;
     help)
         usage

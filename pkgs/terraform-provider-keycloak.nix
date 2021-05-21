@@ -11,18 +11,11 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-  vendorSha256 = "0kh6lljvqd577s19gx0fmfsmx9wm3ikla3jz16lbwwb8ahbqcw1f";
+  vendorSha256 = "0il4rvwa23zghrq0b8qrzgxyjy0211v9z2a4ln2xmlhcz0105zg8";
   postInstall = "mv $out/bin/terraform-provider-keycloak{,_v${version}}";
 
   # Skip the go tests ; they require a running keycloak instance
   doCheck = false;
-
-  patches = [
-      (fetchpatch {
-        url = "https://patch-diff.githubusercontent.com/raw/mrparkers/terraform-provider-keycloak/pull/501.patch";
-        sha256 = "1lcp2c5xf8p689a6m87wdxdxy0xwygkxixxz3sp2667lzbd6r5l4";
-      })
-    ];
 
   meta = with lib; {
     description = "Terraform provider for keycloak";

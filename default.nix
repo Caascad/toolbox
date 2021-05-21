@@ -67,7 +67,7 @@ let
             src = pkgs.fetchzip {
               inherit url sha256;
             };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
+            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
             passthru.provider-source-address = "registry.terraform.io/toolbox/kubernetes";
           }
         );
@@ -119,7 +119,7 @@ rec {
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
                  saml2aws envsubst awscli restic azure-cli
-                 terraform_0_12 terraform_0_13 terraform_0_14;
+                 terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15;
 
   ansible = pkgs.ansible_2_9;
 
@@ -133,28 +133,6 @@ rec {
       let components = splitString "/" drv.passthru.provider-source-address;
       in (builtins.elemAt components 1) == "toolbox"
     else false) pkgs.terraform-providers;
-
-  terraform = trace "Warning: terraform attribute is deprecated, use terraform_(0_12|0_13|0_14) or toolbox make-terraform(12|13|14)-shell" pkgs.terraform_0_12.withPlugins (p: with p; [
-    aws
-    concourse
-    external
-    flexibleengine
-    http
-    huaweicloud
-    k8sraw
-    keycloak
-    kubernetes
-    local
-    p.null
-    openstack
-    rancher2
-    random
-    template
-    tls
-    p.vault
-  ]);
-
-  terraform-minimal = trace "Warning: terraform-minimal is deprecated use terraform_0_12" pkgs.terraform_0_12;
 
   cue = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
