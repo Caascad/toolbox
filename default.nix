@@ -136,8 +136,6 @@ rec {
 
   cue = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
-  cue_0_3 = trace "Warning: cue_0_3 is deprecated use cue" cue;
-
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
