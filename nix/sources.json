@@ -261,12 +261,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "626c59aed88cf0332566c71a942578e0781a79f7",
-        "sha256": "1sgkixvx58fsbarg2baqwsx10v3ygginrqmas4m4d9vh63sjzhd5",
+        "rev": "18f5f8ec4ce7cb68b4bff7784f21062f5b390c34",
+        "sha256": "0z18sikmdxswl8mff2im2nr83dc0yvngh3xgcyp57kf032mmdb95",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.20.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.21.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.20.0"
+        "version": "1.21.0"
     },
     "terraform-provider-helm": {
         "branch": "main",
