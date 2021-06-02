@@ -12,11 +12,6 @@ let
 
   fly-wrapper = import sources.fly-wrapper.outPath { inherit pkgs; };
 
-  fly_5_8_0 = fly_go {
-    source = sources.concourse_5_8_0;
-    goVendorSha256 = "1zzb7n54hnl99lsgln9pib2anmzk5zmixga5x68jyrng91axjifb";
-  };
-
   fly_6_4_1 = fly_go {
     source = sources.concourse_6_4_1;
     goVendorSha256 = "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm";
@@ -94,7 +89,6 @@ let
     fi
 
     case "$VERSION" in
-      5.8.0) FLY_BIN="${fly_5_8_0}/bin" ;;
           *) FLY_BIN="${fly_6_4_1}/bin" ;;
     esac
 

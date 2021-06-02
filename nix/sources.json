@@ -1,16 +1,4 @@
 {
-    "concourse_5_8_0": {
-        "branch": "master",
-        "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
-        "homepage": "https://concourse-ci.org",
-        "owner": "concourse",
-        "repo": "concourse",
-        "sha256": "0ji3jya4b2b4l6dlvydh3k2jfh6kkhii23d6rmi49ypydhn1qmgj",
-        "type": "tarball",
-        "url": "https://github.com/concourse/concourse/archive/v5.8.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "5.8.0"
-    },
     "concourse_6_4_1": {
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
