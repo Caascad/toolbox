@@ -175,12 +175,12 @@ rec {
 
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
+  sd = import sources.sd.outPath { toolbox = ./.; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
 
   os = pkgs.callPackage ./pkgs/os { inherit openstackclient; };
-
-  sd = import sources.sd.outPath { toolbox = ./.; };
 
 }
