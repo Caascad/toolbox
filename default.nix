@@ -177,6 +177,8 @@ rec {
 
   sd = import sources.sd.outPath { toolbox = ./.; };
 
+  rswitch = import sources.rswitch.outPath { inherit pkgs; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};

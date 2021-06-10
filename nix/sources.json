@@ -153,6 +153,18 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/1f0fd6dbe45f7a52244569f851cfb2e64c44b1c0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "rswitch": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "Caascad",
+        "repo": "rswitch",
+        "rev": "cb6238ccbd1701c3d66511fd6b4fab3642c26399",
+        "sha256": "162hk97ygrb7hxz6w05fimbmp9qv4jmshh6vqmwvrq44ivsvayxj",
+        "type": "tarball",
+        "url": "https://github.com/Caascad/rswitch/archive/cb6238ccbd1701c3d66511fd6b4fab3642c26399.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "safe": {
         "branch": "master",
         "description": "A Vault CLI",
