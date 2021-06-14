@@ -158,10 +158,7 @@ Usage: toolbox <command> [args]
 Terraform related commands:
 
  list-terraform-providers                       -- list available terraform providers
- make-terraform12-shell provider [provider...]  -- create a terraform 0.12 shell with the specified providers
- make-terraform13-shell provider [provider...]  -- create a terraform 0.13 shell with the specified providers
- make-terraform14-shell provider [provider...]  -- create a terraform 0.14 shell with the specified providers
- make-terraform15-shell provider [provider...]  -- create a terraform 0.15 shell with the specified providers
+ make-terraform-shell provider [provider...]    -- create a terraform 1.x.x shell with the specified providers
 
 EOF
 }
@@ -185,7 +182,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -361,10 +358,13 @@ make-terraform-shell() {
         nix_providers="${nix_providers} p.${p}"
     done
     log "Creating terraform ${version} shell with providers: ${providers[*]}"
-    make-shell "(terraform_${version/./_}.withPlugins (p: [${nix_providers}]))"
+    make-shell "(terraform_${version//./_}.withPlugins (p: [${nix_providers}]))"
 
     case "$version" in
-        0.13|0.14)
+        0.12)
+            return
+            ;;
+        *)
             generate-terraform-tf "${providers[@]}"
             ;;
     esac
@@ -444,26 +444,31 @@ case "$COMMAND" in
         update-shell "$@"
         ;;
     make-terraform-shell)
-        log-error "make-terraform-shell has been removed, use make-terraform<VERSION>-shell"
-        exit 1
+        check_args_gt $# 1 "make-terraform-shell"
+        make-terraform-shell 1.0.0 "$@"
         ;;
     make-terraform12-shell)
         check_args_gt $# 1 "make-terraform12-shell"
-        log-warning "Consider using a newer version of terraform (0.15)"
+        log-warning "Consider using a newer version of terraform (1.0.0)"
+        log-warning "this release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.12 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"
-        log-warning "Consider using a newer version of terraform (0.15)"
+        log-warning "Consider using a newer version of terraform (1.0.0)"
+        log-warning "this release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.13 "$@"
         ;;
     make-terraform14-shell)
         check_args_gt $# 1 "make-terraform14-shell"
-        log-warning "Consider using a newer version of terraform (0.15)"
+        log-warning "Consider using a newer version of terraform (1.0.0)"
+        log-warning "this release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.14 "$@"
         ;;
     make-terraform15-shell)
         check_args_gt $# 1 "make-terraform15-shell"
+        log-warning "Consider using a newer version of terraform (1.0.0)"
+        log-warning "this release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.15 "$@"
         ;;
     help)
