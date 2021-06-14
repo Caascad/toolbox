@@ -35,8 +35,8 @@ let
             # cce pool import
             patches = [
               (super.fetchpatch {
-                url = "https://patch-diff.githubusercontent.com/raw/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/528.diff";
-                sha256 = "0nxh7blzrc6pmn2ddn1q6msmsyw5rla2x8pgq3gsz1fbgg5jikvs";
+                url = "https://patch-diff.githubusercontent.com/raw/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/552.diff";
+                sha256 = "1aimdha8xa0xz98imla2yxkif6h96b4w0qm9bfdqdhv8x2gdlqy1";
               })
             ];
             postBuild = "mv go/bin/${repo}{,_v${version}}";
