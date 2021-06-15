@@ -5,15 +5,16 @@
 with pkgs;
 rec {
   node-shell = callPackage ./scripts.nix {
-    source = sources.kubectl-node-shell; 
+    source = sources.kubectl-node-shell;
     cmdName = "kubectl-node_shell";
     scriptPatches = [./kubectl-node-shell-toleration.patch];
   };
 
   spy = callPackage ./scripts.nix {
-    source = sources.kubespy; 
-    cmdName = "kubespy"; 
+    source = sources.kubespy;
+    cmdName = "kubespy";
     outCmdName = "kubectl-spy";
+    scriptPatches = [./kubespy.patch];
   };
 
   ctx = kubectx.overrideAttrs (old: {
