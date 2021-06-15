@@ -102,7 +102,7 @@ let
             src = pkgs.fetchzip {
               inherit url sha256;
             };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
+            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
             passthru.provider-source-address = "registry.terraform.io/toolbox/cloudinit";
           }
         );
@@ -126,7 +126,7 @@ rec {
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
                  saml2aws envsubst awscli restic azure-cli
-                 terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15;
+                 terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1_0_0;
 
   ansible = pkgs.ansible_2_9;
 

@@ -44,7 +44,7 @@ jobs:
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         cd test
-        SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform14-shell vault flexibleengine http null
+        SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform-shell vault flexibleengine http null
         nix-shell --run "terraform version"
   shellcheck:
     runs-on: ubuntu-latest
