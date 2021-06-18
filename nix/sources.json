@@ -103,6 +103,18 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "0.1.1"
     },
+    "kubelogin": {
+        "branch": "master",
+        "description": "kubectl plugin for Kubernetes OpenID Connect authentication (kubectl oidc-login)",
+        "homepage": "",
+        "owner": "int128",
+        "repo": "kubelogin",
+        "rev": "6dbd197e8c2613f3dc2d8e2b83137e934cb50e2a",
+        "sha256": "04rnj6gica1qakxw9bxd8mqz62b2x1hpd2fs5jai1nby3qb6qdgx",
+        "type": "tarball",
+        "url": "https://github.com/int128/kubelogin/archive/6dbd197e8c2613f3dc2d8e2b83137e934cb50e2a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "kubespy": {
         "branch": "master",
         "description": "pod debugging tool for kubernetes clusters with docker runtimes",

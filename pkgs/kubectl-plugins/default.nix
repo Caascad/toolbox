@@ -67,4 +67,21 @@ rec {
     vendorSha256 = "18j6lv4aar1fwr9cb186j0mb0kirvhx8m2k98fjqpx50dmiqb695";
     subPackages = ["cmd/kubectl-topology"];
   };
+
+  oidc-login = buildGoModule rec {
+    pname = "kubectl-oidc-login";
+    version = "0.1";
+    src = fetchFromGitHub {
+      owner = sources.kubelogin.owner;
+      repo = sources.kubelogin.repo;
+      rev = sources.kubelogin.rev;
+      sha256 = sources.kubelogin.sha256;
+    };
+    vendorSha256 = "18i78yqahs59pac0ndsr6x44fnxa3xb4v65a0czvsx7rfrj5mvml";
+    subPackages = ["."];
+    postInstall = ''
+      mv $out/bin/kubelogin $out/bin/kubectl-oidc_login
+    '';
+  };
+
 }
