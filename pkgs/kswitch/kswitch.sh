@@ -50,26 +50,53 @@ _continue() {
   [[ $REPLY =~ ^[Yy]$ ]] || exit 1
 }
 
+init_lock_counter(){
+  if [ "${initLockCounterRun}" -eq 0 ]; then
+    declare -g -A LOCKS
+    trap unlock_all EXIT
+    initLockCounterRun=1
+    log_debug "Initializing lock counter"
+  fi
+}
+
+unlock_all(){
+  if [[ -v LOCKS[@] ]]; then
+    log_debug "Cleaning remaining locks before exiting"
+    for lock in "${!LOCKS[@]}"; do
+      unlock "${lock}"
+    done
+  fi
+}
+
 wait_lock() {
+    init_lock_counter
     local lock
     lock="${lockPath}/$*.lock"
     log_debug "Waiting for lock: ${lock}"
-    while ! mkdir "${lock}" 2>/dev/null; do :;done
+    while ! mkdir "${lock}" 2>/dev/null; do : ;done
+    LOCKS["$*"]=1
     log_debug "Lock acquired: ${lock}"
 }
 
 lock_or_abort() {
+    init_lock_counter
     local lock
     lock="${lockPath}/$*.lock"
     log_debug "Trying to acquire lock: ${lock}"
-    mkdir "${lock}" 2>/dev/null && log_debug "Lock acquired: ${lock}" && return 0
+    mkdir "${lock}" 2>/dev/null &&
+      LOCKS["$*"]=1 &&
+      log_debug "Lock acquired: ${lock}" &&
+      return 0
     log_debug "Lock unavailable: ${lock}" && return 1
 }
 
 unlock() {
     local lock
     lock="${lockPath}/$*.lock"
-    rm -r "${lock}" 2>/dev/null && log_debug "Lock released: ${lock}" && return 0
+    rm -r "${lock}" 2>/dev/null &&
+      unset LOCKS["$*"] &&
+      log_debug "Lock released: ${lock}" &&
+      return 0
     log_debug "Cannot release lock: ${lock}" && return 1
 }
 
@@ -242,7 +269,7 @@ _check_cached_credentials(){
     cachedResponse="$(cat "${cachedExecCredentialsPath}" 2>/dev/null)" || return 1
     cachedResponse="${cachedResponse:-"{}"}"
     cacheTimeout="$(jq -e -r '.cacheTimeout' <<<"${cachedResponse}")" || return 1
-    cacheTimeoutEpoch="$(date --date="${cacheTimeout}" +"%s")" ||  return 1
+    cacheTimeoutEpoch="$(date --date="${cacheTimeout}" +"%s" 2>/dev/null)" ||  return 1
     nowEpoch="$(date +"%s")"
     if [ "${nowEpoch}"  -lt "${cacheTimeoutEpoch}" ]; then
         jq -e -r '.execCredential' <<<"${cachedResponse}"
@@ -397,6 +424,7 @@ socketPath="/dev/shm/kswitch"
 { [ -d /dev/shm ] && lockPath="/dev/shm"; } || lockPath="/tmp"
 lockPath="${lockPath}/kswitch.d"
 zone=""
+initLockCounterRun=0
 execCredentialMode=0
 forceRefresh=0
 disableInput=0
