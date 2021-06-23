@@ -169,7 +169,7 @@ kill_tunnel() {
 }
 
 vault_login() {
-    vault token lookup >/dev/null 2>&1 || vault login -method oidc || { log-error "Vault is unreachable" && return 1; }
+    vault token lookup >/dev/null 2>&1 || vault login -method oidc || { log-error "Vault is unreachable"; return 1; }
 }
 
 configure_kubeconfig() {
@@ -268,8 +268,8 @@ get_credentials_or_cache() {
         # Writing new cached credentials
         defaultCacheTimeout="$(date --date="+${CACHE_TIMEOUT} minutes" --iso-8601=seconds)"
         log_debug "Updating cached credentials"
-        get_credentials | jq -e -r --arg defaultCacheTimeout "${defaultCacheTimeout}" '{"cacheTimeout": (.status.expirationTimestamp // $defaultCacheTimeout), "execCredential": . }' > "${cachedExecCredentialsPath}.tmp"
-        exit_code="$?"
+        local exit_code
+        { get_credentials | jq -e -r --arg defaultCacheTimeout "${defaultCacheTimeout}" '{"cacheTimeout": (.status.expirationTimestamp // $defaultCacheTimeout), "execCredential": . }' > "${cachedExecCredentialsPath}.tmp"; } && exit_code=0 || exit_code="$?"
         [ "${exit_code}" -ne 0 ] && log-error "Cannot refresh credentials" && unlock ${lockName} && exit 1
         mv "${cachedExecCredentialsPath}.tmp" "${cachedExecCredentialsPath}" || { log-error "Unable to write ${cachedExecCredentialsPath}" && unlock ${lockName} && exit 1; }
         toRefresh=0
@@ -282,23 +282,22 @@ get_credentials() {
     if [ "$zoneType" == "fe" ]; then
         log_debug "Get FE k8s certificates..."
         vault read "secret/zones/fe/${zone}/kubeconfig" | \
-            jq '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.users[].user["client-certificate-data"] | @base64d, "clientKeyData": .data.users[].user["client-key-data"] | @base64d }}'
+            jq '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.users[].user["client-certificate-data"] | @base64d, "clientKeyData": .data.users[].user["client-key-data"] | @base64d }}' || return 1
     elif [ "$zoneType" == "aws" ]; then
         get_aws_credentials
         # shellcheck disable=SC1090,SC2015
         source "${awsCredsFilePath}"
         log_debug "Get AWS K8S token..."
         eval "$(vault read "secret/zones/aws/${zone}/eks" | \
-            jq -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')"
+            jq -e -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')" || return 1
     elif [ "$zoneType" == "azure" ]; then
         log_debug "Get Azure k8s certificates..."
         vault read "secret/zones/azure/${zone}/kubeconfig" | \
-            jq '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.client_certificate | @base64d, "clientKeyData": .data.client_key | @base64d }}'
+            jq -e '{"apiVersion": "client.authentication.k8s.io/v1beta1", "kind": "ExecCredential", "status": { "clientCertificateData": .data.client_certificate | @base64d, "clientKeyData": .data.client_key | @base64d }}' || return 1
     else
         log-error "Zone provider $zoneType not supported."
-        exit 1
+        return 1
     fi
-    exit 0
 }
 
 _check_refresh_zones(){
