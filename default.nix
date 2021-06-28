@@ -32,13 +32,6 @@ let
             src = pkgs.fetchzip {
               inherit url sha256;
             };
-            # cce pool import
-            patches = [
-              (super.fetchpatch {
-                url = "https://patch-diff.githubusercontent.com/raw/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/528.diff";
-                sha256 = "0nxh7blzrc6pmn2ddn1q6msmsyw5rla2x8pgq3gsz1fbgg5jikvs";
-              })
-            ];
             postBuild = "mv go/bin/${repo}{,_v${version}}";
             passthru.provider-source-address = "registry.terraform.io/toolbox/flexibleengine";
           }
