@@ -445,30 +445,26 @@ case "$COMMAND" in
         ;;
     make-terraform-shell)
         check_args_gt $# 1 "make-terraform-shell"
-        make-terraform-shell 1.0.0 "$@"
+        make-terraform-shell 1.0 "$@"
         ;;
     make-terraform12-shell)
         check_args_gt $# 1 "make-terraform12-shell"
-        log-warning "Consider using a newer version of terraform (1.0.0)"
-        log-warning "this release is deprecated. Use make-terraform-shell"
+        log-warning "This release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.12 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"
-        log-warning "Consider using a newer version of terraform (1.0.0)"
-        log-warning "this release is deprecated. Use make-terraform-shell"
+        log-warning "This release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.13 "$@"
         ;;
     make-terraform14-shell)
         check_args_gt $# 1 "make-terraform14-shell"
-        log-warning "Consider using a newer version of terraform (1.0.0)"
-        log-warning "this release is deprecated. Use make-terraform-shell"
+        log-warning "This release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.14 "$@"
         ;;
     make-terraform15-shell)
         check_args_gt $# 1 "make-terraform15-shell"
-        log-warning "Consider using a newer version of terraform (1.0.0)"
-        log-warning "this release is deprecated. Use make-terraform-shell"
+        log-warning "This release is deprecated. Use make-terraform-shell"
         make-terraform-shell 0.15 "$@"
         ;;
     help)
