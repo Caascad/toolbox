@@ -40,7 +40,7 @@ jobs:
         cd test
         toolbox update-shell ${GITHUB_SHA}
         nix-shell --run 'jq --help'
-    - name: make-terraform14-shell
+    - name: make-terraform-shell
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         cd test

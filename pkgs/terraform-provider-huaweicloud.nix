@@ -2,7 +2,6 @@
 , source
 , buildGoModule
 , fetchzip
-, fetchpatch
 }:
 
 buildGoModule rec {
