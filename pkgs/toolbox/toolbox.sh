@@ -93,11 +93,13 @@ _generateToolboxJSON() {
 
     if [ ! -f toolbox.json ]; then
         log "Writing toolbox.json file"
+        cdate=$(date "+%d-%m-%y")
         cat <<EOF > toolbox.json
 {
     "epoch": 1,
     "commit": "$commit",
-    "sha256": "$sha256"
+    "sha256": "$sha256",
+    "date": "$cdate"
 }
 EOF
     else
