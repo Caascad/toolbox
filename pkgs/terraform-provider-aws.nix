@@ -2,7 +2,6 @@
 , source
 , buildGoModule
 , fetchzip
-, fetchpatch
 }:
 
 buildGoModule rec {
@@ -11,7 +10,7 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-  vendorSha256 = "16kv76nph8sf7c6ma9w8qsdisq8k6aimki1ni6vlwr9gvfbx47si";
+  vendorSha256 = "1viy483yr89f4a8xgx5r8bvgx0xhcn628glmfkllgrzz53fn2w1a";
 
   subPackages = [ "." ];
 

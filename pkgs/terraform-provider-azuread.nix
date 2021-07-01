@@ -2,7 +2,6 @@
 , source
 , buildGoModule
 , fetchzip
-, fetchpatch
 }:
 
 buildGoModule rec {
@@ -16,13 +15,6 @@ buildGoModule rec {
   subPackages = [ "." ];
 
   doCheck = false;
-
-  patches = [
-    (fetchpatch {
-      url = "https://patch-diff.githubusercontent.com/raw/hashicorp/terraform-provider-azuread/pull/401.patch";
-      sha256 = "05s9dbzdfv97vgpqqq8mcraphdfnxc3rx5j8gg81ri48spyk32a4";
-    })
-  ];
 
   postInstall = "mv $out/bin/terraform-provider-azuread{,_v${version}}";
 
