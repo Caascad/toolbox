@@ -1,0 +1,11 @@
+# List of packages that will be ignored during the update process
+blacklist:
+  - concourse_6_4_1
+  - concourse_7_3_2
+# Map of mappings used as aliases when triggering a nix build. Key is se beginning  of the package name, Value is the "-A" argument to "nix-build"
+build_mappings:
+  terraform-provider: terraform-providers
+  kubespy: kubectl-plugins
+  kail: kubectl-plugins
+  ksniff: kubectl-plugins
+  kubectl-topology: kubectl-plugins

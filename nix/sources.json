@@ -10,6 +10,7 @@
         "type": "tarball",
         "url": "https://github.com/concourse/concourse/archive/v6.4.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm",
         "version": "6.4.1"
     },
     "concourse_7_3_2": {
@@ -23,6 +24,7 @@
         "type": "tarball",
         "url": "https://github.com/concourse/concourse/archive/v7.3.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0g1rjs7ss0q5j9hbz5kykrkvl1sg6nxl82jay8mln7y88d3fnjnz",
         "version": "7.3.2"
     },
     "cue": {
@@ -36,6 +38,7 @@
         "type": "tarball",
         "url": "https://github.com/cuelang/cue/archive/v0.4.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0xkaabfzqrg0pqdq7ah67yx132508l5kfr9xs98is79732a9a8kr",
         "version": "0.4.0"
     },
     "fly-wrapper": {
@@ -49,6 +52,7 @@
         "type": "tarball",
         "url": "https://github.com/Caascad/fly-wrapper/archive/8f9297797e1a08e7a28d95e5547282be464c9102.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "vendorSha256": "0sj78vba3302is2jxi9pv8w7zzl6lr00b2n359cjq5wcw2bq9hdd",
         "version": "0.0.4"
     },
     "helm-diff": {
@@ -75,6 +79,7 @@
         "type": "tarball",
         "url": "https://github.com/boz/kail/archive/v0.14.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "1d8k65g1sa0nl34vzg1ac51cynlpfvrbpdkcb7n5v1ab09q9lp4x",
         "version": "0.14.2"
     },
     "ksniff": {
@@ -88,6 +93,7 @@
         "type": "tarball",
         "url": "https://github.com/eldadru/ksniff/archive/v1.4.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0kp9nap64287g3cj0w1lxpgyvlbqkins8bwpwafixmb29l0xyixl",
         "version": "1.4.2"
     },
     "kubectl-node-shell": {
@@ -130,7 +136,7 @@
         "version": "0.3.3"
     },
     "loki": {
-        "branch": "master",
+        "branch": "main",
         "description": "Like Prometheus, but for logs.",
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
@@ -185,7 +191,8 @@
         "homepage": null,
         "owner": "starkandwayne",
         "repo": "safe",
-        "sha256": "12gzxrnyl890h79z9yx23m1wwgy8ahm74q4qwi8n2nh7ydq6mn2d",
+        "rev": "12gzxrnyl890h79z9yx23m1wwgy8ahm74q4qwi8n2nh7ydq6mn2d",
+        "sha256": "1ihpbsbjg1545n29l8gybk7kiy38vw0rjdgds4fiff4c2zh1fyba",
         "type": "tarball",
         "url": "https://github.com/starkandwayne/safe/archive/v1.5.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
@@ -215,6 +222,7 @@
         "type": "tarball",
         "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.47.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
+        "vendorSha256": "1viy483yr89f4a8xgx5r8bvgx0xhcn628glmfkllgrzz53fn2w1a",
         "version": "3.47.0"
     },
     "terraform-provider-azuread": {
@@ -239,7 +247,7 @@
         "rev": "1efab255881a23aa1a3c7c50a24bccb1c805eeef",
         "sha256": "0j66im78zwzszk7g82a46dhvcgkp9yak0p4x266z2nvzf949j17b",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.65.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.67.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
         "version": "2.65.0"
     },
@@ -267,6 +275,7 @@
         "type": "tarball",
         "url": "https://github.com/terraform-provider-concourse/terraform-provider-concourse/archive/v7.2.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0zp2iiq6zg9j2br6pk8hb60wf7bkn8x97c4887z7myxcwbjxivgl",
         "version": "7.2.1"
     },
     "terraform-provider-flexibleengine": {
@@ -304,7 +313,7 @@
         "rev": "ee00706fdb83c0835c07bad72e257c581a4292cc",
         "sha256": "0avir5a2807gnl7vj0mdwvmn9fica550h1zmnlf7rgfaprw5j3mj",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/refs/tags/v1.25.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.25.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.25.1"
     },
@@ -319,6 +328,7 @@
         "type": "tarball",
         "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.11.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "13v83agxhpd56qg1sdk8dkyi6ipac997cgl5y2w7imdbrn84qd23",
         "version": "1.11.2"
     },
     "terraform-provider-kubernetes": {
@@ -345,6 +355,7 @@
         "type": "tarball",
         "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/v0.2.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "03x2l6bdjmc1sy58xxkbm5akmzgyrmbq0d3ghyk2v1m1mj9gbj40",
         "version": "0.2.0"
     },
     "terraform-provider-rancher2": {
@@ -358,6 +369,7 @@
         "type": "tarball",
         "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.15.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "16vnn4hfs72nnc2l2kzbhnnbh0r9hv8mrpawgq2hf4klm93ywgk0",
         "version": "1.15.1"
     },
     "terraform-provider-vault": {
@@ -384,6 +396,7 @@
         "type": "tarball",
         "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0rpz8syingvj9s1wwhsdmhl2pcbwvj0zirgvgnp6653arwwlpqc8",
         "version": "0.3.0"
     },
     "velero": {
@@ -397,6 +410,7 @@
         "type": "tarball",
         "url": "https://github.com/vmware-tanzu/velero/archive/v1.6.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0jw20i3qb8rywf2xwk89b02n2kfgzjrrx4gwlg82f24wmkkqd080",
         "version": "1.6.1"
     }
 }

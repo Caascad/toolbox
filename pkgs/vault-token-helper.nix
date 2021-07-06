@@ -11,7 +11,7 @@ buildGoModule rec {
     inherit (source) url sha256;
   };
 
-  vendorSha256 = "0rpz8syingvj9s1wwhsdmhl2pcbwvj0zirgvgnp6653arwwlpqc8";
+  vendorSha256 = source.vendorSha256;
 
   doCheck = false;
 
