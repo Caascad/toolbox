@@ -36,7 +36,7 @@ rec {
       rev = "v${version}";
       sha256 = sources.kail.sha256;
     };
-    vendorSha256 = "1d8k65g1sa0nl34vzg1ac51cynlpfvrbpdkcb7n5v1ab09q9lp4x";
+    vendorSha256 = sources.kail.vendorSha256;
     subPackages = ["cmd/kail/"];
   };
 
@@ -52,7 +52,7 @@ rec {
       rev = "v${version}";
       sha256 = sources.ksniff.sha256;
     };
-    vendorSha256 = "0kp9nap64287g3cj0w1lxpgyvlbqkins8bwpwafixmb29l0xyixl";
+    vendorSha256 = sources.ksniff.vendorSha256;
     subPackages = ["cmd/"];
   };
 
