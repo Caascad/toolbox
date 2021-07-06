@@ -5,8 +5,10 @@ let
     url = "https://github.com/Caascad/toolbox/archive/${toolboxSrc.commit}.tar.gz";
     sha256 = toolboxSrc.sha256;
   }) {};
+
 in with toolbox; pkgs.runCommand "deps" {
   buildInputs = [
     pkgs.niv
+    (pkgs.python3.withPackages (p: [p.pyaml p.graphqlclient]))
   ];
 } ""
