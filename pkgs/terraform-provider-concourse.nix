@@ -10,7 +10,7 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-  vendorSha256 = "0azp1q7xavispqq2ib0k8n5kl0f40bnmj3c7vi8qghscl5al6psw";
+  vendorSha256 = "0zp2iiq6zg9j2br6pk8hb60wf7bkn8x97c4887z7myxcwbjxivgl";
 
   doCheck = false;
   preBuild = "rm -fr integration";
