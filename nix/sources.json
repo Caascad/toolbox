@@ -258,16 +258,16 @@
     },
     "terraform-provider-concourse": {
         "branch": "master",
-        "description": "A terraform provider for Concourse",
-        "homepage": null,
-        "owner": "alphagov",
+        "description": "RELEASE REPOSITORY FOR terraform-provider-concourse: development takes place in alphagov/terraform-provider-concourse",
+        "homepage": "https://github.com/alphagov/terraform-provider-concourse",
+        "owner": "terraform-provider-concourse",
         "repo": "terraform-provider-concourse",
-        "rev": "5ff605de4afef50551bf97ed56ba0c9f4c2730aa",
-        "sha256": "038hk2cixnpv6caya02iy1fkp7bxadna0ks1rfc8mywlml58b5pb",
+        "rev": "f507da95023e4888a73d3d549868d8accdd5e2eb",
+        "sha256": "125cd1ai156azip1hwvfwk7cfmjyjcxfda8ih5qcaljk4kpp1sq0",
         "type": "tarball",
-        "url": "https://github.com/alphagov/terraform-provider-concourse/archive/v6.2.0.tar.gz",
+        "url": "https://github.com/terraform-provider-concourse/terraform-provider-concourse/archive/v7.2.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "6.2.0"
+        "version": "7.2.1"
     },
     "terraform-provider-flexibleengine": {
         "branch": "master",
