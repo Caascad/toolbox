@@ -11,7 +11,7 @@ buildGoModule rec {
     inherit (source) url sha256;
   };
 
-  vendorSha256 = "13v83agxhpd56qg1sdk8dkyi6ipac997cgl5y2w7imdbrn84qd23";
+  vendorSha256 = source.vendorSha256;
   postInstall = "mv $out/bin/terraform-provider-kubectl{,_v${version}}";
 
   passthru.provider-source-address = "registry.terraform.io/toolbox/kubectl";

@@ -11,7 +11,7 @@ buildGoModule rec {
     inherit (source) url sha256;
   };
 
-  vendorSha256 = "16vnn4hfs72nnc2l2kzbhnnbh0r9hv8mrpawgq2hf4klm93ywgk0";
+  vendorSha256 = source.vendorSha256;
   postInstall = "mv $out/bin/terraform-provider-rancher2{,_v${version}}";
 
   passthru.provider-source-address = "registry.terraform.io/toolbox/rancher2";
