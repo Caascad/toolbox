@@ -23,7 +23,5 @@ jobs:
         skipPush: true
     - name: Build
       run: nix-build
-      env:
-        EXCLUDED_ARCHS: arm64
     - name: Build terraform providers
       run: nix-build -A terraform-providers
