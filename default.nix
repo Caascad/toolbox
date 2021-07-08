@@ -121,7 +121,7 @@ rec {
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
-                 saml2aws envsubst awscli restic azure-cli
+                 envsubst awscli restic azure-cli
                  terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1_0;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1_0" terraform_1_0;
@@ -176,6 +176,8 @@ rec {
   sd = import sources.sd.outPath { toolbox = ./.; };
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
+
+  saml2aws = pkgs.callPackage ./pkgs/saml2aws.nix {inherit saml2aws; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
