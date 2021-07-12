@@ -6,6 +6,7 @@
 buildGoModule rec {
   pname = "cue";
   version = source.version;
+  vendorSha256 = source.vendorSha256;
   src = fetchzip {
       inherit (source) url sha256;
   };

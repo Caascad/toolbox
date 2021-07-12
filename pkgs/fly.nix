@@ -27,7 +27,7 @@ let
       inherit (source) url sha256;
     };
 
-    vendorSha256 = goVendorSha256;
+    vendorSha256 = source.vendorSha256;
 
     subPackages = [ "fly" ];
 

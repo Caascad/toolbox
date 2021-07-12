@@ -16,17 +16,24 @@ source_file = "../nix/sources.json"
 
 def writefile(nixpkgs):
     fileh = open(source_file, 'w')
-    fileh.write(json.dumps(nixpkgs, indent=2, sort_keys=True))
+    fileh.write(json.dumps(nixpkgs, indent=4, sort_keys=True, ensure_ascii=False))
+    fileh.close()
+
+
+def readfile(filename=source_file):
+    filh = open(source_file)
+    nixpkgsf = json.load(filh)
     filh.close()
+    return nixpkgsf
 
 
-filh = open(source_file)
-nixpkgs = json.load(filh)
-filh.close()
 fileh = open("autoupdates.yml")
 conf = yaml.load(fileh, Loader=yaml.FullLoader)
 fileh.close()
 pkgsq = {}
+
+nixpkgs = readfile()
+
 for pkg in nixpkgs:
     if pkg not in conf['blacklist']:
         if 'version' in nixpkgs[pkg].keys():
@@ -53,16 +60,20 @@ for pkg in pkgsq:
             print(
                 pkg + " Latest Version: " + pkgsq[pkg]['c_version'] + " Version in source: " + pkgsq[pkg]['o_version'])
             subprocess.run(['niv', 'update', pkg, '-v', pkgsq[pkg]['c_version']], cwd=os.getcwd() + '/../', check=False,
-                           env={"GITHUB_TOKEN": os.getenv('GH_TOKEN'),"PATH":os.getenv('PATH')})
-            print(nixpkgs[pkg].keys())
+                           env={"GITHUB_TOKEN": os.getenv('GH_TOKEN'), "PATH": os.getenv('PATH')})
             if 'vendorSha256' in nixpkgs[pkg].keys():
+                if pkg.startswith('terraform-provider'):
+                    build_arg = 'terraform-providers'
+                else:
+                    build_arg = pkg
+                nixpkgs = readfile()
                 print('Need to update VendorSHA, launch build to fail ' + pkg)
-                nixpkgs[pkg]['vendorSha256'] = 'F00000000000000000000000000000000000000000000000000000000000000'
+                nixpkgs[pkg]['vendorSha256'] = '0000000000000000000000000a00000000000000000000000000'
                 writefile(nixpkgs)
-                fbuild = subprocess.run(['nix-build', '-A', 'terraform-providers'], check=False,
-                                        cwd=os.getcwd() + '/../')
-                print(sha.match(fbuild.stderr.decode()))
-                nixpkgs[pkg]['vendorSha256'] = sha.match(fbuild.stderr.decode())
+                fbuild = subprocess.run(['nix-build', '-A', build_arg], check=False,
+                                        cwd=os.getcwd() + '/../', capture_output=True)
+                print(sha.search(fbuild.stderr.decode()).group())
+                nixpkgs[pkg]['vendorSha256'] = sha.search(fbuild.stderr.decode()).group()
                 writefile(nixpkgs)
         else:
             print(pkg + " Up to date Version: " + pkgsq[pkg]['o_version'])
