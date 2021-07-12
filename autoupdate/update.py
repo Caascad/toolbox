@@ -7,16 +7,19 @@ import subprocess
 from graphqlclient import GraphQLClient
 from dotenv import load_dotenv
 import re
-sha=re.compile('(?<=got: {4}sha256:).*')
+
+sha = re.compile('(?<=got: {4}sha256:).*')
 
 load_dotenv()
-EMPTY_SHA='0000000000000000000000000000000000000000000000000000000000000000'
-source_file="../nix/sources.json"
+source_file = "../nix/sources.json"
+
 
 def writefile(nixpkgs):
     fileh = open(source_file, 'w')
-    fileh.write(json.dumps(nixpkgs))
+    fileh.write(json.dumps(nixpkgs, indent=2, sort_keys=True))
     filh.close()
+
+
 filh = open(source_file)
 nixpkgs = json.load(filh)
 filh.close()
@@ -49,13 +52,17 @@ for pkg in pkgsq:
         if pkgsq[pkg]['c_version'] != pkgsq[pkg]['o_version']:
             print(
                 pkg + " Latest Version: " + pkgsq[pkg]['c_version'] + " Version in source: " + pkgsq[pkg]['o_version'])
-            subprocess.run(['niv', 'update', pkg, '-v', pkgsq[pkg]['c_version']], cwd=os.getcwd() + '/../', check=False)
-            if 'vendorSha256' in pkgsq[pkg].keys():
-                print('Need to update VendorSHA, launch build to fail')
-                nixpkgs[pkg]['vendorSha256']=EMPTY_SHA
+            subprocess.run(['niv', 'update', pkg, '-v', pkgsq[pkg]['c_version']], cwd=os.getcwd() + '/../', check=False,
+                           env={"GITHUB_TOKEN": os.getenv('GH_TOKEN'),"PATH":os.getenv('PATH')})
+            print(nixpkgs[pkg].keys())
+            if 'vendorSha256' in nixpkgs[pkg].keys():
+                print('Need to update VendorSHA, launch build to fail ' + pkg)
+                nixpkgs[pkg]['vendorSha256'] = 'F00000000000000000000000000000000000000000000000000000000000000'
                 writefile(nixpkgs)
-                fbuild=subprocess.run(['nix-build','-A','terraform-providers'],check=False,capture_output=True)
-                nixpkgs[pkg]['vendorSha256']=sha=sha.match(fbuild.stderr.decode())
-                writefile()
+                fbuild = subprocess.run(['nix-build', '-A', 'terraform-providers'], check=False,
+                                        cwd=os.getcwd() + '/../')
+                print(sha.match(fbuild.stderr.decode()))
+                nixpkgs[pkg]['vendorSha256'] = sha.match(fbuild.stderr.decode())
+                writefile(nixpkgs)
         else:
             print(pkg + " Up to date Version: " + pkgsq[pkg]['o_version'])
