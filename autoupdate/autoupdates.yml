@@ -2,3 +2,9 @@
 blacklist:
   - concourse_6_4_1
   - concourse_7_3_2
+build_mappings:
+  terraform-provider: terraform-providers
+  kubespy: kubectl-plugins
+  kail: kubectl-plugins
+  ksniff: kubectl-plugins
+  kubectl-topology: kubectl-plugins
