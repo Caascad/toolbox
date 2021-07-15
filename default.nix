@@ -121,7 +121,7 @@ rec {
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
-                 envsubst awscli restic azure-cli
+                 envsubst awscli restic azure-cli python3
                  terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1_0;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1_0" terraform_1_0;
