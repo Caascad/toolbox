@@ -104,8 +104,11 @@ let
         );
 
       };
-      python38Packages = super.python38Packages // {
-        graphqlclient= pkgs.callPackage ./pkgs/python-graphqlclient.nix { };
+
+      python38 = super.python38.override {
+        packageOverrides = pself: psuper: {
+          graphqlclient = pself.callPackage ./pkgs/python-graphqlclient.nix { };
+        };
       };
 
     })];
@@ -181,8 +184,6 @@ rec {
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
   saml2aws = pkgs.callPackage ./pkgs/saml2aws.nix {inherit saml2aws; };
-
-  graphqlclient = pkgs.callPackage ./pkgs/python-graphqlclient.nix {pyutils=pkgs.python38Packages;};
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
