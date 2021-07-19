@@ -1,3 +1,0 @@
-pyyaml
-graphqlclient
-python-dotenv
