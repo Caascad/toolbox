@@ -1,0 +1,45 @@
+name: Autoupdate
+
+on:
+  # schedule:
+  #   - cron: '0 8 * * 1,3,5'
+  push:
+    branches:
+      - autoupdate
+
+concurrency:
+  cancel-in-progress: true
+  group: update
+
+jobs:
+  update:
+    name: Update Toolbox components
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Nix
+        uses: cachix/install-nix-action@v12
+      - name: Setup binary cache
+        uses: cachix/cachix-action@v8
+        with:
+          name: toolbox
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+      - name: Check for updates
+        run: |
+          cdate=`date '+%d-%m-%y'`
+          git config --global user.name $GITHUB_ACTOR
+          git config --global user.email "action@github.com"
+          nix-shell --command autoupdate/update.py
+          if [ `git status --porcelain=v2 | wc -l` -ne 0 ]; then
+            echo "Changes detected ! Creating pull request..."
+            git fetch --all -q
+            for branch in `git branch --list -a "*autoupdate-*" | awk -F'/' '{if($3 != "") print $3}'`;do
+              git push origin --delete ${branch} -q
+            done
+            git checkout -b autoupdate-${cdate} -q
+            git add -A
+            git commit -m "autoupdate: ${cdate}" -q
+            hub pull-request --push -m "autoupdate: ${cdate}"
+          fi
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
