@@ -1,0 +1,38 @@
+name: 'Update toolbox.json'
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Nix
+      uses: cachix/install-nix-action@v12
+    - name: Update toolbox.json
+      run: |
+        function fail(){
+          echo $1
+          exit 1
+        }
+
+        cdate=`date '+%d-%m-%y'`
+        tmp=$(mktemp)
+        url="https://github.com/${GITHUB_REPOSITORY}/archive/${GITHUB_SHA}.tar.gz"
+
+        git config --global user.name $GITHUB_ACTOR
+        git config --global user.email "action@github.com"
+
+        sha256=$(nix-prefetch-url --unpack "$url" 2>/dev/null) || fail "Download failed"
+        jq -e ".commit=\"${GITHUB_SHA}\" | .sha256=\"${sha256}\" | .date=\"${cdate}\"" toolbox.json > "$tmp"
+        [ $? -eq 0 ] && mv "$tmp" toolbox.json || fail "Failed to update toolbox.json"
+
+        if [ `git status --porcelain=v2 | wc -l` -ne 0 ]; then
+          echo "Updating toolbox.json file ..."
+          git add toolbox.json
+          git commit -m "[skip ci] update toolbox.json" -q
+          git push -q
+        fi
