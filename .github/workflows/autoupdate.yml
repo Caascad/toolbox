@@ -39,7 +39,7 @@ jobs:
             git checkout -b autoupdate-${cdate} -q
             git add -A
             git commit -m "autoupdate: ${cdate}" -q
-            hub pull-request --push -m "autoupdate: ${cdate}"
+            hub pull-request --push -F changes.md
           fi
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'

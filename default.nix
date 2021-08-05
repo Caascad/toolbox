@@ -10,6 +10,8 @@ let
 
       terraform-providers = super.terraform-providers // {
 
+        kubernetes-alpha= {};
+
         aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
           { source = sources.terraform-provider-aws; };
 

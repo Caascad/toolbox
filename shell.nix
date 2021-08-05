@@ -9,8 +9,7 @@ let
 in with toolbox; pkgs.runCommand "deps" {
   buildInputs = [
     pkgs.niv
-    graphqlclient
-    (pkgs.python3.withPackages (p: [p.pyaml]))
+    (pkgs.python3.withPackages (p: [p.pyaml p.graphqlclient]))
   ];
 }
 ""

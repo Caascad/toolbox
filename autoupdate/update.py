@@ -3,17 +3,18 @@ import json
 import os
 import re
 import subprocess
+import yaml
+from datetime import date
 
 from graphqlclient import GraphQLClient
-import yaml
 
 CONFIG_FILE = 'autoupdate/config.yml'
 SOURCE_FILE = 'nix/sources.json'
+CHANGES_FILE = 'changes.md'
 
 DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
 REGEX_SHA = '(?<=got: {4}sha256:).*'
 
-NO_VERSION = 'no_version'
 
 def get_packages_latest_release(token, pkgs):
     client = GraphQLClient('https://api.github.com/graphql')
@@ -28,11 +29,13 @@ def get_packages_latest_release(token, pkgs):
 
     return json.loads(client.execute(query))
 
+
 def load_config(file=CONFIG_FILE):
     f = open(file)
     config = yaml.load(f, Loader=yaml.FullLoader)
     f.close()
     return config
+
 
 def read_source_file(file=SOURCE_FILE):
     f = open(file)
@@ -40,28 +43,31 @@ def read_source_file(file=SOURCE_FILE):
     f.close()
     return source
 
+
 def write_source_file(pkgs, file=SOURCE_FILE):
     f = open(file, 'w')
     f.write(json.dumps(pkgs, indent=4, sort_keys=True, ensure_ascii=False))
-    f.close() 
+    f.close()
+
 
 def preflight_check(token):
     print('\033[1mRunning preflight check...')
     for cmd in [['-A', 'terraform-providers'], ['']]:
         try:
             subprocess.run(['nix-build'] + cmd, check=True,
-                                cwd=os.getcwd(), capture_output=True,
-                                env={'GITHUB_TOKEN': token, 'PATH': os.getenv('PATH')})
+                           cwd=os.getcwd(), capture_output=True,
+                           env={'GITHUB_TOKEN': token, 'PATH': os.getenv('PATH')})
         except subprocess.CalledProcessError as err:
             print('\033[91mPreFlight test failed :\n', err.stderr.decode(), '\033[0m')
             exit(1)
 
     print('\033[1mPreflight check succeeded !\nChecking for upgrades...\033[0m')
 
-def update_package(token, pkgs, pkg, version):
+
+def update_package(token, pkgs, pkg, version=None):
     cmd = ['niv', 'update', pkg]
 
-    if version == NO_VERSION:
+    if version is None:
         print('\033[1m\033[96m', pkg, '\033[0mwill be updated to the latest commit')
     else:
         cmd += ['-v', version]
@@ -71,17 +77,20 @@ def update_package(token, pkgs, pkg, version):
     try:
         print('\033[1m Updating\033[96m', pkg + '...\033[0m')
         subprocess.run(cmd, cwd=os.getcwd(),
-                    check=True, capture_output=True,
-                    env={"GITHUB_TOKEN": token, "PATH": os.getenv('PATH')})
+                       check=True, capture_output=True,
+                       env={"GITHUB_TOKEN": token, "PATH": os.getenv('PATH')})
     except subprocess.CalledProcessError as err:
         print('\033[91mError updating %s to version :\n', pkg, err.stderr.decode(), '\033[0m')
         exit(1)
 
+
 def main():
     token = os.environ['GITHUB_TOKEN']
+    changesh = open(CHANGES_FILE, 'w')
+    changesh.write('Autoupdate run on ' + date.today().strftime('%d-%m-%y') + '\n\n')
 
     config = load_config()
-    
+
     preflight_check(token)
 
     nixpkgs = read_source_file()
@@ -93,8 +102,6 @@ def main():
             pkgs[pkg]['repo'] = nixpkgs[pkg]['repo']
             if 'version' in nixpkgs[pkg].keys():
                 pkgs[pkg]['o_version'] = nixpkgs[pkg]['version']
-            else:
-                pkgs[pkg]['o_version'] = NO_VERSION
 
     result = get_packages_latest_release(token, pkgs)
 
@@ -103,6 +110,9 @@ def main():
         if len(nodes) > 0:
             pkgs[pkg]['c_version'] = nodes[0]['tagName'].replace('v', '')
             if pkgs[pkg]['c_version'] != pkgs[pkg]['o_version']:
+                changesh.write(
+                    '* Upgrading Package `' + pkg + '` : ' + pkgs[pkg]['o_version'] + ' -> ' + pkgs[pkg][
+                        'c_version'] + '\n')
                 update_package(token, pkgs, pkg, pkgs[pkg]['c_version'])
 
                 # Retrieve vendor sha by intentionally failing build to get the correct one
@@ -124,14 +134,17 @@ def main():
                         nixpkgs[pkg]['vendorSha256'] = sha.group()
                         write_source_file(nixpkgs)
                     else:
-                        print('\033[91mError retrieving vendor sha for package %s : %s', pkg, fbuild.stderr.decode(), '\033[0m')
-                        write_source_file(o_nixpkgs)
+                        print('\033[91mError retrieving vendor sha for package ', pkg, '\n', fbuild.stderr.decode(),
+                              '\033[0m')
                         exit(1)
 
             else:
-                print('\033[1m\033[96m', pkg, '\033[0mis up to date. Current version:\033[92m', pkgs[pkg]['o_version'], '\033[0m')
-        elif pkgs[pkg]['o_version'] == NO_VERSION:
-            update_package(token, pkgs, pkg, pkgs[pkg]['o_version'])
+                print('\033[1m\033[96m', pkg, '\033[0mis up to date. Current version:\033[92m', pkgs[pkg]['o_version'],
+                      '\033[0m')
+        elif 'o_version' not in pkgs[pkg].keys():
+            update_package(token, pkgs, pkg)
+    changesh.close()
+
 
 if __name__ == "__main__":
     main()
