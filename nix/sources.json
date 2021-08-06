@@ -239,7 +239,7 @@
         "version": "1.6.0"
     },
     "terraform-provider-azurerm": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform provider for Azure Resource Manager",
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
