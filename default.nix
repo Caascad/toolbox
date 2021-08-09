@@ -74,18 +74,8 @@ let
           }
         );
 
-        vault = super.terraform-providers.vault.overrideAttrs (old:
-          with sources.terraform-provider-vault; {
-            inherit version;
-            pname = repo;
-            goPackagePath = "github.com/hashicorp/${repo}";
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
-            passthru.provider-source-address = "registry.terraform.io/toolbox/vault";
-          }
-        );
+        vault = pkgs.callPackage ./pkgs/terraform-provider-vault.nix
+          { source = sources.terraform-provider-vault; };
 
         keycloak = super.terraform-providers.keycloak.overrideAttrs (old:
            {
