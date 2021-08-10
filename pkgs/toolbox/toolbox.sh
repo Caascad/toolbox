@@ -90,10 +90,9 @@ _generateToolboxJSON() {
     log "Using commit $commit for this development shell"
     log "Calculating sha256 for $url"
     sha256=$(nix-prefetch-url --unpack "$url" 2>/dev/null) || log-error "Download failed. Wrong commit?"
-
+    cdate=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits/"${commit}" |jq -r '.commit.committer.date')
     if [ ! -f toolbox.json ]; then
         log "Writing toolbox.json file"
-        cdate=$(date "+%d-%m-%y")
         cat <<EOF > toolbox.json
 {
     "epoch": 1,
@@ -105,7 +104,7 @@ EOF
     else
         tmp=$(mktemp)
         log "Updating toolbox.json file ..."
-        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\"" toolbox.json > "$tmp"
+        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\" | .date=\"${cdate}\"" toolbox.json > "$tmp"
         # shellcheck disable=SC2015,SC2181
         [ $? -eq 0 ] && mv "$tmp" toolbox.json || log-error "Failed to update toolbox.json"
         log "Done."
