@@ -1,7 +1,7 @@
 name: Autoupdate
 
 on:
-   schedule:
+  schedule:
     - cron: '0 6 * * 1,3,5'
 
 jobs:
@@ -9,6 +9,8 @@ jobs:
     timeout-minutes: 360
     name: Update Toolbox components
     runs-on: ubuntu-latest
+    outputs:
+      branch_name: '${{ steps.branch.outputs.branch }}'
     steps:
       - uses: actions/checkout@v2
       - name: Install Nix
@@ -17,23 +19,76 @@ jobs:
         uses: cachix/cachix-action@v8
         with:
           name: toolbox
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          skipPush: true
       - name: Check for updates
+        run : |
+          nix-shell --command autoupdate/update.py
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - id: branch
+        name: set branch name
+        run: echo ::set-output name=branch::autoupdate-$(date '+%d-%m-%y')
+      - name: push if updated
         run: |
-          cdate=`date '+%d-%m-%y'`
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
-          nix-shell --command autoupdate/update.py
           if [ `git status --porcelain=v2 | wc -l` -ne 0 ]; then
             echo "Changes detected ! Creating pull request..."
             git fetch --all
             for branch in `git branch --list -a "*autoupdate-*" | awk -F'/' '{if($3 != "") print $3}'`;do
               git push origin --delete ${branch} -q
             done
-            git checkout -b autoupdate-${cdate} -q
+            git checkout -b $BRANCH_NAME -q
+            mv changes.md changes_wip.md
             git add -A
-            git commit -m "autoupdate: ${cdate}" -q
-            hub pull-request --push -F changes.md
+            git commit -m "autoupdate: $(date '+%d-%m-%y')" -q
+            git push origin $BRANCH_NAME
+          else
+            exit 1
           fi
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          BRANCH_NAME: '${{ steps.branch.outputs.branch }}'
+  build:
+    needs:
+      - update
+    timeout-minutes: 360
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: '${{needs.update.outputs.branch_name}}'
+      - name: Install Nix
+        uses: cachix/install-nix-action@v12
+      - name: Setup binary cache
+        uses: cachix/cachix-action@v8
+        with:
+          name: toolbox
+          skipPush: true
+      - name: build packages
+        run: |
+          #nix-build
+          #nix-build -A terraform-providers
+  commit:
+    needs:
+      - build
+      - update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: '${{needs.update.outputs.branch_name}}'
+      - name: open pr
+        run: |
+          git config --global user.name $GITHUB_ACTOR
+          git config --global user.email "action@github.com"
+          cp changes_wip.md changes.md
+          git rm changes_wip.md
+          git commit --amend --no-edit
+          git push --force
+          hub pull-request -F changes.md -d
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
