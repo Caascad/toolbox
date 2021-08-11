@@ -1,9 +1,9 @@
 name: Autoupdate
 
 on:
-  schedule:
-    - cron: '0 6 * * 1,3,5'
-
+  push:
+    branches:
+      - nix_build
 jobs:
   update:
     timeout-minutes: 360
