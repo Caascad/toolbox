@@ -73,8 +73,8 @@ jobs:
           skipPush: true
       - name: build packages
         run: |
-          #nix-build
-          #nix-build -A terraform-providers
+          nix-build
+          nix-build -A terraform-providers
   commit:
     needs:
       - build
@@ -84,12 +84,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: '${{needs.update.outputs.branch_name}}'
+          fetch-depth: 2
       - name: open pr
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
-          git reset --hard HEAD^
+          cp changes_wip.md changes.md
+          git reset --hard "HEAD^"
           git push --force
-          hub pull-request -F changes_wip.md -d
+          hub pull-request -F changes.md -d
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          BRANCH_NAME: '${{needs.update.outputs.branch_name}}'
