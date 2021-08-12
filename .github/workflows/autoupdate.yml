@@ -39,9 +39,12 @@ jobs:
               git push origin --delete ${branch} -q
             done
             git checkout -b $BRANCH_NAME -q
-            mv changes.md changes_wip.md
+
             git add -A
             git commit -m "autoupdate: $(date '+%d-%m-%y')" -q
+            mv changes.md changes_wip.md
+            git add changes_wip.md
+            git commit -m "add update changelog"
             git push origin $BRANCH_NAME
           else
             exit 1
@@ -85,10 +88,8 @@ jobs:
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
-          cp changes_wip.md changes.md
-          git rm changes_wip.md
-          git commit --amend --no-edit
+          git reset --hard HEAD^
           git push --force
-          hub pull-request -F changes.md -d
+          hub pull-request -F changes_wip.md -d
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
