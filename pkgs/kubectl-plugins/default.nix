@@ -14,7 +14,6 @@ rec {
     source = sources.kubespy;
     cmdName = "kubespy";
     outCmdName = "kubectl-spy";
-    scriptPatches = [./kubespy.patch];
   };
 
   ctx = kubectx.overrideAttrs (old: {

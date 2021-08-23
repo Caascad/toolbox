@@ -128,12 +128,12 @@
         "homepage": "https://github.com/huazhihao/kubespy",
         "owner": "huazhihao",
         "repo": "kubespy",
-        "rev": "6066c32c7276b26c56dca019e4c56fef4bc29eb5",
-        "sha256": "1gcmvx60yfjcrd2wg0bfmzacj9r6dljvmmrjxy6sxavb3cwxdk6k",
+        "rev": "b08fae382b505d50c76e7ca18a57213003148862",
+        "sha256": "0l3f33qb4z01vwq450yksyml7mlhzi3cznalnnn9ivm9m650yi96",
         "type": "tarball",
-        "url": "https://github.com/huazhihao/kubespy/archive/v0.3.3.tar.gz",
+        "url": "https://github.com/huazhihao/kubespy/archive/v0.4.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.3.3"
+        "version": "0.4.0"
     },
     "loki": {
         "branch": "main",
@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2a23aa28d63f7ae956b3b26d36bcd87b214d044e",
-        "sha256": "1qc3zjp9f9aqbjs57p0k1m2p1xhs0pp22hsvl7z9jnvzic9s9phl",
+        "rev": "5bc8b980b9178ef9a4bb622320cf34e59ea2ea10",
+        "sha256": "1zw8cigi50q6qac9nvb981p276bp5ap96sbdfgzrjf9m6210g6rk",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/2a23aa28d63f7ae956b3b26d36bcd87b214d044e.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5bc8b980b9178ef9a4bb622320cf34e59ea2ea10.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
