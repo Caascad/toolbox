@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ce38fecabe49a76fcd08d03e7562b44b97109aa7",
-        "sha256": "08fxc7dh8pgf07515lpjnm19k3md7dss9qnnmlqdhb8v1rk0fi4m",
+        "rev": "755b77f858a81a5e6c7250a5ac3f18c6c68a6dbe",
+        "sha256": "04nlbhxdb0pw1dnq0r13bsrkggrxq9xxq4rwc34a45l32kfrkwhn",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/ce38fecabe49a76fcd08d03e7562b44b97109aa7.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/755b77f858a81a5e6c7250a5ac3f18c6c68a6dbe.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -217,13 +217,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "60996761fc5bab5b822a68eacde9560e45b42dff",
-        "sha256": "18izkkqn4yfn9xxcrd0517nkxb6ns3jscbbc9l9lf6phbz1xjixk",
+        "rev": "b8b7fee0e5cf4b469d8d4d2a2dc01ed13654a03a",
+        "sha256": "0fa61i172maanxmxz28mj7mkgrs9a5bs61mlvb0d5y97lv6pm2xg",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.55.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.56.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "0pmcyn7309qlkz9d2692w929sy6kwv3bzk0kk8082whfjzl48ry2",
-        "version": "3.55.0"
+        "vendorSha256": "1s22k4b2zq5n0pz6iqbqsf6f7chsbvkpdn432rvyshcryxlklfvl",
+        "version": "3.56.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -231,12 +231,12 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "521cbf681207107389274d2a2d34ea4e2f2b6817",
-        "sha256": "11vgn55r4jxqr2gcmih3kvi419k5ybyc5y73bskqayqyihyq7awc",
+        "rev": "848eff9a39de301a5de2cd6a15b30a3985052299",
+        "sha256": "1xi5fcfgwkhk8z48b406sw6y0640i1yis6j4zgh3k3n3ky6d69f3",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v1.6.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.0.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.0"
+        "version": "2.0.1"
     },
     "terraform-provider-azurerm": {
         "branch": "main",
@@ -244,12 +244,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "850cd1a982fce75cfa825cb24d675160ab7c2cd2",
-        "sha256": "19qrnszcgcvfx58fq91mvyzyc9pz0hmza2yvbws1pwry4yssgr38",
+        "rev": "f1e39e12e4ca1bb3479863ffaf9d74110f4c0701",
+        "sha256": "1axqfic6g6r7rfgx8yw1jshwfnwl37hps6rr0pmwjn10f4x78gwq",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.73.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.74.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.73.0"
+        "version": "2.74.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -310,12 +310,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "b9fc62dbfcad62c5d9b5461978e8128e9b28a163",
-        "sha256": "16rnhhbszypqfy0rkqiyhwg27j537cpbps79pm4zz4jrzdqi6vx6",
+        "rev": "16133cc4fccf7cfe086d31a5d624efa5bb761cc7",
+        "sha256": "18rfr4ys6lcdz8kgj43c75qg3r8wcmg1pqriwf7y35shrcbw549h",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.27.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.27.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.27.1"
+        "version": "1.27.2"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
@@ -364,13 +364,13 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "rancher",
         "repo": "terraform-provider-rancher2",
-        "rev": "4dce014dff356a1d42dd9106157224fa938475ee",
-        "sha256": "1m627k8k41r4nvzgw7s2x0b3aarcshslrlq5g7wscwa9jv8g7n1y",
+        "rev": "a9a03b4e438bb9da41e31a3d8c8f6bb7cebae4bc",
+        "sha256": "0hylx5b0jcaz7vvfy8nsgwqx6sbylakl9bkxf8zk6k91mqf706h1",
         "type": "tarball",
-        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.17.1.tar.gz",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.17.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "1b0bbr0frna4930i49im81cb87wd2xg7pj2g5rg4n9b8hvgxda5f",
-        "version": "1.17.1"
+        "version": "1.17.2"
     },
     "terraform-provider-vault": {
         "branch": "master",
