@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e4f82b37226678a75db48b77007a6cca4784a3a6",
-        "sha256": "1v8vhh143aaq9avi7qldfcf45rsr211ar7vdbz3abn1pdff7lvmc",
+        "rev": "cdbc8c9fb1aeb198e20a63782c0e8b40155afce8",
+        "sha256": "1xnysm9vv4qdg0lxq9k35bs00vpb8is683rl1mmi99f8kchzbjz6",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/e4f82b37226678a75db48b77007a6cca4784a3a6.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/cdbc8c9fb1aeb198e20a63782c0e8b40155afce8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -310,12 +310,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "52911c378e30b40659b4aa057f51665dedd690a0",
-        "sha256": "1kbv623630xd1zn0k3bc8m5hjvmqnw8sn8ywc7vp3vilslbzcpm5",
+        "rev": "4d6d94dcd2cc1756528f75f34dcac76c49463408",
+        "sha256": "05rr476x987p7cn31bg7p3zxx5z04lzz7sh66wcryil3dqg2fync",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.28.0.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.28.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.28.0"
+        "version": "1.28.1"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
