@@ -1,0 +1,33 @@
+diff --git a/cmd/helm3.go b/cmd/helm3.go
+index d65afb6..9aff962 100644
+--- a/cmd/helm3.go
++++ b/cmd/helm3.go
+@@ -126,19 +126,21 @@ func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
+ 		flags = append(flags, "--set-file", fileValue)
+ 	}
+ 
+-	if !d.disableValidation && !d.dryRun {
+-		flags = append(flags, "--validate")
+-	}
++	// if !d.disableValidation && !d.dryRun {
++	// 	flags = append(flags, "--validate")
++	// }
+ 
+-	if isUpgrade {
+-		flags = append(flags, "--is-upgrade")
+-	}
++	// if isUpgrade {
++	// 	flags = append(flags, "--is-upgrade")
++	// }
+ 
+ 	if d.disableOpenAPIValidation {
+ 		flags = append(flags, "--disable-openapi-validation")
+ 	}
+ 
+-	args := []string{"template", d.release, d.chart}
++	flags = append(flags, []string{"--install", "--dry-run"}...)
++
++	args := []string{"upgrade", d.release, d.chart}
+ 	args = append(args, flags...)
+ 	cmd := exec.Command(os.Getenv("HELM_BIN"), args...)
+ 	return outputWithRichError(cmd)

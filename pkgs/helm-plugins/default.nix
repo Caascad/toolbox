@@ -26,6 +26,7 @@
         url = "https://patch-diff.githubusercontent.com/raw/databus23/helm-diff/pull/261.patch";
         sha256 = "1ifvfshq8zhkg86qzgyvlzy9z33z62nxlskfg00g96m0vl0bkq9a";
       })
+      ./helm-diff-revision.patch
     ];
 
   };
