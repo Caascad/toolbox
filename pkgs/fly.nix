@@ -31,10 +31,7 @@ let
 
     subPackages = [ "fly" ];
 
-    buildFlagsArray = ''
-      -ldflags=
-        -X github.com/concourse/concourse.Version=${source.version}
-    '';
+    ldflags = "-X github.com/concourse/concourse.Version=${source.version}";
 
     postInstall = ''
       mkdir -p $out/share/bash-completion/completions
