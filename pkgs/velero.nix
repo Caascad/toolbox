@@ -18,8 +18,7 @@ buildGoModule rec {
 
   doCheck = false;
 
-  buildFlagsArray = ''
-    -ldflags=
+  ldflags = ''
       -X github.com/vmware-tanzu/velero/pkg/buildinfo.Version=${source.version}
       -X github.com/vmware-tanzu/velero/pkg/buildinfo.GitSHA=${source.rev}
   '';
