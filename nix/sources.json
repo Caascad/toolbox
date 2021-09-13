@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c678e050c1978110badd975274785265fc953a66",
-        "sha256": "1lxra4sc8ldk8s6wlx35l5n0i8aqcqsdj42m3hns051rqbmyn7zl",
+        "rev": "6d488e823899d2dc1c2ce746a900b3267e93c2f7",
+        "sha256": "08ns036j7zi4gbjfyhga4wj3prpfqsybkzr6drw90ka173vr42sg",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/c678e050c1978110badd975274785265fc953a66.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/6d488e823899d2dc1c2ce746a900b3267e93c2f7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -231,12 +231,12 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "dab434f9d84434578b10d538a7d7eca4082aaabe",
-        "sha256": "0rxhq49p20hsv42allb6gdgdl5zablsss2viw4irbsiwq7xs12jl",
+        "rev": "43b77e2e9dd57c938dbd193c77781ed32de16c65",
+        "sha256": "11vinv3dcxgzsaivvhni7frb2l81wzql2i1hl64a05l0ck9mlg7s",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.2.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.2.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.2.0"
+        "version": "2.2.1"
     },
     "terraform-provider-azurerm": {
         "branch": "main",
@@ -284,12 +284,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "1f49456921e2d5771eaba82b108f2c8eada764bd",
-        "sha256": "1b2vbfm980qskkwh51q6zjs3cwngf1krvlic468bg168c7gz9lhc",
+        "rev": "81196ab5584823744fdccc1b372ca19589d3b6ae",
+        "sha256": "02y92zdk47zq29vdclg10vfzkdlzy8zdwyah07df7b6nrbhkc6v4",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.23.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.24.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.23.0"
+        "version": "1.24.0"
     },
     "terraform-provider-helm": {
         "branch": "main",
