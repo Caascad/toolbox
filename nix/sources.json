@@ -291,6 +291,20 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.24.0"
     },
+    "terraform-provider-gitlab": {
+        "branch": "master",
+        "description": "Terraform GitLab provider",
+        "homepage": "https://www.terraform.io/docs/providers/gitlab/",
+        "owner": "gitlabhq",
+        "repo": "terraform-provider-gitlab",
+        "rev": "6152a19f30af35ffe75e1438e73f409ad4bb7086",
+        "sha256": "0bp65n2dqmcd884v3wnb785hsslim0j7giwwa62ch31al2sqrpd5",
+        "vendorSha256": "1bbi3wsawvfwrcg9wsk2zc5hyfnjgk752mpgql3qdik50kdx9g5a",
+        "type": "tarball",
+        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.7.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "3.7.0"
+    },
     "terraform-provider-helm": {
         "branch": "main",
         "description": "Terraform Helm provider",
