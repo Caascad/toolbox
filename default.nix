@@ -27,6 +27,9 @@ let
         concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
 
+        gitlab = pkgs.callPackage ./pkgs/terraform-provider-gitlab.nix
+          { source = sources.terraform-provider-gitlab; };
+
         flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
           with sources.terraform-provider-flexibleengine; {
             inherit version;
