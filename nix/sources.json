@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6d488e823899d2dc1c2ce746a900b3267e93c2f7",
-        "sha256": "08ns036j7zi4gbjfyhga4wj3prpfqsybkzr6drw90ka173vr42sg",
+        "rev": "dccb5f609ff05df0f6c765c4174113ef05ffc334",
+        "sha256": "14qw3l0mmaswsd15ymkaib309l0b93w14443sgn1ndd0h67yfzrx",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/6d488e823899d2dc1c2ce746a900b3267e93c2f7.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/dccb5f609ff05df0f6c765c4174113ef05ffc334.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -337,12 +337,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "a13b15ba781844d74204015a4fa7facd068dd5c5",
-        "sha256": "0mk0f12yy58gjkki7xpf9bjfw9h9zdgby2b4bddqp5csq11payhd",
+        "rev": "d055fe24a82df6c5ce130a765971b3d0aba1bb83",
+        "sha256": "1hp3bwhlfiwf1a4l6xfldwdxmyjs4nq3n8g343grjya7ibbhh4sg",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.4.1.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.5.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.4.1"
+        "version": "2.5.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
