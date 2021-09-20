@@ -154,10 +154,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
-        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
+        "rev": "65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e",
+        "sha256": "17mirpsx5wyw262fpsd6n6m47jcgw8k2bwcp1iwdnrlzy4dhcgqh",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "71c72fdc38689701fd950d4ef91f8defb3f451cb",
-        "sha256": "1ahnsv00nlza4mrc4b88pqa785flf0b085549kvnk0snbl2fnmqz",
+        "rev": "0a44482ab55fc7e087087ed88682fba32184f12a",
+        "sha256": "087295c3rf1acnavf3y6dyd1k517nii4g47qwypvnxbg94whmfl8",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/71c72fdc38689701fd950d4ef91f8defb3f451cb.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/0a44482ab55fc7e087087ed88682fba32184f12a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -284,12 +284,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "81196ab5584823744fdccc1b372ca19589d3b6ae",
-        "sha256": "02y92zdk47zq29vdclg10vfzkdlzy8zdwyah07df7b6nrbhkc6v4",
+        "rev": "63571ef07f71cfce3e30f111428e517f66b6bb4f",
+        "sha256": "0mrij6zbhv5ijm3v6l2bjdxhy94xrb9i0dpvm162cklid8z40psn",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.24.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.24.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.24.0"
+        "version": "1.24.1"
     },
     "terraform-provider-gitlab": {
         "branch": "master",
@@ -378,13 +378,13 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "rancher",
         "repo": "terraform-provider-rancher2",
-        "rev": "a9a03b4e438bb9da41e31a3d8c8f6bb7cebae4bc",
-        "sha256": "0hylx5b0jcaz7vvfy8nsgwqx6sbylakl9bkxf8zk6k91mqf706h1",
+        "rev": "6c5b292a4327afacb01f05f9cc5ed20f55653e21",
+        "sha256": "1j43ivs9qcmikv8yy6mxxzziw4rajnnaivmkcl230p0a6q39f0vb",
         "type": "tarball",
-        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.17.2.tar.gz",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.20.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1b0bbr0frna4930i49im81cb87wd2xg7pj2g5rg4n9b8hvgxda5f",
-        "version": "1.17.2"
+        "vendorSha256": "0lkyci6d26k87g80h7cyd722gldx89xnh7hgxvf8ryybdb69y916",
+        "version": "1.20.0"
     },
     "terraform-provider-vault": {
         "branch": "master",
