@@ -174,7 +174,9 @@ setup() {
     fi
     mkdir -p "${CACHE_DIR}"
     mkdir -p "${lockPath}"
+}
 
+update_context() {
     if [ $proxyMode -eq 0 ] && ! cluster_exists "tunnel"; then
         run "kubectl config set-cluster tunnel --server https://localhost:${localPort} --insecure-skip-tls-verify=true"
     fi
@@ -521,6 +523,7 @@ unset KUBECONFIG
 
 [ "$zone" == "" ] && status
 
+setup
 check_cache_timeout
 refresh_zones_or_cache
 
@@ -547,8 +550,8 @@ if zone_exists "${zone}"; then
         exit 0
     }
 
-    setup
     kill_tunnel
+    update_context
     configure_kubeconfig
     [ $proxyMode -eq 0 ] && start_tunnel
 
