@@ -383,8 +383,9 @@ refresh_zones_or_cache() {
 refresh_zones() {
     log_debug "Refreshing caascad-zones..."
     local httpCode
-    httpCode="$(curl -w "%{response_code}" --connect-timeout 2 -s -o "${CAASCAD_ZONES_FILE}.tmp" "${CAASCAD_ZONES_URL}")" || { [ "${httpCode}" != "200" ] && log-error "Refreshing caascad-zones failed!" && return 1; }
-    mv "${CAASCAD_ZONES_FILE}.tmp" "${CAASCAD_ZONES_FILE}" || { log-error "Unable to write ${CAASCAD_ZONES_FILE}" && return 1; }
+    httpCode="$(curl -w "%{response_code}" --connect-timeout 2 -s -o "${CAASCAD_ZONES_FILE}.tmp" "${CAASCAD_ZONES_URL}")"
+    [ "${httpCode}" != "200" ] && { log-error "Refreshing caascad-zones failed!"; return 1; }
+    mv "${CAASCAD_ZONES_FILE}.tmp" "${CAASCAD_ZONES_FILE}" || { log-error "Unable to write ${CAASCAD_ZONES_FILE}"; return 1; }
 }
 
 zone_exists() {
@@ -506,7 +507,7 @@ while (("$#")); do
         exit 1
         ;;
     *)
-        [ "$zone" != "" ] && (log-error "too much arguments" && usage && exit 1)
+        [ "$zone" != "" ] && { log-error "too much arguments"; usage; exit 1; }
         zone=$1
         shift
         ;;
@@ -514,8 +515,8 @@ while (("$#")); do
 done
 
 exitNow=0
-[ "${cleanCache}" -eq 1 ] && clean_cache && exitNow=1
-[ "${forceUnlock}" -eq 1 ] && force_unlock && exitNow=1
+[ "${cleanCache}" -eq 1 ] && { clean_cache; exitNow=1; }
+[ "${forceUnlock}" -eq 1 ] && { force_unlock; exitNow=1; }
 [ "${exitNow}" -eq 1 ] && exit 0
 
 # Makes sure to use ~/.kube/config
