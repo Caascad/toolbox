@@ -13,11 +13,14 @@
 
 stdenv.mkDerivation rec {
   pname = "kswitch";
-  version = "1.8.5";
+  version = "1.8.6";
 
   buildInputs = [ makeWrapper ];
-  passAsFile = [ "buildCommand" ];
-  buildCommand = ''
+
+  dontBuild = true;
+  dontConfigure = true;
+  unpackPhase = ":";
+  installPhase = ''
     mkdir -p $out/bin $out/share/bash-completion/completions
     cp ${./kswitch.sh} $out/bin/kswitch
     chmod +x $out/bin/kswitch
