@@ -387,7 +387,7 @@
         "version": "1.20.0"
     },
     "terraform-provider-vault": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform Vault provider",
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
