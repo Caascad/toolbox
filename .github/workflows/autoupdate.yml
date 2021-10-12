@@ -6,7 +6,7 @@ on:
 
 jobs:
   update:
-    timeout-minutes: 360
+    timeout-minutes: 600
     name: Update Toolbox components
     runs-on: ubuntu-latest
     outputs:
@@ -54,7 +54,7 @@ jobs:
   build:
     needs:
       - update
-    timeout-minutes: 360
+    timeout-minutes: 600
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
