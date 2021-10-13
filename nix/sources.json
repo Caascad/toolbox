@@ -166,10 +166,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "481c1c7373049da4213ac8e0bc60841d1bb8f80c",
-        "sha256": "1nkc1rwcx1picyidpm064rck7lbi1vzbmbc6hns3b6w8nmvkailf",
+        "rev": "969817530539459bd39b71041f6c8b57f5cbf680",
+        "sha256": "0kbmalrvh84r6slhjpjm7npws4rlpqr96785xi5qb3ffz5b0wa7y",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/481c1c7373049da4213ac8e0bc60841d1bb8f80c.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/969817530539459bd39b71041f6c8b57f5cbf680.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -324,12 +324,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "9e9916a3da52863519829258beee1af4ca770a18",
-        "sha256": "1xp86ffbkclp2w65v5jl5idd3hp0402fs6pkqbn0bvfv1h44wycr",
+        "rev": "22ec9e0083da6477cd2f3bcf22f7a96bc705917b",
+        "sha256": "1bng9clr4yxwi64h4ikadbzwd85669zxp93ks4gvh1cks0dl0682",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.29.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.29.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.29.1"
+        "version": "1.29.2"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
@@ -337,13 +337,13 @@
         "homepage": "https://registry.terraform.io/providers/gavinbunney/kubectl",
         "owner": "gavinbunney",
         "repo": "terraform-provider-kubectl",
-        "rev": "0ab34bd0ea10b32cab47ff66a5153f8644a0c15d",
-        "sha256": "0kds89xmhm9klj6cilfrnqxdk6yw9cpmwryy0bfgg0961szwvcwr",
+        "rev": "02b422d5e40703a5fb3e4eacced13280f8b9e500",
+        "sha256": "0bsn9gjnh76axv53rvf56nfgw6snf1wd44ia5c4yaj6lsn3j8zvf",
         "type": "tarball",
-        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.11.3.tar.gz",
+        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.13.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "1ahxhb6ws1mq4x7nbww8di0b19z6669gn18scqipvxcvmsihfx4m",
-        "version": "1.11.3"
+        "version": "1.13.0"
     },
     "terraform-provider-kubernetes": {
         "branch": "main",
