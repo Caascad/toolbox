@@ -5,7 +5,7 @@ set -euo pipefail
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
 OS_CONFIG="${CONFIG}/os"
-CAASCAD_ZONES_URL="https://git.corp.cloudwatt.com/caascad/caascad-zones/raw/master/zones.json"
+CAASCAD_ZONES_URL="https://git.corp.caascad.com/caascad/caascad-zones/raw/master/zones.json"
 CAASCAD_ZONES_FILE="${CONFIG}/caascad-zones.json"
 CURRENT_FILE="${OS_CONFIG}/current"
 
