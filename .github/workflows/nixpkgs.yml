@@ -1,13 +1,13 @@
-name: Autoupdate packages
+name: Nixpkgs update
 
 on:
   schedule:
-    - cron: '0 6 * * 1,3,5'
+    - cron: '0 0 1 * *'
 
 jobs:
   update:
     timeout-minutes: 600
-    name: Update Toolbox components
+    name: Update nixpkgs
     runs-on: ubuntu-latest
     outputs:
       branch_name: '${{ steps.branch.outputs.branch }}'
@@ -22,35 +22,33 @@ jobs:
           skipPush: true
       - name: Check for updates
         run : |
-          nix-shell --command autoupdate/update.py
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          nix-shell --command "niv update nixpkgs"
       - id: branch
         name: set branch name
-        run: echo ::set-output name=branch::autoupdate-packages-$(date '+%d-%m-%y')
-      - name: push if updated
+        run: echo ::set-output name=branch::autoupdate-nixpkgs-$(date '+%d-%m-%y')
+      - name: Install packages
+        run: sudo apt-get install jq
+      - name: Push if updated
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
           if [ `git status --porcelain=v2 | wc -l` -ne 0 ]; then
             echo "Changes detected ! Creating pull request..."
             git fetch --all
-            for branch in `git branch --list -a "*autoupdate-packages-*" | awk -F'/' '{if($3 != "") print $3}'`;do
+            for branch in `git branch --list -a "*autoupdate-nixpkgs-*" | awk -F'/' '{if($3 != "") print $3}'`;do
               git push origin --delete ${branch} -q
             done
+            rev=$(jq -r .nixpkgs.rev < nix/sources.json)
             git checkout -b $BRANCH_NAME -q
             git add -A
-            git commit -m "autoupdate: $(date '+%d-%m-%y')" -q
-            mv changes.md changes_wip.md
-            git add changes_wip.md
-            git commit -m "add update changelog"
+            git commit -m "nixpkgs: update to ${rev}" -q
             git push origin $BRANCH_NAME
           else
             exit 1
           fi
         env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           BRANCH_NAME: '${{ steps.branch.outputs.branch }}'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
   build:
     needs:
       - update
@@ -88,9 +86,6 @@ jobs:
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
-          cp changes_wip.md changes.md
-          git reset --hard "HEAD^"
-          git push --force
-          hub pull-request -F changes.md
+          hub pull-request
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
