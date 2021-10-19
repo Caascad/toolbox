@@ -175,11 +175,11 @@ rec {
 
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
-  sd = import sources.sd.outPath { toolbox = ./.; };
+  sd = import ../sd { inherit pkgs; };
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
-  saml2aws = pkgs.callPackage ./pkgs/saml2aws.nix {inherit saml2aws; };
+  saml2aws = pkgs.callPackage ./pkgs/saml2aws.nix { inherit saml2aws; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
