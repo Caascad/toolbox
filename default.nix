@@ -175,7 +175,7 @@ rec {
 
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
-  sd = import ../sd { inherit pkgs; };
+  sd = import sources.sd.outPath { inherit pkgs; };
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
