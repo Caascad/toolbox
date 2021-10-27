@@ -169,6 +169,8 @@ rec {
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
+  mkdocs = pkgs.callPackage ./pkgs/mkdocs.nix { python = pkgs.python39; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
