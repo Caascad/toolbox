@@ -352,11 +352,11 @@
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
         "rev": "9497a7bbb22b74dd205d6f1bb7de1b60b6db0e71",
-        "sha256": "1hq7qs7ki08nsk8by32d8c50zlwvcbczq3zrq2ld6mznz3j2cf4i",
+        "sha256": "164x0ddgqk3bj0za4h9kz69npgr4cw7w5hnl0pmxsgvsb04vwc0g",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.6.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.6.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.6.0"
+        "version": "2.6.1"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
@@ -406,13 +406,13 @@
         "homepage": "",
         "owner": "joemiller",
         "repo": "vault-token-helper",
-        "rev": "7a288ac42409493da87817c3c71a93dff34ed432",
-        "sha256": "059czghnv067hf7jmlz7rhqif8g62px66lb43y9a2212xq11kr8c",
+        "rev": "4eb8591fbe7259309793616f8b2d5a35e7c9adda",
+        "sha256": "0947fihh2w2i7qh2095gyvfhrzknfjhjcb2670khgakqvrnc3l10",
         "type": "tarball",
-        "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.5.tar.gz",
+        "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "0sg52cx889a48587ip1mxdaagvjfvmz0d2q19r4r2pk9xs77q3g0",
-        "version": "0.3.5"
+        "version": "0.3.6"
     },
     "velero": {
         "branch": "main",
