@@ -37,13 +37,6 @@ let
             src = pkgs.fetchzip {
               inherit url sha256;
             };
-            patches = [
-              # Allow to specify CCE service sub-network
-              (super.fetchpatch {
-                url = "https://patch-diff.githubusercontent.com/raw/FlexibleEngineCloud/terraform-provider-flexibleengine/pull/636.patch";
-                sha256 = "1n0567ixi7v1nmi5fh66qbgcjxzp8qw7vppmygfclggyah4846w4";
-              })
-            ];
             postBuild = "mv go/bin/${repo}{,_v${version}}";
             passthru.provider-source-address = "registry.terraform.io/toolbox/flexibleengine";
           }
