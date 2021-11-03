@@ -67,4 +67,20 @@ rec {
     vendorSha256 = "18j6lv4aar1fwr9cb186j0mb0kirvhx8m2k98fjqpx50dmiqb695";
     subPackages = ["cmd/kubectl-topology"];
   };
+
+  ketall = buildGoModule rec {
+    pname = "kubectl-ketall";
+    version = sources.ketall.version;
+    src = fetchFromGitHub {
+      owner = sources.ketall.owner;
+      repo = sources.ketall.repo;
+      rev = "v${version}";
+      sha256 = sources.ketall.sha256;
+    };
+    vendorSha256 = "1bp5bcxbszhxy0jzqhvyv24zqhljk9221m7hgr45h8bzpckxc5wp";
+    postInstall = ''
+      mv $out/bin/ketall $out/bin/kubectl-ketall
+    '';
+  };
+
 }
