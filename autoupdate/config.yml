@@ -11,3 +11,4 @@ build_mappings:
   kail: kubectl-plugins
   ksniff: kubectl-plugins
   kubectl-topology: kubectl-plugins
+  ketall: kubectl-plugins
