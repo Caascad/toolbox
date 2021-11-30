@@ -94,7 +94,7 @@ unlock() {
     local lock
     lock="${lockPath}/$*.lock"
     rm -r "${lock}" 2>/dev/null &&
-        unset LOCKS["$*"] &&
+        unset 'LOCKS["$*"]' &&
         log_debug "Lock released: ${lock}" &&
         return 0
     log_debug "Cannot release lock: ${lock}" && return 1
