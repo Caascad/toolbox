@@ -381,9 +381,8 @@
         "sha256": "1dpnzfrggbg79ph631qs3fpp9wcdp5wyx1ing0cnj71ihzf8p7my",
         "type": "tarball",
         "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/fa8f4c8641b2efd965292423e4054fd082e15dc2.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "vendorSha256": "0h674ryb0qzykivq9rdpks1islxvyyplylzl921zbrw557a3g1c7",
-        "version": "0.2.0+caascad"
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "vendorSha256": "0h674ryb0qzykivq9rdpks1islxvyyplylzl921zbrw557a3g1c7"
     },
     "terraform-provider-rancher2": {
         "branch": "master",
