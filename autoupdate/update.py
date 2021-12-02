@@ -14,8 +14,7 @@ SOURCE_FILE = 'nix/sources.json'
 CHANGES_FILE = 'changes.md'
 
 DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
-re_sha = re.compile('(?<=got: {4}sha256:).*')
-
+re_sha = re.compile('(?<=got: {4})(sha256:)?(.*)')
 
 def get_packages_latest_release(token, pkgs):
     client = GraphQLClient('https://api.github.com/graphql')
