@@ -225,12 +225,12 @@
         "version": "1.0.3"
     },
     "terraform-provider-aws": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform AWS provider",
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "b8b7fee0e5cf4b469d8d4d2a2dc01ed13654a03a",
+        "rev": "39277c077795d7022cdb05aae7b9e8f8ddd5eaa9",
         "sha256": "1japzxw7chr9cr5dhna3jmh1aq2wr3l866dcih62swiz6w0r11md",
         "type": "tarball",
         "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.63.0.tar.gz",
