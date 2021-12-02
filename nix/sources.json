@@ -310,13 +310,13 @@
         "homepage": "https://www.terraform.io/docs/providers/gitlab/",
         "owner": "gitlabhq",
         "repo": "terraform-provider-gitlab",
-        "rev": "6152a19f30af35ffe75e1438e73f409ad4bb7086",
-        "sha256": "0bp65n2dqmcd884v3wnb785hsslim0j7giwwa62ch31al2sqrpd5",
+        "rev": "76764869680cb8dc31899333ecec8003f6727b8a",
+        "sha256": "0ha6lp0z3lqdk05fhggdgdz50dm7z6ksn648khp44n7in0c0c5pj",
         "type": "tarball",
-        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.7.0.tar.gz",
+        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1bbi3wsawvfwrcg9wsk2zc5hyfnjgk752mpgql3qdik50kdx9g5a",
-        "version": "3.7.0"
+        "vendorSha256": "sha256-UJaYjESBAFSWWF/FD3fgf+aa8WaAVgH1FJ1ICpRPVR8=",
+        "version": "3.8.0"
     },
     "terraform-provider-helm": {
         "branch": "main",

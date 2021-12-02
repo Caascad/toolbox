@@ -16,7 +16,7 @@ buildGoModule rec {
   patches = [
     (fetchpatch {
       url = "https://patch-diff.githubusercontent.com/raw/gitlabhq/terraform-provider-gitlab/pull/716.diff";
-      sha256 =  "1rp63ww2ym0zlfqh20ixis0csqkin6fs11smvzdkbpnsvdz6da8b";
+      sha256 = "sha256-Md3JW2gUwROw39FaoCk6IaEZ3LQFc4zjBovMkPsMBIc=";
     })
   ];
 
