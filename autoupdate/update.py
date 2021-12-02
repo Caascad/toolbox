@@ -16,16 +16,14 @@ CHANGES_FILE = 'changes.md'
 DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
 re_sha = re.compile('(?<=got: {4})(sha256:)?(.*)')
 
-def get_packages_latest_release(token, pkgs):
+def get_package_latest_release(token, name, props):
     client = GraphQLClient('https://api.github.com/graphql')
     client.inject_token('bearer ' + token)
 
     query = '{'
-    for pkg, props in pkgs.items():
-        props['alias'] = pkg.replace('-', '')
-        query += '%s:repository(owner:"%s",name:"%s"){releases(last:1){nodes{tagName}}}' % (
-            props['alias'], props['owner'], props[
-                'repo'])
+    props['alias'] = name.replace('-', '')
+    query += '%s:repository(owner:"%s",name:"%s"){releases(last:1){nodes{tagName}}}' % (
+        props['alias'], props['owner'], props['repo'])
     query += '}'
 
     return json.loads(client.execute(query))
@@ -114,7 +112,8 @@ def main():
 
     config = load_config()
 
-    preflight_check(token)
+    # Note(JPB): no need to test the current build
+    # preflight_check(token)
 
     nixpkgs = read_source_file()
     pkgs = {}
@@ -122,14 +121,23 @@ def main():
         if pkg not in config['blacklist']:
             pkgs[pkg] = {
                 'owner': props['owner'],
-                'repo': props['repo']}
+                'repo': props['repo'],
+                'o_version': None,
+            }
             if 'version' in nixpkgs[pkg].keys():
                 pkgs[pkg]['o_version'] = props['version']
 
-    result = get_packages_latest_release(token, pkgs)
-
     for pkg, props in pkgs.items():
-        nodes = result['data'][props['alias']]['releases']['nodes']
+        # Not using a tagged release
+        if props['o_version'] is None:
+            update_package(token, pkg, props)
+            # Retrieve vendor sha by intentionally failing build to get the correct one
+            if 'vendorSha256' in nixpkgs[pkg]:
+                update_vendor_sha(pkg, config)
+            continue
+
+        # Check for new releases
+        nodes = get_package_latest_release(token, pkg, props)['data'][props['alias']]['releases']['nodes']
         if len(nodes) > 0:
             props['c_version'] = nodes[0]['tagName'].replace('v', '')
             if props['c_version'] != props['o_version']:
@@ -143,8 +151,6 @@ def main():
             else:
                 print('\033[1m\033[96m', pkg, '\033[0mis up to date. Current version:\033[92m', props['o_version'],
                       '\033[0m')
-        elif 'o_version' not in props:
-            update_package(token, pkg, props)
     changesh.close()
 
 
