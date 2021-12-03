@@ -154,12 +154,12 @@
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "1ec0a31b3309b1920b340539c320e38cd8b75b5b",
-        "sha256": "138cwas92q16npi5m9khbspwzv43fijpiaxwx2dz59vq25akf60b",
+        "rev": "e573a4d1a2d6f6ba627773cd8a24eacdd5a1b73e",
+        "sha256": "026hr0lih7h918306lfsywd5gr04srka535bxyzpgdck0wcf3ca0",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v2.3.0.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.4.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.3.0"
+        "version": "2.4.1"
     },
     "niv": {
         "branch": "master",
@@ -167,10 +167,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e",
-        "sha256": "17mirpsx5wyw262fpsd6n6m47jcgw8k2bwcp1iwdnrlzy4dhcgqh",
+        "rev": "5830a4dd348d77e39a0f3c4c762ff2663b602d4c",
+        "sha256": "1d3lsrqvci4qz2hwjrcnd8h5vfkg8aypq3sjd4g3izbc8frwz5sm",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/65a61b147f307d24bfd0a5cd56ce7d7b7cc61d2e.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/5830a4dd348d77e39a0f3c4c762ff2663b602d4c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -230,13 +230,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "39277c077795d7022cdb05aae7b9e8f8ddd5eaa9",
-        "sha256": "1japzxw7chr9cr5dhna3jmh1aq2wr3l866dcih62swiz6w0r11md",
+        "rev": "3540d70dcd51f60f0bd544c311d58cce4b65fd78",
+        "sha256": "1ji6y1krdac93samrjgvz64snxnxkyfzmcrn8m1gca5qhfbxrb5x",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.63.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.68.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "17ysp0c3avfhl4qrcbl0kcrxy1fs4pbabvf16zlikqqz05gsizj2",
-        "version": "3.63.0"
+        "vendorSha256": "sha256-ncOD9xS4qysx1kAmKGuApJ8i53erx4pqCfdIQVfO7J4=",
+        "version": "3.68.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -244,12 +244,12 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "934f1654736d4b32c6269c70502b585fdbfea32d",
-        "sha256": "1ay0hi0ws947kipisw2qsbwwd2snfzmh7l34hpp1hclz6fd09dhr",
+        "rev": "263fec82c6034b643834a322abfc50a70268f13a",
+        "sha256": "1rjmspkn1kbjx36djwazs40xhdfc639lx08nw0alyjxrhi0q8hfn",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.8.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.11.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.8.0"
+        "version": "2.11.0"
     },
     "terraform-provider-azurerm": {
         "branch": "main",
@@ -257,12 +257,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "59a5883e7cb28b36b5988b1c35175f65b57a0653",
-        "sha256": "0nr08czyixakrzr7s6vj4kcs7z140nnxsvragfn62asp0zi2xixx",
+        "rev": "d966a79a5f8a08305b198bfe6f0edb67d86fdea9",
+        "sha256": "1xm4rvxb2w22m559fb1wsra7l4x6zmdf2m6l4iaqizkc9cl6wrc6",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.83.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.88.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.83.0"
+        "version": "2.88.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -297,12 +297,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "ef95f21faa5a1d9d2eb5d7d4ba4c4b6f0b2503e6",
-        "sha256": "1ii0ssffzjarpvvd0hxgxz48mm2l6l4av03g7k755s0n2qdxbsjy",
+        "rev": "9ad7d6eed40be8c1a18e4045b00de934687a3c3c",
+        "sha256": "0ymdihixvg33ar8z43h5kimkfc4da84mfmw3x6g3pwh2ld61wiyz",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.25.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.25.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.25.0"
+        "version": "1.25.1"
     },
     "terraform-provider-gitlab": {
         "branch": "master",
@@ -324,12 +324,12 @@
         "homepage": "https://www.terraform.io/docs/providers/helm/",
         "owner": "hashicorp",
         "repo": "terraform-provider-helm",
-        "rev": "41034c34b401ae7d4e83cee1269dae0bd1ea4950",
-        "sha256": "03x8kcz6k3gfy688i046arz35l2440sdl57p6h8rnxy0d4fyfps4",
+        "rev": "561569273bc30acae2cb35a22778a49bb17d015b",
+        "sha256": "1lkkydjmm99qmj9bl498swdil909akznhvlqpwr4m67imwlzi1cy",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.2.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.4.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.2.0"
+        "version": "2.4.1"
     },
     "terraform-provider-huaweicloud": {
         "branch": "master",
@@ -337,12 +337,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "4f5e79db94416864c2bd40ec5ebf8711cb2b19c9",
-        "sha256": "09ql51yrk16vnm4y9b2kflzsc4p159jv8rji6nfnm558ad666p4g",
+        "rev": "a1d5cc29e66959bb5d44307695e73192f8db012f",
+        "sha256": "0rvf2cs2ycfq5yqadmylqs4lidndr1y6k7bh8zhv5mv9ygd2awhw",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.30.0.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.31.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.30.0"
+        "version": "1.31.0"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
@@ -350,13 +350,13 @@
         "homepage": "https://registry.terraform.io/providers/gavinbunney/kubectl",
         "owner": "gavinbunney",
         "repo": "terraform-provider-kubectl",
-        "rev": "02b422d5e40703a5fb3e4eacced13280f8b9e500",
-        "sha256": "0bsn9gjnh76axv53rvf56nfgw6snf1wd44ia5c4yaj6lsn3j8zvf",
+        "rev": "db6033999fd0a9204d664b8508c57c894881fe84",
+        "sha256": "0jm6zri6j3wdgwg8wixfh6w8il3vnqmwlbpa6scbfa8zq71qi1a0",
         "type": "tarball",
-        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.13.0.tar.gz",
+        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.13.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1ahxhb6ws1mq4x7nbww8di0b19z6669gn18scqipvxcvmsihfx4m",
-        "version": "1.13.0"
+        "vendorSha256": "sha256-lXQHo66b9X0jZhoF+5Ix5qewQGyI82VPJ7gGzc2CHao=",
+        "version": "1.13.1"
     },
     "terraform-provider-kubernetes": {
         "branch": "main",
@@ -382,7 +382,7 @@
         "type": "tarball",
         "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/fa8f4c8641b2efd965292423e4054fd082e15dc2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "vendorSha256": "0h674ryb0qzykivq9rdpks1islxvyyplylzl921zbrw557a3g1c7"
+        "vendorSha256": "sha256-h4U31CmF5/WDSPRTT6/3u1Mdg5635YR3nP5jsHwmx0A="
     },
     "terraform-provider-rancher2": {
         "branch": "master",
@@ -404,13 +404,13 @@
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-vault",
-        "rev": "c534482f73e03315885b4bba29623c8f36e98f41",
-        "sha256": "1xk14q06js774lqyylkbp53dnlsbgh3vi38mqqmndh80xigs6d99",
+        "rev": "688169ad126501aa86d0c52fe1088b48da4c5f27",
+        "sha256": "0ppx8kc4zf0yp09vbkmj875sqvklbx0p8a1ganpzdm3462zskra4",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.24.1.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.0.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1ksla455qfgxpk2dmq3pg52nyyw3v0bg6fm5s60j6cb0lzvjbq48",
-        "version": "2.24.1"
+        "vendorSha256": "sha256-3e+5JXjm22Z3Uhn22tvdjFZ+Is1BQ7DfYcRhLdNciA4=",
+        "version": "3.0.1"
     },
     "vault-token-helper": {
         "branch": "master",
