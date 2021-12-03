@@ -88,6 +88,6 @@ jobs:
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
-          hub pull-request
+          hub pull-request -m "nixpkgs: update"
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
