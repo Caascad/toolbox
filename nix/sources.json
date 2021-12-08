@@ -257,12 +257,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "d966a79a5f8a08305b198bfe6f0edb67d86fdea9",
-        "sha256": "1xm4rvxb2w22m559fb1wsra7l4x6zmdf2m6l4iaqizkc9cl6wrc6",
+        "rev": "854093bcb3db58bf203fcca42268befe20158ede",
+        "sha256": "0pimmlypi556qrb39w0al8y93djggwaaaphfqgpw8fm2dakrl55h",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.88.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.88.1.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.88.0"
+        "version": "2.88.1"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -364,12 +364,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "9497a7bbb22b74dd205d6f1bb7de1b60b6db0e71",
-        "sha256": "164x0ddgqk3bj0za4h9kz69npgr4cw7w5hnl0pmxsgvsb04vwc0g",
+        "rev": "45b1a789bea65ddf3a35cec2655c5c1bf3a4bae2",
+        "sha256": "07rqk60k87dff2wgg72ar7sdg99hd210k8afvvz9xh1arj63ixxi",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.6.1.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.7.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.6.1"
+        "version": "2.7.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
