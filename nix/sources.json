@@ -257,12 +257,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "6763a345eb64f4a9af4aa9179ad2b8a3bfa6cd5b",
-        "sha256": "1rsrmmxdr7z17svzrnkvjj51nc704m6fcj93l93xv2nabw7j8wxj",
+        "rev": "d21b41dc8308a5da64737abc60d869fb6b3fa2e3",
+        "sha256": "04bll0ygjgrqq18va97xi42p55fvlbgdc24m2i9amjhjbly5m7wn",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.89.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.90.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.89.0"
+        "version": "2.90.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -297,12 +297,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "9ad7d6eed40be8c1a18e4045b00de934687a3c3c",
-        "sha256": "0ymdihixvg33ar8z43h5kimkfc4da84mfmw3x6g3pwh2ld61wiyz",
+        "rev": "e3f7d2851e670b322980a0bfd1fb23965164ac00",
+        "sha256": "1n22jll76gw3cxnyi2xfzh3mh0g9912rmkqpps7fid0imaz5jlck",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.25.1.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.26.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.25.1"
+        "version": "1.26.0"
     },
     "terraform-provider-gitlab": {
         "branch": "master",
