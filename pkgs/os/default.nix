@@ -10,7 +10,7 @@ with pkgs;
 
 stdenv.mkDerivation rec {
   pname = "os";
-  version = "1.3.1";
+  version = "1.4.0";
 
   buildInputs = [ makeWrapper ];
   passAsFile = [ "buildCommand" ];
@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
     cp ${./os.sh} $out/bin/os
     chmod +x $out/bin/os
 
-    wrapProgram $out/bin/os --prefix PATH ":" ${lib.makeBinPath [ openstackclient vault curl jq sedutil ]}
+    wrapProgram $out/bin/os --prefix PATH ":" ${lib.makeBinPath [ openstackclient vault curl jq ]}
   '';
 
   meta = with lib; {
