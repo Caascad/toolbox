@@ -337,12 +337,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "3962de0437bd875f63a7c8519dcec98cf5d4ed5a",
-        "sha256": "05ziic25vy67gpay8r0hfivj1c73fk00vglzj2npkaqs59ykv2vh",
+        "rev": "71048c04e39d3e8fbf2dea3307d2c1a660d3f11e",
+        "sha256": "1k5d4a488mrba6cvpcbhd9hqhhb977yi89p32wlfx266mf11w2yw",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.31.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.32.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.31.1"
+        "version": "1.32.0"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
