@@ -12,3 +12,4 @@ build_mappings:
   ksniff: kubectl-plugins
   kubectl-topology: kubectl-plugins
   ketall: kubectl-plugins
+  helm-diff: helm-plugins
