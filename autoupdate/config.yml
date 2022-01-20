@@ -7,9 +7,9 @@ blacklist:
 # Map of mappings used as aliases when triggering a nix build. Key is se beginning  of the package name, Value is the "-A" argument to "nix-build"
 build_mappings:
   terraform-provider: terraform-providers
-  kubespy: kubectl-plugins
-  kail: kubectl-plugins
-  ksniff: kubectl-plugins
-  kubectl-topology: kubectl-plugins
-  ketall: kubectl-plugins
-  helm-diff: helm-plugins
+  kubespy: kubectl-plugins.spy
+  kail: kubectl-plugins.tail
+  ksniff: kubectl-plugins.sniff
+  kubectl-topology: kubectl-plugins.topology
+  ketall: kubectl-plugins.ketall
+  helm-diff: helm-plugins.diff
