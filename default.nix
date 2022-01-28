@@ -15,6 +15,9 @@ let
         aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
           { source = sources.terraform-provider-aws; };
 
+        controltower = pkgs.callPackage ./pkgs/terraform-provider-controltower.nix
+          { source = sources.terraform-provider-controltower; };
+
         k8sraw = builtins.trace "k8sraw provider is deprecated, use the kubectl provider" pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
