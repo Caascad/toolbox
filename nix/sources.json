@@ -258,12 +258,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "ef11feb07db2b5fa96d79384cbcdc4e6309922fb",
-        "sha256": "17kbqpn9c0gm4zq5jdpy3n8mldkbxcv069lpyqh6z7nqxjllpa32",
+        "rev": "c2d81ffef62b089a65f7accd49bbaf25e4c2cde6",
+        "sha256": "0wcpnf3336yp4cgq2wgvllqjx1q1rj4wly380g8p0ypcdfanga92",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.93.1.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.94.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.93.1"
+        "version": "2.94.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -311,12 +311,12 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "e3f7d2851e670b322980a0bfd1fb23965164ac00",
-        "sha256": "1n22jll76gw3cxnyi2xfzh3mh0g9912rmkqpps7fid0imaz5jlck",
+        "rev": "8a5d85d1f2ecc30095e8841d9eb09386df0ef9e3",
+        "sha256": "0xc0a1gzdld039b4vlivf9b8g3pjja6pfzyqhjx0iy01akm1a9cc",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.26.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.27.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.26.0"
+        "version": "1.27.0"
     },
     "terraform-provider-gitlab": {
         "branch": "master",
@@ -351,12 +351,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "9263f0f7c9edf7274a4aa09d5697af288257a6a5",
-        "sha256": "05rm1cmpbmavza1pyqjzrd316v6r68427cjhqy6bngb749nc1als",
+        "rev": "029f796f2aa76d1398b46bfdb84d7715e18306fa",
+        "sha256": "07m2kzx4m9gn9j5czlfdsq0a1ki8vfwlywrfgz2jxvz2cqnn4gsx",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.32.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.33.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.32.1"
+        "version": "1.33.0"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
