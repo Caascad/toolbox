@@ -292,6 +292,19 @@
         "vendorSha256": "0zp2iiq6zg9j2br6pk8hb60wf7bkn8x97c4887z7myxcwbjxivgl",
         "version": "7.2.1"
     },
+    "terraform-provider-controltower": {
+        "branch": "main",
+        "description": "Use AWS Control Tower from Terraform",
+        "homepage": "https://registry.terraform.io/providers/idealo/controltower",
+        "owner": "idealo",
+        "repo": "terraform-provider-controltower",
+        "rev": "0f7620c6351abe258a1addf9a625554a6b289866",
+        "sha256": "0klv99sm1qw1s62441pwrwlf44ddigxxvdgk0kcl688k7a8kf0a7",
+        "type": "tarball",
+        "url": "https://github.com/idealo/terraform-provider-controltower/archive/v1.2.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.2.1"
+    },
     "terraform-provider-flexibleengine": {
         "branch": "master",
         "description": "Terraform flexibleengine provider",
