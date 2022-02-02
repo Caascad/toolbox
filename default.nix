@@ -120,6 +120,7 @@ rec {
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
                  envsubst awscli restic azure-cli
+                 saml2aws
                  terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1_0" terraform_1_0;
@@ -175,8 +176,6 @@ rec {
   sd = import sources.sd.outPath { inherit pkgs; };
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
-
-  saml2aws = pkgs.callPackage ./pkgs/saml2aws.nix { inherit saml2aws; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
