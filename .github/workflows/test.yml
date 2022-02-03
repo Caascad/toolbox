@@ -11,42 +11,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: install
+    - name: Install toolbox
       run: ./install https://github.com/${GITHUB_REPOSITORY}/archive/${GITHUB_SHA}.tar.gz
-    - name: doctor
+    - name: Doctor
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         toolbox doctor
-    - name: list
+    - name: List tools
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         toolbox list
-    - name: install
+    - name: Install / Uninstall tool
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         toolbox install jq
-    - name: uninstall
-      run: |
-        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         toolbox uninstall jq
-    - name: make-shell
+    - name: Make and update shell
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
-        git fetch origin master
-        mkdir test
-        cd test
+        cd $(mktemp -d)
         toolbox make-shell jq
         nix-shell --command 'jq --help'
-    - name: update-shell
-      run: |
-        . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
-        cd test
         toolbox update-shell ${GITHUB_SHA}
         nix-shell --run 'jq --help'
-    - name: make-terraform-shell
+    - name: Make terraform shell
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
-        cd test
+        cd $(mktemp -d)
         SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform-shell vault flexibleengine http null
         nix-shell --run "terraform version"
   shellcheck:

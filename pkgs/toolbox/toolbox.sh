@@ -280,7 +280,7 @@ update() {
 
 make-shell() {
     log "Creating shell ..."
-    commit=${GITHUB_SHA:-$(_lastToolboxCommit)}
+    commit=${SHELL_COMMIT:-$(_lastToolboxCommit)}
     _generateToolboxJSON "${commit}"
 
     log "Writing shell.nix file"
