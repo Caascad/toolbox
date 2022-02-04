@@ -183,7 +183,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -280,7 +280,7 @@ update() {
 
 make-shell() {
     log "Creating shell ..."
-    commit=${GITHUB_SHA:-$(_lastToolboxCommit)}
+    commit=${SHELL_COMMIT:-$(_lastToolboxCommit)}
     _generateToolboxJSON "${commit}"
 
     log "Writing shell.nix file"
@@ -446,12 +446,7 @@ case "$COMMAND" in
         ;;
     make-terraform-shell)
         check_args_gt $# 1 "make-terraform-shell"
-        make-terraform-shell 1.0 "$@"
-        ;;
-    make-terraform12-shell)
-        check_args_gt $# 1 "make-terraform12-shell"
-        log-warning "This release is deprecated. Use make-terraform-shell"
-        make-terraform-shell 0.12 "$@"
+        make-terraform-shell 1 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"
