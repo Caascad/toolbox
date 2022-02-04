@@ -245,12 +245,12 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "a33dcaa5e1f41ceb0ad4469455a5efadd8f71ca4",
-        "sha256": "0r4vx9awypd66wp97783nfy8pk3bhl7lv5fw7jm74040k6rfc3mi",
+        "rev": "667295fd75676da209714cad9f50e1d0a03b81b7",
+        "sha256": "183lpw9d22arw9yap614khbn77w5914rgq5vclscsa4k8jbiszy3",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.16.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.17.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.16.0"
+        "version": "2.17.0"
     },
     "terraform-provider-azurerm": {
         "branch": "main",
