@@ -1,17 +1,17 @@
 {
-    "concourse_6_4_1": {
+    "concourse_7_6_0": {
         "branch": "master",
-        "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
+        "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
         "owner": "concourse",
         "repo": "concourse",
-        "rev": "26a7bfa6d596259fde63ea86a179c5336c3daf3c",
-        "sha256": "16si1qm835yyvk2f0kwn9wnk8vpy5q4whgws1s2p6jr7dswg43h8",
+        "rev": "7533e1dfb5c81d44d1ca2f7943d4a56bae334deb",
+        "sha256": "0s54zw8rygdn5x75jf8a2km1k5lhxhray67qf7ha005nxz4a0bv6",
+        "vendorSha256": "04930n0zz11l3r3r0ji920qi96zpp3772mdvmyfgjk75p5mfjp9q",
         "type": "tarball",
-        "url": "https://github.com/concourse/concourse/archive/v6.4.1.tar.gz",
+        "url": "https://github.com/concourse/concourse/archive/v7.6.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm",
-        "version": "6.4.1"
+        "version": "7.6.0"
     },
     "concourse_7_3_2": {
         "branch": "master",
@@ -26,6 +26,20 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "0g1rjs7ss0q5j9hbz5kykrkvl1sg6nxl82jay8mln7y88d3fnjnz",
         "version": "7.3.2"
+    },
+    "concourse_6_4_1": {
+        "branch": "master",
+        "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
+        "homepage": "https://concourse-ci.org",
+        "owner": "concourse",
+        "repo": "concourse",
+        "rev": "26a7bfa6d596259fde63ea86a179c5336c3daf3c",
+        "sha256": "16si1qm835yyvk2f0kwn9wnk8vpy5q4whgws1s2p6jr7dswg43h8",
+        "type": "tarball",
+        "url": "https://github.com/concourse/concourse/archive/v6.4.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm",
+        "version": "6.4.1"
     },
     "cue": {
         "branch": "master",
