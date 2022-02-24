@@ -12,6 +12,10 @@ let
 
   fly-wrapper = import sources.fly-wrapper.outPath { inherit pkgs; };
 
+  fly_7_6_0 = fly_go {
+    source = sources.concourse_7_6_0;
+  };
+
   fly_7_3_2 = fly_go {
     source = sources.concourse_7_3_2;
   };
@@ -89,6 +93,7 @@ let
     fi
 
     case "$VERSION" in
+      7.6.0) FLY_BIN="${fly_7_6_0}/bin" ;;
       7.3.2) FLY_BIN="${fly_7_3_2}/bin" ;;
           *) FLY_BIN="${fly_6_4_1}/bin" ;;
     esac
