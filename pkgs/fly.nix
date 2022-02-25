@@ -20,10 +20,6 @@ let
     source = sources.concourse_7_3_2;
   };
 
-  fly_6_4_1 = fly_go {
-    source = sources.concourse_6_4_1;
-  };
-
   fly_go = {source}: buildGoModule rec {
     pname = "fly";
     version = source.version;
@@ -93,9 +89,8 @@ let
     fi
 
     case "$VERSION" in
-      7.6.0) FLY_BIN="${fly_7_6_0}/bin" ;;
       7.3.2) FLY_BIN="${fly_7_3_2}/bin" ;;
-          *) FLY_BIN="${fly_6_4_1}/bin" ;;
+      *) FLY_BIN="${fly_7_6_0}/bin" ;;
     esac
 
     export PATH="$FLY_BIN:$PATH"
@@ -116,7 +111,7 @@ in stdenv.mkDerivation {
       cat "$entrypointPath" > $out/bin/fly
       chmod 755 $out/bin/fly
       mkdir -p $out/share/bash-completion/completions
-      ${fly_6_4_1}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
+      ${fly_7_3_2}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
   '';
 
   meta = with lib; {
