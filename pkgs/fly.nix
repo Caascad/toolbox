@@ -89,8 +89,8 @@ let
     fi
 
     case "$VERSION" in
-      7.6.0) FLY_BIN="${fly_7_6_0}/bin" ;;
-      *) FLY_BIN="${fly_7_3_2}/bin" ;;
+      7.3.2) FLY_BIN="${fly_7_3_2}/bin" ;;
+      *) FLY_BIN="${fly_7_6_0}/bin" ;;
     esac
 
     export PATH="$FLY_BIN:$PATH"
