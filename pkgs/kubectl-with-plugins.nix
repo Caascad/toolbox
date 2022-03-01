@@ -3,16 +3,15 @@
 , makeWrapper
 , plugins
 , kubectl
+, installShellFiles
 }:
 
 stdenv.mkDerivation {
   pname = "kubectl-with-plugins";
   version = kubectl.version;
-  buildInputs = [ makeWrapper ];
+  buildInputs = [ makeWrapper installShellFiles ];
   unpackPhase = ":";
-  installPhase = ''
-    mkdir -p $out/bin
-    ln -s ${kubectl}/bin/kubectl $out/bin
+  installPhase = kubectl.installPhase + ''
     wrapProgram "$out/bin/kubectl" --prefix PATH ":" ${lib.makeBinPath (builtins.attrValues plugins)}
   '';
 }
