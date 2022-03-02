@@ -1,5 +1,6 @@
 {
     "concourse_7_3_2": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
@@ -14,6 +15,7 @@
         "version": "7.3.2"
     },
     "concourse_7_6_0": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
@@ -175,6 +177,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
+        "autoupdate": false,
         "branch": "nixpkgs-unstable",
         "description": "Nix Packages collection",
         "homepage": null,
@@ -231,13 +234,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "1af821c85349593a32ef15a84679e74103101bf3",
-        "sha256": "1ijspv7bf6qi4s3k58vbaz4gbk6y60h7jrml2wjn6mas6pchiy0f",
+        "rev": "8d7b2519ddcfd2a4d6e9b907cee38aafe302733a",
+        "sha256": "05rxs09kqpiqhvphcwx7bw22sawsfcmlbhwyi7ss2pdbb9yhpz3s",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.2.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.3.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-87FR3UOtO3PwPkGCcuo2oIFmYiNZNMCFCTmJeVdHkK0=",
-        "version": "4.2.0"
+        "vendorSha256": "sha256-b82+m1XI6gKFHmFI8ZDvBJoopAxAETp/3Z88t7M3CCI=",
+        "version": "4.3.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -258,12 +261,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "a22742cf74baa2cd932e72caebbb3382f57870dd",
-        "sha256": "0a95xq2bk6a1yas2kxfq30s41s2jgv2rjvz4y7m34wlldd9qxfhg",
+        "rev": "4c050ea26f0f55b9717b661151515840fed3a772",
+        "sha256": "0cfdw70q1kh6f50gsc94mh1xi7s4z47wfsmskp1ahx7av7wpz1p6",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.97.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.98.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.97.0"
+        "version": "2.98.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -319,6 +322,7 @@
         "version": "1.27.0"
     },
     "terraform-provider-gitlab": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Terraform GitLab provider",
         "homepage": "https://www.terraform.io/docs/providers/gitlab/",
@@ -351,12 +355,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "029f796f2aa76d1398b46bfdb84d7715e18306fa",
-        "sha256": "07m2kzx4m9gn9j5czlfdsq0a1ki8vfwlywrfgz2jxvz2cqnn4gsx",
+        "rev": "e22c87235b01fcc9c41da11aff04fcafc4a82f8e",
+        "sha256": "1aknx8m3869rms7zkmynnizkdc1cal6jxp93ay4q97y1n4z0lkh6",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.33.0.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.34.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.33.0"
+        "version": "1.34.0"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
@@ -418,15 +422,16 @@
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-vault",
-        "rev": "1f384364495079528dd3e342ff5a59a1fe94daae",
-        "sha256": "1b36c2f06fglf6bs6s4ly73vk1cm7zd1ci13df5wp0f2xxib3szk",
+        "rev": "91f40a2aed19da941f70247b34b04196e7b2a93a",
+        "sha256": "1mxy44dl1wr99v6b0gvzcf9d5nfky0avmx4fq83h9vfnvq7rmrhn",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.3.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.3.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "sha256-/RxWacoXb/ZmCG0Wk3bwl2qJEoUYH1pT/9dNrGz3LHU=",
-        "version": "3.3.0"
+        "version": "3.3.1"
     },
     "vault-token-helper": {
+        "autoupdate": false,
         "branch": "master",
         "description": "@Hashicorp Vault Token Helper for macOS, Linux and Windows with support for native credential storage 🔐",
         "homepage": "",
@@ -441,6 +446,7 @@
         "version": "0.3.6"
     },
     "velero": {
+        "autoupdate": false,
         "branch": "main",
         "description": "Backup and migrate Kubernetes applications and their persistent volumes",
         "homepage": "https://velero.io",
