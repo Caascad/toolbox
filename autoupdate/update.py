@@ -118,7 +118,7 @@ def main():
     nixpkgs = read_source_file()
     pkgs = {}
     for pkg, props in nixpkgs.items():
-        if pkg not in config['blacklist']:
+        if props.get('autoupdate', True):
             pkgs[pkg] = {
                 'owner': props['owner'],
                 'repo': props['repo'],

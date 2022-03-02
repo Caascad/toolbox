@@ -1,11 +1,3 @@
-# List of packages that will be ignored during the update process
-blacklist:
-  - nixpkgs
-  - concourse_6_4_1
-  - concourse_7_3_2
-  - velero
-  # Ignore until https://github.com/gitlabhq/terraform-provider-gitlab/pull/716 is merged
-  - terraform-provider-gitlab
 # Map of mappings used as aliases when triggering a nix build. Key is se beginning  of the package name, Value is the "-A" argument to "nix-build"
 build_mappings:
   terraform-provider: terraform-providers

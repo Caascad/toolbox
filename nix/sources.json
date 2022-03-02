@@ -1,5 +1,6 @@
 {
     "concourse_7_3_2": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
@@ -14,6 +15,7 @@
         "version": "7.3.2"
     },
     "concourse_7_6_0": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
@@ -175,6 +177,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
+        "autoupdate": false,
         "branch": "nixpkgs-unstable",
         "description": "Nix Packages collection",
         "homepage": null,
@@ -319,6 +322,7 @@
         "version": "1.27.0"
     },
     "terraform-provider-gitlab": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Terraform GitLab provider",
         "homepage": "https://www.terraform.io/docs/providers/gitlab/",
@@ -427,6 +431,7 @@
         "version": "3.3.0"
     },
     "vault-token-helper": {
+        "autoupdate": false,
         "branch": "master",
         "description": "@Hashicorp Vault Token Helper for macOS, Linux and Windows with support for native credential storage 🔐",
         "homepage": "",
@@ -441,6 +446,7 @@
         "version": "0.3.6"
     },
     "velero": {
+        "autoupdate": false,
         "branch": "main",
         "description": "Backup and migrate Kubernetes applications and their persistent volumes",
         "homepage": "https://velero.io",
