@@ -12,7 +12,8 @@ jobs:
     name: Update Toolbox components
     runs-on: ubuntu-latest
     outputs:
-      branch_name: '${{ steps.branch.outputs.branch }}'
+      branch: '${{ steps.update.outputs.branch }}'
+      updates: '${{ steps.update.outputs.updates }}'
     steps:
       - uses: actions/checkout@v2
       - name: Install Nix
@@ -47,13 +48,15 @@ jobs:
             git add changes_wip.md
             git commit -m "add update changelog"
             git push origin $BRANCH_NAME
+            echo ::set-output name=updates::true
           else
-            exit 1
+            echo ::set-output name=updates::false
           fi
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          BRANCH_NAME: '${{ steps.branch.outputs.branch }}'
+          BRANCH_NAME: '${{ steps.update.outputs.branch }}'
   build:
+    if: ${{ needs.update.outputs.updates == 'true' }}
     needs:
       - update
     timeout-minutes: 600
@@ -64,7 +67,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: '${{needs.update.outputs.branch_name}}'
+          ref: '${{ needs.update.outputs.branch }}'
       - name: Install Nix
         uses: cachix/install-nix-action@v14.1
       - name: Setup binary cache
@@ -84,7 +87,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: '${{needs.update.outputs.branch_name}}'
+          ref: '${{ needs.update.outputs.branch }}'
           fetch-depth: 2
       - name: open pr
         run: |
