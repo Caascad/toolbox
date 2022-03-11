@@ -248,12 +248,12 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "10ec49b0b642d2cfaa1bffa993db55b6e29ac16c",
-        "sha256": "06l4w9g4p48gnb9c9mmnydvpyr89f8rijpf103ndsg6ack6k4mg2",
+        "rev": "26df2294d26cd2afdc88b6a1f5ea88a026972421",
+        "sha256": "0afa7ljhxsqg3hc4hdd7kvb6001wlhlsl8gdgx83wzw646k34a6y",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.18.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.19.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.18.0"
+        "version": "2.19.0"
     },
     "terraform-provider-azurerm": {
         "branch": "main",
@@ -261,12 +261,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "4c050ea26f0f55b9717b661151515840fed3a772",
-        "sha256": "0cfdw70q1kh6f50gsc94mh1xi7s4z47wfsmskp1ahx7av7wpz1p6",
+        "rev": "9fdb8c392a864f8460fe83433fd6db791548616b",
+        "sha256": "1jzjwncmwhhbmnhsm11mdsyf4znbmj76p6jqbdpj8whmcpdynwhx",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.98.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.99.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.98.0"
+        "version": "2.99.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
