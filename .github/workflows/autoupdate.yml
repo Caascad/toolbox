@@ -12,8 +12,8 @@ jobs:
     name: Update Toolbox components
     runs-on: ubuntu-latest
     outputs:
-      branch: '${{ steps.update.outputs.branch }}'
-      updates: '${{ steps.update.outputs.updates }}'
+      branch: '${{ steps.mr.outputs.branch }}'
+      updates: '${{ steps.mr.outputs.updates }}'
     steps:
       - uses: actions/checkout@v2
       - name: Install Nix
@@ -28,10 +28,8 @@ jobs:
           nix-shell --command autoupdate/update.py
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - id: branch
-        name: set branch name
-        run: echo ::set-output name=branch::autoupdate-packages-$(date '+%d-%m-%y')
-      - name: push if updated
+      - name: Create MR
+        id: mr
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email "action@github.com"
@@ -41,6 +39,7 @@ jobs:
             for branch in `git branch --list -a "*autoupdate-packages-*" | awk -F'/' '{if($3 != "") print $3}'`;do
               git push origin --delete ${branch} -q
             done
+            BRANCH_NAME=autoupdate-packages-$(date '+%d-%m-%y')
             git checkout -b $BRANCH_NAME -q
             git add -A
             git commit -m "autoupdate: $(date '+%d-%m-%y')" -q
@@ -49,12 +48,12 @@ jobs:
             git commit -m "add update changelog"
             git push origin $BRANCH_NAME
             echo ::set-output name=updates::true
+            echo ::set-output name=branch::$BRANCH_NAME
           else
             echo ::set-output name=updates::false
           fi
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          BRANCH_NAME: '${{ steps.update.outputs.branch }}'
   build:
     if: ${{ needs.update.outputs.updates == 'true' }}
     needs:
@@ -75,7 +74,7 @@ jobs:
         with:
           name: toolbox
           skipPush: true
-      - name: build packages
+      - name: Build packages
         run: |
           nix-build
           nix-build -A terraform-providers
