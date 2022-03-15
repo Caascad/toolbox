@@ -7,6 +7,8 @@ on:
     paths:
       - '**.nix'
       - 'nix/*'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -17,9 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Nix
-      uses: cachix/install-nix-action@v12
+      uses: cachix/install-nix-action@v14.1
     - name: Setup binary cache
-      uses: cachix/cachix-action@v8
+      uses: cachix/cachix-action@v10
       with:
         name: toolbox
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'

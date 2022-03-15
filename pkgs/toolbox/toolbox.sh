@@ -90,10 +90,9 @@ _generateToolboxJSON() {
     log "Using commit $commit for this development shell"
     log "Calculating sha256 for $url"
     sha256=$(nix-prefetch-url --unpack "$url" 2>/dev/null) || log-error "Download failed. Wrong commit?"
-
+    cdate=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits/"${commit}" |jq -r '.commit.committer.date')
     if [ ! -f toolbox.json ]; then
         log "Writing toolbox.json file"
-        cdate=$(date "+%d-%m-%y")
         cat <<EOF > toolbox.json
 {
     "epoch": 1,
@@ -105,7 +104,7 @@ EOF
     else
         tmp=$(mktemp)
         log "Updating toolbox.json file ..."
-        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\"" toolbox.json > "$tmp"
+        jq -e ".commit=\"${commit}\" | .sha256=\"${sha256}\" | .date=\"${cdate}\"" toolbox.json > "$tmp"
         # shellcheck disable=SC2015,SC2181
         [ $? -eq 0 ] && mv "$tmp" toolbox.json || log-error "Failed to update toolbox.json"
         log "Done."
@@ -184,7 +183,7 @@ _toolbox_completions() {
   local prev="\${COMP_WORDS[COMP_CWORD-1]}"
 
   if [ "\${#COMP_WORDS[@]}" = "2" ]; then
-      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform12-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
+      COMPREPLY=(\$(compgen -W "doctor completions list list-terraform-providers install uninstall update make-shell update-shell make-terraform13-shell make-terraform14-shell make-terraform15-shell make-terraform-shell help version" "\${COMP_WORDS[1]}"))
       return
   fi
 
@@ -281,7 +280,7 @@ update() {
 
 make-shell() {
     log "Creating shell ..."
-    commit=${GITHUB_SHA:-$(_lastToolboxCommit)}
+    commit=${SHELL_COMMIT:-$(_lastToolboxCommit)}
     _generateToolboxJSON "${commit}"
 
     log "Writing shell.nix file"
@@ -447,12 +446,7 @@ case "$COMMAND" in
         ;;
     make-terraform-shell)
         check_args_gt $# 1 "make-terraform-shell"
-        make-terraform-shell 1.0 "$@"
-        ;;
-    make-terraform12-shell)
-        check_args_gt $# 1 "make-terraform12-shell"
-        log-warning "This release is deprecated. Use make-terraform-shell"
-        make-terraform-shell 0.12 "$@"
+        make-terraform-shell 1 "$@"
         ;;
     make-terraform13-shell)
         check_args_gt $# 1 "make-terraform13-shell"

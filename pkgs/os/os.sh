@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-
+# shellcheck disable=SC2207
 set -euo pipefail
 
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
 OS_CONFIG="${CONFIG}/os"
-CAASCAD_ZONES_URL="https://git.corp.cloudwatt.com/caascad/caascad-zones/raw/master/zones.json"
+CAASCAD_ZONES_URL="https://git.corp.caascad.com/caascad/caascad-zones/raw/master/zones.json"
 CAASCAD_ZONES_FILE="${CONFIG}/caascad-zones.json"
 CURRENT_FILE="${OS_CONFIG}/current"
+HIDE=false
+OSC_DEBUG=${OSC_DEBUG:-0}
 
 _help() {
     cat <<EOF
@@ -32,10 +34,12 @@ DESCRIPTION
             Prints openstack environment variables used.
             Obfuscates password unless -u parameter is used.
 
+      support-template | st
+            Prints a mail support template with all necessary informations pre-filled
+
       <openstack-subcommand>
             Standard openstack subcommands, token issue, server list
 
-    }
 EOF
 }
 
@@ -58,28 +62,66 @@ _refresh() {
 }
 
 _switch() {
-    echo "${1}" > "${CURRENT_FILE}"
+    ZONE="${1}"
+    echo "${ZONE}" > "${CURRENT_FILE}"
+    _refresh
+    _check_zone "${ZONE}"
+}
+
+_check_zone() {
+  ZONE=${1}
+  if ! jq -e -r --arg ZONE "${ZONE}" '.[] | select(.providers.fe.domain.name == $ZONE) | .infra_zone_name' "${CAASCAD_ZONES_FILE}" &>/dev/null && 
+    ! jq -e -r --arg ZONE "${ZONE}" '.[$ZONE].infra_zone_name' "${CAASCAD_ZONES_FILE}" &>/dev/null; then
+    echo "Zone or domain name ${ZONE} not found" >&2 && exit 1;
+  fi
+}
+
+_get_vault_fqdn() {
+  ZONE="${1}"
+  if [[ $ZONE_NAME =~ ^OCB000.* ]]; then
+      INFRA_ZONE_NAME="$(jq -e -r --arg ZONE "${ZONE}" '.[] | select(.providers.fe.domain.name == $ZONE) | .infra_zone_name' "${CAASCAD_ZONES_FILE}" )"
+      DOMAIN_NAME="$(jq -r --arg ZONE "${INFRA_ZONE_NAME}" '.|to_entries[] | select(.key == $ZONE) | .value.domain_name' "${CAASCAD_ZONES_FILE}" )"
+  else
+      INFRA_ZONE_NAME="$(jq -e -r --arg ZONE "${ZONE}" '.[$ZONE].infra_zone_name' "${CAASCAD_ZONES_FILE}")"
+      DOMAIN_NAME="$(jq -r --arg ZONE "${ZONE}" '.[$ZONE].domain_name' "${CAASCAD_ZONES_FILE}")"
+  fi
+  echo "https://vault.${INFRA_ZONE_NAME}.${DOMAIN_NAME}"
+}
+
+_get_current_zone() {
+  ZONE=$(cat "${CURRENT_FILE}")
+  if [ -z "${ZONE}" ]; then
+    echo "Zone name empty. Use os switch first." >&2
+    exit 1
+  fi
+  _check_zone "${ZONE}"
+  echo "${ZONE}"
 }
 
 _parse() {
     if [[ "$#" -eq 0 ]]; then
-        cat "${CURRENT_FILE}";
-        exit 0;
+      _help
+      exit 0;
     fi
     case "$1" in
         os_help|ch)
             _help
             ;;
         print|p)
-            _get_secrets
             _print "${@:2}"
+            ;;
+        support-template|st)
+            _get_secrets
+            _support_template
             ;;
         refresh|r)
             _refresh;
             ;;
         switch|s)
-            if [[ "$#" -eq 2 ]]; then
-                _switch "$2"
+            if [[ "${#}" -eq 1 ]] ; then
+                _get_current_zone
+            elif [[ "${#}" -eq 2 ]]; then
+                _switch "${2}"
             else
                 echo "switch subcommand needs 1 argument"
             fi
@@ -92,7 +134,6 @@ _parse() {
 }
 
 _print() {
-    OSVARS=$(env | grep -e ^OS_)
     HIDE=true
     EXPORT=false
     while [[ $# -gt 0 ]]; do
@@ -105,33 +146,59 @@ _print() {
           EXPORT=true
           shift
           ;;
+        *)
+          exit 1
+          ;;
       esac
     done
-    if "${HIDE}";  then
-      # shellcheck disable=SC2001
-      OSVARS=$(echo "${OSVARS}"| sed 's/OS_PASSWORD=.*/OS_PASSWORD=XXX/g')
-    fi
+    _get_secrets
+    OSVARS=$(env | grep -e ^OS_)
     if "${EXPORT}"; then
-      # shellcheck disable=SC2001
-      OSVARS=$(echo "${OSVARS}"| sed 's/\(^.*=.*$\)/export \1/g')
+      OSVARS=${OSVARS//OS/export OS}
     fi
     echo "${OSVARS}"
 }
+_support_template() {
+    CLUSTER_IDS=()
+    CLUSTER_IDS=($(openstack cce cluster list -c ID -f value))
+    if [ ${#CLUSTER_IDS[@]} -gt 1 ]; then
+      echo "We need only one cluster. We will print all clusters we have found"
+      CLUSTER_ID=${CLUSTER_IDS[*]}
+    else
+      CLUSTER_ID=${CLUSTER_IDS[0]}
+    fi
+
+    INFOS=($(openstack project show "${OS_PROJECT_NAME}" -f value -c domain_id -c id))
+    DOMAIN_ID=${INFOS[0]}
+    PROJECT_ID=${INFOS[1]}
+
+    cat <<EOF
+
+Hello,
+
+We encounter an issue on the following CCE cluster:
+
+cluster_id: ${CLUSTER_ID}
+domain id: ${DOMAIN_ID}
+domain name: ${OS_USER_DOMAIN_NAME}
+project id: ${PROJECT_ID}
+project name: ${OS_PROJECT_NAME}
+tenant id: ${PROJECT_ID}
+
+<describe the problem here>
+
+Regards,
+EOF
+}
 
 _get_secrets() {
-    ZONE_NAME=$(cat "${CURRENT_FILE}")
-    export ZONE_NAME
-    [ -z "${ZONE_NAME}" ] && echo "No environment selected. Use 'os switch <env> first.'" && exit 1
-    if [[ $ZONE_NAME =~ ^OCB000.* ]]; then
-        INFRA_ZONE_NAME="$(jq -r '.[] | select(.providers.fe.domain_name == env.ZONE_NAME) | .name' < "${CAASCAD_ZONES_FILE}" )"
-        DOMAIN_NAME="$(jq -r '.[] | select(.providers.fe.domain_name == env.ZONE_NAME) | .domain_name' < "${CAASCAD_ZONES_FILE}" )"
-    else
-        INFRA_ZONE_NAME="$(jq -r '.[env.ZONE_NAME].infra_zone_name' < "${CAASCAD_ZONES_FILE}")"
-        DOMAIN_NAME="$(jq -r '.[env.ZONE_NAME].domain_name' < "${CAASCAD_ZONES_FILE}")"
+    ZONE_NAME=$(_get_current_zone)
+    VAULT_ADDR=$(_get_vault_fqdn "${ZONE_NAME}")
+    export VAULT_ADDR
+    if [ "${OSC_DEBUG}" -ne 0 ]; then
+      >&2 echo "Using ${VAULT_ADDR}"
+      >&2 echo "Looking for ${ZONE_NAME} secrets"
     fi
-    export VAULT_ADDR="https://vault.${INFRA_ZONE_NAME}.${DOMAIN_NAME}"
-    >&2 echo "Using ${VAULT_ADDR}"
-    >&2 echo "Looking for ${ZONE_NAME} secrets"
     if [[ $ZONE_NAME =~ ^OCB000.* ]]; then
         secret=$(vault read secret/zones/fe/api-"${ZONE_NAME}")
     else
@@ -148,10 +215,15 @@ _get_secrets() {
     OS_ENDPOINT_TYPE=publicURL
     CINDER_ENDPOINT_TYPE=publicURL
     OS_VOLUME_API_VERSION=2
-    OS_PASSWORD=$(echo "$secret"| jq -r .data.password)
+    OS_PASSWORD=$(
+      if "${HIDE}"; then
+        echo "XXX"
+      else
+        echo "$secret"| jq -r .data.password
+      fi
+    )
     OS_REGION_NAME=$(echo "$secret"| jq -r .data.region)
-    export VAULT_ADDR \
-           OS_AUTH_URL \
+    export OS_AUTH_URL \
            OS_USERNAME \
            OS_PROJECT_NAME \
            OS_USER_DOMAIN_NAME \

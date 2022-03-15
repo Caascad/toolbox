@@ -10,10 +10,15 @@ let
 
       terraform-providers = super.terraform-providers // {
 
+        kubernetes-alpha = {};
+
         aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
           { source = sources.terraform-provider-aws; };
 
-        k8sraw = pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
+        controltower = pkgs.callPackage ./pkgs/terraform-provider-controltower.nix
+          { source = sources.terraform-provider-controltower; };
+
+        k8sraw = builtins.trace "k8sraw provider is deprecated, use the kubectl provider" pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
           { source = sources.terraform-provider-kubernetes-yaml; };
 
         rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
@@ -24,6 +29,9 @@ let
 
         concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
           { source = sources.terraform-provider-concourse; };
+
+        gitlab = pkgs.callPackage ./pkgs/terraform-provider-gitlab.nix
+          { source = sources.terraform-provider-gitlab; };
 
         flexibleengine = super.terraform-providers.flexibleengine.overrideAttrs (old:
           with sources.terraform-provider-flexibleengine; {
@@ -72,18 +80,8 @@ let
           }
         );
 
-        vault = super.terraform-providers.vault.overrideAttrs (old:
-          with sources.terraform-provider-vault; {
-            inherit version;
-            pname = repo;
-            goPackagePath = "github.com/hashicorp/${repo}";
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv go/bin/${repo}{,_v${version}}";
-            passthru.provider-source-address = "registry.terraform.io/toolbox/vault";
-          }
-        );
+        vault = pkgs.callPackage ./pkgs/terraform-provider-vault.nix
+          { source = sources.terraform-provider-vault; };
 
         keycloak = super.terraform-providers.keycloak.overrideAttrs (old:
            {
@@ -121,10 +119,12 @@ rec {
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize pre-commit shellcheck terraform-docs tflint
-                 saml2aws envsubst awscli restic azure-cli
-                 terraform_0_12 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1_0;
+                 envsubst awscli restic azure-cli
+                 saml2aws
+                 terraform_0_13 terraform_0_14 terraform_0_15 terraform_1;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1_0" terraform_1_0;
+  terraform_1_0 = builtins.trace "terraform_1_0 is deprecated use terraform_1" terraform_1;
 
   ansible = pkgs.ansible_2_9;
 
@@ -173,7 +173,7 @@ rec {
 
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
-  sd = import sources.sd.outPath { toolbox = ./.; };
+  sd = import sources.sd.outPath { inherit pkgs; };
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 

@@ -1,18 +1,6 @@
 {
-    "concourse_6_4_1": {
-        "branch": "master",
-        "description": "Concourse is a container-based continuous thing-doer written in Go and Elm.",
-        "homepage": "https://concourse-ci.org",
-        "owner": "concourse",
-        "repo": "concourse",
-        "rev": "26a7bfa6d596259fde63ea86a179c5336c3daf3c",
-        "sha256": "16si1qm835yyvk2f0kwn9wnk8vpy5q4whgws1s2p6jr7dswg43h8",
-        "type": "tarball",
-        "url": "https://github.com/concourse/concourse/archive/v6.4.1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "6.4.1"
-    },
     "concourse_7_3_2": {
+        "autoupdate": false,
         "branch": "master",
         "description": "Concourse is a container-based continuous thing-doer written in Go.",
         "homepage": "https://concourse-ci.org",
@@ -23,7 +11,23 @@
         "type": "tarball",
         "url": "https://github.com/concourse/concourse/archive/v7.3.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0g1rjs7ss0q5j9hbz5kykrkvl1sg6nxl82jay8mln7y88d3fnjnz",
         "version": "7.3.2"
+    },
+    "concourse_7_6_0": {
+        "autoupdate": false,
+        "branch": "master",
+        "description": "Concourse is a container-based continuous thing-doer written in Go.",
+        "homepage": "https://concourse-ci.org",
+        "owner": "concourse",
+        "repo": "concourse",
+        "rev": "7533e1dfb5c81d44d1ca2f7943d4a56bae334deb",
+        "sha256": "0s54zw8rygdn5x75jf8a2km1k5lhxhray67qf7ha005nxz4a0bv6",
+        "type": "tarball",
+        "url": "https://github.com/concourse/concourse/archive/v7.6.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "04930n0zz11l3r3r0ji920qi96zpp3772mdvmyfgjk75p5mfjp9q",
+        "version": "7.6.0"
     },
     "cue": {
         "branch": "master",
@@ -36,6 +40,7 @@
         "type": "tarball",
         "url": "https://github.com/cuelang/cue/archive/v0.4.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "0xkaabfzqrg0pqdq7ah67yx132508l5kfr9xs98is79732a9a8kr",
         "version": "0.4.0"
     },
     "fly-wrapper": {
@@ -44,12 +49,13 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "fly-wrapper",
-        "rev": "8f9297797e1a08e7a28d95e5547282be464c9102",
-        "sha256": "091nqsilfncdcf7983ypzdjw5xz99c2svx6s27ck4487i7v2lxp9",
+        "rev": "5ccf6726b874fd99bdfef39f7d49a2f57f7d2e6a",
+        "sha256": "1w1rwgvcmcp6j11bcman7ipsb2p8zpm6fl66izcpgdjr8cqmv7qr",
         "type": "tarball",
-        "url": "https://github.com/Caascad/fly-wrapper/archive/8f9297797e1a08e7a28d95e5547282be464c9102.tar.gz",
+        "url": "https://github.com/Caascad/fly-wrapper/archive/5ccf6726b874fd99bdfef39f7d49a2f57f7d2e6a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.0.4"
+        "vendorSha256": "0sj78vba3302is2jxi9pv8w7zzl6lr00b2n359cjq5wcw2bq9hdd",
+        "version": "0.0.5"
     },
     "helm-diff": {
         "branch": "master",
@@ -57,12 +63,13 @@
         "homepage": "",
         "owner": "databus23",
         "repo": "helm-diff",
-        "rev": "0882d8c63d782cd5ac325fe3b4e00342ae30f6a1",
-        "sha256": "1bjdrl0m4w9vwkq3gkm828sn0d4q1lyn5h30ncmmgbld68x88vl7",
+        "rev": "e41445ab999631731bed81a6b7e1eae3dd6bbbf8",
+        "sha256": "1l5adx4bhrsbv50sp2z0anwmsxv08cs03nw0mwn6jx608pmc0dhi",
         "type": "tarball",
-        "url": "https://github.com/databus23/helm-diff/archive/v3.1.3.tar.gz",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.4.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "3.1.3"
+        "vendorSha256": "sha256-D6GjfgDVhOe5JdmOALF5P8o6IfMbrlAd46RZ9G89Jas=",
+        "version": "3.4.2"
     },
     "kail": {
         "branch": "master",
@@ -70,12 +77,26 @@
         "homepage": "",
         "owner": "boz",
         "repo": "kail",
-        "rev": "58d7816d3d93cccb1903603512e40919a843c760",
-        "sha256": "0kzlcizkbpgzgj82qdwwkp5szg23y4xqmk2xqx72hbis4yvm91wq",
+        "rev": "7b1aa994443f9f2477ed8fce8ecddc0b517d077a",
+        "sha256": "0b4abzk8lc5qa04ywkl8b5hb9jmxhyi2dpgbl27gmw81525wjnj7",
         "type": "tarball",
-        "url": "https://github.com/boz/kail/archive/v0.14.2.tar.gz",
+        "url": "https://github.com/boz/kail/archive/v0.15.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.14.2"
+        "vendorSha256": "09s7sq23hglcb2rsi9igzql39zs4238f3jfmvxz9a8v41da225np",
+        "version": "0.15.0"
+    },
+    "ketall": {
+        "branch": "master",
+        "description": "Like `kubectl get all`, but get really all resources",
+        "homepage": "",
+        "owner": "corneliusweig",
+        "repo": "ketall",
+        "rev": "c42698bda8bc2a483a638c009fec9fa62f45e9f9",
+        "sha256": "0z4gkkcxsjwn05gjq7mvvdc38ssfyzn3hd75r73wgvyjcppbkari",
+        "type": "tarball",
+        "url": "https://github.com/corneliusweig/ketall/archive/v1.3.8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.3.8"
     },
     "ksniff": {
         "branch": "master",
@@ -83,12 +104,13 @@
         "homepage": "",
         "owner": "eldadru",
         "repo": "ksniff",
-        "rev": "6ee64fe45ab4ae63429f1647a31ff3c920b64e43",
-        "sha256": "1dv0nvcbh74664qg8c57xg6k65653r6lyhzih99an2r5nw1yk44l",
+        "rev": "67b1799583687d1725dca2398e7c1a9239c9603c",
+        "sha256": "0i49rlxvb8w1nhv9dsnvg3ps802z36jrdy1fc1fi6xhajngalgqg",
         "type": "tarball",
-        "url": "https://github.com/eldadru/ksniff/archive/v1.4.2.tar.gz",
+        "url": "https://github.com/eldadru/ksniff/archive/v1.6.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.4.2"
+        "vendorSha256": "sha256-7pSpOF8UASWqRMWaomoUBA3pD8t0qWiaIcGlXEm0Yx0=",
+        "version": "1.6.2"
     },
     "kubectl-node-shell": {
         "branch": "master",
@@ -96,12 +118,12 @@
         "homepage": "https://github.com/kvaps/kubectl-node-shell",
         "owner": "kvaps",
         "repo": "kubectl-node-shell",
-        "rev": "156053f8bd3ac7a70d59564ac486d522f252e9c7",
-        "sha256": "0vdmjrhg82zkasm669f8j3w5wnn17a3zhzws8avf7wbsifyhig2p",
+        "rev": "e52ee65bc72fff942b6e3f5a13259f8316089d27",
+        "sha256": "1fxr2lvjazyg95r43hh8yvsic6208qszd3lm2cmd81fqc1xj7c7m",
         "type": "tarball",
-        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.2.3.tar.gz",
+        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.5.5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.2.3"
+        "version": "1.5.5"
     },
     "kubectl-topology": {
         "branch": "master",
@@ -122,25 +144,25 @@
         "homepage": "https://github.com/huazhihao/kubespy",
         "owner": "huazhihao",
         "repo": "kubespy",
-        "rev": "6066c32c7276b26c56dca019e4c56fef4bc29eb5",
-        "sha256": "1gcmvx60yfjcrd2wg0bfmzacj9r6dljvmmrjxy6sxavb3cwxdk6k",
+        "rev": "b08fae382b505d50c76e7ca18a57213003148862",
+        "sha256": "0l3f33qb4z01vwq450yksyml7mlhzi3cznalnnn9ivm9m650yi96",
         "type": "tarball",
-        "url": "https://github.com/huazhihao/kubespy/archive/v0.3.3.tar.gz",
+        "url": "https://github.com/huazhihao/kubespy/archive/v0.4.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.3.3"
+        "version": "0.4.0"
     },
     "loki": {
-        "branch": "master",
+        "branch": "main",
         "description": "Like Prometheus, but for logs.",
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "6500f821951b737c980df832d9d78a34220430d6",
-        "sha256": "0bakskzizazc5cd6km3n6facc5val5567zinnxg3yjy29xdi64ww",
+        "rev": "7fca88debdbc5ca72c534d849ada775759ed9e2f",
+        "sha256": "0b3c4q66dgfm74g8ag7z023p01q290ij1nqfvh809qydfcvis88x",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v1.6.1.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.4.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.1"
+        "version": "2.4.2"
     },
     "niv": {
         "branch": "master",
@@ -148,22 +170,23 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "983e7a049aea1d2033e619368b9a5d6d394d51db",
-        "sha256": "1d3p53q8anl6x9f8wg1wbznq4vwrp2ns044w0gc03drp8nh0dfdm",
+        "rev": "9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a",
+        "sha256": "1ajyqr8zka1zlb25jx1v4xys3zqmdy3prbm1vxlid6ah27a8qnzh",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/983e7a049aea1d2033e619368b9a5d6d394d51db.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "master",
+        "autoupdate": false,
+        "branch": "nixpkgs-unstable",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8ad7f2487eb9525794cc3b5d1ed298ebc97592f0",
-        "sha256": "12sjbbzd1xfqakkrfgic95r0y9rg6f7lz891nii63vxlk9xwm90h",
+        "rev": "5c37ad87222cfc1ec36d6cd1364514a9efc2f7f2",
+        "sha256": "1r74afnalgcbpv7b9sbdfbnx1kfj0kp1yfa60bbbv27n36vqdhbb",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/8ad7f2487eb9525794cc3b5d1ed298ebc97592f0.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5c37ad87222cfc1ec36d6cd1364514a9efc2f7f2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
@@ -172,12 +195,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "rswitch",
-        "rev": "60a9e31f94ce6545f6004b0c48bbdaab8ffad0fd",
-        "sha256": "091jrrylvg3f6braqd5c220c87xxpdh2gissxnlingwjl68xfrcx",
+        "rev": "7f9d3ec94827b96706bf0b6293fce471cb477580",
+        "sha256": "1qk87dgxaszrv48zr7hsx3rx9i308aqwdcx5lz34177q19jsndwq",
         "type": "tarball",
-        "url": "https://github.com/Caascad/rswitch/archive/60a9e31f94ce6545f6004b0c48bbdaab8ffad0fd.tar.gz",
+        "url": "https://github.com/Caascad/rswitch/archive/7f9d3ec94827b96706bf0b6293fce471cb477580.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "1.2.0"
+        "version": "1.2.1"
     },
     "safe": {
         "branch": "master",
@@ -185,11 +208,12 @@
         "homepage": null,
         "owner": "starkandwayne",
         "repo": "safe",
-        "sha256": "12gzxrnyl890h79z9yx23m1wwgy8ahm74q4qwi8n2nh7ydq6mn2d",
+        "rev": "238a89e52a4db773c82b36012dfd060c3ad307db",
+        "sha256": "1ihpbsbjg1545n29l8gybk7kiy38vw0rjdgds4fi3g4c2zh1fyba",
         "type": "tarball",
-        "url": "https://github.com/starkandwayne/safe/archive/v1.5.1.tar.gz",
+        "url": "https://github.com/starkandwayne/safe/archive/v1.6.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.5.1"
+        "version": "1.6.1"
     },
     "sd": {
         "branch": "master",
@@ -197,25 +221,26 @@
         "homepage": null,
         "owner": "caascad",
         "repo": "sd",
-        "rev": "cacbd62ccdb845d90d2e72f3c5b0b3d1122cc85f",
-        "sha256": "1pp7xvgaahm2kmshx81qma31q1zi8ijcxzhx3anikk8rxz4qxrsx",
+        "rev": "00e0d324e979ea1810fe16b285233f94844d5076",
+        "sha256": "0ny69yx5vhgcs7azshbxwdn2l9513vrl37sdj1zrvvbl1bpb87l6",
         "type": "tarball",
-        "url": "https://github.com/caascad/sd/archive/1.0.0.tar.gz",
+        "url": "https://github.com/caascad/sd/archive/1.0.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.0.0"
+        "version": "1.0.3"
     },
     "terraform-provider-aws": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform AWS provider",
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "7ed5f82d440d8c9ca4f9cb6713e530785f1aab2f",
-        "sha256": "1wkq9c5ci14fx4lxkw2xr1wqyjr4f1lcb4wl8g0ai03s3hzjl5g8",
+        "rev": "9f761e8dc78069d08bdc7c953e5ed76b37d3c43e",
+        "sha256": "1jnd1z3clyi3ih112qkfa9kj620r59jscih4rgm8mpfl56xd2lig",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v3.47.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.5.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "version": "3.47.0"
+        "vendorSha256": "sha256-2mnB/G6qovPePVDLdwTsB7ZrH8JFtc43AM3rA2QAIaU=",
+        "version": "4.5.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -223,25 +248,25 @@
         "homepage": "https://registry.terraform.io/providers/hashicorp/azuread/latest/docs",
         "owner": "hashicorp",
         "repo": "terraform-provider-azuread",
-        "rev": "521cbf681207107389274d2a2d34ea4e2f2b6817",
-        "sha256": "11vgn55r4jxqr2gcmih3kvi419k5ybyc5y73bskqayqyihyq7awc",
+        "rev": "fef2a3399fc11a06af3da5a63a89e469530804f8",
+        "sha256": "0p1c80cfwpaycyk3sgi11wnl6f0xgvmxw2xamsf01bxrrjaw764z",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v1.6.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-azuread/archive/v2.19.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.0"
+        "version": "2.19.1"
     },
     "terraform-provider-azurerm": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform provider for Azure Resource Manager",
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "1efab255881a23aa1a3c7c50a24bccb1c805eeef",
-        "sha256": "0j66im78zwzszk7g82a46dhvcgkp9yak0p4x266z2nvzf949j17b",
+        "rev": "9fdb8c392a864f8460fe83433fd6db791548616b",
+        "sha256": "1jzjwncmwhhbmnhsm11mdsyf4znbmj76p6jqbdpj8whmcpdynwhx",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.65.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v2.99.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "2.65.0"
+        "version": "2.99.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -258,16 +283,30 @@
     },
     "terraform-provider-concourse": {
         "branch": "master",
-        "description": "A terraform provider for Concourse",
-        "homepage": null,
-        "owner": "alphagov",
+        "description": "RELEASE REPOSITORY FOR terraform-provider-concourse: development takes place in alphagov/terraform-provider-concourse",
+        "homepage": "https://github.com/alphagov/terraform-provider-concourse",
+        "owner": "terraform-provider-concourse",
         "repo": "terraform-provider-concourse",
-        "rev": "5ff605de4afef50551bf97ed56ba0c9f4c2730aa",
-        "sha256": "038hk2cixnpv6caya02iy1fkp7bxadna0ks1rfc8mywlml58b5pb",
+        "rev": "f507da95023e4888a73d3d549868d8accdd5e2eb",
+        "sha256": "125cd1ai156azip1hwvfwk7cfmjyjcxfda8ih5qcaljk4kpp1sq0",
         "type": "tarball",
-        "url": "https://github.com/alphagov/terraform-provider-concourse/archive/v6.2.0.tar.gz",
+        "url": "https://github.com/terraform-provider-concourse/terraform-provider-concourse/archive/v7.2.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "6.2.0"
+        "vendorSha256": "0zp2iiq6zg9j2br6pk8hb60wf7bkn8x97c4887z7myxcwbjxivgl",
+        "version": "7.2.1"
+    },
+    "terraform-provider-controltower": {
+        "branch": "main",
+        "description": "Use AWS Control Tower from Terraform",
+        "homepage": "https://registry.terraform.io/providers/idealo/controltower",
+        "owner": "idealo",
+        "repo": "terraform-provider-controltower",
+        "rev": "0f7620c6351abe258a1addf9a625554a6b289866",
+        "sha256": "0klv99sm1qw1s62441pwrwlf44ddigxxvdgk0kcl688k7a8kf0a7",
+        "type": "tarball",
+        "url": "https://github.com/idealo/terraform-provider-controltower/archive/v1.2.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.2.1"
     },
     "terraform-provider-flexibleengine": {
         "branch": "master",
@@ -275,12 +314,26 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "0c1f7143d3f6eedfc7c9c5e7676c017b91e6dc50",
-        "sha256": "1i6z5nbb6kz0cjbc57nvsl2yc85a7ygxyzqda2jw5y7b0wyw89z8",
+        "rev": "d87af1ad92027e814bc97db80bed31188fdb45bf",
+        "sha256": "0glfs1hq9v3jdga8vvjrybld4g6qmyhy4kayapccbmdnbx9rpg76",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.22.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.27.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.22.0"
+        "version": "1.27.1"
+    },
+    "terraform-provider-gitlab": {
+        "branch": "main",
+        "description": "Terraform GitLab provider",
+        "homepage": "https://www.terraform.io/docs/providers/gitlab/",
+        "owner": "gitlabhq",
+        "repo": "terraform-provider-gitlab",
+        "rev": "49db985b79f667da9244a57d9ff4f107f337b506",
+        "sha256": "19r6qqf177yzqrzxn22p92nlk23qxd1q3p3vd4civj3qzgccqap8",
+        "type": "tarball",
+        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.12.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "sha256-78/7+t75xFjLt1JfoVpHVPlM7q5BX+NI/I9ugfjdv+g=",
+        "version": "3.12.0"
     },
     "terraform-provider-helm": {
         "branch": "main",
@@ -288,12 +341,12 @@
         "homepage": "https://www.terraform.io/docs/providers/helm/",
         "owner": "hashicorp",
         "repo": "terraform-provider-helm",
-        "rev": "41034c34b401ae7d4e83cee1269dae0bd1ea4950",
-        "sha256": "03x8kcz6k3gfy688i046arz35l2440sdl57p6h8rnxy0d4fyfps4",
+        "rev": "561569273bc30acae2cb35a22778a49bb17d015b",
+        "sha256": "1lkkydjmm99qmj9bl498swdil909akznhvlqpwr4m67imwlzi1cy",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.2.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.4.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.2.0"
+        "version": "2.4.1"
     },
     "terraform-provider-huaweicloud": {
         "branch": "master",
@@ -301,12 +354,12 @@
         "homepage": "https://www.terraform.io/docs/providers/huaweicloud/",
         "owner": "huaweicloud",
         "repo": "terraform-provider-huaweicloud",
-        "rev": "ee00706fdb83c0835c07bad72e257c581a4292cc",
-        "sha256": "0avir5a2807gnl7vj0mdwvmn9fica550h1zmnlf7rgfaprw5j3mj",
+        "rev": "7e23e0d8b4d5cce006f8acf4f7b7005d627ba769",
+        "sha256": "14dxnphzg53qc9jxp5gr4vv0gj9j9i36zdyxh9ffcpcv4y3v9lkj",
         "type": "tarball",
-        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/refs/tags/v1.25.1.tar.gz",
+        "url": "https://github.com/huaweicloud/terraform-provider-huaweicloud/archive/v1.34.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.25.1"
+        "version": "1.34.1"
     },
     "terraform-provider-kubectl": {
         "branch": "master",
@@ -314,12 +367,13 @@
         "homepage": "https://registry.terraform.io/providers/gavinbunney/kubectl",
         "owner": "gavinbunney",
         "repo": "terraform-provider-kubectl",
-        "rev": "fab9a64bec30d9ac19c16be8a0b0c10af436a4f9",
-        "sha256": "17pppz1xx3wbk39m307n8jp6qnr0mwvqa3r5fqr6j19gi7im72r8",
+        "rev": "db6033999fd0a9204d664b8508c57c894881fe84",
+        "sha256": "0jm6zri6j3wdgwg8wixfh6w8il3vnqmwlbpa6scbfa8zq71qi1a0",
         "type": "tarball",
-        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.11.2.tar.gz",
+        "url": "https://github.com/gavinbunney/terraform-provider-kubectl/archive/v1.13.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.11.2"
+        "vendorSha256": "sha256-lXQHo66b9X0jZhoF+5Ix5qewQGyI82VPJ7gGzc2CHao=",
+        "version": "1.13.1"
     },
     "terraform-provider-kubernetes": {
         "branch": "main",
@@ -327,12 +381,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "971aa574db91faf30d19a11173eb503b1ecaa777",
-        "sha256": "03094gmyrpyd1xkmfd4mk9j8pj8sn989gscpqg6w1ri9xfy5j5q4",
+        "rev": "56acec127449eaf20d538c1ad2a6194790410dff",
+        "sha256": "15mjx531jzrsfd4kxnklcr8q7gbq64z772y9m5lhq73anr9yqfa3",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.3.2.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.3.2"
+        "version": "2.8.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
@@ -340,12 +394,12 @@
         "homepage": null,
         "owner": "nabancard",
         "repo": "terraform-provider-kubernetes-yaml",
-        "rev": "136c262b2ead3cb4bde3177e1df85c900c32aac6",
-        "sha256": "1dp1zazjzqjb42cjxnapvfk7v79addyxyxdnw0zlxf9wimqjysh9",
+        "rev": "fa8f4c8641b2efd965292423e4054fd082e15dc2",
+        "sha256": "1dpnzfrggbg79ph631qs3fpp9wcdp5wyx1ing0cnj71ihzf8p7my",
         "type": "tarball",
-        "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/v0.2.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.2.0"
+        "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/fa8f4c8641b2efd965292423e4054fd082e15dc2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "vendorSha256": "sha256-h4U31CmF5/WDSPRTT6/3u1Mdg5635YR3nP5jsHwmx0A="
     },
     "terraform-provider-rancher2": {
         "branch": "master",
@@ -353,50 +407,56 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "rancher",
         "repo": "terraform-provider-rancher2",
-        "rev": "981aa57c1b1dcae2f31e9f64f0f2775fab141234",
-        "sha256": "0nc0c1kz3dpgv84x6fzsgk4ccg8lr3pdzikc860jysa9awdl97rg",
+        "rev": "2f7c62308f68620439fb4171ca344e252f53d7cf",
+        "sha256": "0k5ljyb55nw993vc3whhnyjgwy97qr1pp5mbi9g40dlm84myi9bm",
         "type": "tarball",
-        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.15.1.tar.gz",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.22.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.15.1"
+        "vendorSha256": "sha256-WcOWohEmsgtPba42FUjzeL985ca3xCjQn7Vo7Vky8fQ=",
+        "version": "1.22.2"
     },
     "terraform-provider-vault": {
-        "branch": "master",
+        "branch": "main",
         "description": "Terraform Vault provider",
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-vault",
-        "rev": "f62a3ea18b6ae76065ebad90228b82a39d1636af",
-        "sha256": "17ynksad9dk7rcclvdfxyhc01i8sj0609rxrbzz0bq1m1hby92ly",
+        "rev": "91f40a2aed19da941f70247b34b04196e7b2a93a",
+        "sha256": "1mxy44dl1wr99v6b0gvzcf9d5nfky0avmx4fq83h9vfnvq7rmrhn",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v2.21.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.3.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.21.0"
+        "vendorSha256": "sha256-/RxWacoXb/ZmCG0Wk3bwl2qJEoUYH1pT/9dNrGz3LHU=",
+        "version": "3.3.1"
     },
     "vault-token-helper": {
+        "autoupdate": false,
         "branch": "master",
         "description": "@Hashicorp Vault Token Helper for macOS, Linux and Windows with support for native credential storage 🔐",
         "homepage": "",
         "owner": "joemiller",
         "repo": "vault-token-helper",
-        "rev": "078ad0fa0a764258c2e4d09db8c6544f6ae0d1e2",
-        "sha256": "0sqffya16zns870jfa5jjhfwrgnzh5zx3gwd223spfcgpy1jbs28",
+        "rev": "4eb8591fbe7259309793616f8b2d5a35e7c9adda",
+        "sha256": "0947fihh2w2i7qh2095gyvfhrzknfjhjcb2670khgakqvrnc3l10",
         "type": "tarball",
-        "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.0.tar.gz",
+        "url": "https://github.com/joemiller/vault-token-helper/archive/v0.3.6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.3.0"
+        "vendorSha256": "0sg52cx889a48587ip1mxdaagvjfvmz0d2q19r4r2pk9xs77q3g0",
+        "version": "0.3.6"
     },
     "velero": {
+        "autoupdate": false,
         "branch": "main",
         "description": "Backup and migrate Kubernetes applications and their persistent volumes",
         "homepage": "https://velero.io",
         "owner": "vmware-tanzu",
         "repo": "velero",
-        "rev": "f28a41dcded29cae9fdc280657e1bc8ab2312065",
-        "sha256": "18503pcjan0rbiqkdj8hhkhkblqqffn88qk4iwxa6418phv90pzm",
+        "rev": "d913f83c72f6b26d1f0ccc438b8a8f6a3ccdc667",
+        "sha256": "1yby3lyp0hcb59hfsplrmjlgw824k11gr1hk06ig95ihjy7d6l50",
         "type": "tarball",
-        "url": "https://github.com/vmware-tanzu/velero/archive/v1.6.1.tar.gz",
+        "url": "https://github.com/vmware-tanzu/velero/archive/v1.6.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.1"
+        "vendorSha256": "1rclbv7dm4x83amx38fk00da7kjy9qjb558c0f06ymd7zrv2p66a",
+        "version": "1.6.3"
     }
 }

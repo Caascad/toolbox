@@ -14,7 +14,6 @@ rec {
     source = sources.kubespy;
     cmdName = "kubespy";
     outCmdName = "kubectl-spy";
-    scriptPatches = [./kubespy.patch];
   };
 
   ctx = kubectx.overrideAttrs (old: {
@@ -36,7 +35,7 @@ rec {
       rev = "v${version}";
       sha256 = sources.kail.sha256;
     };
-    vendorSha256 = "1d8k65g1sa0nl34vzg1ac51cynlpfvrbpdkcb7n5v1ab09q9lp4x";
+    vendorSha256 = sources.kail.vendorSha256;
     subPackages = ["cmd/kail/"];
   };
 
@@ -52,7 +51,7 @@ rec {
       rev = "v${version}";
       sha256 = sources.ksniff.sha256;
     };
-    vendorSha256 = "0kp9nap64287g3cj0w1lxpgyvlbqkins8bwpwafixmb29l0xyixl";
+    vendorSha256 = sources.ksniff.vendorSha256;
     subPackages = ["cmd/"];
   };
 
@@ -68,4 +67,20 @@ rec {
     vendorSha256 = "18j6lv4aar1fwr9cb186j0mb0kirvhx8m2k98fjqpx50dmiqb695";
     subPackages = ["cmd/kubectl-topology"];
   };
+
+  ketall = buildGoModule rec {
+    pname = "kubectl-ketall";
+    version = sources.ketall.version;
+    src = fetchFromGitHub {
+      owner = sources.ketall.owner;
+      repo = sources.ketall.repo;
+      rev = "v${version}";
+      sha256 = sources.ketall.sha256;
+    };
+    vendorSha256 = "1bp5bcxbszhxy0jzqhvyv24zqhljk9221m7hgr45h8bzpckxc5wp";
+    postInstall = ''
+      mv $out/bin/ketall $out/bin/kubectl-ketall
+    '';
+  };
+
 }

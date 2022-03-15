@@ -211,7 +211,7 @@ nix-env -iA nixpkgs.niv
 To add sources of a github repo:
 
 ```sh
-niv add concourse/concourse -v 5.8.0 -t 'https://github.com/<owner>/<repo>/archive/<version>.tar.gz'
+niv add concourse/concourse -v 7.6.0 -t 'https://github.com/<owner>/<repo>/archive/v<version>.tar.gz'
 ```
 
 Once added you can use `sources.concourse` as an input of your package.
@@ -220,7 +220,7 @@ See `./pkgs/vault-token-helper.nix` for example.
 To update sources to a particular version:
 
 ```sh
-niv update concourse -v 5.8.1
+niv update concourse -v 7.6.0
 ```
 
 ### Testing a new package locally

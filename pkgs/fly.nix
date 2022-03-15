@@ -12,31 +12,26 @@ let
 
   fly-wrapper = import sources.fly-wrapper.outPath { inherit pkgs; };
 
+  fly_7_6_0 = fly_go {
+    source = sources.concourse_7_6_0;
+  };
+
   fly_7_3_2 = fly_go {
     source = sources.concourse_7_3_2;
-    goVendorSha256 = "0g1rjs7ss0q5j9hbz5kykrkvl1sg6nxl82jay8mln7y88d3fnjnz";
   };
 
-  fly_6_4_1 = fly_go {
-    source = sources.concourse_6_4_1;
-    goVendorSha256 = "0nv9q3j9cja8c6d7ac8fzb8zf82zz1z77f8cxvn3vxjki7fhlavm";
-  };
-
-  fly_go = {source, goVendorSha256}: buildGoModule rec {
+  fly_go = {source}: buildGoModule rec {
     pname = "fly";
     version = source.version;
     src = fetchzip {
       inherit (source) url sha256;
     };
 
-    vendorSha256 = goVendorSha256;
+    vendorSha256 = source.vendorSha256;
 
     subPackages = [ "fly" ];
 
-    buildFlagsArray = ''
-      -ldflags=
-        -X github.com/concourse/concourse.Version=${source.version}
-    '';
+    ldflags = "-X github.com/concourse/concourse.Version=${source.version}";
 
     postInstall = ''
       mkdir -p $out/share/bash-completion/completions
@@ -95,7 +90,7 @@ let
 
     case "$VERSION" in
       7.3.2) FLY_BIN="${fly_7_3_2}/bin" ;;
-          *) FLY_BIN="${fly_6_4_1}/bin" ;;
+      *) FLY_BIN="${fly_7_6_0}/bin" ;;
     esac
 
     export PATH="$FLY_BIN:$PATH"
@@ -116,7 +111,7 @@ in stdenv.mkDerivation {
       cat "$entrypointPath" > $out/bin/fly
       chmod 755 $out/bin/fly
       mkdir -p $out/share/bash-completion/completions
-      ${fly_6_4_1}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
+      ${fly_7_3_2}/bin/fly completion --shell bash > $out/share/bash-completion/completions/fly
   '';
 
   meta = with lib; {
