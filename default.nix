@@ -156,6 +156,8 @@ rec {
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
+  kube-rebalancer = pkgs.callPackage ./pkgs/kube-rebalancer { python = pkgs.python39; };
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
