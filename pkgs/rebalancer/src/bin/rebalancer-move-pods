@@ -1,0 +1,99 @@
+#!/usr/bin/env python
+
+import argparse
+import rebalancer as rb
+
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        prog="Rebalancer",
+        description='Rebalance node loads'
+    )
+    parser.add_argument(
+        "--resource_percent",
+        help="Percentage of resource to match to select overloaded nodes \
+              default: 90",
+        type=int,
+        default=90
+    )
+    parser.add_argument(
+        "--pod_limit",
+        help="Max number of pod to be moved (n by overloaded node) \
+              default: 3",
+        type=int,
+        default=3
+    )
+    parser.add_argument(
+        "--node_limit",
+        help="Max number of nodes to select (overloaded and destination) \
+              default: 100",
+        type=int,
+        default=100
+    )
+    parser.add_argument(
+        "--timeout",
+        help="Timeout for pod rescheduling \
+                default: 120s",
+        type=int,
+        default=120
+    )
+    parser.add_argument(
+        "--dst_node",
+        help="Destination node",
+        type=str,
+    )
+    parser.add_argument(
+        "--pods_names",
+        help="List of pods to move (separated by whitespace)",
+        type=str,
+    )
+    arguments = parser.parse_args()
+    return arguments
+
+
+if __name__ == "__main__":
+    args = get_args()
+    rebalancer = rb.Rebalancer(
+        args.resource_percent,
+        args.pod_limit,
+        args.node_limit,
+        args.timeout
+    )
+
+    if args.pods_names:
+        pods = args.pods_names.split(" ")
+        for pod in pods:
+            rebalancer.move_pods(
+                pod,
+                args.dst_node
+            )
+    else:
+        over_nodes = rebalancer.get_overloaded_nodes()
+        node_to_move = False
+        for need_type, nodes in over_nodes.items():
+            print("\n=====================%s=====================" % need_type)
+            if nodes:
+                node_to_move = True
+                for node in nodes:
+                    print(
+                        "name: {0}\n "
+                        "mem_percent: {1}\n "
+                        "cpu_percent {2}\n "
+                        "pods_to_move {3}".format(
+                            node.get_name(),
+                            node.get_memory_percent(),
+                            node.get_cpu_percent(),
+                            [pod.get_name()
+                             for pod in node.get_pods()[0:args.pod_limit]]
+                        )
+                    )
+                    print("===================================================")
+
+        if node_to_move:
+            apply = input("Apply ? (y/N)")
+            if apply in ["y", "Y", "yes", "Yes", "YES"]:
+                rebalancer.move_pods()
+            else:
+                print("Aborting....")
+        else:
+            print("No overloaded node found")

@@ -178,6 +178,8 @@ rec {
 
   rswitch = import sources.rswitch.outPath { inherit pkgs; };
 
+  rebalancer = pkgs.callPackage ./pkgs/rebalancer {}; 
+
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
