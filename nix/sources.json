@@ -216,17 +216,17 @@
         "version": "1.6.1"
     },
     "sd": {
-        "branch": "master",
+        "branch": "tmp_fix",
         "description": "Service discovery helper",
         "homepage": null,
         "owner": "caascad",
         "repo": "sd",
-        "rev": "00e0d324e979ea1810fe16b285233f94844d5076",
+        "rev": "24e219c4154cd3d21b9b4b06db1df55a80dbbf60",
         "sha256": "0ny69yx5vhgcs7azshbxwdn2l9513vrl37sdj1zrvvbl1bpb87l6",
         "type": "tarball",
-        "url": "https://github.com/caascad/sd/archive/1.0.3.tar.gz",
+        "url": "https://github.com/caascad/sd/archive/1.0.4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.0.3"
+        "version": "1.0.4"
     },
     "terraform-provider-aws": {
         "branch": "main",
