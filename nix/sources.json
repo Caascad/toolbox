@@ -170,10 +170,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a",
-        "sha256": "1ajyqr8zka1zlb25jx1v4xys3zqmdy3prbm1vxlid6ah27a8qnzh",
+        "rev": "5912c378c2f87e911f1bc7236202f69581406c9d",
+        "sha256": "1jhs562k3pk0xgwyf0m1h2bck4rivv9f3aznz8dslgby9g5mdnda",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/5912c378c2f87e911f1bc7236202f69581406c9d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -381,12 +381,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "56acec127449eaf20d538c1ad2a6194790410dff",
-        "sha256": "15mjx531jzrsfd4kxnklcr8q7gbq64z772y9m5lhq73anr9yqfa3",
+        "rev": "92d5f1814992b24874916c66af3eddd4de619c5c",
+        "sha256": "0yrd0fp43va1628839zryyg859lhdl850ivfmmh9ycxwdydsjpn3",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.8.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.9.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.8.0"
+        "version": "2.9.0"
     },
     "terraform-provider-kubernetes-yaml": {
         "branch": "master",
