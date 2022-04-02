@@ -33,15 +33,15 @@
         "branch": "master",
         "description": "Validate and define text-based and dynamic configuration",
         "homepage": "https://cuelang.org",
-        "owner": "cuelang",
+        "owner": "cue-lang",
         "repo": "cue",
-        "rev": "aa61ee7f7c7c65900f63e9506ed42317757b627c",
-        "sha256": "0sj78vba3302is2jxi9pv8w7zzl6lrc8b2n359cjq5wcw2bq9hdd",
+        "rev": "83a170051feb037fe36dfa2586c1ec0e0eb3f1b0",
+        "sha256": "1gnr66dca45ws5lkj2zgwjgbh02q0gmcf947lzg51nv8q30zfw78",
         "type": "tarball",
-        "url": "https://github.com/cuelang/cue/archive/v0.4.0.tar.gz",
+        "url": "https://github.com/cue-lang/cue/archive/v0.4.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "0xkaabfzqrg0pqdq7ah67yx132508l5kfr9xs98is79732a9a8kr",
-        "version": "0.4.0"
+        "vendorSha256": "12p77a97lbff6qhncs5qx13k3wmf9hrr09mhh12isw5s0p0n53xm",
+        "version": "0.4.2"
     },
     "fly-wrapper": {
         "branch": "master",
@@ -183,10 +183,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5c37ad87222cfc1ec36d6cd1364514a9efc2f7f2",
-        "sha256": "1r74afnalgcbpv7b9sbdfbnx1kfj0kp1yfa60bbbv27n36vqdhbb",
+        "rev": "30d3d79b7d3607d56546dd2a6b49e156ba0ec634",
+        "sha256": "0x5j9q1vi00c6kavnjlrwl3yy1xs60c34pkygm49dld2sgws7n0a",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5c37ad87222cfc1ec36d6cd1364514a9efc2f7f2.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/30d3d79b7d3607d56546dd2a6b49e156ba0ec634.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rswitch": {
