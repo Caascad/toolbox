@@ -38,8 +38,11 @@ jobs:
       run: |
         . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
         cd $(mktemp -d)
-        SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform-shell vault flexibleengine http null
-        nix-shell --run "terraform version"
+        SHELL_COMMIT=${GITHUB_SHA} toolbox make-terraform-shell vault flexibleengine null
+        cat <<EOF >main.tf
+        resource null_resource foo {}
+        EOF
+        nix-shell --run "terraform init && terraform plan"
   shellcheck:
     runs-on: ubuntu-latest
     steps:
