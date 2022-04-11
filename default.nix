@@ -8,88 +8,75 @@ let
   pkgs = import nixpkgs {
     overlays = [(self: super: {
 
+      lib = super.lib // {
+
+        # Taken and adapted from nixpkgs/pkgs/applications/networking/cluster/terraform-providers/default.nix
+        mkTFProvider = super.lib.makeOverridable
+          ({ source
+           , deleteVendor ? false
+           , proxyVendor ? false
+           }:
+            let
+              provider-name = with super.lib; head (reverseList (splitString "-" source.repo));
+              provider-source-address =  "registry.terraform.io/toolbox/${provider-name}";
+            in super.buildGoModule rec {
+              pname = source.repo;
+              inherit (source) version;
+              vendorSha256 = if source ? "vendorSha256" then source.vendorSha256 else null;
+              inherit deleteVendor proxyVendor;
+              subPackages = [ "." ];
+              doCheck = false;
+              # https://github.com/hashicorp/terraform-provider-scaffolding/blob/a8ac8375a7082befe55b71c8cbb048493dd220c2/.goreleaser.yml
+              # goreleaser (used for builds distributed via terraform registry) requires that CGO is disabled
+              CGO_ENABLED = 0;
+              ldflags = [ "-s" "-w" "-X main.version=${version}" "-X main.commit=${source.rev}" ];
+              src = super.fetchFromGitHub {
+                inherit (source) owner repo rev sha256;
+              };
+              # Move the provider to libexec
+              postInstall = ''
+                dir=$out/libexec/terraform-providers/${provider-source-address}/${version}/''${GOOS}_''${GOARCH}
+                mkdir -p "$dir"
+                mv $out/bin/* "$dir/terraform-provider-$(basename ${provider-source-address})_${version}"
+                rmdir $out/bin
+              '';
+              passthru = { inherit provider-source-address; };
+            });
+      };
+
       terraform-providers = super.terraform-providers // {
 
-        kubernetes-alpha = {};
+        aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; };
 
-        aws = pkgs.callPackage ./pkgs/terraform-provider-aws.nix
-          { source = sources.terraform-provider-aws; };
+        controltower = self.lib.mkTFProvider { source = sources.terraform-provider-controltower; };
 
-        controltower = pkgs.callPackage ./pkgs/terraform-provider-controltower.nix
-          { source = sources.terraform-provider-controltower; };
+        rancher2 = self.lib.mkTFProvider { source = sources.terraform-provider-rancher2; };
 
-        k8sraw = builtins.trace "k8sraw provider is deprecated, use the kubectl provider" pkgs.callPackage ./pkgs/terraform-provider-k8sraw.nix
-          { source = sources.terraform-provider-kubernetes-yaml; };
+        kubectl = self.lib.mkTFProvider { source = sources.terraform-provider-kubectl; };
 
-        rancher2 = pkgs.callPackage ./pkgs/terraform-provider-rancher2.nix
-          { source = sources.terraform-provider-rancher2; };
+        concourse = self.lib.mkTFProvider { source = sources.terraform-provider-concourse; };
 
-        kubectl = pkgs.callPackage ./pkgs/terraform-provider-kubectl.nix
-          { source = sources.terraform-provider-kubectl; };
+        gitlab = self.lib.mkTFProvider { source = sources.terraform-provider-gitlab; };
 
-        concourse = pkgs.callPackage ./pkgs/terraform-provider-concourse.nix
-          { source = sources.terraform-provider-concourse; };
+        flexibleengine = self.lib.mkTFProvider { source = sources.terraform-provider-flexibleengine; };
 
-        gitlab = pkgs.callPackage ./pkgs/terraform-provider-gitlab.nix
-          { source = sources.terraform-provider-gitlab; };
+        huaweicloud = self.lib.mkTFProvider { source = sources.terraform-provider-huaweicloud; };
 
-        flexibleengine = pkgs.callPackage ./pkgs/terraform-provider-flexibleengine.nix
-          { source = sources.terraform-provider-flexibleengine; };
+        azuread = self.lib.mkTFProvider { source = sources.terraform-provider-azuread; };
 
-        huaweicloud = pkgs.callPackage ./pkgs/terraform-provider-huaweicloud.nix
-          { source = sources.terraform-provider-huaweicloud; };
+        azurerm = self.lib.mkTFProvider { source = sources.terraform-provider-azurerm; };
 
-        azuread = pkgs.callPackage ./pkgs/terraform-provider-azuread.nix
-          { source = sources.terraform-provider-azuread; };
+        helm = self.lib.mkTFProvider { source = sources.terraform-provider-helm; };
 
-        azurerm = pkgs.callPackage ./pkgs/terraform-provider-azurerm.nix
-          { source = sources.terraform-provider-azurerm; };
+        kubernetes = self.lib.mkTFProvider { source = sources.terraform-provider-kubernetes; };
 
-        helm = super.terraform-providers.helm.overrideAttrs (old:
-          with sources.terraform-provider-helm; {
-            inherit version;
-            pname = repo;
-            goPackagePath = "github.com/hashicorp/${repo}";
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
-            passthru.provider-source-address = "registry.terraform.io/toolbox/helm";
-          }
-        );
+        vault = self.lib.mkTFProvider { source = sources.terraform-provider-vault; };
 
-        kubernetes = super.terraform-providers.kubernetes.overrideAttrs (old:
-          with sources.terraform-provider-kubernetes; {
-            inherit version;
-            pname = repo;
-            goPackagePath = "github.com/hashicorp/${repo}";
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
-            passthru.provider-source-address = "registry.terraform.io/toolbox/kubernetes";
-          }
-        );
+        cloudinit = self.lib.mkTFProvider { source = sources.terraform-provider-cloudinit; };
 
-        vault = pkgs.callPackage ./pkgs/terraform-provider-vault.nix
-          { source = sources.terraform-provider-vault; };
-
+        # Take from nixpkgs, but keep the old provider-source-address
         keycloak = super.terraform-providers.keycloak.overrideAttrs (old:
-           {
-            passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak";
-          }
-        );
-
-        cloudinit = super.terraform-providers.cloudinit.overrideAttrs (old:
-          with sources.terraform-provider-cloudinit; {
-            inherit version;
-            pname = repo;
-            src = pkgs.fetchzip {
-              inherit url sha256;
-            };
-            postBuild = "mv ../go/bin/${repo}{,_v${version}}";
-            passthru.provider-source-address = "registry.terraform.io/toolbox/cloudinit";
-          }
+          { passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak"; }
         );
 
       };
