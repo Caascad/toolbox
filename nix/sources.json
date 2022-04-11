@@ -314,12 +314,13 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "d87af1ad92027e814bc97db80bed31188fdb45bf",
-        "sha256": "0glfs1hq9v3jdga8vvjrybld4g6qmyhy4kayapccbmdnbx9rpg76",
+        "rev": "3a75ee9c2237e7b956a74da9500a18e19e120175",
+        "sha256": "1c4kp9m624zivp0i46mkdbl6yn1ck1y1pkl1gs3rwaghy5n61r2i",
+        "vendorSha256": "0v7q9kgia6qcqq562yabbmc8q8cv55fc1q9vrd7881bhvdn1b7zx",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.27.1.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.28.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.27.1"
+        "version": "1.28.0"
     },
     "terraform-provider-gitlab": {
         "branch": "main",
