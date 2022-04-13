@@ -75,9 +75,9 @@ let
         cloudinit = self.lib.mkTFProvider { source = sources.terraform-provider-cloudinit; };
 
         # Take from nixpkgs, but keep the old provider-source-address
-        keycloak = super.terraform-providers.keycloak.overrideAttrs (old:
-          { passthru.provider-source-address = "registry.terraform.io/toolbox/keycloak"; }
-        );
+        keycloak = super.terraform-providers.keycloak.override {
+          provider-source-address = "registry.terraform.io/toolbox/keycloak";
+        };
 
       };
 
