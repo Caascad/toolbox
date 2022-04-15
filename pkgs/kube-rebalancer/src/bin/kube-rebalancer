@@ -78,14 +78,12 @@ def main():
                     print(
                         "name: {0}\n "
                         "mem_percent: {1}\n "
-                        "cpu_percent {2}\n "
-                        "pods_to_move {3}".format(
+                        "cpu_percent {2}\n ".format(
                             node.get_name(),
                             node.get_memory_percent(),
-                            node.get_cpu_percent(),
-                            [pod.get_name()
-                             for pod in node.get_pods()[0:args.pod_limit]]
+                            node.get_cpu_percent()
                         )
+
                     )
                     print("===================================================")
 

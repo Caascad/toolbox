@@ -8,5 +8,5 @@ setup(
     author_email="yacine.saibi@orange.com",
     packages=find_packages(),
     install_requires=["kubernetes", "quantiphy", "urllib3"],
-    scripts=["bin/rebalancer-move-pods"]
+    scripts=["bin/kube-rebalancer"]
 )
