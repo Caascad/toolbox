@@ -316,7 +316,7 @@
         "repo": "terraform-provider-flexibleengine",
         "rev": "3a75ee9c2237e7b956a74da9500a18e19e120175",
         "sha256": "1c4kp9m624zivp0i46mkdbl6yn1ck1y1pkl1gs3rwaghy5n61r2i",
-        "vendorSha256": "0v7q9kgia6qcqq562yabbmc8q8cv55fc1q9vrd7881bhvdn1b7zx",
+        "vendorSha256": "02k5qr0gs02pl21365ppm60l4qwlrza74i4gnz961l7h1apz58r1",
         "type": "tarball",
         "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.28.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
