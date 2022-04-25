@@ -15,6 +15,7 @@ let
           ({ source
            , deleteVendor ? false
            , proxyVendor ? false
+           , patches ? []
            }:
             let
               provider-name = with super.lib; head (reverseList (splitString "-" source.repo));
@@ -23,7 +24,7 @@ let
               pname = source.repo;
               inherit (source) version;
               vendorSha256 = if source ? "vendorSha256" then source.vendorSha256 else null;
-              inherit deleteVendor proxyVendor;
+              inherit deleteVendor proxyVendor patches;
               subPackages = [ "." ];
               doCheck = false;
               # https://github.com/hashicorp/terraform-provider-scaffolding/blob/a8ac8375a7082befe55b71c8cbb048493dd220c2/.goreleaser.yml
@@ -58,7 +59,16 @@ let
 
         gitlab = self.lib.mkTFProvider { source = sources.terraform-provider-gitlab; };
 
-        flexibleengine = self.lib.mkTFProvider { source = sources.terraform-provider-flexibleengine; };
+        flexibleengine = self.lib.mkTFProvider {
+          source = sources.terraform-provider-flexibleengine;
+          patches = [
+            # https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/issues/738
+            (super.fetchpatch {
+              url = "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/commit/97cfef4b115c251c4bb69a59e812aebafa65bda0.patch";
+              sha256 = "10bvwac5jhrcj9g7glvgvdnpyyrlxcawn9avd36k6fd9dig37fan";
+            })
+          ];
+        };
 
         huaweicloud = self.lib.mkTFProvider { source = sources.terraform-provider-huaweicloud; };
 
