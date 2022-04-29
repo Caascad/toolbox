@@ -59,16 +59,7 @@ let
 
         gitlab = self.lib.mkTFProvider { source = sources.terraform-provider-gitlab; };
 
-        flexibleengine = self.lib.mkTFProvider {
-          source = sources.terraform-provider-flexibleengine;
-          patches = [
-            # https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/issues/738
-            (super.fetchpatch {
-              url = "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/commit/97cfef4b115c251c4bb69a59e812aebafa65bda0.patch";
-              sha256 = "10bvwac5jhrcj9g7glvgvdnpyyrlxcawn9avd36k6fd9dig37fan";
-            })
-          ];
-        };
+        flexibleengine = self.lib.mkTFProvider { source = sources.terraform-provider-flexibleengine; };
 
         huaweicloud = self.lib.mkTFProvider { source = sources.terraform-provider-huaweicloud; };
 
