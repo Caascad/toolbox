@@ -106,6 +106,10 @@ rec {
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1" terraform_1;
   terraform_1_0 = builtins.trace "terraform_1_0 is deprecated use terraform_1" terraform_1;
 
+  open-policy-agent = pkgs.open-policy-agent.overrideAttrs (old: {
+    doCheck = false;
+  });
+
   ansible = pkgs.ansible_2_10;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix {};
