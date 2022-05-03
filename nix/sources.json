@@ -1,4 +1,18 @@
 {
+    "alertmanager": {
+        "branch": "main",
+        "description": "Prometheus Alertmanager",
+        "homepage": "https://prometheus.io",
+        "owner": "prometheus",
+        "repo": "alertmanager",
+        "rev": "23f961ec6a9c8a15bf99c83815d35e13d66a4d5d",
+        "sha256": "0k0zmknky63i590agcwcb7hbh0gzl10fw7hpl1zjizgx039q9046",
+        "type": "tarball",
+        "url": "https://github.com/prometheus/alertmanager/archive/v0.24.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "0.24.0",
+        "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc="
+    },
     "concourse_7_3_2": {
         "autoupdate": false,
         "branch": "master",
