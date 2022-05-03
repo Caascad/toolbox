@@ -117,6 +117,7 @@ rec {
   ansible = pkgs.ansible_2_10;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
+  amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
 
   helm = pkgs.kubernetes-helm;
 
