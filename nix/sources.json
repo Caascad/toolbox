@@ -336,6 +336,20 @@
         "vendorSha256": "sha256-78/7+t75xFjLt1JfoVpHVPlM7q5BX+NI/I9ugfjdv+g=",
         "version": "3.12.0"
     },
+    "terraform-provider-harbor": {
+        "branch": "master",
+        "description": "A terraform provider for Harbor. Used to configure an instance of Harbor. ",
+        "homepage": "https://goharbor.io/",
+        "owner": "bestseller",
+        "repo": "terraform-provider-harbor",
+        "rev": "999eb20bfb0ae7ce848b907ccd733e3595f815b3",
+        "sha256": "19inlvvk78p1v8zl7c0bc4qzl8fizvg05ahawfg7ahs7zn3yw547",
+        "type": "tarball",
+        "url": "https://github.com/bestseller/terraform-provider-harbor/archive/v3.6.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "sha256-TRgAlnnPa8ZWV1UyhNnUJYdKLe1ut85w0MyS5/2Km2M=",
+        "version": "3.6.0"
+    },
     "terraform-provider-helm": {
         "branch": "main",
         "description": "Terraform Helm provider",
