@@ -108,7 +108,7 @@ rec {
 
   ansible = pkgs.ansible_2_10;
 
-  amtool = pkgs.callPackage ./pkgs/amtool.nix {};
+  amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
 
   helm = pkgs.kubernetes-helm;
 
