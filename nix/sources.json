@@ -10,8 +10,8 @@
         "type": "tarball",
         "url": "https://github.com/prometheus/alertmanager/archive/v0.24.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.24.0",
-        "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc="
+        "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc=",
+        "version": "0.24.0"
     },
     "concourse_7_3_2": {
         "autoupdate": false,
@@ -342,13 +342,13 @@
         "homepage": "https://www.terraform.io/docs/providers/gitlab/",
         "owner": "gitlabhq",
         "repo": "terraform-provider-gitlab",
-        "rev": "49db985b79f667da9244a57d9ff4f107f337b506",
-        "sha256": "19r6qqf177yzqrzxn22p92nlk23qxd1q3p3vd4civj3qzgccqap8",
+        "rev": "d19ee24973d2505f9df91a1e480c3bbff9b11751",
+        "sha256": "12y0m81h3zkkwgsk08afg8r11rkya6nz7racxigvbs4wha9iprpl",
         "type": "tarball",
-        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.12.0.tar.gz",
+        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.14.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-78/7+t75xFjLt1JfoVpHVPlM7q5BX+NI/I9ugfjdv+g=",
-        "version": "3.12.0"
+        "vendorSha256": "0g0gnfddnnzfp1h6h2i774zj32p9rqmgpw0g3h7p41yqmqqgwk9k",
+        "version": "3.14.0"
     },
     "terraform-provider-harbor": {
         "branch": "master",
