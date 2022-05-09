@@ -127,6 +127,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --help)
             display_help="true"
+            ALL_ARGS+=("$1")
             ;;
         --alertmanager.url*)
             if [ "$1" = "--alertmanager.url" ]; then
