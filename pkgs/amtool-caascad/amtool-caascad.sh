@@ -19,7 +19,9 @@ amtool-wrapper help
 
 This is a wrapper for amtool. Here are the specific options for the wrapper :
 
-  --alertmanager.url : Also accepts "<zone>/<subzone>" format, where <subzone> is one of "caascad", "client", "app" or "consumption".
+  --alertmanager.url : Also accepts "<zone>/<subzone>" format, where <subzone> is the "cc_prom" value as "infra-caascad",
+                       "cloud-caascad", "cloud-client", "cloud-app" or "infra-consumption". The prefix can be ignored and
+                       the value can also be "caascad", "client", "app" or "consumption".
                        When a regular URI is specified, it will be used as is.
 
   --http.config.file : HTTP configuration file as needed by amtool.
@@ -36,6 +38,7 @@ EOHELP
 
 parse_url() {
     ZONE=""
+    GIVEN_SUBZONE=""
     SUBZONE=""
 
     # Check the format of $1
@@ -44,7 +47,8 @@ parse_url() {
             ;;
         */*)
             ZONE=$(echo "$url" | cut -d/ -f 1)
-            SUBZONE=$(echo "$url" | cut -d/ -f 2)
+            GIVEN_SUBZONE=$(echo "$url" | cut -d/ -f 2)
+            SUBZONE="${GIVEN_SUBZONE//*-/}"
             ;;
         *)
             echo "Wrong url format" 1>&2
@@ -68,7 +72,7 @@ build_url() {
         namespace="monitoring-consumption"
         service="consumption-alertmanager"
     else
-        echo "In <zone>/<subzone>, subzone should be one of 'caascad', 'client', 'app' or 'consumption'. Got '${SUBZONE}'" 1>&2
+        echo "In <zone>/<subzone>, subzone should be one of 'caascad', 'client', 'app' or 'consumption' (with a possible prefix as 'infra-' or 'cloud-'. Got '${GIVEN_SUBZONE}'" 1>&2
         exit 1
     fi
 
