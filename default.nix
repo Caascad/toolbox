@@ -82,6 +82,11 @@ let
           provider-source-address = "registry.terraform.io/toolbox/keycloak";
         };
 
+        powerdns = super.terraform-providers.powerdns.override {
+          provider-source-address = "registry.terraform.io/toolbox/powerdns";
+        };
+
+
       };
 
     })];
