@@ -20,14 +20,6 @@
     postInstall = ''
       mv $out/bin/helm-diff $out/bin/diff
     '';
-
-    patches = [
-      (fetchpatch {
-        url = "https://patch-diff.githubusercontent.com/raw/databus23/helm-diff/pull/379.patch";
-        sha256 = "0yc2pl48n35amwha9fy5jps9y27rlnb03rmymrrcscllz7f6x4pm";
-      })
-    ];
-
   };
 
 }
