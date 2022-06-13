@@ -417,19 +417,6 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
         "version": "2.9.0"
     },
-    "terraform-provider-kubernetes-yaml": {
-        "branch": "master",
-        "description": "A basic terraform provider which allows generic YAML config for Kubernetes",
-        "homepage": null,
-        "owner": "nabancard",
-        "repo": "terraform-provider-kubernetes-yaml",
-        "rev": "fa8f4c8641b2efd965292423e4054fd082e15dc2",
-        "sha256": "1dpnzfrggbg79ph631qs3fpp9wcdp5wyx1ing0cnj71ihzf8p7my",
-        "type": "tarball",
-        "url": "https://github.com/nabancard/terraform-provider-kubernetes-yaml/archive/fa8f4c8641b2efd965292423e4054fd082e15dc2.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "vendorSha256": "sha256-h4U31CmF5/WDSPRTT6/3u1Mdg5635YR3nP5jsHwmx0A="
-    },
     "terraform-provider-rancher2": {
         "branch": "master",
         "description": "Terraform Rancher2 provider",
