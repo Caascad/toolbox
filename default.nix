@@ -31,8 +31,8 @@ let
               # goreleaser (used for builds distributed via terraform registry) requires that CGO is disabled
               CGO_ENABLED = 0;
               ldflags = [ "-s" "-w" "-X main.version=${version}" "-X main.commit=${source.rev}" ];
-              src = super.fetchFromGitHub {
-                inherit (source) owner repo rev sha256;
+              src = pkgs.fetchzip {
+                inherit (source) url sha256;
               };
               # Move the provider to libexec
               postInstall = ''
