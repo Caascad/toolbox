@@ -77,13 +77,13 @@
         "homepage": "",
         "owner": "databus23",
         "repo": "helm-diff",
-        "rev": "e41445ab999631731bed81a6b7e1eae3dd6bbbf8",
-        "sha256": "1l5adx4bhrsbv50sp2z0anwmsxv08cs03nw0mwn6jx608pmc0dhi",
+        "rev": "49135f1d92d5980ed231cdeb2cf7caa09ac1925f",
+        "sha256": "1ndd2bcvxicwz3izikdqw3h846z9m0r570nl7n8552l0rlq5vwbs",
         "type": "tarball",
-        "url": "https://github.com/databus23/helm-diff/archive/v3.4.2.tar.gz",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.5.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-D6GjfgDVhOe5JdmOALF5P8o6IfMbrlAd46RZ9G89Jas=",
-        "version": "3.4.2"
+        "vendorSha256": "1j186hjx7jccgzlx8cpm01xn652qk6k23af3ds6bjass3b42nbpn",
+        "version": "3.5.0"
     },
     "kail": {
         "branch": "master",
