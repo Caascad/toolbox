@@ -45,7 +45,7 @@ let
             });
       };
 
-      terraform-providers = super.terraform-providers // {
+      toolbox-terraform-providers = {
 
         aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; };
 
@@ -84,6 +84,9 @@ let
 
       };
 
+      # Override nixpkgs terraform-providers with our providers
+      terraform-providers = super.terraform-providers // self.toolbox-terraform-providers;
+
     })];
   };
 
@@ -114,7 +117,7 @@ rec {
     doCheck = false;
   });
 
-  ansible = pkgs.ansible_2_10;
+  ansible = pkgs.ansible_2_12;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
@@ -122,11 +125,7 @@ rec {
   helm = pkgs.kubernetes-helm;
 
   # Expose providers that don't come from nixpkgs (so that we can push them in the cache)
-  terraform-providers = filterAttrs (_: drv:
-    if drv ? "passthru" && drv.passthru ? "provider-source-address" then
-      let components = splitString "/" drv.passthru.provider-source-address;
-      in (builtins.elemAt components 1) == "toolbox"
-    else false) pkgs.terraform-providers;
+  terraform-providers = pkgs.toolbox-terraform-providers;
 
   cue = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
 
