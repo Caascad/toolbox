@@ -160,6 +160,9 @@ rec {
   velero = pkgs.callPackage ./pkgs/velero.nix
     { source = sources.velero; };
 
+  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix
+    { source = sources.rancher-cli; };
+
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
   sd = import sources.sd.outPath { inherit pkgs; };
