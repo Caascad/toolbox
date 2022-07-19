@@ -13,6 +13,20 @@
         "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc=",
         "version": "0.24.0"
     },
+    "rancher-cli": {
+        "branch": "v2.6",
+        "description": "Rancher CLI",
+        "homepage": null,
+        "owner": "rancher",
+        "repo": "cli",
+        "rev": "8f35783891bde2e0528a8a13bb979a88bbfb179c",
+        "sha256": "04xzpc3c9s3rd1qm6vzra1ixjycsxjcfrslk228pm4cx2kbkw4iy",
+        "vendorSha256": "03rzxzxlx4qb6xqkvd3zckdx0iw0m6y5qyjscnv3fsv847ymgszx",
+        "type": "tarball",
+        "url": "https://github.com/rancher/cli/archive/v2.4.11.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "2.4.11"
+    },
     "concourse_7_3_2": {
         "autoupdate": false,
         "branch": "master",
