@@ -13,21 +13,6 @@
         "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc=",
         "version": "0.24.0"
     },
-    "rancher-cli": {
-        "autoupdate": false,
-        "branch": "v2.6",
-        "description": "Rancher CLI",
-        "homepage": null,
-        "owner": "rancher",
-        "repo": "cli",
-        "rev": "8f35783891bde2e0528a8a13bb979a88bbfb179c",
-        "sha256": "04xzpc3c9s3rd1qm6vzra1ixjycsxjcfrslk228pm4cx2kbkw4iy",
-        "vendorSha256": "03rzxzxlx4qb6xqkvd3zckdx0iw0m6y5qyjscnv3fsv847ymgszx",
-        "type": "tarball",
-        "url": "https://github.com/rancher/cli/archive/v2.4.11.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.4.11"
-    },
     "concourse_7_3_2": {
         "autoupdate": false,
         "branch": "master",
@@ -186,12 +171,12 @@
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "d81c9d38f2b004c998c7d9b604da7f1cb5347eb0",
-        "sha256": "1wy5vv488jf81pkk12ysc9bd4cnk2c1d19w3k5jp1l45s94agyrc",
+        "rev": "a1e75da9707d4fe5bacf5d3aea947225c5781d09",
+        "sha256": "1mh24sykr8jy4sldhcryrzyg8qdpykc4vkgsdhqfqnwriv62s3ga",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v2.6.0.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.6.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.6.0"
+        "version": "2.6.1"
     },
     "niv": {
         "branch": "master",
@@ -217,6 +202,21 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/30d3d79b7d3607d56546dd2a6b49e156ba0ec634.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "rancher-cli": {
+        "autoupdate": false,
+        "branch": "v2.6",
+        "description": "Rancher CLI",
+        "homepage": null,
+        "owner": "rancher",
+        "repo": "cli",
+        "rev": "8f35783891bde2e0528a8a13bb979a88bbfb179c",
+        "sha256": "04xzpc3c9s3rd1qm6vzra1ixjycsxjcfrslk228pm4cx2kbkw4iy",
+        "type": "tarball",
+        "url": "https://github.com/rancher/cli/archive/v2.4.11.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "03rzxzxlx4qb6xqkvd3zckdx0iw0m6y5qyjscnv3fsv847ymgszx",
+        "version": "2.4.11"
     },
     "rswitch": {
         "branch": "master",
@@ -290,12 +290,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "c7244c24325209c6bd2ccc7cb30b4d8c22d9c92d",
-        "sha256": "0bmxfp4n37fsb3n20vy9cy7h4ghh6kd8hlkvfxxnwn33x4z3wlgy",
+        "rev": "df114ab23dbb45f118a624b928401a43941d2b54",
+        "sha256": "1iv4bw15g6xr3wzbh1lfyr7y759fb5pyv0ib044fc8pmnmaib82k",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.14.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.15.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.14.0"
+        "version": "3.15.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
