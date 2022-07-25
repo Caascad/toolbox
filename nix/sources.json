@@ -263,13 +263,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "50e83ae4fa828123d4f3712687a99ffe6a68c37c",
-        "sha256": "1hvq3llk9rp7dxym6yzv5nlhdvrzvv4g1rcda63gf5x4h9f37rhp",
+        "rev": "34af55ac41107466021f6421f63ea6712c671053",
+        "sha256": "0ncczppq3hqrawqs9i9yk6jvs6nd6p8yg9l4j2y3y0d85na7qpkj",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.22.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.23.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-kz0bPsfLCekRj/ZGCBT+eFRMRkV+Dc69RkyBbFaztd0=",
-        "version": "4.22.0"
+        "vendorSha256": "sha256-ew6s5QbGOibhCyhbhEjCCVA6d7BrhH7UPovizv/U85Y=",
+        "version": "4.23.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -343,13 +343,13 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "ba6c3c7067f4171be3c411b694e5661b44090096",
-        "sha256": "0pg3ngncjnx4pwwril9gp9an58baj26ng8akhc3lxysd3d2rgvjn",
+        "rev": "2f30668bdb6835467c9d30f8656809de27bcc0fe",
+        "sha256": "00gw6fs5jxlaiz40yynlzxdxcbdl59cqp62w2c0mi17y9kscw7a0",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.31.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.31.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "sha256-P2/yK6aLNdmC8g5dMKK0hpAdj76KtewzVVHQsVgr3J4=",
-        "version": "1.31.0"
+        "version": "1.31.1"
     },
     "terraform-provider-gitlab": {
         "branch": "main",
