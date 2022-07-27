@@ -263,13 +263,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "50e83ae4fa828123d4f3712687a99ffe6a68c37c",
-        "sha256": "1hvq3llk9rp7dxym6yzv5nlhdvrzvv4g1rcda63gf5x4h9f37rhp",
+        "rev": "c0584b28cc281774d9d4756c4d25b7a07391413b",
+        "sha256": "0ncczppq3hqrawqs9i9yk6jvs6nd6p8yg9l4j2y3y0d85na7qpkj",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.22.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.23.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-kz0bPsfLCekRj/ZGCBT+eFRMRkV+Dc69RkyBbFaztd0=",
-        "version": "4.22.0"
+        "vendorSha256": "sha256-ew6s5QbGOibhCyhbhEjCCVA6d7BrhH7UPovizv/U85Y=",
+        "version": "4.23.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -290,12 +290,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "df114ab23dbb45f118a624b928401a43941d2b54",
-        "sha256": "1iv4bw15g6xr3wzbh1lfyr7y759fb5pyv0ib044fc8pmnmaib82k",
+        "rev": "117cdd4dce11a88e813bda7e46b40f16b03c5340",
+        "sha256": "07012vipaki649v3k1h3hgcyh7dy7lkf3nr0cnwj9c6aanpi04bz",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.15.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.15.1.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.15.0"
+        "version": "3.15.1"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -343,13 +343,13 @@
         "homepage": "https://www.terraform.io/docs/providers/flexibleengine/",
         "owner": "FlexibleEngineCloud",
         "repo": "terraform-provider-flexibleengine",
-        "rev": "ba6c3c7067f4171be3c411b694e5661b44090096",
-        "sha256": "0pg3ngncjnx4pwwril9gp9an58baj26ng8akhc3lxysd3d2rgvjn",
+        "rev": "2f30668bdb6835467c9d30f8656809de27bcc0fe",
+        "sha256": "00gw6fs5jxlaiz40yynlzxdxcbdl59cqp62w2c0mi17y9kscw7a0",
         "type": "tarball",
-        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.31.0.tar.gz",
+        "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.31.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "vendorSha256": "sha256-P2/yK6aLNdmC8g5dMKK0hpAdj76KtewzVVHQsVgr3J4=",
-        "version": "1.31.0"
+        "version": "1.31.1"
     },
     "terraform-provider-gitlab": {
         "branch": "main",
@@ -452,13 +452,13 @@
         "homepage": "https://www.terraform.io/docs/providers/vault/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-vault",
-        "rev": "90352edf676bdf0e996a39c538a1f1a96dbeda57",
-        "sha256": "18rm68fc9m6nz07i5zxrsy3bh4adfqd47sfn4fj4v6jqpmri8swz",
+        "rev": "1793ebb23bf31a046dbd221006232d098189cca3",
+        "sha256": "1i85m159dwx3pz2n4myldi9ca5alyhfr46bzgs0740bcdkzspvzj",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.7.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-vault/archive/v3.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-TqhnjsK36EGpDlN4yy1jd/1KpdOT+hu4koMM3VCJEV0=",
-        "version": "3.7.0"
+        "vendorSha256": "sha256-D6O8N1WEdDM6sogJym+8dheBKE3eQmGTvbVJeiGreRc=",
+        "version": "3.8.0"
     },
     "vault-token-helper": {
         "autoupdate": false,
