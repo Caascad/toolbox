@@ -16,11 +16,12 @@ let
            , deleteVendor ? false
            , proxyVendor ? false
            , patches ? []
+           , buildGoModule ? pkgs.buildGo118Module
            }:
             let
               provider-name = with super.lib; head (reverseList (splitString "-" source.repo));
               provider-source-address =  "registry.terraform.io/toolbox/${provider-name}";
-            in super.buildGoModule rec {
+            in buildGoModule rec {
               pname = source.repo;
               inherit (source) version;
               vendorSha256 = if source ? "vendorSha256" then source.vendorSha256 else null;
