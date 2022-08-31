@@ -3,18 +3,33 @@
 }:
 
 let
-
   openstackEnv = pkgs.poetry2nix.mkPoetryEnv {
     projectDir = ./.;
-    python = pkgs.python38;
-    overrides = pkgs.poetry2nix.overrides.withDefaults (self: super: {
+    python = pkgs.python310;
+    overrides = pkgs.poetry2nix.overrides.withDefaults (self: super: rec {
+
+      # TODO: remove when poetry2nix's override contains this
+      jsonschema = super.jsonschema.overridePythonAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
+          hatch-fancy-pypi-readme
+        ];
+      });
+
+      # TODO: remove when https://github.com/NixOS/nixpkgs/pull/187999 is merged
+      hatch-fancy-pypi-readme = pkgs.callPackage ./hatch-fancy-pypi-readme.nix {
+        python = super.python;
+      };
 
       munch = super.munch.overridePythonAttrs (old: {
-          propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr self.six ];
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr self.six ];
+      });
+
+      warlock = super.warlock.overridePythonAttrs (old: {
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.poetry ];
       });
 
       python-swiftclient = super.python-swiftclient.overridePythonAttrs (old: {
-          propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
       });
 
       python-octaviaclient = super.python-octaviaclient.overridePythonAttrs (old: { 
@@ -24,7 +39,11 @@ let
       });
 
       requestsexceptions = super.requestsexceptions.overridePythonAttrs (old: {
-          propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
+      });
+
+      futurist = super.futurist.overridePythonAttrs (old: {
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.pbr ];
       });
 
       pbr = super.pbr.overridePythonAttrs(old: {
@@ -40,7 +59,7 @@ let
 
 in openstackCLI.overrideAttrs (old: rec {
   pname = "openstackclient";
-  version = "5.5.0";
+  version = "6.0.0";
   name = "${pname}-${version}";
 
   meta = with lib; {
