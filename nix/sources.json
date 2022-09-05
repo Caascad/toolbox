@@ -290,12 +290,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "cc77d57152eb40b696fa7b983126e07d1fbcb503",
-        "sha256": "03nd655q3s74qlama6drwpjs5gdy7sz9j1w9lvqj4rm2a5gzaqam",
+        "rev": "0c087ce376811590a273478dd0892aac86d75f47",
+        "sha256": "1zkzl20cj3chrzlc0914jvnzlwxx3fp4am90ipqamgvpcc6gbj26",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.21.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.21.1.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.21.0"
+        "version": "3.21.1"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
