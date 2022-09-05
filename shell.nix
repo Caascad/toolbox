@@ -8,7 +8,9 @@ let
 
 in with toolbox; pkgs.runCommand "deps" {
   buildInputs = [
-    pkgs.niv pkgs.act
+    pkgs.niv
+    # act is a CLI tool to test github actions locally
+    pkgs.act
     (pkgs.python3.withPackages (p: [p.pyaml p.graphqlclient]))
   ];
 } ""
