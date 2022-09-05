@@ -8,7 +8,7 @@ let
 
 in with toolbox; pkgs.runCommand "deps" {
   buildInputs = [
-    pkgs.niv
+    pkgs.niv pkgs.act
     (pkgs.python3.withPackages (p: [p.pyaml p.graphqlclient]))
   ];
 } ""
