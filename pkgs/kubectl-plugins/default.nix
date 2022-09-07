@@ -23,7 +23,7 @@ rec {
     '';
   });
 
-  tail = buildGoModule rec {
+  tail = buildGo117Module rec {
     pname = "kubectl-tail";
     version = sources.kail.version;
     postInstall = ''
@@ -39,7 +39,7 @@ rec {
     subPackages = ["cmd/kail/"];
   };
 
-  sniff = buildGoModule rec {
+  sniff = buildGo117Module rec {
     pname = "kubectl-sniff";
     version = sources.ksniff.version;
     postInstall = ''
@@ -55,7 +55,7 @@ rec {
     subPackages = ["cmd/"];
   };
 
-  topology = buildGoModule rec {
+  topology = buildGo117Module rec {
     pname = "kubectl-topology";
     version = sources.kubectl-topology.version;
     src = fetchFromGitHub {

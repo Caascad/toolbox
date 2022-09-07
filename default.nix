@@ -46,6 +46,11 @@ let
             });
       };
 
+      kompose = super.kompose.override {
+        # Build is failing on Darwin with Go 1.18
+        buildGoModule = pkgs.buildGo117Module;
+      };
+
       terraform-providers = super.terraform-providers // {
 
         aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; };
@@ -115,7 +120,7 @@ rec {
     doCheck = false;
   });
 
-  ansible = pkgs.ansible_2_10;
+  ansible = pkgs.ansible_2_12;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
@@ -124,7 +129,7 @@ rec {
 
   # Expose providers that don't come from nixpkgs (so that we can push them in the cache)
   terraform-providers = filterAttrs (_: drv:
-    if drv ? "passthru" && drv.passthru ? "provider-source-address" then
+    if (builtins.tryEval drv).success && drv ? "passthru" && drv.passthru ? "provider-source-address" then
       let components = splitString "/" drv.passthru.provider-source-address;
       in (builtins.elemAt components 1) == "toolbox"
     else false) pkgs.terraform-providers;
@@ -155,14 +160,18 @@ rec {
   logcli = pkgs.callPackage ./pkgs/loki.nix
     { source = sources.loki; };
 
-  vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix
-    { source = sources.vault-token-helper; };
+  vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix {
+    source = sources.vault-token-helper;
+    buildGoModule = pkgs.buildGo117Module;
+  };
 
   velero = pkgs.callPackage ./pkgs/velero.nix
     { source = sources.velero; };
 
-  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix
-    { source = sources.rancher-cli; };
+  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix { 
+    source = sources.rancher-cli;
+    buildGoModule = pkgs.buildGo117Module;
+  };
 
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
