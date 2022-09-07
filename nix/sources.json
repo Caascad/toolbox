@@ -357,13 +357,13 @@
         "homepage": "https://www.terraform.io/docs/providers/gitlab/",
         "owner": "gitlabhq",
         "repo": "terraform-provider-gitlab",
-        "rev": "7ce52220285ac5189aef15c4c63bac711498d4b4",
-        "sha256": "1434gyyqifsxqcpjsqidxhwvm0y6bzgmmdzsr5nw8n81djnn8l4d",
+        "rev": "2aa1c94e80d23d2e668330ea7b0e9402cc2edc09",
+        "sha256": "01m6hwf6dliri2pryxb6h9cfvciwvjbp0ril74ys06r38nipbmvq",
         "type": "tarball",
-        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.17.0.tar.gz",
+        "url": "https://github.com/gitlabhq/terraform-provider-gitlab/archive/v3.18.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256:1lwlxgafa40j8fhyjvqxzx24375ccbqiv3192083yayl5gycqg6j",
-        "version": "3.17.0"
+        "vendorSha256": "sha256-YrgsycnRIB5UoWGADphfP6lf78M8ZnkJGP0Ti2QJtQ8=",
+        "version": "3.18.0"
     },
     "terraform-provider-harbor": {
         "branch": "master",
@@ -438,13 +438,13 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "rancher",
         "repo": "terraform-provider-rancher2",
-        "rev": "34683372c426e490640529b842c39fd3f6043074",
-        "sha256": "0p2pxakyk0hwv39n6skr7z40whjfz3ifidhk51hwnd90ibgk7nmc",
+        "rev": "81d3396685c351ebfc2e80fadbe12d3f0de8e814",
+        "sha256": "0lk9avnjj5pc2lsdfh7inh2mg5nbcmnljdn6admyvhwa78383q87",
         "type": "tarball",
-        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.24.0.tar.gz",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.24.1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-cSf/peZBChjrElkwAK4eoczll1fyDvfnxm16wF/pqTs=",
-        "version": "1.24.0"
+        "vendorSha256": "sha256-4dhDSaekq9xyhiXtzk5WL3RTL1phrMnwL66mL9ixijA=",
+        "version": "1.24.1"
     },
     "terraform-provider-vault": {
         "branch": "main",
