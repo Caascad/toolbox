@@ -269,7 +269,9 @@ install() {
 
 uninstall() {
     local pkgs="$*"
-    log-run "nix-env -e $pkgs"
+    for pkg in ${pkgs}; do
+      log-run "nix-env -e $(nix-instantiate '<toolbox>' --eval -A "${pkg}.pname")"
+    done
 }
 
 update() {
