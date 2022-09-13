@@ -232,7 +232,7 @@ configure_kubeconfig() {
         elif [[ "$zoneType" =~ fe|azure ]]; then
             run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1beta1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
         elif [ "$zoneType" == "aws" ]; then
-            run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1alpha1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
+            run "kubectl config set-credentials $zone-admin --exec-api-version=client.authentication.k8s.io/v1beta1 --exec-command=kswitch --exec-arg=-c --exec-arg=${zone}"
         else
             log-error "Zone provider $zoneType not supported."
             exit 1
@@ -337,8 +337,9 @@ get_credentials() {
         # shellcheck disable=SC1090,SC2015
         source "${awsCredsFilePath}"
         log_debug "Get AWS K8S token..."
+        # TODO: remove jq apiVersion override when awscli supports it
         eval "$(vault read "secret/zones/aws/${zone}/eks" |
-            jq -e -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')" || return 1
+            jq -e -r '.data | "aws --region \(.region) eks get-token --cluster-name \(.name)"')" | jq '. | .apiVersion="client.authentication.k8s.io/v1beta1"' || return 1
     elif [ "$zoneType" == "azure" ]; then
         log_debug "Get Azure k8s certificates..."
         vault read "secret/zones/azure/${zone}/kubeconfig" |
