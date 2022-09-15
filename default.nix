@@ -105,7 +105,7 @@ rec {
 
   inherit (pkgs) kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
-                 kustomize pre-commit shellcheck
+                 kustomize shellcheck
                  envsubst awscli restic azure-cli
                  saml2aws
                  k9s
@@ -118,6 +118,12 @@ rec {
     # Tests related to wasm are failing on MacOS
     # but wasm is not enabled in the build
     doCheck = false;
+  });
+
+  pre-commit = pkgs.pre-commit.overrideAttrs (old: rec {
+    pname = "pre-commit";
+    version = old.version;
+    name = "${pname}-${version}";
   });
 
   ansible = pkgs.ansible_2_12;
