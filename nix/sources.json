@@ -77,13 +77,13 @@
         "homepage": "",
         "owner": "databus23",
         "repo": "helm-diff",
-        "rev": "49135f1d92d5980ed231cdeb2cf7caa09ac1925f",
-        "sha256": "1ndd2bcvxicwz3izikdqw3h846z9m0r570nl7n8552l0rlq5vwbs",
+        "rev": "c5d10a3e91f4ac3882eec23b7b35871eaeb9e895",
+        "sha256": "1j4vskym9h1rrxjpl5vyjz472gmgj7g72icm8lr1jbz8lpc0zr15",
         "type": "tarball",
-        "url": "https://github.com/databus23/helm-diff/archive/v3.5.0.tar.gz",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.6.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1j186hjx7jccgzlx8cpm01xn652qk6k23af3ds6bjass3b42nbpn",
-        "version": "3.5.0"
+        "vendorSha256": "sha256-d5NSqCJrk9QhV5gVOKUG/uJxuvt8X8hiQd8yJEoXPL0=",
+        "version": "3.6.0"
     },
     "kail": {
         "branch": "master",
@@ -263,13 +263,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "da38070f1ae31cda55c4000a0348d3004cb3acfb",
-        "sha256": "1hcb6cgm15y2fnwqdjn8a66hinp2g47p5h3vbiydw6x7mkb9xv5z",
+        "rev": "af99b4f61752ae9381cc363926e1e4f8c2d95c82",
+        "sha256": "0zqzbypr8rl4scxv48j58lidrd6vcpl89hxig2fzyrli1cy5z0cw",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.31.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.32.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-99iNQPVOhuKOGq2VRExm6y6Ab/NzaRmJxwRJfmkYycM=",
-        "version": "4.31.0"
+        "vendorSha256": "sha256-qnh28bbG5k6jMUepcxtgDWk1DptQiXjkg702QtYIM28=",
+        "version": "4.32.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
