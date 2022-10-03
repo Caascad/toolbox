@@ -3,7 +3,7 @@
 , makeWrapper
 , coreutils
 , jq
-, utillinux
+, util-linux
 , gnused
 }:
 
@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     chmod +x $out/bin/toolbox
     bash $out/bin/toolbox completions >  $out/share/bash-completion/completions/toolbox
 
-    wrapProgram $out/bin/toolbox --prefix PATH ":" ${coreutils}/bin:${jq}/bin:${utillinux}/bin:${gnused}/bin
+    wrapProgram $out/bin/toolbox --prefix PATH ":" ${coreutils}/bin:${jq}/bin:${util-linux}/bin:${gnused}/bin
   '';
 
   meta = with lib; {

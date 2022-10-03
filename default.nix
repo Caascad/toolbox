@@ -5,6 +5,8 @@
 
 let
 
+  # See: https://github.com/NixOS/nixpkgs/issues/193657
+  pkgs-poetry = import sources.nixpkgs-poetry {};
   pkgs = import nixpkgs {
     overlays = [(self: super: {
 
@@ -183,13 +185,19 @@ rec {
 
   sd = import sources.sd.outPath { inherit pkgs; };
 
-  rswitch = import sources.rswitch.outPath { inherit pkgs; };
+  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657 
+  rswitch = import sources.rswitch.outPath { 
+    pkgs = pkgs-poetry;
+  };
 
   kube-rebalancer = pkgs.callPackage ./pkgs/kube-rebalancer { python = pkgs.python39; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
-  openstackclient = pkgs.callPackage ./pkgs/openstack-cli {};
+  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657 
+  openstackclient = pkgs.callPackage ./pkgs/openstack-cli {
+    pkgs = pkgs-poetry;
+  };
 
   os = pkgs.callPackage ./pkgs/os { inherit openstackclient; };
 
