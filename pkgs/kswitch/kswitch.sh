@@ -248,7 +248,7 @@ configure_kubeconfig() {
 }
 
 start_tunnel() {
-    dest=cloud@bst.${zone}.caascad.com
+    dest="cloud@bst.${zone}.$(zone_attr $zone "domain_name")"
 
     if [[ "$zone" =~ ^infra-* ]]; then
         kubeServer=$(cat "${CONFIG_DIR}/${zone}")
