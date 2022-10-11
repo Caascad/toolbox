@@ -181,6 +181,11 @@ rec {
     buildGoModule = pkgs.buildGo117Module;
   };
 
+  tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix { 
+    source = sources.tflint-ruleset-aws;
+    buildGoModule = pkgs.buildGo119Module;
+  };
+
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
   sd = import sources.sd.outPath { inherit pkgs; };

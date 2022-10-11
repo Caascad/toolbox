@@ -473,6 +473,20 @@
         "vendorSha256": "sha256:04xy0qdxqfljgdybgqz9zixr10lnjgv327mig2zjzdb8a7lv7fy7",
         "version": "3.8.2"
     },
+    "tflint-ruleset-aws": {
+        "branch": "master",
+        "description": "TFLint ruleset for terraform-provider-aws",
+        "homepage": "",
+        "owner": "terraform-linters",
+        "repo": "tflint-ruleset-aws",
+        "rev": "032c4057eb55be952199e6c227fc035d84b44862",
+        "sha256": "1658a6bbiljgdhl5hq8qa0qrc8bmr3lk02yv65yk362wdnsgw2nr",
+        "type": "tarball",
+        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.17.1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "vendorSha256": "sha256-P3yqDqVoC6XCX5OJ8kTvIk6Qq8X02Be51TajIkZxdbI=",
+        "version": "0.17.1"
+    },
     "vault-token-helper": {
         "autoupdate": false,
         "branch": "master",
