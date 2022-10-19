@@ -22,7 +22,7 @@ def get_package_latest_release(token, name, props):
 
     query = '{'
     props['alias'] = name.replace('-', '')
-    query += '%s:repository(owner:"%s",name:"%s"){releases(last:1){nodes{tagName}}}' % (
+    query += '%s:repository(owner:"%s",name:"%s"){releases(first:1){nodes{tagName}}}' % (
         props['alias'], props['owner'], props['repo'])
     query += '}'
 
