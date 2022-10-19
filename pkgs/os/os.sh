@@ -5,7 +5,8 @@ set -euo pipefail
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
 OS_CONFIG="${CONFIG}/os"
-CAASCAD_ZONES_URL="https://git.corp.caascad.com/caascad/caascad-zones/raw/master/zones.json"
+CAASCAD_ZONES_BRANCH="PF-1113"
+CAASCAD_ZONES_URL="https://git.corp.caascad.com/caascad/caascad-zones/raw/$CAASCAD_ZONES_BRANCH/zones.json"
 CAASCAD_ZONES_FILE="${CONFIG}/caascad-zones.json"
 CURRENT_FILE="${OS_CONFIG}/current"
 HIDE=false
@@ -83,7 +84,7 @@ _get_vault_fqdn() {
       DOMAIN_NAME="$(jq -r --arg ZONE "${INFRA_ZONE_NAME}" '.|to_entries[] | select(.key == $ZONE) | .value.domain_name' "${CAASCAD_ZONES_FILE}" )"
   else
       INFRA_ZONE_NAME="$(jq -e -r --arg ZONE "${ZONE}" '.[$ZONE].infra_zone_name' "${CAASCAD_ZONES_FILE}")"
-      DOMAIN_NAME="$(jq -r --arg ZONE "${ZONE}" '.[$ZONE].domain_name' "${CAASCAD_ZONES_FILE}")"
+      DOMAIN_NAME="$(jq -r --arg INFRA_ZONE_NAME "${INFRA_ZONE_NAME}" '.[$INFRA_ZONE_NAME].domain_name' "${CAASCAD_ZONES_FILE}")"
   fi
   echo "https://vault.${INFRA_ZONE_NAME}.${DOMAIN_NAME}"
 }
