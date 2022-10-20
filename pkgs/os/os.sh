@@ -5,7 +5,7 @@ set -euo pipefail
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
 OS_CONFIG="${CONFIG}/os"
-CAASCAD_ZONES_BRANCH="PF-1113"
+CAASCAD_ZONES_BRANCH="master"
 CAASCAD_ZONES_URL="https://git.corp.caascad.com/caascad/caascad-zones/raw/$CAASCAD_ZONES_BRANCH/zones.json"
 CAASCAD_ZONES_FILE="${CONFIG}/caascad-zones.json"
 CURRENT_FILE="${OS_CONFIG}/current"
