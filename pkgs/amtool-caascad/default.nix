@@ -8,7 +8,7 @@
 
 stdenv.mkDerivation rec {
   pname = "amtool-caascad";
-  version = "1.0.2";
+  version = "1.0.3";
 
   buildInputs = [ makeWrapper ];
 
