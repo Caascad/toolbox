@@ -4,7 +4,7 @@
 set -eu
 set -o pipefail
 
-CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/caascad/caascad-zones/raw/master/zones.json}
+CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/caascad/caascad-zones/raw/master/zones_short.json}
 CONFIG_DIR="$HOME/.config/kswitch"
 CACHE_DIR="${CONFIG_DIR}/cache"
 CAASCAD_ZONES_FILE="${CACHE_DIR}/zones.json"
