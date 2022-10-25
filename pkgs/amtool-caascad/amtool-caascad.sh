@@ -117,7 +117,7 @@ refresh_zones() {
 }
 
 init_lock_counter() {
-    if [ "${initLockCounterRun}" -eq 0 ]; then
+    if [ "${initLockCounterRun:=0}" -eq 0 ]; then
         declare -g -A LOCKS
         trap unlock_all EXIT
         initLockCounterRun=1
