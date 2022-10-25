@@ -197,23 +197,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "14ccaaedd95a488dd7ae142757884d8e125b3363",
-        "sha256": "1dvdpwdzkzr9pkvb7pby0aajgx7qv34qaxb1bjxx4dxi3aip9q5q",
+        "rev": "d4f8e53720b554b6dac71c7ec62b3b51158905f9",
+        "sha256": "0b76rrh6xl491kqmcrdasj2frbw2632k8knyavwk4rdn4vps7g21",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/14ccaaedd95a488dd7ae142757884d8e125b3363.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nixpkgs-poetry": {
-        "autoupdate": false,
-        "branch": "nixpkgs-unstable",
-        "description": "Nix Packages collection",
-        "homepage": null,
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "21de2b973f9fee595a7a1ac4693efff791245c34",
-        "sha256": "1kicpg62jsyh4blyykvbkq1vg4rv56k22qpp8kr9mj3fjabkrr27",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/21de2b973f9fee595a7a1ac4693efff791245c34.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/d4f8e53720b554b6dac71c7ec62b3b51158905f9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rancher-cli": {
