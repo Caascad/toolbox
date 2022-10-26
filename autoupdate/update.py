@@ -16,17 +16,35 @@ CHANGES_FILE = 'changes.md'
 DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
 re_sha = re.compile('(?<=got: {4})(sha256:)?(.*)')
 
-def get_package_latest_release(token, name, props):
+def get_package_latest_release(token, props, **kwargs):
     client = GraphQLClient('https://api.github.com/graphql')
     client.inject_token('bearer ' + token)
 
-    query = '{'
-    props['alias'] = name.replace('-', '')
-    query += '%s:repository(owner:"%s",name:"%s"){releases(first:1){nodes{tagName}}}' % (
-        props['alias'], props['owner'], props['repo'])
-    query += '}'
+    query = r"""
+        query GetRelease($owner: String!, $name: String!, $cursor: String) {
+            repository(owner: $owner, name: $name) {
+                releases(before: $cursor, last: 1, orderBy: {field: CREATED_AT, direction: ASC}) {
+                    pageInfo {
+                        hasPreviousPage
+                        startCursor
+                    }
+                    nodes {
+                        isPrerelease
+                        ...OtherReleaseData
+                    }
+                }
+            }
+        }
 
-    return json.loads(client.execute(query))
+        fragment OtherReleaseData on Release {
+            tagName
+        }
+    """
+    return json.loads(client.execute(query, variables={
+        'owner': props.get('owner'),
+        'name': props.get('repo'),
+        'cursor': kwargs.get('cursor')
+    }))
 
 
 def load_config(file=CONFIG_FILE):
@@ -137,9 +155,31 @@ def main():
             continue
 
         # Check for new releases
-        nodes = get_package_latest_release(token, pkg, props)['data'][props['alias']]['releases']['nodes']
-        if len(nodes) > 0:
-            props['c_version'] = nodes[0]['tagName'].replace('v', '')
+        cursor = None
+        c_version = None
+        while c_version is None:
+            resp = get_package_latest_release(token, props, cursor=cursor)
+            if 'errors' in resp:
+                print('\033[91mError Fetching new release for', pkg,':', resp['errors'][0]['message'], '\033[0m')
+                break
+
+            releases = resp['data']['repository']['releases']
+            nodes = releases.get('nodes', [])
+            page_info = releases['pageInfo']
+            if len(nodes) > 0:
+                if not nodes[0]['isPrerelease']:
+                    c_version = nodes[0]['tagName']
+                elif page_info['hasPreviousPage']:
+                    cursor = page_info['startCursor']
+                else:
+                    print('\033[91mNo stable release available for', pkg, '\033[0m')
+                    break
+            else:
+                print('\033[91mCould not find any release for', pkg, '\033[0m')
+                break
+                        
+        if c_version is not None:
+            props['c_version'] = c_version.replace('v', '')
             if props['c_version'] != props['o_version']:
                 changesh.write(
                     '* `' + pkg + '` : **' + props['o_version'] + '** -> **' + props['c_version'] + '**\n')
@@ -150,7 +190,7 @@ def main():
                     update_vendor_sha(pkg, config)
             else:
                 print('\033[1m\033[96m', pkg, '\033[0mis up to date. Current version:\033[92m', props['o_version'],
-                      '\033[0m')
+                    '\033[0m')
     changesh.close()
 
 

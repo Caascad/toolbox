@@ -18,7 +18,7 @@ let
            , deleteVendor ? false
            , proxyVendor ? false
            , patches ? []
-           , buildGoModule ? pkgs.buildGo118Module
+           , buildGoModule ? pkgs.buildGo119Module
            }:
             let
               provider-name = with super.lib; head (reverseList (splitString "-" source.repo));
@@ -79,13 +79,14 @@ let
 
         kubernetes = self.lib.mkTFProvider { source = sources.terraform-provider-kubernetes; };
 
-        vault = self.lib.mkTFProvider { source = sources.terraform-provider-vault; };
-
         cloudinit = self.lib.mkTFProvider { source = sources.terraform-provider-cloudinit; };
 
         harbor = self.lib.mkTFProvider { source = sources.terraform-provider-harbor; };
 
         # Take from nixpkgs, but keep the old provider-source-address
+        vault = super.terraform-providers.vault.override {
+          provider-source-address = "registry.terraform.io/toolbox/vault";
+        };
         keycloak = super.terraform-providers.keycloak.override {
           provider-source-address = "registry.terraform.io/toolbox/keycloak";
         };
