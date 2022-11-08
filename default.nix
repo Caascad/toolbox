@@ -147,6 +147,8 @@ rec {
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
+  git = pkgs.git;
+
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
 
   kubectl-with-plugins = pkgs.callPackage ./pkgs/kubectl-with-plugins.nix
