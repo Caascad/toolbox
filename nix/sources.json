@@ -263,12 +263,12 @@
         "homepage": null,
         "owner": "caascad",
         "repo": "sd",
-        "rev": "760140488d7d003f81d32bb023fae588a2082c1d",
-        "sha256": "0aw3mp6j5crx5bc3a89d3s2sa3h0bi62jpcjmqp19dgr43m1qpfd",
+        "rev": "d49a20ae1e75ed14b01d4ced3a70cd280f0706fc",
+        "sha256": "1m43vdna7pz16xfsp1ffkg14raafs4qidavqrjbl4pfh2gy9r7yi",
         "type": "tarball",
-        "url": "https://github.com/caascad/sd/archive/1.0.4.tar.gz",
+        "url": "https://github.com/caascad/sd/archive/1.0.5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "1.0.4"
+        "version": "1.0.5"
     },
     "terraform-provider-aws": {
         "branch": "main",
