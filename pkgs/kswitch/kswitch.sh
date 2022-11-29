@@ -5,6 +5,7 @@ set -eu
 set -o pipefail
 
 CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/terraform/envs-ng/raw/master/gen/zones_static/zones_short.json}
+CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/caascad/terraform/envs-ng/-/raw/master/gen/zones_static/zones_short.json}
 CONFIG_DIR="$HOME/.config/kswitch"
 CACHE_DIR="${CONFIG_DIR}/cache"
 CAASCAD_ZONES_FILE="${CACHE_DIR}/zones.json"
@@ -125,7 +126,7 @@ Usage:
   kswitch --force-unlock                                    Remove lock files
   kswitch --proxy                                           Use HTTP proxy instead of SSH tunnel
   kswitch -v, --version                                     Current kswitch version
-  
+
 Options:
   --no-input       Don't ask for user inputs
   --force-refresh  Force cache refresh
