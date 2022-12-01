@@ -4,7 +4,6 @@
 set -eu
 set -o pipefail
 
-CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/terraform/envs-ng/raw/master/gen/zones_static/zones_short.json}
 CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/caascad/terraform/envs-ng/-/raw/master/gen/zones_static/zones_short.json}
 CONFIG_DIR="$HOME/.config/kswitch"
 CACHE_DIR="${CONFIG_DIR}/cache"
