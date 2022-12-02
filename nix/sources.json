@@ -237,12 +237,12 @@
         "homepage": null,
         "owner": "Caascad",
         "repo": "rswitch",
-        "rev": "3b9c1d81f3a6a261e2b8583ad817542c4fbe1ea3",
-        "sha256": "108m8x1c98djl0i67zmpl5zchgqphz8s8jwwv8aymw104xg7igq0",
+        "rev": "a833980f4e003fbd7917849786d7492bc4817c08",
+        "sha256": "0insl2kqqd6r4as0a108yqhvrqdm97a9f8x3iibs8kxkzkx5wg4p",
         "type": "tarball",
-        "url": "https://github.com/Caascad/rswitch/archive/v1.2.5.tar.gz",
+        "url": "https://github.com/Caascad/rswitch/archive/v1.2.7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.2.5"
+        "version": "1.2.7"
     },
     "safe": {
         "branch": "master",
