@@ -264,7 +264,7 @@ start_tunnel() {
     fi
 
     log "Forwarding through ${dest}..."
-    ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kubeServer} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 $dest
+    ssh -4 -M -S $socketPath -fnNT -L ${localPort}:${kubeServer} -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ConnectTimeout=5 $dest
 }
 
 get_aws_credentials() {
