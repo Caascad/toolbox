@@ -5,8 +5,7 @@ set -euo pipefail
 export VAULT_FORMAT="json"
 CONFIG="${HOME}/.config/caascad"
 OS_CONFIG="${CONFIG}/os"
-CAASCAD_ZONES_BRANCH="master"
-CAASCAD_ZONES_URL="https://git.corp.caascad.com/terraform/envs-ng/raw/$CAASCAD_ZONES_BRANCH/gen/zones_static/zones.json"
+CAASCAD_ZONES_URL=${CAASCAD_ZONES_URL:-https://git.corp.caascad.com/caascad/terraform/envs-ng/-/raw/master/gen/zones_static/zones_short.json}
 CAASCAD_ZONES_FILE="${CONFIG}/caascad-zones.json"
 CURRENT_FILE="${OS_CONFIG}/current"
 HIDE=false
