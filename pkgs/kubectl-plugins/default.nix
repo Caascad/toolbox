@@ -23,22 +23,22 @@ rec {
     '';
   });
 
-  tail = buildGoModule rec {
-    pname = "kubectl-tail";
-    version = sources.kail.version;
-    postInstall = ''
-      mv $out/bin/kail $out/bin/kubectl-tail
-    '';
+  ketall = buildGoModule rec {
+    pname = "kubectl-ketall";
+    version = sources.ketall.version;
     src = fetchFromGitHub {
-      owner = sources.kail.owner;
-      repo = sources.kail.repo;
+      owner = sources.ketall.owner;
+      repo = sources.ketall.repo;
       rev = "v${version}";
-      sha256 = sources.kail.sha256;
+      sha256 = sources.ketall.sha256;
     };
-    vendorSha256 = sources.kail.vendorSha256;
-    subPackages = ["cmd/kail/"];
+    vendorSha256 = "1bp5bcxbszhxy0jzqhvyv24zqhljk9221m7hgr45h8bzpckxc5wp";
+    postInstall = ''
+      mv $out/bin/ketall $out/bin/kubectl-ketall
+    '';
   };
 
+} // pkgs.lib.optionalAttrs (! pkgs.stdenv.isDarwin) rec {
   sniff = buildGoModule rec {
     pname = "kubectl-sniff";
     version = sources.ksniff.version;
@@ -55,6 +55,22 @@ rec {
     subPackages = ["cmd/"];
   };
 
+  tail = buildGoModule rec {
+    pname = "kubectl-tail";
+    version = sources.kail.version;
+    postInstall = ''
+      mv $out/bin/kail $out/bin/kubectl-tail
+    '';
+    src = fetchFromGitHub {
+      owner = sources.kail.owner;
+      repo = sources.kail.repo;
+      rev = "v${version}";
+      sha256 = sources.kail.sha256;
+    };
+    vendorSha256 = sources.kail.vendorSha256;
+    subPackages = ["cmd/kail/"];
+  };
+
   topology = buildGoModule rec {
     pname = "kubectl-topology";
     version = sources.kubectl-topology.version;
@@ -67,20 +83,4 @@ rec {
     vendorSha256 = "18j6lv4aar1fwr9cb186j0mb0kirvhx8m2k98fjqpx50dmiqb695";
     subPackages = ["cmd/kubectl-topology"];
   };
-
-  ketall = buildGoModule rec {
-    pname = "kubectl-ketall";
-    version = sources.ketall.version;
-    src = fetchFromGitHub {
-      owner = sources.ketall.owner;
-      repo = sources.ketall.repo;
-      rev = "v${version}";
-      sha256 = sources.ketall.sha256;
-    };
-    vendorSha256 = "1bp5bcxbszhxy0jzqhvyv24zqhljk9221m7hgr45h8bzpckxc5wp";
-    postInstall = ''
-      mv $out/bin/ketall $out/bin/kubectl-ketall
-    '';
-  };
-
 }

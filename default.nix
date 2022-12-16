@@ -173,7 +173,7 @@ rec {
 
   vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix {
     source = sources.vault-token-helper;
-    buildGoModule = pkgs.buildGoModule;
+    buildGoModule = pkgs.buildGo118Module;
   };
 
   velero = pkgs.callPackage ./pkgs/velero.nix
@@ -181,7 +181,7 @@ rec {
 
   rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix {
     source = sources.rancher-cli;
-    buildGoModule = pkgs.buildGoModule;
+    buildGoModule = pkgs.buildGo118Module;
   };
 
   tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix {
