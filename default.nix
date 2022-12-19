@@ -50,7 +50,7 @@ let
 
       kompose = super.kompose.override {
         # Build is failing on Darwin with Go 1.18
-        buildGoModule = pkgs.buildGo117Module;
+        buildGoModule = pkgs.buildGoModule;
       };
 
       terraform-providers = super.terraform-providers // {
@@ -173,18 +173,18 @@ rec {
 
   vault-token-helper = pkgs.callPackage ./pkgs/vault-token-helper.nix {
     source = sources.vault-token-helper;
-    buildGoModule = pkgs.buildGo117Module;
+    buildGoModule = pkgs.buildGo118Module;
   };
 
   velero = pkgs.callPackage ./pkgs/velero.nix
     { source = sources.velero; };
 
-  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix { 
+  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix {
     source = sources.rancher-cli;
-    buildGoModule = pkgs.buildGo117Module;
+    buildGoModule = pkgs.buildGo118Module;
   };
 
-  tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix { 
+  tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix {
     source = sources.tflint-ruleset-aws;
     buildGoModule = pkgs.buildGo119Module;
   };
@@ -193,8 +193,8 @@ rec {
 
   sd = import sources.sd.outPath { inherit pkgs; };
 
-  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657 
-  rswitch = import sources.rswitch.outPath { 
+  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657
+  rswitch = import sources.rswitch.outPath {
     pkgs = pkgs-poetry;
   };
 
@@ -202,7 +202,7 @@ rec {
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
-  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657 
+  # TODO: nixpkgs locked for poetry https://github.com/NixOS/nixpkgs/issues/193657
   openstackclient = pkgs.callPackage ./pkgs/openstack-cli {
     pkgs = pkgs-poetry;
   };
