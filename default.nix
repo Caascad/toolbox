@@ -106,7 +106,7 @@ rec {
   # Expose all nixpkgs packages in `pkgs` attribute
   inherit pkgs;
 
-  inherit (pkgs) nix kubectl stern vault docker-compose cfssl kompose
+  inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize shellcheck
                  envsubst awscli restic azure-cli
