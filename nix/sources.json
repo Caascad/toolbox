@@ -5,13 +5,13 @@
         "homepage": "https://prometheus.io",
         "owner": "prometheus",
         "repo": "alertmanager",
-        "rev": "23f961ec6a9c8a15bf99c83815d35e13d66a4d5d",
-        "sha256": "0k0zmknky63i590agcwcb7hbh0gzl10fw7hpl1zjizgx039q9046",
+        "rev": "ecb66f76b0058957e5045114ae01f8b98994451e",
+        "sha256": "1x2xknj1k8yy89ldk5rv9dc0zsxhpq06hq60bi069n24z7fydkl7",
         "type": "tarball",
-        "url": "https://github.com/prometheus/alertmanager/archive/v0.24.0.tar.gz",
+        "url": "https://github.com/prometheus/alertmanager/archive/v0.25.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-ePb9qdCTEHHIV6JlbrBlaZjD5APwQuoGloO88W5S7Oc=",
-        "version": "0.24.0"
+        "vendorSha256": "sha256-BX4mT0waYtKvNyOW3xw5FmXI8TLmv857YBFTnV7XXD8=",
+        "version": "0.25.0"
     },
     "concourse_7_3_2": {
         "autoupdate": false,
