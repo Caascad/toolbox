@@ -132,12 +132,12 @@
         "homepage": "https://github.com/kvaps/kubectl-node-shell",
         "owner": "kvaps",
         "repo": "kubectl-node-shell",
-        "rev": "e4e79eefc56be52813e115bf9f17c896d65e6e22",
-        "sha256": "0lgvfhzh9yx6qi8fr44afwp01llk1cv2rqb1dzfybap0y610s2vl",
+        "rev": "4717bd2427d00d18d8c3f5a5177268c60d0d5cc0",
+        "sha256": "0mizfr0s9j5dmdqqqa8903pwsj2iifhbx7n0yghkylbc59b7y9sc",
         "type": "tarball",
-        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.6.0.tar.gz",
+        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.7.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.0"
+        "version": "1.7.0"
     },
     "kubectl-topology": {
         "branch": "master",
@@ -434,12 +434,12 @@
         "homepage": "https://www.terraform.io/docs/providers/kubernetes/",
         "owner": "hashicorp",
         "repo": "terraform-provider-kubernetes",
-        "rev": "8aeeabb61218510c249fb970bae7561a7fe44cec",
-        "sha256": "0cg0hdqk2l1vmj3xmpxpiifi855rm1j5pi9axm916qz5d4m9r8b8",
+        "rev": "c9182af92723d4b1c801a8018c244100ebdc122c",
+        "sha256": "16wkv00q7j8b2c2bldlx8r4h6pylxdinbn9z7x10ypi64ll4ag4s",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.16.1.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.17.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.16.1"
+        "version": "2.17.0"
     },
     "terraform-provider-rancher2": {
         "branch": "master",
