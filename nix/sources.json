@@ -171,12 +171,12 @@
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "86d33a4e4a87eaeb0d9016bdff10ff7259525968",
-        "sha256": "0fh3lhw24iqrqgsirxr3b9mychrpr82qc4c1675fc1jhwlaxzwck",
+        "rev": "fe904c5aee28902a1d89487e919bcc3e9682961e",
+        "sha256": "0mn6q7v0bpx31j8h74ir2gj0ll4ldfz6hvg072z4211hlpsvmj80",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v2.7.1.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.7.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.7.1"
+        "version": "2.7.2"
     },
     "niv": {
         "branch": "master",
@@ -303,12 +303,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "887a8e3f369c7e195939d537f2680c7708db3d08",
-        "sha256": "1vw813cdkkpsq7afpp0s5pj0xycii7pqav0i43cmchs9pv8shgbl",
+        "rev": "036a8876978312bed45098aa52ad4b7023ce784d",
+        "sha256": "1l0r9bl1rg1gkn54md3aahq77wkq8qq7cwmrfmgavrr8jnf52fbq",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.40.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.41.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.40.0"
+        "version": "3.41.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
