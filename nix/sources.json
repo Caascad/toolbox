@@ -276,13 +276,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "5857c145b31d41966bef256f669c12ae35cc2486",
-        "sha256": "0390nv7jj1zrr64nzd2833mpd956ph9bl06zlyrz4mr9n47pgv17",
+        "rev": "d1c61beb52083e448adccd1dc85fc35922c68230",
+        "sha256": "0zmhg73bjqsdj1smszm084as6w9whn0jb55czj2323dn0lqix5ld",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.51.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.52.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-iL03vDNHPQTAbTRoEutRtQllFgD1wn7qFleuZ4n99q8=",
-        "version": "4.51.0"
+        "vendorSha256": "sha256-/6RbqOh5/Fpn25woV/AzmkTs1qnIo+sl3fKQxCtVZHQ=",
+        "version": "4.52.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
