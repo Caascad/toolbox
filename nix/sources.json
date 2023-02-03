@@ -171,12 +171,12 @@
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "fe904c5aee28902a1d89487e919bcc3e9682961e",
-        "sha256": "0mn6q7v0bpx31j8h74ir2gj0ll4ldfz6hvg072z4211hlpsvmj80",
+        "rev": "20b13cb3178161c5a5339aa10bb47fb4f2b18a38",
+        "sha256": "1zskp0zz7irw1w7h973icdmfrnhliyg5ixwfmafrkq63gim09lwb",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v2.7.2.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.7.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.7.2"
+        "version": "2.7.3"
     },
     "niv": {
         "branch": "master",
@@ -276,13 +276,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "d1c61beb52083e448adccd1dc85fc35922c68230",
-        "sha256": "0zmhg73bjqsdj1smszm084as6w9whn0jb55czj2323dn0lqix5ld",
+        "rev": "757460886c8f9019454f4ffe792f208fbb24779f",
+        "sha256": "0d97skh47jnchy33rgr7z27alma23yi2861fij2vwlhcv15bpl89",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.52.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.53.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-/6RbqOh5/Fpn25woV/AzmkTs1qnIo+sl3fKQxCtVZHQ=",
-        "version": "4.52.0"
+        "vendorSha256": "sha256-rnOrA3QYLZAU+VCm6OVLrnJ37Vcp6xzq0N8ohjWDl3Q=",
+        "version": "4.53.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -461,13 +461,13 @@
         "homepage": "",
         "owner": "terraform-linters",
         "repo": "tflint-ruleset-aws",
-        "rev": "9ebeebb35b020fbc0e6bf80908f7bfd804c1b903",
-        "sha256": "1dz7vmjw5vqxpf4sl6kg6mdn3i8ajnv2b7rw33c4vp0hi49w0nkb",
+        "rev": "eb415fe3edd9ab715bf5facde678e58caeccf01f",
+        "sha256": "1ahwhfgjiis5l0a2xdjyzznhgvnbwmcxi2yqyklfmyb76gfpaydq",
         "type": "tarball",
-        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.21.1.tar.gz",
+        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.21.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-lM3nYBI6/QydwmfTIbrdrG4q2i+Y3SBZdIWVygZF7rM=",
-        "version": "0.21.1"
+        "vendorSha256": "sha256-mQzCqLJ3Y9l+BbfurtD/f/PRuXX+zYMeg8bPIjj05Nk=",
+        "version": "0.21.2"
     },
     "vault-token-helper": {
         "autoupdate": false,
