@@ -43,6 +43,18 @@
         "vendorSha256": "04930n0zz11l3r3r0ji920qi96zpp3772mdvmyfgjk75p5mfjp9q",
         "version": "7.6.0"
     },
+    "conformity-tooling": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "caascad",
+        "repo": "conformity-tooling",
+        "rev": "a5e000641bad4831c76a480ebfa5d5e2aed33f16",
+        "sha256": "1iybw00n1czz2wd6i1xp678mxpwkfblnl61kxmklmy5g55h1mid3",
+        "type": "tarball",
+        "url": "https://github.com/caascad/conformity-tooling/archive/a5e000641bad4831c76a480ebfa5d5e2aed33f16.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "cue": {
         "branch": "master",
         "description": "Validate and define text-based and dynamic configuration",
