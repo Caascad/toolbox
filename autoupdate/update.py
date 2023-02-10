@@ -94,7 +94,7 @@ def update_package(token, pkg, props):
                        check=True, capture_output=True,
                        env={"GITHUB_TOKEN": token, "PATH": os.getenv('PATH')})
     except subprocess.CalledProcessError as err:
-        print('\033[91mError updating ', pkg, '\n', err.stderr.decode(), '\033[0m')
+        print('\033[91mError updating', pkg, '\n', err.stderr.decode(), '\033[0m')
         sys.exit(1)
 
 
@@ -177,7 +177,7 @@ def main():
             else:
                 print('\033[91mCould not find any release for', pkg, '\033[0m')
                 break
-                        
+
         if c_version is not None:
             props['c_version'] = c_version.replace('v', '')
             if props['c_version'] != props['o_version']:

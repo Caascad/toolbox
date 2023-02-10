@@ -183,12 +183,12 @@
         "homepage": "https://grafana.com/loki",
         "owner": "grafana",
         "repo": "loki",
-        "rev": "fe904c5aee28902a1d89487e919bcc3e9682961e",
-        "sha256": "0mn6q7v0bpx31j8h74ir2gj0ll4ldfz6hvg072z4211hlpsvmj80",
+        "rev": "9f0834793b24d9324a6948c11dba2147f6541d09",
+        "sha256": "1zskp0zz7irw1w7h973icdmfrnhliyg5ixwfmafrkq63gim09lwb",
         "type": "tarball",
-        "url": "https://github.com/grafana/loki/archive/v2.7.2.tar.gz",
+        "url": "https://github.com/grafana/loki/archive/v2.7.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.7.2"
+        "version": "2.7.3"
     },
     "niv": {
         "branch": "master",
@@ -288,13 +288,13 @@
         "homepage": "https://www.terraform.io/docs/providers/aws/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-aws",
-        "rev": "d1c61beb52083e448adccd1dc85fc35922c68230",
-        "sha256": "0zmhg73bjqsdj1smszm084as6w9whn0jb55czj2323dn0lqix5ld",
+        "rev": "5e44a9310646b58667f9c408d923eaf99d606a54",
+        "sha256": "1nv4705mcwk287hsxkqa16nv9ckplyjkxsx0nl6vd0k3i501j0l0",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.52.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-aws/archive/v4.54.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-aws/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-/6RbqOh5/Fpn25woV/AzmkTs1qnIo+sl3fKQxCtVZHQ=",
-        "version": "4.52.0"
+        "vendorSha256": "sha256-9YvQP1QWnT2Rb9D65j6g2edxTDaoGisVlQWFNnH4lSs=",
+        "version": "4.54.0"
     },
     "terraform-provider-azuread": {
         "branch": "main",
@@ -315,12 +315,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "036a8876978312bed45098aa52ad4b7023ce784d",
-        "sha256": "1l0r9bl1rg1gkn54md3aahq77wkq8qq7cwmrfmgavrr8jnf52fbq",
+        "rev": "ddd6a9e2ef99f2e859b567badbed1aa829261caa",
+        "sha256": "0i641lym26rhzlmnrjx8qjdqr8gl3r90h5adsxxz9901njmq8qkg",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.41.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.43.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.41.0"
+        "version": "3.43.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "master",
@@ -377,28 +377,32 @@
         "version": "1.36.0"
     },
     "terraform-provider-gitlab": {
-        "owner": "gitlab-org",
+        "branch": "main",
+        "description": "Terraform GitLab Provider",
+        "homepage": "https://gitlab.com/gitlab-org/terraform-provider-gitlab",
+        "owner": "gitlabhq",
         "repo": "terraform-provider-gitlab",
-        "sha256": "0xsk4i7klr7ghd8lainvma164rr00k3vpski8bcqvlc7ax929lcl",
+        "rev": "d4600a15ce3b8b85545828b215719310a4a9e4b0",
+        "sha256": "1zhyl2n41wa2jjmh6nw07q6giavi0vxsv7ljl59ld3dkpc27l8bc",
         "type": "tarball",
-        "url": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v3.20.0/terraform-provider-gitlab-v3.20.0.tar.gz",
+        "url": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v15.8.0/terraform-provider-gitlab-v15.8.0.tar.gz",
         "url_template": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v<version>/terraform-provider-gitlab-v<version>.tar.gz",
-        "vendorSha256": "sha256-QAFx/Ew86T4LWJ6ZtJTUWwR5rGunWj0E5Vzt++BN9ks=",
-        "version": "3.20.0"
+        "vendorSha256": "sha256-aVbJT31IIgW0GYzwVX7kT4j7E+dadSbnttThh2lzGyE=",
+        "version": "15.8.0"
     },
     "terraform-provider-harbor": {
-        "branch": "master",
+        "branch": "main",
         "description": "A terraform provider for Harbor. Used to configure an instance of Harbor. ",
         "homepage": "https://goharbor.io/",
         "owner": "goharbor",
         "repo": "terraform-provider-harbor",
-        "rev": "ac3c1ac43ab7274206dd6bec3918cae9876343d4",
-        "sha256": "1kz83rhsn8swz83z4vfg9ifzfchh31fhj2kvhkzkrf1hwzsq7x3h",
+        "rev": "3d000f51dbc81b719835e0f639a1ba9919315b8a",
+        "sha256": "1jyv00ayn3d7m92znwikpm56hx1150mmvabdcannfa04ds08d7x3",
         "type": "tarball",
-        "url": "https://github.com/goharbor/terraform-provider-harbor/archive/v3.8.1.tar.gz",
+        "url": "https://github.com/goharbor/terraform-provider-harbor/archive/v3.8.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "1yx5phf9dy8a12icqcp12kxkj5m14kfsg0vkpd11xfajm4pwnsnf",
-        "version": "3.8.1"
+        "vendorSha256": "0r4s2r3vnd3nliscddgyyawgfblvbqdrxijb8jq8qhli2jnmw2cb",
+        "version": "3.8.2"
     },
     "terraform-provider-helm": {
         "branch": "main",
@@ -473,13 +477,13 @@
         "homepage": "",
         "owner": "terraform-linters",
         "repo": "tflint-ruleset-aws",
-        "rev": "9ebeebb35b020fbc0e6bf80908f7bfd804c1b903",
-        "sha256": "1dz7vmjw5vqxpf4sl6kg6mdn3i8ajnv2b7rw33c4vp0hi49w0nkb",
+        "rev": "e4ecac2a4f119767174867cbc14f6d88d7538d09",
+        "sha256": "1ahwhfgjiis5l0a2xdjyzznhgvnbwmcxi2yqyklfmyb76gfpaydq",
         "type": "tarball",
-        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.21.1.tar.gz",
+        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.21.2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-lM3nYBI6/QydwmfTIbrdrG4q2i+Y3SBZdIWVygZF7rM=",
-        "version": "0.21.1"
+        "vendorSha256": "sha256-mQzCqLJ3Y9l+BbfurtD/f/PRuXX+zYMeg8bPIjj05Nk=",
+        "version": "0.21.2"
     },
     "vault-token-helper": {
         "autoupdate": false,
