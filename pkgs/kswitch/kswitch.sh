@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2086
-
 set -eu
 set -o pipefail
 
@@ -248,7 +247,7 @@ configure_kubeconfig() {
 }
 
 start_tunnel() {
-    dest="cloud@bst.${zone}.$(zone_attr $zone "domain_name")"
+    dest="cloud@$(zone_attr $zone "bastion")"
 
     if [[ "$zone" =~ ^infra-* ]]; then
         kubeServer=$(cat "${CONFIG_DIR}/${zone}")
