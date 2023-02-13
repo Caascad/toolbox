@@ -199,7 +199,7 @@ rec {
   };
   
   get-rancher-creds = (import sources.conformity-tooling { inherit pkgs;}).getranchercreds;
-  check-metrics = (import sources.conformity-tooling {inherit pkgs; }).checkmetrics;
+  checkmetrics = (import sources.conformity-tooling {inherit pkgs; }).checkmetrics;
 
   kube-rebalancer = pkgs.callPackage ./pkgs/kube-rebalancer { python = pkgs.python39; };
 
