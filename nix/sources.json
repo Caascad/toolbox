@@ -410,12 +410,12 @@
         "homepage": "https://www.terraform.io/docs/providers/helm/",
         "owner": "hashicorp",
         "repo": "terraform-provider-helm",
-        "rev": "169ff943220abd8a14c21cfbd7497166f187b4a4",
-        "sha256": "1f6s1lbmnzr04awx70kldhn1lrva0s960j31nfr0b21bh2gl481i",
+        "rev": "f6a97b5e53c6e1cbda99459cf9f035e0f048d20f",
+        "sha256": "13q36lf6kgg0d2zxfgxkwqff9fanzwmwcbf9zy2wwmr660b1xnaz",
         "type": "tarball",
-        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.8.0.tar.gz",
+        "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.9.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
-        "version": "2.8.0"
+        "version": "2.9.0"
     },
     "terraform-provider-huaweicloud": {
         "branch": "master",
