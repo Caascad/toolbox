@@ -49,10 +49,10 @@
         "homepage": null,
         "owner": "caascad",
         "repo": "conformity-tooling",
-        "rev": "27a129ef5f9ee6b8da0eab884cf526462bb7d9f0",
-        "sha256": "1sk3bc4w5xqmf6s92clw1wj75pnds16a8rm5c54sxghdnim2cqxd",
+        "rev": "7b078573890925a2db9940e11d006dc689ec70dd",
+        "sha256": "0vanawawx6hczibxdaiaj6b9qva5kphkdd3fjyy74dcn943wvs2v",
         "type": "tarball",
-        "url": "https://github.com/caascad/conformity-tooling/archive/27a129ef5f9ee6b8da0eab884cf526462bb7d9f0.tar.gz",
+        "url": "https://github.com/caascad/conformity-tooling/archive/7b078573890925a2db9940e11d006dc689ec70dd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "cue": {
