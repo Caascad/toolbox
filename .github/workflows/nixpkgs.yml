@@ -25,6 +25,8 @@ jobs:
       - name: Check for updates
         run : |
           nix-shell --command "niv update nixpkgs"
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - id: branch
         name: set branch name
         run: echo ::set-output name=branch::autoupdate-nixpkgs-$(date '+%d-%m-%y')
