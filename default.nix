@@ -83,6 +83,8 @@ let
 
         harbor = self.lib.mkTFProvider { source = sources.terraform-provider-harbor; };
 
+        privx = self.lib.mkTFProvider { source = sources.terraform-provider-privx; };
+
         # Take from nixpkgs, but keep the old provider-source-address
         vault = super.terraform-providers.vault.override {
           provider-source-address = "registry.terraform.io/toolbox/vault";
@@ -197,7 +199,7 @@ rec {
   rswitch = import sources.rswitch.outPath {
     pkgs = pkgs-poetry;
   };
-  
+
   get-rancher-creds = (import sources.conformity-tooling { inherit pkgs;}).getranchercreds;
   checkmetrics = (import sources.conformity-tooling {inherit pkgs; }).checkmetrics;
 
