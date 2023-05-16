@@ -459,16 +459,17 @@
         "version": "2.18.1"
     },
     "terraform-provider-privx": {
-        "branch": "fixes",
+        "branch": "master",
         "description": null,
         "homepage": null,
         "owner": "Caascad",
         "repo": "terraform-provider-privx",
-        "rev": "17fb9fbd38f205cc37ddc68d7397da14752afd23",
-        "sha256": "044biv38s8bijwq0mgc464h9kljqk02q0qagl4mg8igrwy7lgz0i",
+        "rev": "86f9cad8b45e06fb7484d123b88984b11a4db516",
+        "sha256": "0jyp0vccmzs2bil1hq2vp0gyp17gfpl3mg825dha0ych9ii5bvg0",
         "type": "tarball",
-        "url": "https://github.com/Caascad/terraform-provider-privx/archive/17fb9fbd38f205cc37ddc68d7397da14752afd23.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url": "https://github.com/Caascad/terraform-provider-privx/archive/86f9cad8b45e06fb7484d123b88984b11a4db516.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.8.0"
     },
     "terraform-provider-rancher2": {
         "branch": "master",
