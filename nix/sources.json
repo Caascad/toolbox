@@ -459,7 +459,7 @@
         "version": "2.18.1"
     },
     "terraform-provider-privx": {
-        "branch": "master",
+        "branch": "fixes",
         "description": null,
         "homepage": null,
         "owner": "Caascad",
