@@ -467,7 +467,7 @@
         "rev": "17fb9fbd38f205cc37ddc68d7397da14752afd23",
         "sha256": "044biv38s8bijwq0mgc464h9kljqk02q0qagl4mg8igrwy7lgz0i",
         "type": "tarball",
-        "url": "https://github.com/Caascad/terraform-provider-privx/archive/86f9cad8b45e06fb7484d123b88984b11a4db516.tar.gz",
+        "url": "https://github.com/Caascad/terraform-provider-privx/archive/0.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "0.8.0"
     },
