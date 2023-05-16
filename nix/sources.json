@@ -462,14 +462,13 @@
         "branch": "fixes",
         "description": null,
         "homepage": null,
-        "owner": "caascad",
+        "owner": "Caascad",
         "repo": "terraform-provider-privx",
-        "rev": "ac17b8987b36b243fd946aca58dfedc28bcd8dda",
-        "sha256": "0jyp0vccmzs2bil1hq2vp0gyp17gfpl3mg825dha0ych9ii5bvg0",
+        "rev": "17fb9fbd38f205cc37ddc68d7397da14752afd23",
+        "sha256": "044biv38s8bijwq0mgc464h9kljqk02q0qagl4mg8igrwy7lgz0i",
         "type": "tarball",
-        "url": "https://github.com/caascad/terraform-provider-privx/archive/ac17b8987b36b243fd946aca58dfedc28bcd8dda.tar.gz",
-        "url_template": "https://github.com/caascad/terraform-provider-privx/archive/v<version>.tar.gz",
-        "version": "0.0.0"
+        "url": "https://github.com/Caascad/terraform-provider-privx/archive/17fb9fbd38f205cc37ddc68d7397da14752afd23.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "terraform-provider-rancher2": {
         "branch": "master",
