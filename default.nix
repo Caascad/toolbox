@@ -25,7 +25,8 @@ let
               provider-source-address =  "registry.terraform.io/toolbox/${provider-name}";
             in buildGoModule rec {
               pname = source.repo;
-              inherit (source) version;
+              version= "v0.0.0"
+              //inherit (source) version;
               vendorSha256 = if source ? "vendorSha256" then source.vendorSha256 else null;
               inherit deleteVendor proxyVendor patches;
               subPackages = [ "." ];
