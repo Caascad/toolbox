@@ -153,6 +153,7 @@ Usage: toolbox <command> [args]
  uninstall tool [tool...]      -- uninstall a previously installed tool
  make-shell tool [tool...]     -- create a project dev shell with a list of tools
  update-shell                  -- update toolbox revision for an existing shell
+ check-shell                   -- check toolbox commit date against last release commit date
  completions                   -- output completion script
  help                          -- this help
  version                       -- show toolbox version
@@ -330,6 +331,25 @@ update-shell() {
     _generateToolboxJSON "$commit"
 }
 
+check-shell() {
+    if [ ! -f shell.nix ]; then
+        log-error "I don't see any 'shell.nix' in this directory, aborting."
+    fi
+    c=$(_currentToolboxCommit)
+    if [ ! -f toolbox.json ]; then
+        log-error "I don't see any 'toolbox.json' in this directory, aborting."
+    fi
+    l=$(_lastToolboxCommit)
+    ldate=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits/"${l}" | jq -r '.commit.committer.date')
+    cdate=$(jq -e -r .date toolbox.json)
+    log "toolbox: $c $cdate"
+    log "upstream: $l $ldate"
+    if [[ "${ldate}" > "${cdate}" ]]; then
+      log-error "A new toolbox release is available. You should run toolbox update-shell"
+    fi
+    log "Current toolbox version up to date"
+}
+
 generate-terraform-tf() {
     log "Generating terraform.tf..."
     cat <<EOF > terraform.tf
@@ -446,6 +466,9 @@ case "$COMMAND" in
     update-shell)
         check_args_le $# 1 "update-shell"
         update-shell "$@"
+        ;;
+    check-shell)
+        check-shell
         ;;
     make-terraform-shell)
         check_args_gt $# 1 "make-terraform-shell"
