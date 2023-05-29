@@ -68,7 +68,8 @@ check_args_le() {
 }
 
 _lastToolboxCommit() {
-    curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/branches/master | jq -r '.commit.sha'
+  tag_name=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest | jq -r '.tag_name')
+  curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tags | jq --arg tag_name $tag_name -r '.[]|select(.name==$tag_name).commit.sha'
 }
 
 _currentShellCommit() {

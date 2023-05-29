@@ -66,9 +66,11 @@ As a maintainer of the project you control when to update the versions of
 the tools for your project.
 
 This means you don't need to install the tools globally.
+#### Shell setup and update commands requirements
+Those commands rely on the existence of a toolbox release.
+Please make sure to create a toolbox release before any shell creation or it will fail to retrieve the latest release tag.
 
 #### Shell setup
-
 Given a project X which needs the tools `terraform` and `ansible` go to the
 root directory of the project and run:
 
@@ -100,13 +102,13 @@ You can do it with two methods:
 After some time you decide to use a newer version of `terraform` or
 `ansible` which are available in the toolbox.
 
-To update the shell to the latest toolbox version, run:
+To update the shell to the latest toolbox release, run:
 
 ```sh
 toolbox update-shell
 ```
 
-This will update `toolbox.json` with the last commit of the master branch.
+This will update `toolbox.json` with the commit of last release.
 
 You can also update the shell using a specific commit:
 
