@@ -464,12 +464,12 @@
         "homepage": null,
         "owner": "caascad",
         "repo": "terraform-provider-privx",
-        "rev": "86f9cad8b45e06fb7484d123b88984b11a4db516",
-        "sha256": "0jyp0vccmzs2bil1hq2vp0gyp17gfpl3mg825dha0ych9ii5bvg0",
+        "rev": "890ba0f6f54e9424c759f3e81f96507aa01d10ae",
+        "sha256": "0cwrdvk1c6plpbg608wd41vxz990dlq3q0ahzfpd1lyfy80k8872",
         "type": "tarball",
-        "url": "https://github.com/caascad/terraform-provider-privx/archive/0.7.0.tar.gz",
+        "url": "https://github.com/caascad/terraform-provider-privx/archive/0.8.1.tar.gz",
         "url_template": "https://github.com/caascad/terraform-provider-privx/archive/<version>.tar.gz",
-        "version": "0.7.0"
+        "version": "0.8.1"
     },
     "terraform-provider-rancher2": {
         "branch": "master",
