@@ -28,7 +28,6 @@ log-error() {
     local args="$*"
     local prefix="\x1B[31m[toolbox]:\x1B[0m"
     echo -e "$prefix $args" >&2
-    exit 1
 }
 
 log-run() {
@@ -69,7 +68,7 @@ check_args_le() {
 
 _lastToolboxCommit() {
   tag_name=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest | jq -r '.tag_name')
-  curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tags | jq --arg tag_name $tag_name -r '.[]|select(.name==$tag_name).commit.sha'
+  curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tags | jq --arg tag_name "$tag_name" -r '.[]|select(.name==$tag_name).commit.sha'
 }
 
 _currentShellCommit() {
@@ -308,6 +307,7 @@ EOF
     if [ -n "$result" ]; then
         # shellcheck disable=SC2001
         log-error "Error: '$(echo "$result" | sed "s/^error: undefined variable '\([^']*\)'.*$/\1/")' is not available in the toolbox"
+        exit 1
     fi
 
     log "To activate the development shell:"
@@ -325,6 +325,7 @@ update-shell() {
     fi
     if [ ! -f shell.nix ]; then
         log-error "I don't see any 'shell.nix' in this directory, aborting."
+        exit 1
     fi
     log "Updating shell ..."
     commit=${1:-$(_lastToolboxCommit)}
@@ -334,10 +335,12 @@ update-shell() {
 check-shell() {
     if [ ! -f shell.nix ]; then
         log-error "I don't see any 'shell.nix' in this directory, aborting."
+        exit 1
     fi
     c=$(_currentToolboxCommit)
     if [ ! -f toolbox.json ]; then
         log-error "I don't see any 'toolbox.json' in this directory, aborting."
+        exit 1
     fi
     l=$(_lastToolboxCommit)
     ldate=$(curl -s https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits/"${l}" | jq -r '.commit.committer.date')
@@ -346,6 +349,7 @@ check-shell() {
     log "upstream: $l $ldate"
     if [[ "${ldate}" > "${cdate}" ]]; then
       log-error "A new toolbox release is available. You should run toolbox update-shell"
+      exit 1
     fi
     log "Current toolbox version up to date"
 }
