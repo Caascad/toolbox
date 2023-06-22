@@ -139,6 +139,19 @@
         "vendorSha256": "sha256-7pSpOF8UASWqRMWaomoUBA3pD8t0qWiaIcGlXEm0Yx0=",
         "version": "1.6.2"
     },
+    "kubectl": {
+        "branch": "master",
+        "description": "Issue tracker and mirror of kubectl code",
+        "homepage": null,
+        "owner": "kubernetes",
+        "repo": "kubectl",
+        "rev": "a5b0052b8993ed982e8df8c97de7abc4263b3967",
+        "sha256": "0qjq0a20rn7ppddxiahrjk0wj98lc1gk4r5inbr6zwrr634qnmqp",
+        "type": "tarball",
+        "url": "https://github.com/kubernetes/kubectl/archive/a5b0052b8993ed982e8df8c97de7abc4263b3967.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "v0.27.1"
+    },
     "kubectl-node-shell": {
         "branch": "master",
         "description": "Exec into node via kubectl",
@@ -210,10 +223,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ae8bdd2de4c23b239b5a771501641d2ef5e027d0",
-        "sha256": "0rdv2gch0c343x6cdyxhcbar6l94i14acgjyc9p8gpb9d8pbrh93",
+        "rev": "af21c31b2a1ec5d361ed8050edd0303c31306397",
+        "sha256": "0ykgi29d4iylvvdgrq7v3s6b54m73k81nq8rbrsa5npfr8jnacrd",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/ae8bdd2de4c23b239b5a771501641d2ef5e027d0.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/af21c31b2a1ec5d361ed8050edd0303c31306397.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-poetry": {

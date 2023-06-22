@@ -47,7 +47,9 @@ let
               passthru = { inherit provider-source-address; };
             });
       };
-
+      kubectl = super.kubectl.override {
+          version = "v0.27.0"
+        };
       kompose = super.kompose.override {
         # Build is failing on Darwin with Go 1.18
         buildGoModule = pkgs.buildGoModule;

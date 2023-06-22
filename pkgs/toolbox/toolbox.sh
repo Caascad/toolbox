@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1117
-
+set -x
 set -e
 set -o pipefail
 
