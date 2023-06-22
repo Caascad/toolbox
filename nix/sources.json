@@ -62,7 +62,7 @@
         "homepage": "https://cuelang.org",
         "owner": "cue-lang",
         "repo": "cue",
-        "rev": "5b8860ae5306b51bf38e7ea4b6e536a7477cff29",
+        "rev": "143268314d3247237ba67518a6d0958d1ec246aa",
         "sha256": "0v6d2nwkb480gd35g3mfxjq25sb9lhcy4n849rlx4vp752p1ilxz",
         "type": "tarball",
         "url": "https://github.com/cue-lang/cue/archive/v0.4.3.tar.gz",
