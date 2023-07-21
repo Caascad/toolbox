@@ -2,16 +2,14 @@
 , lib
 , prometheus
 }:
-
 stdenv.mkDerivation {
   pname = "promtool";
   version = prometheus.version;
-
   unpackPhase = ":";
 
   installPhase = ''
     mkdir -p $out/bin
-    cp ${prometheus}/bin/promtool $out/bin
+    cp ${prometheus.cli}/bin/promtool $out/bin
   '';
 
   meta = with lib; {
