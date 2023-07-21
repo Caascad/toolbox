@@ -131,7 +131,7 @@ rec {
     name = "${pname}-${version}";
   });
 
-  ansible = pkgs.ansible_2_12;
+  ansible = pkgs.ansible;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
