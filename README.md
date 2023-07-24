@@ -223,6 +223,19 @@ To update sources to a particular version:
 niv update concourse -v 7.6.0
 ```
 
+#### golang sources
+
+You need to add the vendor/ directory sha into sources.json.
+First, in your golang repository generate the vendor directory : `go mod vendor`
+Then, get the sha256 with command : `nix-hash --type sha256 --sri vendor/`
+And put the value into sources.json : 
+```json
+{ 
+   "vendorSha256": "sha256-tF8EwTCc37lXXGpS6+SaqsEn+ExMl95w/D/cclHE51E=",
+}
+
+```
+
 ### Testing a new package locally
 
 After adding a new package in the toolbox you can build it with:
@@ -242,3 +255,5 @@ To test `toolbox` with local packages run:
 ```sh
 NIX_PATH=toolbox=/path/to/toolbox/repo toolbox list
 ```
+
+
