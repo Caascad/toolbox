@@ -10,10 +10,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  free-disk-space:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
     steps:
-
     - name: Free Disk Space (Ubuntu)
       uses: jlumbroso/free-disk-space@main
       with:
@@ -29,12 +31,6 @@ jobs:
         # large-packages: true
         # docker-images: true
         swap-storage: true
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    steps:
     - uses: actions/checkout@v3
     - name: Install Nix
       uses: cachix/install-nix-action@v20
