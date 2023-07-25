@@ -466,10 +466,10 @@
         "repo": "terraform-provider-privx",
         "rev": "ef3ba418c8306d7135dfda080584562c814f31d0",
         "sha256": "1ljr53djwfp223lqkw149yz87lbmn442byyffkacp8jfh4xf1yc2",
-	"vendorSha256": "sha256-tF8EwTCc37lXXGpS6+SaqsEn+ExMl95w/D/cclHE51E=",
         "type": "tarball",
         "url": "https://github.com/caascad/terraform-provider-privx/archive/0.10.0.tar.gz",
         "url_template": "https://github.com/caascad/terraform-provider-privx/archive/<version>.tar.gz",
+        "vendorSha256": "sha256-tF8EwTCc37lXXGpS6+SaqsEn+ExMl95w/D/cclHE51E=",
         "version": "0.10.0"
     },
     "terraform-provider-rancher2": {
@@ -478,13 +478,13 @@
         "homepage": "https://www.terraform.io/docs/providers/rancher2/",
         "owner": "rancher",
         "repo": "terraform-provider-rancher2",
-        "rev": "ae967e50901291d391e13caa64023d9f0158831f",
-        "sha256": "15zm5yqnk8h33vg0cmbrc38pcqwnlcmvcdaqfq0yn1227bwcz28c",
+        "rev": "4642c3685b90c9a158a99ae0b7cf4cb7faabdcbb",
+        "sha256": "1l89jf8f5d071mfz6ibqcyiw6b4lji7hf15if8s90j9xjcwil47w",
         "type": "tarball",
-        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v1.25.0.tar.gz",
+        "url": "https://github.com/rancher/terraform-provider-rancher2/archive/v3.1.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-Ntq4wxXPUGbu4+6X1pBsmQsqfJ/jccTiHDJeHVpWe8Y=",
-        "version": "1.25.0"
+        "vendorSha256": "sha256-2uNawlNPmByjoIjufl3yMfo2MdV+MsXqSRVEWursHKc=",
+        "version": "3.1.0"
     },
     "tflint-ruleset-aws": {
         "branch": "master",
