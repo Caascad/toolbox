@@ -1,5 +1,6 @@
 {
     "alertmanager": {
+        "autoupdate": false,
         "branch": "main",
         "description": "Prometheus Alertmanager",
         "homepage": "https://prometheus.io",
@@ -325,7 +326,7 @@
         "version": "3.44.1"
     },
     "terraform-provider-cloudinit": {
-        "branch": "master",
+        "branch": "main",
         "description": "Exposes the cloudinit_config data source which renders a multipart MIME configuration for use with cloud-init (previously available as the template_cloudinit_config resource in the template provider)",
         "homepage": "https://registry.terraform.io/providers/hashicorp/cloudinit/latest",
         "owner": "hashicorp",
