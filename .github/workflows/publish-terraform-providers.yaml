@@ -25,7 +25,5 @@ jobs:
       with:
         name: toolbox
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - name: Build
-      run: nix-build
     - name: Build terraform providers
       run: nix-build -A terraform-providers
