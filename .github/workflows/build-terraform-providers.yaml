@@ -1,0 +1,43 @@
+name: Build terraform providers
+
+on:
+  pull_request:
+    paths:
+      - '**.nix'
+      - 'nix/*'
+      - 'pkgs/**'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+    - name: Free Disk Space (Ubuntu)
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        # android: true
+        # dotnet: true
+        # haskell: true
+        # large-packages: true
+        # docker-images: true
+        swap-storage: true
+    - uses: actions/checkout@v3
+    - name: Install Nix
+      uses: cachix/install-nix-action@v22
+    - name: Setup binary cache
+      uses: cachix/cachix-action@v12
+      with:
+        name: toolbox
+        skipPush: true
+    - name: Build terraform providers
+      run: nix-build -A terraform-providers

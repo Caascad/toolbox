@@ -1,4 +1,4 @@
-name: Autoupdate packages
+name: Autoupdate other derivations
 
 on:
   schedule:
@@ -77,7 +77,6 @@ jobs:
       - name: Build packages
         run: |
           nix-build
-          nix-build -A terraform-providers
   commit:
     needs:
       - build
