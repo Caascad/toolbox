@@ -55,7 +55,7 @@ let
 
       terraform-providers = super.terraform-providers // {
 
-        aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; };
+        aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; buildGoModule = pkgs.buildGo120Module;};
 
         controltower = self.lib.mkTFProvider { source = sources.terraform-provider-controltower; };
 
