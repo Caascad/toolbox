@@ -13,7 +13,7 @@ CONFIG_FILE = 'autoupdate/config.yml'
 SOURCE_FILE = 'nix/sources.json'
 CHANGES_FILE = 'changes.md'
 SOURCE_FILTER = os.getenv('SOURCE_FILTER','.*')
-DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
+DUMMY_SHA = '0000000000000000000000000000000000000000000000000000'
 re_sha = re.compile('(?<=got: {4})(sha256:)?(.*)')
 
 def get_package_latest_release(token, props, **kwargs):
