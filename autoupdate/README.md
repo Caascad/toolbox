@@ -16,10 +16,16 @@ There are also a few things to consider :
 
 ```bash
 export GITHUB_TOKEN=...
-
 nix-shell --command autoupdate/update.py
 ```
 
+It is also possible to filter packages by names
+```bash
+# negative regex to not match packages whose name starts with terraform
+export SOURCE_FILTER="(?\!terraform.*)" # zsh users
+export SOURCE_FILTER="(?!"terraform".*)" # bash users
+nix-shell --command autoupdate/update.py
+```
 
 ## Known issues
 

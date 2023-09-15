@@ -12,7 +12,7 @@ from graphqlclient import GraphQLClient
 CONFIG_FILE = 'autoupdate/config.yml'
 SOURCE_FILE = 'nix/sources.json'
 CHANGES_FILE = 'changes.md'
-
+SOURCE_FILTER = os.getenv('SOURCE_FILTER','.*')
 DUMMY_SHA = '0000000000000000000000000a00000000000000000000000000'
 re_sha = re.compile('(?<=got: {4})(sha256:)?(.*)')
 
@@ -118,7 +118,6 @@ def update_vendor_sha(pkg, config):
               '\033[0m')
         sys.exit(1)
 
-
 def main():
     token = os.getenv('GITHUB_TOKEN')
     if token is None:
@@ -136,7 +135,7 @@ def main():
     nixpkgs = read_source_file()
     pkgs = {}
     for pkg, props in nixpkgs.items():
-        if props.get('autoupdate', True):
+        if re.match(SOURCE_FILTER,pkg) and props.get('autoupdate', True):
             pkgs[pkg] = {
                 'owner': props['owner'],
                 'repo': props['repo'],
