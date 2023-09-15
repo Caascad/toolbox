@@ -66,7 +66,7 @@ jobs:
         with:
           ref: '${{needs.update.outputs.branch_name}}'
       - name: Install Nix
-        uses: cachix/install-nix-action@v20
+        uses: cachix/install-nix-action@v22
       - name: Setup binary cache
         uses: cachix/cachix-action@v12
         with:
