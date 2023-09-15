@@ -377,7 +377,7 @@
         "type": "tarball",
         "url": "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine/archive/v1.41.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-h4CO3sC41RPSmkTlWUCiRvQ1NRZkT2v1uHFOemvBN8s=",
+        "vendorSha256": "sha256-RqYzqKPzb5GcrzHnEDZC7GaBt1zP8g28Wo3WNAe07Ck=",
         "version": "1.41.0"
     },
     "terraform-provider-gitlab": {
