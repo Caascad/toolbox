@@ -9,7 +9,7 @@ on:
 jobs:
   update:
     timeout-minutes: 600
-    name: Update Toolbox components
+    name: Update Toolbox terraform providers components
     runs-on: ubuntu-latest
     outputs:
       branch: '${{ steps.mr.outputs.branch }}'
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Nix
-        uses: cachix/install-nix-action@v20
+        uses: cachix/install-nix-action@v22
       - name: Setup binary cache
         uses: cachix/cachix-action@v12
         with:
@@ -28,6 +28,7 @@ jobs:
           nix-shell --command autoupdate/update.py
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          SOURCE_FILTER: 'terraform'
       - name: Create MR
         id: mr
         run: |
@@ -68,15 +69,15 @@ jobs:
         with:
           ref: '${{ needs.update.outputs.branch }}'
       - name: Install Nix
-        uses: cachix/install-nix-action@v20
+        uses: cachix/install-nix-action@v22
       - name: Setup binary cache
-        uses: cachix/cachix-action@v22
+        uses: cachix/cachix-action@v12
         with:
           name: toolbox
           skipPush: true
       - name: Build packages
         run: |
-          nix-build -A terraform-providers
+          nix-build -A terraform-providers -A terraform_1
   commit:
     needs:
       - build
