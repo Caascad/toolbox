@@ -416,10 +416,10 @@
         "repo": "terraform-provider-helm",
         "rev": "7aacef79eb1f0fd681333f925b481551fb43a15a",
         "sha256": "0d3arfnarsnc7ggdn85d15w3lclx3q02fqc42wr65wb0g32pa1d6",
-        "vendorSha256": "sha256-a80+gjjoFOKI96pUMvTMyM90F5oCb1Ime8hPQcFedFE=",
         "type": "tarball",
         "url": "https://github.com/hashicorp/terraform-provider-helm/archive/refs/tags/v2.11.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
+        "vendorSha256": "sha256-a80+gjjoFOKI96pUMvTMyM90F5oCb1Ime8hPQcFedFE=",
         "version": "2.11.0"
     },
     "terraform-provider-huaweicloud": {
