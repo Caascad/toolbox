@@ -115,7 +115,7 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
                  envsubst awscli restic
                  saml2aws
                  k9s
-                 terraform_1 terraform-docs tflint
+                 terraform_1 terraform-docs tflint prometheus-alertmanager
                  ;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1" terraform_1;
@@ -135,7 +135,7 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
 
   ansible = pkgs.ansible;
 
-  amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
+  amtool = prometheus-alertmanager;
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
 
   helm = pkgs.kubernetes-helm;
