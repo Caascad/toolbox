@@ -11,11 +11,11 @@ let
 
  quantiphy = pythonPkgs.buildPythonPackage rec {
     pname = "quantiphy";
-    version = "2.17.0";
+    version = "2.18.0";
 
     src = pythonPkgs.fetchPypi {
       inherit pname version;
-      sha256 = "0hpz2w43l5fy4qknrlzh6b6049h9yrqsgf4wh163gdbajjpfyq4n";
+      sha256 = "sha256-7KFKv6g8MXHOpyEqGhH9bgBNAp5VALNCsmC0jHL1DWY=";
     };
   };
 
