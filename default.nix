@@ -108,22 +108,24 @@ rec {
   # Expose all nixpkgs packages in `pkgs` attribute
   inherit pkgs;
 
-  inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
+inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
                  yq jq gopass kubectx  direnv go gnupg curl
                  kustomize shellcheck
-                 envsubst awscli restic azure-cli
+                 # envsubst awscli restic azure-cli
+                 envsubst awscli restic
                  saml2aws
                  k9s
-                 terraform_1 terraform-docs tflint;
+                 terraform_1 terraform-docs tflint
+                 ;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1" terraform_1;
   terraform_1_0 = builtins.trace "terraform_1_0 is deprecated use terraform_1" terraform_1;
 
-  open-policy-agent = pkgs.open-policy-agent.overrideAttrs (old: {
+  open-policy-agent = pkgs.open-policy-agent.overrideAttrs  {
     # Tests related to wasm are failing on MacOS
     # but wasm is not enabled in the build
     doCheck = false;
-  });
+  };
 
   pre-commit = pkgs.pre-commit.overrideAttrs (old: rec {
     pname = "pre-commit";
@@ -203,7 +205,7 @@ rec {
   get-rancher-creds = (import sources.conformity-tooling { inherit pkgs;}).getranchercreds;
   checkmetrics = (import sources.conformity-tooling {inherit pkgs; }).checkmetrics;
 
-  kube-rebalancer = pkgs.callPackage ./pkgs/kube-rebalancer { python = pkgs.python39; };
+  kube-rebalancer = pkgs.callPackage ./pkgs/kube-rebalancer { python = pkgs.python3; };
 
 } // optionalAttrs (! pkgs.stdenv.isDarwin) rec {
 
