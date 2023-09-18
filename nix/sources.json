@@ -1,19 +1,4 @@
 {
-    "alertmanager": {
-        "autoupdate": false,
-        "branch": "main",
-        "description": "Prometheus Alertmanager",
-        "homepage": "https://prometheus.io",
-        "owner": "prometheus",
-        "repo": "alertmanager",
-        "rev": "ecb66f76b0058957e5045114ae01f8b98994451e",
-        "sha256": "1x2xknj1k8yy89ldk5rv9dc0zsxhpq06hq60bi069n24z7fydkl7",
-        "type": "tarball",
-        "url": "https://github.com/prometheus/alertmanager/archive/v0.25.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-BX4mT0waYtKvNyOW3xw5FmXI8TLmv857YBFTnV7XXD8=",
-        "version": "0.25.0"
-    },
     "concourse_7_3_2": {
         "autoupdate": false,
         "branch": "master",
@@ -457,10 +442,10 @@
         "repo": "terraform-provider-kubernetes",
         "rev": "1b22349663322b21d71c5a4d1790ae025c77d0c2",
         "sha256": "0izhr8kvbnzayq0i206slagaw26b8yxhqyibw6lvkx4b7qlnbyk8",
-        "vendorSha256": "sha256-9AmfvoEf7E6lAblPIWizElng5GQJG/hQ5o6Mo3AN+EA=",
         "type": "tarball",
         "url": "https://github.com/hashicorp/terraform-provider-kubernetes/archive/refs/tags/v2.23.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/refs/tags/v<version>.tar.gz",
+        "vendorSha256": "sha256-9AmfvoEf7E6lAblPIWizElng5GQJG/hQ5o6Mo3AN+EA=",
         "version": "2.23.0"
     },
     "terraform-provider-privx": {

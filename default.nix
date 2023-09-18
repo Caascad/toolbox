@@ -135,7 +135,7 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
 
   ansible = pkgs.ansible;
 
-  amtool = pkgs.callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
+  amtool = pkgs.callPackage ./pkgs/amtool.nix {};
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
 
   helm = pkgs.kubernetes-helm;
