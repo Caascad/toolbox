@@ -147,8 +147,6 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
       in (builtins.elemAt components 1) == "toolbox"
     else false) pkgs.terraform-providers;
 
-  cue = pkgs.callPackage ./pkgs/cue.nix { source = sources.cue; };
-
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
   git = pkgs.git;
