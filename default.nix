@@ -7,8 +7,18 @@ let
 
   # See: https://github.com/NixOS/nixpkgs/issues/193657
   pkgs-poetry = import sources.nixpkgs-poetry {};
+
+  terraform-providers-list = ["aws" "rancher2" "kubectl" "gitlab" "flexibleengine" "huaweicloud" "azuread" "azurerm" "helm" "kubernetes" "cloudinit" "vault" "keycloak"
+    "controltower" "concourse" "harbor" "privx"
+  ];
+
   pkgs = import nixpkgs {
     overlays = [(self: super: {
+
+      kompose = super.kompose.override {
+        # Build is failing on Darwin with Go 1.18
+        buildGoModule = pkgs.buildGoModule;
+      };
 
       lib = super.lib // {
 
@@ -48,51 +58,11 @@ let
             });
       };
 
-      kompose = super.kompose.override {
-        # Build is failing on Darwin with Go 1.18
-        buildGoModule = pkgs.buildGoModule;
-      };
-
       terraform-providers = super.terraform-providers // {
-
-        aws = self.lib.mkTFProvider { source = sources.terraform-provider-aws; buildGoModule = pkgs.buildGo120Module;};
-
         controltower = self.lib.mkTFProvider { source = sources.terraform-provider-controltower; };
-
-        rancher2 = self.lib.mkTFProvider { source = sources.terraform-provider-rancher2; };
-
-        kubectl = self.lib.mkTFProvider { source = sources.terraform-provider-kubectl; };
-
         concourse = self.lib.mkTFProvider { source = sources.terraform-provider-concourse; };
-
-        gitlab = self.lib.mkTFProvider { source = sources.terraform-provider-gitlab; };
-
-        flexibleengine = self.lib.mkTFProvider { source = sources.terraform-provider-flexibleengine; };
-
-        huaweicloud = self.lib.mkTFProvider { source = sources.terraform-provider-huaweicloud; };
-
-        azuread = self.lib.mkTFProvider { source = sources.terraform-provider-azuread; };
-
-        azurerm = self.lib.mkTFProvider { source = sources.terraform-provider-azurerm; };
-
-        helm = self.lib.mkTFProvider { source = sources.terraform-provider-helm; };
-
-        kubernetes = self.lib.mkTFProvider { source = sources.terraform-provider-kubernetes; };
-
-        cloudinit = self.lib.mkTFProvider { source = sources.terraform-provider-cloudinit; };
-
         harbor = self.lib.mkTFProvider { source = sources.terraform-provider-harbor; };
-
         privx = self.lib.mkTFProvider { source = sources.terraform-provider-privx; };
-
-        # Take from nixpkgs, but keep the old provider-source-address
-        vault = super.terraform-providers.vault.override {
-          provider-source-address = "registry.terraform.io/toolbox/vault";
-        };
-        keycloak = super.terraform-providers.keycloak.override {
-          provider-source-address = "registry.terraform.io/toolbox/keycloak";
-        };
-
       };
 
     })];
@@ -107,6 +77,7 @@ rec {
 
   # Expose all nixpkgs packages in `pkgs` attribute
   inherit pkgs;
+
   inherit (pkgs) nix 
                  kapp kubectl gopass stern kubectx k9s
                  shellcheck go gnupg curl direnv yq jq vault docker-compose cfssl kompose envsubst cue
@@ -123,11 +94,8 @@ rec {
   helm = pkgs.kubernetes-helm;
 
   # Expose providers that don't come from nixpkgs (so that we can push them in the cache)
-  terraform-providers = filterAttrs (_: drv:
-    if (builtins.tryEval drv).success && drv ? "passthru" && drv.passthru ? "provider-source-address" then
-      let components = splitString "/" drv.passthru.provider-source-address;
-      in (builtins.elemAt components 1) == "toolbox"
-    else false) pkgs.terraform-providers;
+  terraform-providers = filterAttrs (name: drv:
+    if (builtins.tryEval drv).success && (builtins.elem name terraform-providers-list) then true else false) pkgs.terraform-providers;
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
 
@@ -195,5 +163,4 @@ rec {
   os = pkgs.callPackage ./pkgs/os { inherit openstackclient; };
 
   inherit (pkgs) open-policy-agent;
-
 }
