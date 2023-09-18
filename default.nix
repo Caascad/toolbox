@@ -107,33 +107,15 @@ rec {
 
   # Expose all nixpkgs packages in `pkgs` attribute
   inherit pkgs;
-
-inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
-                 yq jq gopass kubectx  direnv go gnupg curl
-                 kustomize shellcheck
-                 # envsubst awscli restic azure-cli
-                 envsubst awscli restic
-                 saml2aws
-                 k9s
-                 terraform_1 terraform-docs tflint
-                 ;
+  inherit (pkgs) nix 
+                 kapp kubectl gopass stern kubectx k9s
+                 shellcheck go gnupg curl direnv yq jq vault docker-compose cfssl kompose envsubst cue
+                 saml2aws awscli restic azure-cli
+                 terraform_1 terraform-docs tflint ansible
+                 git pre-commit;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1" terraform_1;
   terraform_1_0 = builtins.trace "terraform_1_0 is deprecated use terraform_1" terraform_1;
-
-  open-policy-agent = pkgs.open-policy-agent.overrideAttrs  {
-    # Tests related to wasm are failing on MacOS
-    # but wasm is not enabled in the build
-    doCheck = false;
-  };
-
-  pre-commit = pkgs.pre-commit.overrideAttrs (old: rec {
-    pname = "pre-commit";
-    version = old.version;
-    name = "${pname}-${version}";
-  });
-
-  ansible = pkgs.ansible;
 
   amtool = pkgs.callPackage ./pkgs/amtool.nix {};
   amtool-caascad = pkgs.callPackage ./pkgs/amtool-caascad { inherit amtool; };
@@ -148,8 +130,6 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
     else false) pkgs.terraform-providers;
 
   fly = pkgs.callPackage ./pkgs/fly.nix { inherit sources; };
-
-  git = pkgs.git;
 
   kubectl-plugins = pkgs.callPackages ./pkgs/kubectl-plugins { inherit sources; };
 
@@ -213,5 +193,7 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
   };
 
   os = pkgs.callPackage ./pkgs/os { inherit openstackclient; };
+
+  inherit (pkgs) open-policy-agent;
 
 }
