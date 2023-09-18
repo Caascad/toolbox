@@ -80,7 +80,7 @@ rec {
 
   inherit (pkgs) nix 
                  kapp kubectl gopass stern kubectx k9s
-                 shellcheck go gnupg curl direnv yq jq vault docker-compose cfssl kompose envsubst cue
+                 shellcheck go gnupg curl direnv yq jq vault docker-compose cfssl kompose envsubst cue postgresql_12
                  saml2aws awscli restic azure-cli
                  terraform_1 terraform-docs tflint ansible
                  git pre-commit;
