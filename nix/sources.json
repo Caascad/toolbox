@@ -220,15 +220,15 @@
     },
     "nixpkgs-poetry": {
         "autoupdate": false,
-        "branch": "nixpkgs-unstable",
+        "branch": "master",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21de2b973f9fee595a7a1ac4693efff791245c34",
-        "sha256": "1kicpg62jsyh4blyykvbkq1vg4rv56k22qpp8kr9mj3fjabkrr27",
+        "rev": "209b12d6b765a05e162303e49c4bbb6ce3bca5b3",
+        "sha256": "01bz6p2ncdvycm3pgd1r16pw92k0zyhf8qm122ilcsi5ybh27wsp",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/21de2b973f9fee595a7a1ac4693efff791245c34.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/209b12d6b765a05e162303e49c4bbb6ce3bca5b3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rancher-cli": {
