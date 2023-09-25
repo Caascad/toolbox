@@ -318,12 +318,12 @@
         "homepage": "https://www.terraform.io/docs/providers/azurerm/",
         "owner": "terraform-providers",
         "repo": "terraform-provider-azurerm",
-        "rev": "9636cfd17a3a2d33c4588dfece1f6deb2604a39b",
-        "sha256": "0gwrr5y4f85lgkwrgxssi8kzw9djl2mbcagzibnwsfhl9vp1y7yf",
+        "rev": "2d427661fb50684c814c0e73a86bbc5ee618f34a",
+        "sha256": "04gc97f1hn905ziri6xy9q65ppygb9pw012861zpmwbr5v6f9yla",
         "type": "tarball",
-        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.73.0.tar.gz",
+        "url": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v3.74.0.tar.gz",
         "url_template": "https://github.com/terraform-providers/terraform-provider-azurerm/archive/v<version>.tar.gz",
-        "version": "3.73.0"
+        "version": "3.74.0"
     },
     "terraform-provider-cloudinit": {
         "branch": "main",
@@ -386,13 +386,13 @@
         "homepage": "https://gitlab.com/gitlab-org/terraform-provider-gitlab",
         "owner": "gitlabhq",
         "repo": "terraform-provider-gitlab",
-        "rev": "7f8cf860c987b192b36619947eb3f095042a13a0",
-        "sha256": "0gg4jwcq4bphx6zhpa4r2b0mapc16j25li9gr72vsyl4fbpnyn7p",
+        "rev": "18d0ef327c84909ec83a35f39a90757ffe0f6a37",
+        "sha256": "0qnjfw70anvf80v1bi0x936nijiracypr875r2jjl0wdlvmkbxl6",
         "type": "tarball",
-        "url": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v16.3.0/terraform-provider-gitlab-v16.3.0.tar.gz",
+        "url": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v16.4.0/terraform-provider-gitlab-v16.4.0.tar.gz",
         "url_template": "https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/archive/v<version>/terraform-provider-gitlab-v<version>.tar.gz",
-        "vendorSha256": "sha256-G7+3vqxdi4i21o1hYj2GVvoCdcmFN3ue1i4fuepucsw=",
-        "version": "16.3.0"
+        "vendorSha256": "sha256-tMFNjdXIlyBELrLRKkJySXlQbuHDybVhSTw/J3dXZ7w=",
+        "version": "16.4.0"
     },
     "terraform-provider-harbor": {
         "branch": "main",
