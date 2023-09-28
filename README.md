@@ -256,4 +256,18 @@ To test `toolbox` with local packages run:
 NIX_PATH=toolbox=/path/to/toolbox/repo toolbox list
 ```
 
+## Known bugs
+Sometimes you can see those kind of outputs:
 
+```code
+toolbox update-shell
+[toolbox]: Updating shell ...
+[toolbox]: Using commit null for this development shell
+[toolbox]: Calculating sha256 for https://github.com/Caascad/toolbox/archive/null.tar.gz
+[toolbox]: Download failed. Wrong commit?
+```
+
+You have been rate limited by Github API. To bypass this limitation, build a personal access token in github and export it in your shell:
+```code
+export GITHUB_TOKEN=...
+```
