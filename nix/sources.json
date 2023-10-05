@@ -400,13 +400,13 @@
         "homepage": "https://goharbor.io/",
         "owner": "goharbor",
         "repo": "terraform-provider-harbor",
-        "rev": "dba321d9d11348503ca0e7c9281b9538e9e1384b",
-        "sha256": "1kvbgy6l3gbxy72dbksmgvzbg0jr7mqp47vqskfyrfsqwpa491rh",
+        "rev": "1e34aed3a28b0dd707d280e13f18cf7db76141ed",
+        "sha256": "1czyb6as002jkplx9shc0w0mbj7agbnffbq5jmh1w241f8ly68dh",
         "type": "tarball",
-        "url": "https://github.com/goharbor/terraform-provider-harbor/archive/v3.10.2.tar.gz",
+        "url": "https://github.com/goharbor/terraform-provider-harbor/archive/v3.10.3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-O0Gi8KHxitonDPxu0b3X+5oQCsBOFUe7b4zKiSSVeBA=",
-        "version": "3.10.2"
+        "vendorSha256": "sha256-s/P6nMtSi9lS7UFQSLsd2CM6zX6nwg6B55G/WuiVUjE=",
+        "version": "3.10.3"
     },
     "terraform-provider-helm": {
         "branch": "main",
