@@ -193,6 +193,8 @@ inherit (pkgs) nix kapp kubectl stern vault docker-compose cfssl kompose
     buildGoModule = pkgs.buildGo120Module;
   };
 
+  print-client-zones-infos = pkgs.callPackage ./pkgs/print-client-zones-infos { };
+
   promtool = pkgs.callPackage ./pkgs/promtool.nix {};
 
   sd = import sources.sd.outPath { inherit pkgs; };
