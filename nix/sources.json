@@ -68,7 +68,7 @@
         "type": "tarball",
         "url": "https://github.com/cue-lang/cue/archive/v0.7.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "vendorSha256": "sha256-z7OLsIN+8N17ly4le4a4ziPesVIMVe+fFN4XgdAJTcI=",
+        "vendorSha256": "sha256-Eq51sydt2eu3pSCRjepvxpU01T0vr0axx9XEk34db28",
         "version": "0.7.0"
     },
     "fly-wrapper": {
