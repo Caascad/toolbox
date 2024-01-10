@@ -20,6 +20,6 @@ in stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     ln -s ${ansible}/bin/ansible* $out/bin
-    wrapProgram "$out/bin/ansible-playbook" --set ANSIBLE_CALLBACK_PLUGINS "${callbackPluginsPaths}" --set ANSIBLE_CALLBACK_WHITELIST "${callbackPlugins}"
+    wrapProgram "$out/bin/ansible-playbook" --set ANSIBLE_CALLBACK_PLUGINS "${callbackPluginsPaths}" --set ANSIBLE_CALLBACKS_ENABLED "${callbackPlugins}"
   '';
 }
