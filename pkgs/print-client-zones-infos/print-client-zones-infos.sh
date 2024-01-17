@@ -58,6 +58,22 @@ get_zone() {
   get_zones "$1" | jq '.[]'
 }
 
+print_grafana() {
+  z=$(get_zone "grafana")
+  [ -z "$z" ] && return
+  zone_name=$(echo "$z" | jq -r '.name')
+  dns_domain=$(echo "$z" | jq -r '.dns_domain')
+  cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
+  mapfile -t thanos_query_connected_services < <(echo "$z" | jq -r '.parameters.thanos_query_connected_services[].name' |sed -e 's/svc-monitoring-stack-client-\([a-z]*\)/\1/')
+
+  print_header "Grafana"
+  print_kv "name" "${zone_name}"
+  print_kv "Cluster" "${cluster_name}"
+  print_dict "Namespace" '{"main": "grafana-client-obs-'"${CLIENT}"'", "dashboards": "grafana-dashboards-obs-'"${CLIENT}"'"}'
+  print_kv "Grafana URL" "https://grafana.${dns_domain}"
+  print_kv "Grafana DS Thanos" "$(printf ",%s" "${thanos_query_connected_services[@]}" | sed -e 's/^,//g')"
+}
+
 print_grafana_client() {
   z=$(get_zone "grafana-client")
   [ -z "$z" ] && return
@@ -120,6 +136,21 @@ print_monitoring_stack_client() {
   print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
 }
 
+print_loki() {
+  z=$(get_zone "loki")
+  [ -z "$z" ] && return
+  zone_name=$(echo "$z" | jq -r '.name')
+  cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
+  retention=$(echo "$z" | jq -r '.parameters.loki.retention')
+
+  print_header "Loki"
+  print_kv "name" "${zone_name}"
+  print_kv "Cluster" "${cluster_name}"
+  print_kv "Namespace" "loki-client-obs-${CLIENT}"
+
+  print_kv "Retention" "${retention}"
+}
+
 print_loki_client() {
   z=$(get_zone "loki-client")
   [ -z "$z" ] && return
@@ -138,4 +169,6 @@ print_loki_client() {
 print_grafana_client
 print_monitoring_stack_client
 print_loki_client
+print_grafana
 print_monitoring_stack
+print_loki
