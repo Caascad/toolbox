@@ -470,7 +470,7 @@
         "owner": "caascad",
         "repo": "terraform-provider-privx",
         "rev": "27620cb89eb5b79722356feb2a6f233b8a40d91b",
-        "sha256": "054ykj2w5h9ajnbdrm97kp2vh8ic5iib2bjfwhy5l8wh95r493a0",
+        "sha256": "sha256-3BWG/67+adpY1Hqa0o9dh5YB6+dlxvNq/ghlvAPB/X8=",
         "type": "tarball",
         "url": "https://github.com/caascad/terraform-provider-privx/archive/1.27.2.tar.gz",
         "url_template": "https://github.com/caascad/terraform-provider-privx/archive/<version>.tar.gz",
