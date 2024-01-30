@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1117
 
+# needed for Vault
+export NIXPKGS_ALLOW_UNFREE=1
+
 set -e
 set -o pipefail
 
