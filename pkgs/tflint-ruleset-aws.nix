@@ -16,7 +16,8 @@ buildGoModule rec {
     sha256 = source.sha256;
   };
 
-  vendorSha256 = source.vendorSha256;
+  # vendorHash = lib.fakeHash;
+  vendorHash = "sha256-JhAAyfDVRZS2QyvXNa61srlZKgsBFeKloeKbcXXpytk=";
 
   # Integration test with tflint not working
   doCheck = false;

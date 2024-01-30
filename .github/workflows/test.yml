@@ -43,6 +43,8 @@ jobs:
         resource null_resource foo {}
         EOF
         nix-shell --run "terraform init && terraform plan"
+      env:
+        NIXPKGS_ALLOW_UNFREE: 1
   shellcheck:
     runs-on: ubuntu-latest
     steps:

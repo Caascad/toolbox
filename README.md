@@ -224,16 +224,14 @@ niv update concourse -v 7.6.0
 ```
 
 #### golang sources
-
-You need to add the vendor/ directory sha into sources.json.
-First, in your golang repository generate the vendor directory : `go mod vendor`
-Then, get the sha256 with command : `nix-hash --type sha256 --sri vendor/`
-And put the value into sources.json : 
-```json
-{ 
-   "vendorSha256": "sha256-tF8EwTCc37lXXGpS6+SaqsEn+ExMl95w/D/cclHE51E=",
-}
-
+Currently nixpkgs moves to hash and vendorHash attributes populated with SRI hashes values.
+Currenty niv does not support vendorHash attribute so we need to add it directly in goBuild.* helpers.
+```
+buildGoModule rec {
+    ...
+    vendorSha = lib.fakeSha; # will help you get the new sri hash
+    # vendorSha = "sha256-......" # to uncomment when the new sri hash is known
+    }
 ```
 
 ### Testing a new package locally
@@ -256,4 +254,79 @@ To test `toolbox` with local packages run:
 NIX_PATH=toolbox=/path/to/toolbox/repo toolbox list
 ```
 
+### Unfree packages
+Because Hashicorp Vault went unfree, it is considered as impure by nix.
+The toolbox script has been updated to refect it, but to be able to issue nix-.\* commands directly into the toolbox repo, you will need to export a variable:
 
+```bash
+export NIXPKGS_ALLOW_UNFREE=1
+```
+In the current repo you will find an envrc.EXAMPLE file to source.
+
+### Managing terraform providers sources
+Some providers are added to [nixpkgs](https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/cluster/terraform-providers) via a patch.
+
+```bash
+## In the toolbox repo
+REV=$(jq -r '."nixpkgs-unstable".rev' nix/sources.json)
+## In nixpkgs repo
+cd pkgs/applications/networking/cluster/terraform-providers/
+git checkout "${REV}"
+./update-provider terraform-provider-concourse/concourse
+./update-provider caascad/privx
+./update-provider idealo/controltower # vendorHash needs to be set to null after
+./update-provider goharbor/harbor
+```
+
+### Pushing to cachix
+
+```bash
+toolbox install pkgs.cachix
+export CACHIX_SIGNING_KEY=...
+nix-build | cachix push vault-caascad
+nix-build -A terraform-providers | cachix push vault-caascad
+```
+
+### Terraform provider source address
+Previously we overrided the provider source address of every terraform provider we would want to see in the toolbox.
+Currently we do not use this mechanism anymore, so when you will update your terraform provider you may encounter such messages:
+```bash
+terraform init
+│ Error: Failed to query available provider packages
+│
+│ Could not retrieve the list of available versions for provider toolbox/vault: provider registry.terraform.io/toolbox/vault was not found in any of the search locations
+│
+│   - /nix/store/hxpgcq849g6299mg4mv989xmjz6ypq3p-terraform-1.7.1/libexec/terraform-providers
+╵
+
+tree /nix/store/hxpgcq849g6299mg4mv989xmjz6ypq3p-terraform-1.7.1/libexec/terraform-providers
+/nix/store/hxpgcq849g6299mg4mv989xmjz6ypq3p-terraform-1.7.1/libexec/terraform-providers
+└── registry.terraform.io
+    ├── hashicorp
+    │   ├── vault
+    │   │   └── ...
+    │   │
+    │   │
+
+
+```
+The provider has been moved to a new location due to provider source address attribute change.
+
+To fix the state:
+```bash
+terraform state replace-provider registry.terraform.io/toolbox/vault registry.terraform.io/hashicorp/vault
+```
+
+Also ensure every terraform block in terraform configurations reflects the new provider source address:
+```bash
+ terraform {
+   required_providers {
+     vault = {
+-      source                = "toolbox/vault"
++      source                = "hashicorp/vault"
+       configuration_aliases = [vault.src, vault.dest]
+     }
+   }
+```
+
+Remember those blocks can be set in configurations and modules also.

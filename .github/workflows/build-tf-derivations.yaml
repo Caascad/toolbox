@@ -1,4 +1,4 @@
-name: Build terraform providers
+name: Build terraform providers derivations
 
 on:
   pull_request:
@@ -26,3 +26,5 @@ jobs:
         skipPush: true
     - name: Build terraform providers
       run: nix-build -A terraform-providers
+      env:
+        NIXPKGS_ALLOW_UNFREE: 1

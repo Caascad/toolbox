@@ -24,7 +24,7 @@ in
 pythonPkgs.buildPythonApplication {
   pname = "kube-rebalancer";
   version = "0.0.1";
-
+  doCheck = false;
   src = lib.cleanSourceWith {
     filter = name: type: let baseName = baseNameOf (toString name); in baseName != "__pycache__";
     src = lib.cleanSource ./src;

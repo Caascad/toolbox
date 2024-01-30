@@ -13,6 +13,6 @@ buildGoModule rec {
     rev = "v${version}";
     sha256 = source.sha256;
   };
-  vendorSha256 = null;
+  vendorHash= null;
 }
 

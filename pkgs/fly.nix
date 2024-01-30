@@ -9,8 +9,11 @@
 }:
 
 let
-
-  fly-wrapper = import sources.fly-wrapper.outPath { inherit pkgs; };
+  hashes = {
+    "7.3.2" = "sha256-30rrRkPIH0sr8koKRLs1Twe6Z55+lr9gkgUDrY+WOTw=";
+    "7.6.0" = "sha256-OF3parnlTPmcr7tVcc6495sUMRApSpBHHjSE/4EFIxE=";
+  };
+  fly-wrapper = import sources.fly-wrapper { inherit pkgs; };
 
   fly_7_6_0 = fly_go {
     source = sources.concourse_7_6_0;
@@ -27,11 +30,11 @@ let
       inherit (source) url sha256;
     };
 
-    vendorSha256 = source.vendorSha256;
+    vendorHash = hashes.${version};
 
     subPackages = [ "fly" ];
 
-    ldflags = "-X github.com/concourse/concourse.Version=${source.version}";
+    ldflags = ["-X github.com/concourse/concourse.Version=${source.version}"];
 
     postInstall = ''
       mkdir -p $out/share/bash-completion/completions

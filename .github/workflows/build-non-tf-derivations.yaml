@@ -1,4 +1,4 @@
-name: Build other derivations
+name: Build non terraform providers derivations
 
 on:
   pull_request:
@@ -26,3 +26,5 @@ jobs:
         skipPush: true
     - name: Build
       run: nix-build
+      env:
+        NIXPKGS_ALLOW_UNFREE: 1

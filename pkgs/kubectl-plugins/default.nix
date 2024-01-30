@@ -32,7 +32,8 @@ rec {
       rev = "v${version}";
       sha256 = sources.ketall.sha256;
     };
-    vendorSha256 = "1bp5bcxbszhxy0jzqhvyv24zqhljk9221m7hgr45h8bzpckxc5wp";
+    # vendorHash = lib.fakeHash;
+    vendorHash = "sha256-lxfWJ7t/IVhIfvDUIESakkL8idh+Q/wl8B1+vTpb5a4=";
     postInstall = ''
       mv $out/bin/ketall $out/bin/kubectl-ketall
     '';
@@ -51,7 +52,8 @@ rec {
       rev = "v${version}";
       sha256 = sources.ksniff.sha256;
     };
-    vendorSha256 = sources.ksniff.vendorSha256;
+    # vendorHash = lib.fakeHash;
+    vendorHash = "sha256-7pSpOF8UASWqRMWaomoUBA3pD8t0qWiaIcGlXEm0Yx0=";
     subPackages = ["cmd/"];
   };
 
@@ -67,7 +69,8 @@ rec {
       rev = "v${version}";
       sha256 = sources.kail.sha256;
     };
-    vendorSha256 = sources.kail.vendorSha256;
+    # vendorHash= lib.fakeHash;
+    vendorHash= "sha256-W+/vIq7qC+6apk+1GOWvmcwyyjFRkndq8X5m/lRYOu4=";
     subPackages = ["cmd/kail/"];
   };
 
@@ -80,7 +83,8 @@ rec {
       rev = "v${version}";
       sha256 = sources.kubectl-topology.sha256;
     };
-    vendorSha256 = "18j6lv4aar1fwr9cb186j0mb0kirvhx8m2k98fjqpx50dmiqb695";
+    # vendorHash = lib.fakeHash;
+    vendorHash = "sha256-JZmFY22g9IulQ2mKijrcOU6wKpAGhcVS5i5kpcimRqI"; 
     subPackages = ["cmd/kubectl-topology"];
   };
 }
