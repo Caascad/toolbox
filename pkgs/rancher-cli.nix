@@ -15,7 +15,7 @@ buildGoModule rec {
     sha256 = source.sha256;
   };
 
-  vendorSha256 = source.vendorSha256;
+  vendorHash = "sha256-/etX/SFoaze2ZVp6XLypgEfQ22R/tD1xNwuTTvvvPw8="; # niv does not provide it. obtained by replaction current hash with lib.fakeHash
 
   postInstall = ''
       mv $out/bin/cli $out/bin/rancher

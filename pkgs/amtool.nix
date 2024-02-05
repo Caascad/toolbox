@@ -17,7 +17,8 @@ buildGoModule rec {
     sha256 = source.sha256;
   };
 
-  vendorSha256 = source.vendorSha256;
+  # vendorHash = lib.fakeHash;
+  vendorHash = "sha256-BX4mT0waYtKvNyOW3xw5FmXI8TLmv857YBFTnV7XXD8=";
 
   subPackages = [ "cmd/amtool" ];
 

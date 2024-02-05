@@ -10,8 +10,8 @@ buildGoModule rec {
   src = fetchzip {
     inherit (source) url sha256;
   };
-
-  vendorSha256 = source.vendorSha256;
+  # vendorHash= lib.fakeHash;
+  vendorHash = "sha256-b/ufutR2JUgmPQBgif24ipAh7TWaqxo+sGCDv4BvdHU=";
 
   doCheck = false;
 

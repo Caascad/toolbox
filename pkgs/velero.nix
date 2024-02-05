@@ -1,6 +1,7 @@
 { buildGoModule
 , fetchFromGitHub
 , source
+, lib
 }:
 
 buildGoModule rec {
@@ -14,13 +15,13 @@ buildGoModule rec {
     sha256 = source.sha256;
   };
 
-  vendorSha256 = source.vendorSha256;
+  vendorHash = "sha256-l8srlzoCcBZFOwVs7veQ1RvqWRIqQAaZLM/2CbNHN50=";
 
   doCheck = false;
 
-  ldflags = ''
-      -X github.com/vmware-tanzu/velero/pkg/buildinfo.Version=v${source.version}
-      -X github.com/vmware-tanzu/velero/pkg/buildinfo.GitSHA=${source.rev}
-  '';
+  ldflags = [ 
+    "-X github.com/vmware-tanzu/velero/pkg/buildinfo.Version=v${source.version}"
+    "-X github.com/vmware-tanzu/velero/pkg/buildinfo.GitSHA=${source.rev}"
+  ];
 }
 

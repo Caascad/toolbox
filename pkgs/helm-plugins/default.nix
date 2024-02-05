@@ -1,6 +1,7 @@
 { sources
 , pkgs
 , fetchpatch
+, lib
 }:
 
 {
@@ -16,7 +17,8 @@
       rev = "v${version}";
       sha256 = source.sha256;
     };
-    vendorSha256 = source.vendorSha256;
+    # vendorHash = lib.fakeHash;
+    vendorHash = "sha256-2tiBFS3gvSbnyighSorg/ar058ZJmiQviaT13zOS8KA=";
     postInstall = ''
       mv $out/bin/helm-diff $out/bin/diff
     '';

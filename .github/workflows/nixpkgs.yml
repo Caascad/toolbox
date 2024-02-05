@@ -76,6 +76,8 @@ jobs:
         run: |
           nix-build
           nix-build -A terraform-providers
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
   commit:
     needs:
       - build
