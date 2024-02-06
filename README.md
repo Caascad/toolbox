@@ -283,8 +283,8 @@ git checkout "${REV}"
 ```bash
 toolbox install pkgs.cachix
 export CACHIX_SIGNING_KEY=...
-nix-build | cachix push vault-caascad
-nix-build -A terraform-providers | cachix push vault-caascad
+nix-build | cachix push toolbox
+nix-build -A terraform-providers | cachix push toolbox
 ```
 
 ### Terraform provider source address
