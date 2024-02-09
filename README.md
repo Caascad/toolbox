@@ -264,7 +264,63 @@ export NIXPKGS_ALLOW_UNFREE=1
 In the current repo you will find an envrc.EXAMPLE file to source.
 
 ### Managing terraform providers sources
-Some providers are added to [nixpkgs](https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/cluster/terraform-providers) via a patch.
+We manage few providers with the same mechanism used in nixpkgs. Our custom providers are managed through [a json file](./providers.json)
+
+A provider is defined by this block:
+```code
+  "harbor": {
+    "hash": "sha256-fxr5iiVxSHbDzpzyEo0ZPq9/Kc4K799uScDEUrhbLdQ=",
+    "homepage": "https://registry.terraform.io/providers/goharbor/harbor",
+    "owner": "goharbor",
+    "repo": "terraform-provider-harbor",
+    "rev": "v3.10.8",
+    "spdx": "MIT",
+    "vendorHash": "sha256-eFPvBl+j9QciFfPfpfwdJNb1r+DoaGldpx17saNZWqE="
+   },
+```
+
+Here we define a provider named harbor located on github (github is implied) and published through the terraform registry. The revision and licenses are also needed.
+The *hash* attribute is given by:
+
+```code
+nix-prefetch-url  --unpack https://github.com/${owner}/${repo}/archive/${rev}.tar.gz
+```
+
+It can also be obtained by filling the attribute with a fake hash: "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+
+So with this provider block:
+
+```code
+  "harbor": {
+    "hash": "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    "homepage": "https://registry.terraform.io/providers/goharbor/harbor",
+    "owner": "goharbor",
+    "repo": "terraform-provider-harbor",
+    "rev": "v3.10.8",
+    "spdx": "MIT",
+    "vendorHash": "sha256-eFPvBl+j9QciFfPfpfwdJNb1r+DoaGldpx17saNZWqE="
+   },
+```
+
+A build will give the correct hash output:
+```code
+ nix-build -A terraform-providers.harbor
+ ...
+error: hash mismatch in fixed-output derivation '/nix/store/vq6l9klwbryiacrk3fif3qb4zi14gav0-source-v3.10.8.drv':
+         specified: sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+            got:    sha256-fxr5iiVxSHbDzpzyEo0ZPq9/Kc4K799uScDEUrhbLdQ=
+error: 1 dependencies of derivation '/nix/store/mlmdix3rlin4s9r3534b6x201hcbz9ax-terraform-provider-harbor-3.10.8.drv' failed to build
+```
+
+The same method apply to *vendorHash* attribute
+
+[!IMPORTANT]
+*About golang builds*: there is several ways to compile a golang project depending on the golang version, vendoring, etc..
+Most of those variants can be reached through a trick  on vendorHash and overrides defined in default.nix (see the harbor example which forces golang 1.22).
+When vendorHash is set and is not empty, nix will issue go mod commands, downloading dependencies. If vendorHash is null, nix will configure golang to use the vendor directory.
+
+[!NOTE]
+The providers.json file can also be obtained by a script in nixpkgs:
 
 ```bash
 ## In the toolbox repo
@@ -282,7 +338,7 @@ git checkout "${REV}"
 
 ```bash
 toolbox install pkgs.cachix
-export CACHIX_SIGNING_KEY=...
+export CACHIX_SIGNING_KEY=<toolbox signing key>
 nix-build | cachix push toolbox
 nix-build -A terraform-providers | cachix push toolbox
 ```
