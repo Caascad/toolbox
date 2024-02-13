@@ -2,17 +2,17 @@
   # nixpkgs golang builders migrate to SRI hash (sha256-*)
   # should be inherited from source but niv does not provide this attribute
 { sources ? import ./nix/sources.nix
-, nixpkgs ? sources.nixpkgs
+, pkgs ? import sources.nixpkgs {}
 , poetry2nixStandalone ? import sources.poetry2nix {}
 }:
 
 let
-  nixpkgs-patched = (import nixpkgs {}).applyPatches {
-    name = "patched-terraform-providers";
-    src = nixpkgs;
-    patches = [ ./tfproviders.patch ];
+
+  providersSource = pkgs.lib.importJSON ./providers.json;
+  automated-providers = pkgs.lib.mapAttrs (_: attrs: pkgs.terraform-providers.mkProvider attrs) providersSource;
+  special-providers = {
+    harbor = automated-providers.harbor.override {mkProviderGoModule = pkgs.buildGo122Module;};
   };
-  pkgs = import nixpkgs-patched {};
 
 in
 with pkgs;
@@ -49,28 +49,22 @@ rec {
 
   amtool = callPackage ./pkgs/amtool.nix { source = sources.alertmanager; };
   amtool-caascad = callPackage ./pkgs/amtool-caascad { inherit amtool; };
-
   helm = kubernetes-helm;
-
-  terraform-providers = let in 
-  { inherit (pkgs.terraform-providers) azuread
+  terraform-providers = let in { 
+    inherit (pkgs.terraform-providers) azuread
                                        azurerm 
                                        aws
-                                       concourse
                                        cloudinit
-                                       controltower
                                        flexibleengine
                                        gitlab
-                                       harbor
                                        helm
                                        huaweicloud
                                        keycloak
                                        kubectl
                                        kubernetes
-                                       privx
                                        rancher2
                                        vault
-    ;};
+    ;} // automated-providers // special-providers;
   
   cue = callPackage ./pkgs/cue.nix { source = sources.cue; };
 
