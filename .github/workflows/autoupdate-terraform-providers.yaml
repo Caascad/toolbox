@@ -15,11 +15,11 @@ jobs:
       branch: '${{ steps.mr.outputs.branch }}'
       updates: '${{ steps.mr.outputs.updates }}'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Nix
-        uses: cachix/install-nix-action@v22
+        uses: cachix/install-nix-action@v25
       - name: Setup binary cache
-        uses: cachix/cachix-action@v12
+        uses: cachix/cachix-action@v14
         with:
           name: toolbox
           skipPush: true
@@ -65,13 +65,13 @@ jobs:
         os: [ ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: '${{ needs.update.outputs.branch }}'
       - name: Install Nix
-        uses: cachix/install-nix-action@v22
+        uses: cachix/install-nix-action@v25
       - name: Setup binary cache
-        uses: cachix/cachix-action@v12
+        uses: cachix/cachix-action@v14
         with:
           name: toolbox
           skipPush: true
@@ -86,7 +86,7 @@ jobs:
       - update
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: '${{ needs.update.outputs.branch }}'
           fetch-depth: 2
