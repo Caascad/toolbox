@@ -8,7 +8,7 @@
 
 let
 
-  providersSource = pkgs.lib.importJSON ./providers.json;
+  providersSource = pkgs.lib.importJSON ./autoupdate/providers.json;
   automated-providers = pkgs.lib.mapAttrs (_: attrs: pkgs.terraform-providers.mkProvider attrs) providersSource;
   special-providers = {
     harbor = automated-providers.harbor.override {mkProviderGoModule = pkgs.buildGo122Module;};
