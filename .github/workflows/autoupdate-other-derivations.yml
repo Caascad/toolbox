@@ -57,7 +57,7 @@ jobs:
             echo updates=true >> ${GITHUB_OUTPUT}
             echo branch=$BRANCH_NAME >> ${GITHUB_OUTPUT}
           else
-            echo ::set-output name=updates::false
+            echo updates=false >> ${GITHUB_OUTPUT}
           fi
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
