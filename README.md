@@ -209,7 +209,7 @@ Quickly, a full toolbox update should be performed this way:
 
 ```code
 niv update nixpkgs # update nixpkgs
-./autoupdate/update.py # update all sources managed by niv with autoupdate set to true
+nix-shell --command ./autoupdate/update.py # update all sources managed by niv with autoupdate set to true
 ( 
     cd autoupdate
     ./update-all-providers # update all terraform providers which are not in nixpkgs

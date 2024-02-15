@@ -52,7 +52,7 @@
         "type": "tarball",
         "url": "https://github.com/Caascad/conformity-tooling/archive/75232d9e000bf6dfb929a95a6156f8e37dd6f44d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.0.1"
+        "version": "0.0.2"
     },
     "fly-wrapper": {
         "branch": "master",

@@ -27,7 +27,7 @@ jobs:
           skipPush: true
       - name: Check for updates
         run : |
-          ./autoupdate/update.py
+          nix-shell --command ./autoupdate/update.py
           (
             cd autoupdate
           ./update-all-providers
