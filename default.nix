@@ -102,7 +102,7 @@ rec {
 
   sd = callPackage ./pkgs/sd {};
 
-  rswitch = import sources.rswitch {inherit pkgs; poetry2nixStandalone = poetry2nixStandalone;};
+  rswitch = import sources.rswitch {poetry2nixStandalone = poetry2nixStandalone;};
 
   get-rancher-creds = (import sources.conformity-tooling { inherit pkgs;}).getranchercreds;
 
