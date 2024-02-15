@@ -52,20 +52,7 @@
         "type": "tarball",
         "url": "https://github.com/Caascad/conformity-tooling/archive/75232d9e000bf6dfb929a95a6156f8e37dd6f44d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.0.2"
-    },
-    "cue": {
-        "branch": "master",
-        "description": "Validate and define text-based and dynamic configuration",
-        "homepage": "https://cuelang.org",
-        "owner": "cue-lang",
-        "repo": "cue",
-        "rev": "8709d8aa900927e4eacd464e17e63b6fc0661937",
-        "sha256": "1nrfr7ryr2xbmmq3cihhkn98l3kxk0hbwscgji45cvgirmpxdjyn",
-        "type": "tarball",
-        "url": "https://github.com/cue-lang/cue/archive/v0.6.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.6.0"
+        "version": "0.0.1"
     },
     "fly-wrapper": {
         "branch": "master",
@@ -86,12 +73,12 @@
         "homepage": "",
         "owner": "databus23",
         "repo": "helm-diff",
-        "rev": "c54f0858a1050c2bd068956ed2d407bbc0f93e8c",
-        "sha256": "1q4638kawhpdxkks36zmjh3pwh7lvn1yx0g0n1pjpl5h5cg56yy7",
+        "rev": "c15a11093b3dddca987ad5602e29069a84d545e1",
+        "sha256": "0vwgpnjrgzw705b2f7ld6vzpyqvlpaa0zzwkp9xxmqh5n38y4fc4",
         "type": "tarball",
-        "url": "https://github.com/databus23/helm-diff/archive/v3.8.1.tar.gz",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.9.4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "3.8.1"
+        "version": "3.9.4"
     },
     "kail": {
         "branch": "master",
@@ -99,12 +86,12 @@
         "homepage": "",
         "owner": "boz",
         "repo": "kail",
-        "rev": "688f29a7cb3cda4cdf3c4c01b023c3e463fa0d86",
-        "sha256": "1lipphs00q8dx5wqn8caps82x4llwdb1h4k70pjzy2b3hqvb9nf7",
+        "rev": "ec131e2d9c752664702f7711a1981ec8ec1f594a",
+        "sha256": "0wqkm4vbn4d0x4pii15lspl1il3zx4v3m1x7dh2lg0i18r83pi8v",
         "type": "tarball",
-        "url": "https://github.com/boz/kail/archive/v0.16.1.tar.gz",
+        "url": "https://github.com/boz/kail/archive/v0.17.4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.16.1"
+        "version": "0.17.4"
     },
     "ketall": {
         "branch": "master",
@@ -119,19 +106,6 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.3.8"
     },
-    "ksniff": {
-        "branch": "master",
-        "description": "Kubectl plugin to ease sniffing on kubernetes pods using tcpdump and wireshark",
-        "homepage": "",
-        "owner": "eldadru",
-        "repo": "ksniff",
-        "rev": "67b1799583687d1725dca2398e7c1a9239c9603c",
-        "sha256": "0i49rlxvb8w1nhv9dsnvg3ps802z36jrdy1fc1fi6xhajngalgqg",
-        "type": "tarball",
-        "url": "https://github.com/eldadru/ksniff/archive/v1.6.2.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.6.2"
-    },
     "kubectl-node-shell": {
         "branch": "master",
         "description": "Exec into node via kubectl",
@@ -144,6 +118,19 @@
         "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.8.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
         "version": "1.8.0"
+    },
+    "ksniff": {
+        "branch": "master",
+        "description": "Kubectl plugin to ease sniffing on kubernetes pods using tcpdump and wireshark",
+        "homepage": "",
+        "owner": "eldadru",
+        "repo": "ksniff",
+        "rev": "67b1799583687d1725dca2398e7c1a9239c9603c",
+        "sha256": "0i49rlxvb8w1nhv9dsnvg3ps802z36jrdy1fc1fi6xhajngalgqg",
+        "type": "tarball",
+        "url": "https://github.com/eldadru/ksniff/archive/v1.6.2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
+        "version": "1.6.2"
     },
     "kubectl-topology": {
         "branch": "master",
@@ -191,10 +178,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "9341b1027da2c2f95f8e808a3cb4b403e0a62c77",
-        "sha256": "1l996s518iv7bcfzzhxlsn35ahbslpbvhl3ds1zpnama7la23y9b",
+        "rev": "290965abaa02be33b601032d850c588a6bafb1a5",
+        "sha256": "1f75kd0s7ch882camvsp0shkbx0vs0hshn184il0fi6i7k4xs5hy",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/9341b1027da2c2f95f8e808a3cb4b403e0a62c77.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/290965abaa02be33b601032d850c588a6bafb1a5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -204,10 +191,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5ad9903c16126a7d949101687af0aa589b1d7d3d",
-        "sha256": "1i0nvgzzadbl29hzs5n4qbc0nnw69nh79b0kq3g7zi1926rczlqn",
+        "rev": "89653a03e0915e4a872788d10680e7eec92f8600",
+        "sha256": "0yarb5hqbawp7cd48p9pgf98gqdls9g1002bpzqdvhbcmbck17dj",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5ad9903c16126a7d949101687af0aa589b1d7d3d.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/89653a03e0915e4a872788d10680e7eec92f8600.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "poetry2nix": {
@@ -216,26 +203,12 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "e0b44e9e2d3aa855d1dd77b06f067cd0e0c3860d",
-        "sha256": "0zz3qzp2b5i9gw4yfxfrq07iadcdadackph12h02w19bb3535rm6",
+        "rev": "4eb2ac54029af42a001c9901194e9ce19cbd8a40",
+        "sha256": "16fi71fpywiqsya1z99kkb14dansyrmkkrb2clzs3b5qqx673wf4",
         "type": "tarball",
-        "url": "https://github.com/nix-community/poetry2nix/archive/e0b44e9e2d3aa855d1dd77b06f067cd0e0c3860d.tar.gz",
+        "url": "https://github.com/nix-community/poetry2nix/archive/4eb2ac54029af42a001c9901194e9ce19cbd8a40.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "1.42.1"
-    },
-    "rancher-cli": {
-        "autoupdate": false,
-        "branch": "v2.6",
-        "description": "Rancher CLI",
-        "homepage": null,
-        "owner": "rancher",
-        "repo": "cli",
-        "rev": "8f35783891bde2e0528a8a13bb979a88bbfb179c",
-        "sha256": "04xzpc3c9s3rd1qm6vzra1ixjycsxjcfrslk228pm4cx2kbkw4iy",
-        "type": "tarball",
-        "url": "https://github.com/rancher/cli/archive/v2.4.11.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "2.4.11"
+        "version": "2024.2.618482"
     },
     "rswitch": {
         "branch": "master",
@@ -248,20 +221,7 @@
         "type": "tarball",
         "url": "https://github.com/Caascad/rswitch/archive/7a44cbc5643a3e5f50fd446964d69a5a46a24efd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "1.2.9"
-    },
-    "tflint-ruleset-aws": {
-        "branch": "master",
-        "description": "TFLint ruleset for terraform-provider-aws",
-        "homepage": "",
-        "owner": "terraform-linters",
-        "repo": "tflint-ruleset-aws",
-        "rev": "a988165d0e08fefba7c3e2a57c2d910fc1701f5b",
-        "sha256": "16sg7833vg0k34dfkdkv8sji2y29sg0dkhv96skmrmqsgq7yd8s8",
-        "type": "tarball",
-        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.26.0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.26.0"
+        "version": "1.2.8"
     },
     "vault-token-helper": {
         "branch": "main",

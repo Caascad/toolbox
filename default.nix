@@ -8,7 +8,7 @@
 
 let
 
-  providersSource = pkgs.lib.importJSON ./providers.json;
+  providersSource = pkgs.lib.importJSON ./autoupdate/providers.json;
   automated-providers = pkgs.lib.mapAttrs (_: attrs: pkgs.terraform-providers.mkProvider attrs) providersSource;
   special-providers = {
     harbor = automated-providers.harbor.override {mkProviderGoModule = pkgs.buildGo122Module;};
@@ -30,6 +30,8 @@ rec {
                  saml2aws
                  k9s
                  terraform_1 terraform-docs tflint
+                 cue
+                 rancher
                  ;
 
   terraform_1_0_0 = builtins.trace "terraform_1_0_0 is deprecated use terraform_1" terraform_1;
@@ -66,8 +68,6 @@ rec {
                                        vault
     ;} // automated-providers // special-providers;
   
-  cue = callPackage ./pkgs/cue.nix { source = sources.cue; };
-
   fly = callPackage ./pkgs/fly.nix { inherit sources; };
 
   git = pkgs.git;
@@ -94,9 +94,7 @@ rec {
 
   velero = pkgs.callPackage ./pkgs/velero.nix { source = sources.velero; };
 
-  rancher-cli = pkgs.callPackage ./pkgs/rancher-cli.nix { source = sources.rancher-cli; };
-
-  tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix { source = sources.tflint-ruleset-aws; };
+  tflint-ruleset-aws = pkgs.callPackage ./pkgs/tflint-ruleset-aws.nix {tflint-ruleset-aws = pkgs.tflint-plugins.tflint-ruleset-aws;};
 
   print-client-zones-infos = callPackage ./pkgs/print-client-zones-infos {};
 
@@ -104,7 +102,7 @@ rec {
 
   sd = callPackage ./pkgs/sd {};
 
-  rswitch = import sources.rswitch {inherit pkgs; poetry2nixStandalone = poetry2nixStandalone;};
+  rswitch = import sources.rswitch {poetry2nixStandalone = poetry2nixStandalone;};
 
   get-rancher-creds = (import sources.conformity-tooling { inherit pkgs;}).getranchercreds;
 

@@ -70,7 +70,7 @@ rec {
       sha256 = sources.kail.sha256;
     };
     # vendorHash= lib.fakeHash;
-    vendorHash= "sha256-W+/vIq7qC+6apk+1GOWvmcwyyjFRkndq8X5m/lRYOu4=";
+    vendorHash= "sha256-u6/LsLphaqYswJkAuqgrgknnm+7MnaeH+kf9BPcdtrc=";
     subPackages = ["cmd/kail/"];
   };
 

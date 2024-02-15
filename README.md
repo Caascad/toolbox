@@ -200,8 +200,49 @@ Examples:
 * `cue: 0.0.14 -> 0.0.15`
 
 ## Maintainers
+### Updating
+We manage sources within 2 files:
+* nix/sources.json: handled by niv
+* providers.json: terraform providers handled by [update-provider](./update-provider) and [update-all-providers](./update-all-providers)
 
-### Managing sources
+Quickly, a full toolbox update should be performed this way:
+
+```code
+niv update nixpkgs # update nixpkgs
+nix-shell --command ./autoupdate/update.py # update all sources managed by niv with autoupdate set to true
+( 
+    cd autoupdate
+    ./update-all-providers # update all terraform providers which are not in nixpkgs
+)
+```
+
+Checking:
+
+```code
+nix-build
+nix-build -A terraform-providers
+```
+
+Pushing to cachix:
+
+```code
+nix-build | cachix push toolbox
+nix-build -A terraform-providers | cachix push toolbox
+```
+
+#### Managing sources with autoupdate
+We have a small helper to autoupdate entries in nix/sources.json without the attribute autoupdate set to false.
+The helper will try to build everything and in case a vendorSha256 is outputed will add it to nix/sources.json.
+
+niv ignore this attribute and won't try to delete it unless you drop the source (niv drop ...).
+
+```code
+./autoupdate/update.py
+```
+
+Entries with autoupdate attribute set to true should be treated manually with niv if relevant (ie we did not delibarately pinned the package version).
+
+#### Managing sources with niv
 
 Sources of `nixpkgs` or custom packages are managed with [niv](https://github.com/nmattia/niv). You can install it this way:
 ```sh
@@ -223,9 +264,17 @@ To update sources to a particular version:
 niv update concourse -v 7.6.0
 ```
 
+[!NOTE]
+nixpkgs must be updated with niv. In providers.json its autoupdate attribute is set to false:
+
+```code
+niv update nixpkgs
+```
+
 #### golang sources
 Currently nixpkgs moves to hash and vendorHash attributes populated with SRI hashes values.
-Currenty niv does not support vendorHash attribute so we need to add it directly in goBuild.* helpers.
+Currenty niv does not support vendorHash attribute so we need to add it directly in buildGo.* helpers.
+
 ```
 buildGoModule rec {
     ...
@@ -233,6 +282,11 @@ buildGoModule rec {
     # vendorSha = "sha256-......" # to uncomment when the new sri hash is known
     }
 ```
+
+
+Moreover a golang project from the old style building (packages) to the new one (modules). In golang modules, the vendor directory can be there or not. nix can trust it if asked. This situation creates a lot of case and situations where updating toolbox will break golang builds.
+
+The [autoupdate script](./autoupdate/update.py) takes care to add vendorSha256
 
 ### Testing a new package locally
 
@@ -264,6 +318,28 @@ export NIXPKGS_ALLOW_UNFREE=1
 In the current repo you will find an envrc.EXAMPLE file to source.
 
 ### Managing terraform providers sources
+#### Automated management
+
+Adding a new provider or update an existing one. Its code must be located on Github:
+
+```code
+./update-provider <owner>/<repo>
+```
+
+Example:
+
+```code
+./update-provider terraform-provider-concourse/concourse
+```
+
+If the build fails because of vendor dir try to set vendorHash to null in providers.json then re-build:
+
+```code
+./update-provider terraform-provider-concourse/concourse --force
+```
+
+#### Detailed management
+
 We manage few providers with the same mechanism used in nixpkgs. Our custom providers are managed through [a json file](./providers.json)
 
 A provider is defined by this block:
