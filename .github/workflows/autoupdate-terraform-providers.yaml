@@ -54,10 +54,10 @@ jobs:
             git add changes_wip.md
             git commit -m "add update changelog"
             git push origin $BRANCH_NAME
-            echo ::set-output name=updates::true
-            echo ::set-output name=branch::$BRANCH_NAME
-          else
-            echo ::set-output name=updates::false
+            echo updates=true >> ${GITHUB_OUTPUT}$
+            echo branch=$BRANCH_NAME >> ${GITHUB_OUTPUT}$
+          else$
+            echo updates=false >> ${GITHUB_OUTPUT}$
           fi
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
