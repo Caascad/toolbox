@@ -27,7 +27,11 @@ jobs:
           skipPush: true
       - name: Check for updates
         run : |
-          nix-shell --command autoupdate/update.py
+          ./autoupdate/update.py
+          (
+            cd autoupdate
+            ./update-all-providers
+          )
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SOURCE_FILTER: '(?!terraform.*)'

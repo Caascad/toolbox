@@ -28,7 +28,10 @@ jobs:
       - name: Check for updates
         run : |
           ./autoupdate/update.py
+          (
+            cd autoupdate
           ./update-all-providers
+          )
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SOURCE_FILTER: 'terraform'
