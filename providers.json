@@ -31,7 +31,7 @@
     "homepage": "https://registry.terraform.io/providers/caascad/privx",
     "owner": "caascad",
     "repo": "terraform-provider-privx",
-    "rev": "v1.33.0",
+    "rev": "1.33.0",
     "spdx": "MIT",
     "vendorHash": "sha256-vHAZS9P1da9s6ajRa8lXDCbBQtBBtL7jQ7ko7g83h6M="
   }
