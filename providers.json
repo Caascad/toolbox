@@ -27,11 +27,11 @@
     "vendorHash": "sha256-eFPvBl+j9QciFfPfpfwdJNb1r+DoaGldpx17saNZWqE="
    },
   "privx": {
-    "hash": "sha256-kDYlPA1Cj0hOiRzq2MlRX3MFDEL6TjBBbbZXFe67cDM=",
+    "hash": "sha256-HaQFqm7FYGHUzo4FBl6mf4wZBSYIb/XF/Jr9Wu/TV8s=",
     "homepage": "https://registry.terraform.io/providers/caascad/privx",
     "owner": "caascad",
     "repo": "terraform-provider-privx",
-    "rev": "v1.27.4",
+    "rev": "v1.33.0",
     "spdx": "MIT",
     "vendorHash": "sha256-vHAZS9P1da9s6ajRa8lXDCbBQtBBtL7jQ7ko7g83h6M="
   }
