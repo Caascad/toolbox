@@ -91,6 +91,8 @@ print_grafana_client() {
 }
 
 print_monitoring_stack() {
+## IMPORTANT : this is duplicate code with print_monitoring_stack_corp().
+## This function will be removed soon. This explains why we keep the code duplicated.
   replica=$(get_zones "monitoring-stack")
   [ "$replica" == "[]" ] && return
   for zname in $(echo "$replica" | jq -r '.[].name' | sort); do
@@ -105,6 +107,31 @@ print_monitoring_stack() {
     retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
 
     print_header "Monitoring stack"
+    print_kv "name" "${zone_name}"
+    print_kv "Cluster" "${cluster_name}"
+    print_kv "Namespace" "${namespace}"
+    print_kv "Alertmanager notifications targets" "${notifications_targets}"
+    print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
+  done
+}
+
+print_monitoring_stack_corp() {
+## IMPORTANT : this is duplicate code with print_monitoring_stack().
+## Code of print_monitoring_stack() will be removed soon. This explains why we keep the code duplicated.
+  replica=$(get_zones "monitoring-stack-corp")
+  [ "$replica" == "[]" ] && return
+  for zname in $(echo "$replica" | jq -r '.[].name' | sort); do
+    z="$(echo "${replica}" | jq -r --arg n "${zname}" '.[] | select(.name == $n)')"
+    zone_name=$(echo "$z" | jq -r '.name')
+    cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
+    namespace=$(echo "$z" | jq -r '.parameters["monitoring-stack"].namespace')
+    notifications_targets=$(echo "$z" | jq -r '[.parameters["monitoring-stack"].alertmanager.notifications_targets[].name]|@csv' | sed -e 's/"//g' -e 's/,/, /g')
+    [ -z "${notifications_targets}" ] && notifications_targets="(aucune)"
+    retention_raw=$(echo "$z" | jq -r '.parameters.thanos.retention.raw')
+    retention_5m=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_5m')
+    retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
+
+    print_header "Monitoring stack corp"
     print_kv "name" "${zone_name}"
     print_kv "Cluster" "${cluster_name}"
     print_kv "Namespace" "${namespace}"
@@ -173,4 +200,5 @@ print_monitoring_stack_client
 print_loki_client
 print_grafana
 print_monitoring_stack
+print_monitoring_stack_corp
 print_loki
