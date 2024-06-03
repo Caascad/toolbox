@@ -125,6 +125,7 @@ print_monitoring_stack_client() {
   retention_raw=$(echo "$z" | jq -r '.parameters.thanos.retention.raw')
   retention_5m=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_5m')
   retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
+  expose_prometheus_federate=$(echo "$z" | jq -r '.parameters["monitoring-stack"].prometheus.expose_prometheus_federate')
 
   print_header "Monitoring stack"
   print_kv "name" "${zone_name}"
@@ -134,6 +135,7 @@ print_monitoring_stack_client() {
 
   print_dict "NB Exporters" "${exporters_nb}"
   print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
+  print_kv "Prometheus exposes federate" "${expose_prometheus_federate}"
 }
 
 print_loki() {
