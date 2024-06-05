@@ -82,6 +82,7 @@ while [[ $# -gt 0 ]]; do
       if [ "$#" -eq "0" ]; then _help; exit 1; fi
       TYPE=$1
       if [[ "${TYPE}" != "zones" && "${TYPE}" != "infra_zone_names" ]]; then _help; exit 1; fi
+      mkdir -p "${RUN_DIR}"
       get "${TYPE}"
       exit 0
       ;;
