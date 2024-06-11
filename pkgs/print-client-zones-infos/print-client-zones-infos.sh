@@ -131,11 +131,13 @@ print_monitoring_stack() {
     retention_raw=$(echo "$z" | jq -r '.parameters.thanos.retention.raw')
     retention_5m=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_5m')
     retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
+    svc_hint=$(echo "$z" | jq -r '.parameters["monitoring-stack"].svc_hint')
 
     print_header "Monitoring stack"
     print_kv "name" "${zone_name}"
     print_kv "Cluster" "${cluster_name}"
     print_kv "Namespace" "${namespace}"
+    print_kv "Service Hint" "${svc_hint}"
     print_kv "Alertmanager notifications targets" "${notifications_targets}"
     print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
   done
@@ -156,11 +158,13 @@ print_monitoring_stack_corp() {
     retention_raw=$(echo "$z" | jq -r '.parameters.thanos.retention.raw')
     retention_5m=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_5m')
     retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
+    svc_hint=$(echo "$z" | jq -r '.parameters["monitoring-stack"].svc_hint')
 
     print_header "Monitoring stack corp"
     print_kv "name" "${zone_name}"
     print_kv "Cluster" "${cluster_name}"
     print_kv "Namespace" "${namespace}"
+    print_kv "Service Hint" "${svc_hint}"
     print_kv "Alertmanager notifications targets" "${notifications_targets}"
     print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
   done
