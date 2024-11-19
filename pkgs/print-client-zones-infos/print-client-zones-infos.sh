@@ -5,9 +5,9 @@ CLIENT=$1
 APP=print-client-zones-infos
 
 if [ "${CLIENT}" = "" ]; then
-    echo "Usage: $0 <client>"
-    echo "Exemple : $0 demo"
-    exit 1
+  echo "Usage: $0 <client>"
+  echo "Exemple : $0 demo"
+  exit 1
 fi
 
 if [ "${CLIENT}" = "version" ] || [ "${CLIENT}" = "--version" ]; then
@@ -37,7 +37,7 @@ print_kv() {
 print_array_in_one_line() {
   k="$1"
   a="$2"
-  printf "%-40s : %s\n" "$k" "$(echo "${a}"| jq -r '. |@csv')"
+  printf "%-40s : %s\n" "$k" "$(echo "${a}" | jq -r '. |@csv')"
 }
 
 print_array() {
@@ -49,7 +49,7 @@ print_array() {
     printf "%-40s %1s %s\n" "$k" "$sep" "$l"
     k=""
     sep=""
-  done <<< "$(echo "${a}" | jq -r '.[]')"
+  done <<<"$(echo "${a}" | jq -r '.[]')"
 }
 
 print_dict() {
@@ -59,7 +59,7 @@ print_dict() {
   while read -r l; do
     eval "${l}"
     echo ""
-  done <<< "$(echo "${v}" | jq -r --arg title "${k}" '. | to_entries | .[]| ["printf", "%-40s : %s", $title+"("+.key+")", .value]|@sh')"
+  done <<<"$(echo "${v}" | jq -r --arg title "${k}" '. | to_entries | .[]| ["printf", "%-40s : %s", $title+"("+.key+")", .value]|@sh')"
 }
 
 get_zones_cluster() {
@@ -90,7 +90,7 @@ print_grafana() {
   zone_name=$(echo "$z" | jq -r '.name')
   dns_domain=$(echo "$z" | jq -r '.dns_domain')
   cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
-  mapfile -t thanos_query_connected_services < <(echo "$z" | jq -r '.parameters.thanos_query_connected_services[].name' |sed -e 's/svc-monitoring-stack-client-\([a-z]*\)/\1/')
+  mapfile -t thanos_query_connected_services < <(echo "$z" | jq -r '.parameters.thanos_query_connected_services[].name' | sed -e 's/svc-monitoring-stack-client-\([a-z]*\)/\1/')
 
   print_header "Grafana"
   print_kv "name" "${zone_name}"
@@ -106,7 +106,7 @@ print_grafana_client() {
   zone_name=$(echo "$z" | jq -r '.name')
   dns_domain=$(echo "$z" | jq -r '.dns_domain')
   cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
-  mapfile -t thanos_query_connected_services < <(echo "$z" | jq -r '.parameters.thanos_query_connected_services[].name' |sed -e 's/svc-monitoring-stack-client-\([a-z]*\)/\1/')
+  mapfile -t thanos_query_connected_services < <(echo "$z" | jq -r '.parameters.thanos_query_connected_services[].name' | sed -e 's/svc-monitoring-stack-client-\([a-z]*\)/\1/')
 
   print_header "Grafana"
   print_kv "name" "${zone_name}"
@@ -116,36 +116,7 @@ print_grafana_client() {
   print_kv "Grafana DS Thanos" "$(printf ",%s" "${thanos_query_connected_services[@]}" | sed -e 's/^,//g')"
 }
 
-print_monitoring_stack() {
-## IMPORTANT : this is duplicate code with print_monitoring_stack_corp().
-## This function will be removed soon. This explains why we keep the code duplicated.
-  replica=$(get_zones_service "monitoring-stack")
-  [ "$replica" == "[]" ] && return
-  for zname in $(echo "$replica" | jq -r '.[].name' | sort); do
-    z="$(echo "${replica}" | jq -r --arg n "${zname}" '.[] | select(.name == $n)')"
-    zone_name=$(echo "$z" | jq -r '.name')
-    cluster_name=$(echo "$z" | jq -r '.cluster_zone_name')
-    namespace=$(echo "$z" | jq -r '.parameters["monitoring-stack"].namespace')
-    notifications_targets=$(echo "$z" | jq -r '[.parameters["monitoring-stack"].alertmanager.notifications_targets[].name]|@csv' | sed -e 's/"//g' -e 's/,/, /g')
-    [ -z "${notifications_targets}" ] && notifications_targets="(aucune)"
-    retention_raw=$(echo "$z" | jq -r '.parameters.thanos.retention.raw')
-    retention_5m=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_5m')
-    retention_1h=$(echo "$z" | jq -r '.parameters.thanos.retention.downsampling_1h')
-    svc_hint=$(echo "$z" | jq -r '.parameters["monitoring-stack"].svc_hint')
-
-    print_header "Monitoring stack"
-    print_kv "name" "${zone_name}"
-    print_kv "Cluster" "${cluster_name}"
-    print_kv "Namespace" "${namespace}"
-    print_kv "Service Hint" "${svc_hint}"
-    print_kv "Alertmanager notifications targets" "${notifications_targets}"
-    print_kv "Retentions (raw / 5m / 1h)" "${retention_raw} / ${retention_5m} / ${retention_1h}"
-  done
-}
-
 print_monitoring_stack_corp() {
-## IMPORTANT : this is duplicate code with print_monitoring_stack().
-## Code of print_monitoring_stack() will be removed soon. This explains why we keep the code duplicated.
   replica=$(get_zones_service "monitoring-stack-corp")
   [ "$replica" == "[]" ] && return
   for zname in $(echo "$replica" | jq -r '.[].name' | sort); do
@@ -257,7 +228,6 @@ print_grafana_client
 print_monitoring_stack_client
 print_loki_client
 print_grafana
-print_monitoring_stack
 print_monitoring_stack_corp
 print_loki
 print_kub_infos
