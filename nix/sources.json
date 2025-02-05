@@ -60,12 +60,12 @@
         "homepage": "https://cuelang.org",
         "owner": "cue-lang",
         "repo": "cue",
-        "rev": "c7f93344ed53ac0aa372398aea05ea3a8e76ceef",
-        "sha256": "1rs2wxcarqxvkahsb7nhasf425l7rkw22r3cx92bdap4m80dgh67",
+        "rev": "7d7abffdb1787ad6610d9e8155b09ac406e81d41",
+        "sha256": "0zqscgvxyp67bnwvlfzm0qmrvnmh540f5rfhm4zyz3z2bjxiaspz",
         "type": "tarball",
-        "url": "https://github.com/cue-lang/cue/archive/v0.7.1.tar.gz",
+        "url": "https://github.com/cue-lang/cue/archive/v0.12.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.7.1"
+        "version": "0.12.0"
     },
     "fly-wrapper": {
         "branch": "master",
@@ -86,12 +86,12 @@
         "homepage": "",
         "owner": "databus23",
         "repo": "helm-diff",
-        "rev": "c54f0858a1050c2bd068956ed2d407bbc0f93e8c",
-        "sha256": "1q4638kawhpdxkks36zmjh3pwh7lvn1yx0g0n1pjpl5h5cg56yy7",
+        "rev": "1a640875a4073c09d77a199e90118c548dc93dcd",
+        "sha256": "1sb37dp5cxb686pd5qmy6m4h03brm7jxminnqxfjqfqp51kf06dx",
         "type": "tarball",
-        "url": "https://github.com/databus23/helm-diff/archive/v3.8.1.tar.gz",
+        "url": "https://github.com/databus23/helm-diff/archive/v3.10.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "3.8.1"
+        "version": "3.10.0"
     },
     "kail": {
         "branch": "master",
@@ -99,12 +99,12 @@
         "homepage": "",
         "owner": "boz",
         "repo": "kail",
-        "rev": "688f29a7cb3cda4cdf3c4c01b023c3e463fa0d86",
-        "sha256": "1lipphs00q8dx5wqn8caps82x4llwdb1h4k70pjzy2b3hqvb9nf7",
+        "rev": "ec131e2d9c752664702f7711a1981ec8ec1f594a",
+        "sha256": "0wqkm4vbn4d0x4pii15lspl1il3zx4v3m1x7dh2lg0i18r83pi8v",
         "type": "tarball",
-        "url": "https://github.com/boz/kail/archive/v0.16.1.tar.gz",
+        "url": "https://github.com/boz/kail/archive/v0.17.4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.16.1"
+        "version": "0.17.4"
     },
     "ketall": {
         "branch": "master",
@@ -138,12 +138,12 @@
         "homepage": "https://github.com/kvaps/kubectl-node-shell",
         "owner": "kvaps",
         "repo": "kubectl-node-shell",
-        "rev": "bfa4119425152e9883dc0e139830ff0c0fb35a34",
-        "sha256": "0wff3361kn1bm82n7nnxal4ssqjrrh2dyfq82ncipcr35154g57q",
+        "rev": "c8868960a3ad151a7e2de9c81ff137690138092d",
+        "sha256": "1nmjd59ikqpi6qrs05xdnvl5qqybryhf6vzyr6788jypkxd2gg4c",
         "type": "tarball",
-        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.8.0.tar.gz",
+        "url": "https://github.com/kvaps/kubectl-node-shell/archive/v1.11.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "1.8.0"
+        "version": "1.11.0"
     },
     "kubectl-topology": {
         "branch": "master",
@@ -191,10 +191,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "9341b1027da2c2f95f8e808a3cb4b403e0a62c77",
-        "sha256": "1l996s518iv7bcfzzhxlsn35ahbslpbvhl3ds1zpnama7la23y9b",
+        "rev": "e2f66fe558481d6b569358d27db06f7e972ed71b",
+        "sha256": "1xn822jajags6bigdr1ssxvfiyd7d3adhnmmrr9x3maphchkr0x0",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/9341b1027da2c2f95f8e808a3cb4b403e0a62c77.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/e2f66fe558481d6b569358d27db06f7e972ed71b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -216,12 +216,12 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "e0b44e9e2d3aa855d1dd77b06f067cd0e0c3860d",
-        "sha256": "0zz3qzp2b5i9gw4yfxfrq07iadcdadackph12h02w19bb3535rm6",
+        "rev": "75d0515332b7ca269f6d7abfd2c44c47a7cbca7b",
+        "sha256": "16azjpzhlyfddn9jbx56nbzzh2fgd0b6czsfc9i8813lm6cal83s",
         "type": "tarball",
-        "url": "https://github.com/nix-community/poetry2nix/archive/e0b44e9e2d3aa855d1dd77b06f067cd0e0c3860d.tar.gz",
+        "url": "https://github.com/nix-community/poetry2nix/archive/75d0515332b7ca269f6d7abfd2c44c47a7cbca7b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "1.42.1"
+        "version": "2025.1.1472268"
     },
     "rancher-cli": {
         "autoupdate": false,
@@ -248,7 +248,7 @@
         "type": "tarball",
         "url": "https://github.com/Caascad/rswitch/archive/7a44cbc5643a3e5f50fd446964d69a5a46a24efd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "1.2.9"
+        "version": "1.2.8"
     },
     "tflint-ruleset-aws": {
         "branch": "master",
@@ -256,12 +256,12 @@
         "homepage": "",
         "owner": "terraform-linters",
         "repo": "tflint-ruleset-aws",
-        "rev": "a988165d0e08fefba7c3e2a57c2d910fc1701f5b",
-        "sha256": "16sg7833vg0k34dfkdkv8sji2y29sg0dkhv96skmrmqsgq7yd8s8",
+        "rev": "1fd47623f54ab1b8acca8cf25670e090f90be96a",
+        "sha256": "1zsk06d7ddff2pay2qcisb24dabq1f1zy09kasifbp8wn5bva57g",
         "type": "tarball",
-        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.26.0.tar.gz",
+        "url": "https://github.com/terraform-linters/tflint-ruleset-aws/archive/v0.37.0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/v<version>.tar.gz",
-        "version": "0.26.0"
+        "version": "0.37.0"
     },
     "vault-token-helper": {
         "branch": "main",
