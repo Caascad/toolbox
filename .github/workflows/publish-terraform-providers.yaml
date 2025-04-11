@@ -19,9 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Nix
-      uses: cachix/install-nix-action@v25
+      uses: cachix/install-nix-action@v31
     - name: Setup binary cache
-      uses: cachix/cachix-action@v14
+      uses: cachix/cachix-action@v16
       with:
         name: toolbox
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
